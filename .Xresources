@@ -1,0 +1,68 @@
+Xft.autohint: 0
+Xft.antialias: 1
+Xft.hinting: true
+Xft.hintstyle: hintslight
+Xft.dpi: 96
+Xft.rgba: rgb
+Xft.lcdfilter: lcddefault
+
+! Font
+URxvt.font: xft:Anonymous Pro:pixelsize=13
+
+! Colors
+URxvt*background: #000000
+URxvt*foreground: #B2B2B2
+! black
+URxvt*color0:  #000000
+URxvt*color8:  #686868
+! red
+URxvt*color1:  #B21818
+URxvt*color9:  #FF5454
+! green
+URxvt*color2:  #18B218
+URxvt*color10: #54FF54
+! yellow
+URxvt*color3:  #B26818
+URxvt*color11: #FFFF54
+! blue
+URxvt*color4:  #1818B2
+URxvt*color12: #5454FF
+! purple
+URxvt*color5:  #B218B2
+URxvt*color13: #FF54FF
+! cyan
+URxvt*color6:  #18B2B2
+URxvt*color14: #54FFFF
+! white
+URxvt*color7:  #B2B2B2
+URxvt*color15: #FFFFFF
+! do not scroll with output
+URxvt*scrollTtyOutput: false
+! scroll in relation to buffer (with mouse scroll or Shift+Page Up)
+URxvt*scrollWithBuffer: true
+! scroll back to the bottom on keypress
+URxvt*scrollTtyKeypress: true
+! Perl exntesions
+URxvt.perl-ext-common: default,matcher
+! Clickable URLs
+URxvt.url-launcher: /usr/bin/xdg-open
+URxvt.matcher.button: 1
+
+
+! Rofi
+! ------------------------------------------------------------------------------
+! ROFI Color theme
+! Copyright: 2017 leofa
+! ------------------------------------------------------------------------------
+! "Color scheme for normal row" Set from: File
+rofi.color-normal:                   argb:0383c4a, #c4cbd4, argb:96404552, #4084d6, #f9f9f9
+! "Color scheme for urgent row" Set from: File
+rofi.color-urgent:                   argb:02d303b, #cc6666, argb:e52d303b, #a54242, #f9f9f9
+! "Color scheme for active row" Set from: File
+rofi.color-active:                   argb:02d303b, #b5bd68, argb:e42d303b, #8c9440, #f9f9f9
+! "Color scheme window" Set from: File
+rofi.color-window:                   argb:f22d303b, #7c8389, #1d1f21
+! "Separator style (none, dash, solid)" Set from: XResources
+rofi.separator-style:                solid
+rofi.run-command:                    i3-msg exec "{cmd}"
+

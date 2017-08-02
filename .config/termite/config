@@ -1,0 +1,6 @@
+[options]
+font = Anonymous Pro 10
+scrollback_lines = -1
+[colors]
+foreground = #b2b2b2
+background = #000000
