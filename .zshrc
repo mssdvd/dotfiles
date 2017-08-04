@@ -1,4 +1,4 @@
-fpath=(/home/davide/.zsh/zsh-completions/src $fpath)
+ fpath=(/home/davide/.zsh/zsh-completions/src $fpath)
 source $HOME/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
 autoload -Uz compinit
 compinit
