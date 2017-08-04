@@ -42,6 +42,7 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
+(setq vc-follow-symlinks nil)
 
 ;; un/comment region
 (bind-key "C-c ;" 'comment-or-uncomment-region)
