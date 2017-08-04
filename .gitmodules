@@ -1,0 +1,3 @@
+[submodule ".i3/i3blocks-Anachron"]
+	path = .i3/i3blocks-Anachron
+	url = https://github.com/Anachron/i3blocks
