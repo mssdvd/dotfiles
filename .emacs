@@ -25,9 +25,6 @@
  '(paradox-automatically-star t)
  '(paradox-github-token "2324bfc6102601e0e7a2fbeb5ff0d0938c45695b")
  '(pdf-annot-tweak-tooltips nil)
- '(projectile-project-root-files-bottom-up
-   (quote
-	(".projectile" ".hg" ".fslckout" "_FOSSIL_" ".bzr" "_darcs")))
  '(realgud:pdb-command-name "python -m pdb"))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -42,7 +39,9 @@
 (scroll-bar-mode -1)
 (tool-bar-mode -1)
 (setq inhibit-startup-screen t)
-(setq vc-follow-symlinks nil)
+
+;; change all prompts to y or n
+(fset 'yes-or-no-p 'y-or-n-p)
 
 ;; un/comment region
 (bind-key "C-c ;" 'comment-or-uncomment-region)

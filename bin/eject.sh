@@ -1,6 +1,6 @@
 #! /bin/sh
 
-while [ 1 != 0 ]
+while [ true ]
 do
 	echo FUORI
 	eject
