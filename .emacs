@@ -21,7 +21,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(smex nyan-mode yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(terminal-here smex nyan-mode yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(paradox-automatically-star t)
  '(paradox-github-token "2324bfc6102601e0e7a2fbeb5ff0d0938c45695b")
  '(pdf-annot-tweak-tooltips nil)
@@ -595,5 +595,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 			  (tramp-file-name-localname vec)))
 		 (concat "/sudo:root@localhost:" (buffer-file-name))))
 	  (goto-char position))))
+
+
+;; terminal here
+;; https://github.com/davidshepherd7/terminal-here
+(use-package terminal-here
+  :ensure t
+  :config (setq terminal-here-terminal-command '("termite")))
 
 ;;; .emacs ends here
