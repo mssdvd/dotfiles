@@ -256,8 +256,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package recentf
   :config
   (recentf-mode)
-  (setq recentf-max-menu-items 50)
-  (setq recentf-max-saved-items 50))
+  (setq recentf-max-menu-items 100)
+  (setq recentf-max-saved-items 100))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
