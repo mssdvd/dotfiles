@@ -282,8 +282,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; paradox
 (use-package paradox
-  :ensure t
-  )
+  :ensure t)
 
 ;; undo-tree
 (use-package undo-tree
