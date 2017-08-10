@@ -191,6 +191,11 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; swiper
 ;; https://github.com/abo-abo/swiper
+;; M-q - swiper-query-replace
+;; C-l - swiper-recenter-top-bottom
+;; C-' - swiper-avy
+;; C-7 - swiper-mc
+;; C-c C-f - swiper-toggle-face-matching
 (use-package swiper
   :ensure t
   :bind
