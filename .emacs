@@ -329,6 +329,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package company
   :ensure t
   :diminish company-mode
+  :bind ([(M-tab)]. company-complete)
   :config
   (global-company-mode)
   (add-to-list 'company-backends '(company-c-headers company-irony company-anaconda)))
