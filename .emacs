@@ -7,7 +7,7 @@
 (require 'package)
 ;;; Code:
 (add-to-list 'package-archives
-             '("MELPA" . "https://melpa.org/packages/"))
+			 '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -22,10 +22,7 @@
  '(package-selected-packages
    (quote
 	(terminal-here smex nyan-mode yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
- '(paradox-automatically-star t)
- '(paradox-github-token "2324bfc6102601e0e7a2fbeb5ff0d0938c45695b")
- '(pdf-annot-tweak-tooltips nil)
- '(realgud:pdb-command-name "python -m pdb"))
+ '(pdf-annot-tweak-tooltips nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -34,10 +31,15 @@
  '(default ((t (:family "Ubuntu Mono" :foundry "DAMA" :slant normal :weight normal :height 120 :width normal))))
  '(paradox-mode-line-face ((t (:inherit mode-line-buffer-id :weight normal)))))
 
+;; enable column number
 (column-number-mode t)
+;; display size of the buffer
 (size-indication-mode t)
+;; disable scrollbar
 (scroll-bar-mode -1)
+;; disable toolbar
 (tool-bar-mode -1)
+;; disable startup screen
 (setq inhibit-startup-screen t)
 
 ;; change all prompts to y or n
@@ -67,8 +69,7 @@
 
 ;; C preferences
 (setq-default c-default-style "k&r"
-              tab-width 4
-              indent-tabs-mode t)
+			  tab-width 4)
 ;;(add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
 
 ;; gdb
@@ -89,9 +90,9 @@
 
 ;; window title
 (setq frame-title-format
-      '((:eval (if (buffer-modified-p) "• "))
-        (:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name)) "%b"))))
+	  '((:eval (if (buffer-modified-p) "• "))
+		(:eval (if (buffer-file-name)
+				   (abbreviate-file-name (buffer-file-name)) "%b"))))
 
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
@@ -123,6 +124,19 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 				   (point)))
 	  (activate-mark))))
 (bind-key "C-c m" 'my-mark-current-word)
+
+(defun switch-highlight-indent-guides-and-whitespace-modes ()
+  "Switch between highlight-indent-guides and whitespace modes."
+  (interactive)
+  (if (get 'switch-highlight-indent-guides-and-whitespace-modes 'state)
+	  (progn
+		(whitespace-mode -1)
+		(highlight-indent-guides-mode 1)
+		(put 'switch-highlight-indent-guides-and-whitespace-modes 'state nil))
+	(progn
+	  (whitespace-mode 1)
+	  (highlight-indent-guides-mode -1)
+	  (put 'switch-highlight-indent-guides-and-whitespace-modes 'state t))))
 
 ;;;;
 ;; USE-PACKAGE
@@ -157,17 +171,25 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (show-smartparens-global-mode t)
   (smartparens-global-mode t)
-  (sp-local-pair '(c-mode c++-mode java-mode) "{" nil :post-handlers '(("||\n[i]" "RET")))
+  ;;(sp-local-pair '(c-mode c++-mode java-mode) "{" nil :post-handlers '(("||\n[i]" "RET")))
   (sp-local-pair '(c-mode c++-mode java-mode) "/*" "*/" :post-handlers '((" | " "SPC")
-																		 ("* ||\n[i]""RET"))))
+																		 ("* ||\n[i]""RET")))
+
+  (sp-local-pair '(c-mode c++-mode java-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (defun my-create-newline-and-enter-sexp (&rest _ignored)
+	"Open a new brace or bracket expression, with relevant newlines and indent. "
+	(newline)
+	(indent-according-to-mode)
+	(forward-line -1)
+	(indent-according-to-mode)))
 
 ;; ivy
 ;; https://github.com/abo-abo/swiper
 (use-package ivy
   :ensure t
+  :diminish ivy-mode
   :bind
   ("C-c r" . ivy-resume)
-  (:map ivy-mode-map ("C-'" . ivy-avy))
   :config
   (ivy-mode 1)
   (counsel-mode 1)
@@ -215,7 +237,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ("C-:" . avy-goto-char)
   ("C-'" . avy-goto-char-timer)
   ("M-g f" . avy-goto-line)
-;  ("M-g w" . avy-goto-word-1)
+  ;;  ("M-g w" . avy-goto-word-1)
   ("M-g e" . avy-goto-word-0)
   :config (avy-setup-default))
 
@@ -223,7 +245,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/magicdirac/avy-flycheck
 (use-package avy-flycheck
   :ensure t
-  
   :config (avy-flycheck-setup))
 
 ;; ace-window
@@ -246,7 +267,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; Dep flake8, clang
 (use-package flycheck
   :ensure t
-  
   :config
   (global-flycheck-mode)
   (setq flycheck-global-modes '(not org-mode)))
@@ -254,7 +274,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; flycheck-pos-tip
 (use-package flycheck-pos-tip
   :ensure t
-  
   :config (flycheck-pos-tip-mode t))
 
 ;; recentf
@@ -273,6 +292,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (setq highlight-indent-guides-method 'character))
 
 ;;rainbow-delimiters
+;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
   :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
@@ -280,19 +300,17 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; org
 (use-package org
   :ensure t
-  :bind
-  ("C-c l" . org-store-link)
-  ("C-c a" . org-agenda)
   :config (setq org-log-done t))
 
 ;; paradox
 (use-package paradox
-  :ensure t)
+  :ensure t
+  :config (setq paradox-github-token t))
 
 ;; undo-tree
 (use-package undo-tree
   :ensure t
-  :diminish global-undo-tree-mode
+  :diminish undo-tree-mode
   :config
   (global-undo-tree-mode)
   (setq undo-tree-visualizer-timestamps t)
@@ -330,7 +348,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (setq projectile-completion-system 'ivy
-        projectile-enable-caching t))
+		projectile-enable-caching t))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
@@ -346,13 +364,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :diminish irony-mode
   :config
   (defun irony-and-platformio-hook ()
-    (irony-mode)
-    (irony-eldoc)
-    (platformio-conditionally-enable))
+	(irony-mode)
+	(irony-eldoc)
+	(platformio-conditionally-enable))
   (add-hook 'c-mode-hook 'irony-and-platformio-hook)
   (add-hook 'c++-mode-hook 'irony-and-platformio-hook)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
-
 
 ;; irony-eldoc
 ;; https://github.com/ikirill/irony-eldoc
@@ -363,8 +380,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/Sarcasm/flycheck-irony/
 (use-package flycheck-irony
   :ensure t
-  
-  :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  :config (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 ;; company-irony
 ;; https://github.com/Sarcasm/company-irony
@@ -391,22 +407,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/magnars/multiple-cursors.el
 (use-package multiple-cursors
   :ensure t
-  :init (unbind-key "M-<down-mouse-1>")
   :bind
   ("C-S-c C-S-c" . mc/edit-lines)
   ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this)
   ("C-c <" . mc/mark-all-like-this)
   ("M-<down-mouse-1>" . mc/add-cursor-on-click))
-
-;; yasnippet
-;; https://github.com/joaotavora/yasnippet
-(use-package yasnippet
-  :ensure t
-  :diminish yas-minor-mode
-  :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode))
 
 ;; highlight-symbol
 ;; https://github.com/nschum/highlight-symbol.el
@@ -418,19 +424,42 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ([(S-f5)] . highlight-symbol-prev)
   ([(M-f5)] . highlight-symbol-query-replace))
 
+;; yasnippet
+;; https://github.com/joaotavora/yasnippet
+(use-package yasnippet
+  :ensure t
+  :diminish yas-minor-mode
+  :config
+  (yas-reload-all)
+  (add-hook 'prog-mode-hook #'yas-minor-mode))
+
 ;; anaconda-mode
 ;; https://github.com/proofit404/anaconda-mode
 (use-package anaconda-mode
   :ensure t
   :config
   (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode)
-  (auto-revert-mode -1))
+  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
 
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
 (use-package company-anaconda
   :ensure t)
+
+;; yapfify
+;; https://github.com/JorisE/yapfify
+;; Dep yapfy
+(use-package yapfify
+  :ensure t
+  :diminish yapf-mode
+  :config (add-hook 'python-mode-hook 'yapf-mode))
+
+;; py-isort
+;; https://github.com/paetzke/py-isort.el
+;; Dep isort
+(use-package py-isort
+  :ensure t
+  :config (add-hook 'before-save-hook 'py-isort-before-save))
 
 ;; all the icons
 ;; https://github.com/domtronn/all-the-icons.el
@@ -462,32 +491,15 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :diminish auto-revert-mode
   :config
   :disabled
-  (global-auto-revert-mode 1 )
-  ;;   (defvar global-auto-revert-non-file-buffers t)
+  (global-auto-revert-mode 1)
   (setq auto-revert-remote-files t))
 
 ;; eldoc-mode
 (use-package eldoc
   :diminish eldoc-mode)
 
-;; yapfify
-;; https://github.com/JorisE/yapfify
-;; Dep yapfy
-(use-package yapfify
-  :ensure t
-  :diminish yapf-mode
-  :config (add-hook 'python-mode-hook 'yapf-mode))
-
-;; py-isort
-;; https://github.com/paetzke/py-isort.el
-;; Dep isort
-(use-package py-isort
-  :ensure t
-  :config (add-hook 'before-save-hook 'py-isort-before-save))
-
 ;; comint-mode
 (use-package comint
-  
   :config
   (setq-default
    comint-scroll-to-bottom-on-input t
@@ -498,10 +510,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
    comint-buffer-maximum-size 2048)
   (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
   (add-hook 'comint-mode-hook
-            (lambda ()
-              (define-key comint-mode-map [remap kill-region] 'comint-kill-region)
-              (define-key comint-mode-map [remap kill-whole-line]
-                'comint-kill-whole-line)))
+			(lambda ()
+			  (define-key comint-mode-map [remap kill-region] 'comint-kill-region)
+			  (define-key comint-mode-map [remap kill-whole-line]
+				'comint-kill-whole-line)))
   ;; (defun make-my-shell-output-read-only (text)
   ;;    "Add to comint-output-filter-functions to make stdout read only in my shells."
   ;;        (let ((inhibit-read-only t)
@@ -510,12 +522,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ;; (add-hook 'comint-output-filter-functions 'make-my-shell-output-read-only)
 										; Python Shell
   (add-hook 'python-shell-first-prompt-hook
-            (lambda ()
-              (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
+			(lambda ()
+			  (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
 			  ;;            (add-hook 'comint-output-filter-functions 'make-my-shell-output-read-only)
-              (define-key comint-mode-map [remap kill-region] 'comint-kill-region)
-              (define-key comint-mode-map [remap kill-whole-line]
-                'comint-kill-whole-line))))
+			  (define-key comint-mode-map [remap kill-region] 'comint-kill-region)
+			  (define-key comint-mode-map [remap kill-whole-line]
+				'comint-kill-whole-line))))
 
 ;; pdf-tools
 ;; https://github.com/politza/pdf-tools
@@ -526,8 +538,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (pdf-tools-install)
   (bind-key "C-s" 'isearch-forward pdf-view-mode-map)
   (add-hook 'pdf-view-mode-hook
-            (lambda ()
-              (nlinum-mode -1)))
+			(lambda ()
+			  (nlinum-mode -1)))
   ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
   ;; https://github.com/politza/pdf-tools/issues/18#issuecomment-269515117
   (defun brds/pdf-set-last-viewed-bookmark ()
@@ -561,7 +573,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; realgud
 ;; https://github.com/realgud/realgud
 (use-package realgud
-  :ensure t)
+  :ensure t
+  :config (setq realgud:pdb-command-name "python -m pdb"))
 
 ;; nyan-mode
 ;; https://github.com/TeMPOraL/nyan-mode
@@ -585,7 +598,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; tramp mode
 (use-package tramp
   :config
-;;  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+  ;;  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
   (defun sudo-edit-current-file ()
 	(interactive)
 	(let ((position (point)))
@@ -599,7 +612,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 			  (tramp-file-name-localname vec)))
 		 (concat "/sudo:root@localhost:" (buffer-file-name))))
 	  (goto-char position))))
-
 
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
