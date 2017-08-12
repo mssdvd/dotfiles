@@ -45,9 +45,6 @@
 ;; change all prompts to y or n
 (fset 'yes-or-no-p 'y-or-n-p)
 
-;; un/comment region
-(bind-key "C-c ;" 'comment-or-uncomment-region)
-
 ;; revert buffer
 (bind-key "C-x m" 'revert-buffer)
 
@@ -502,33 +499,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; comint-mode
 (use-package comint
   :config
-  (setq-default
-   comint-scroll-to-bottom-on-input t
-   comint-scroll-to-bottom-on-output nil
-   comint-completion-addsuffix t
-   comint-input-ignoredups t
-   comint-prompt-read-only t
-   comint-buffer-maximum-size 2048)
+  (setq comint-prompt-read-only t)
   (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
-  (add-hook 'comint-mode-hook
-			(lambda ()
-			  (define-key comint-mode-map [remap kill-region] 'comint-kill-region)
-			  (define-key comint-mode-map [remap kill-whole-line]
-				'comint-kill-whole-line)))
-  ;; (defun make-my-shell-output-read-only (text)
-  ;;    "Add to comint-output-filter-functions to make stdout read only in my shells."
-  ;;        (let ((inhibit-read-only t)
-  ;;              (output-end (process-mark (get-buffer-process (current-buffer)))))
-  ;;          (put-text-property comint-last-output-start output-end 'read-only t)))
-  ;; (add-hook 'comint-output-filter-functions 'make-my-shell-output-read-only)
-										; Python Shell
   (add-hook 'python-shell-first-prompt-hook
-			(lambda ()
-			  (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
-			  ;;            (add-hook 'comint-output-filter-functions 'make-my-shell-output-read-only)
-			  (define-key comint-mode-map [remap kill-region] 'comint-kill-region)
-			  (define-key comint-mode-map [remap kill-whole-line]
-				'comint-kill-whole-line))))
+			(lambda () (add-hook 'comint-output-filter-functions 'comint-truncate-buffer))))
 
 ;; pdf-tools
 ;; https://github.com/politza/pdf-tools
