@@ -61,6 +61,9 @@
 ;; enable delete-selection-mode
 (delete-selection-mode 1)
 
+;; improve comint performance
+(setq-default bidi-display-reordering nil)
+
 ;; use tab to indent
 (setq tab-always-indent 'complete)
 
@@ -185,8 +188,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package ivy
   :ensure t
   :diminish ivy-mode
-  :bind
-  ("C-c r" . ivy-resume)
+  :bind ("C-c r" . ivy-resume)
   :config
   (ivy-mode 1)
   (counsel-mode 1)
@@ -399,7 +401,11 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; magit
 ;; https://magit.vc
 (use-package magit
-  :ensure t)
+  :ensure t
+  :config
+  (setq magit-repository-directories
+		'(("~/Documents/dotfiles" . 3)
+		  ("~/Documents/docs" . 3))))
 
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el
@@ -499,10 +505,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; comint-mode
 (use-package comint
   :config
-  (setq comint-prompt-read-only t)
-  (add-hook 'comint-output-filter-functions 'comint-truncate-buffer)
-  (add-hook 'python-shell-first-prompt-hook
-			(lambda () (add-hook 'comint-output-filter-functions 'comint-truncate-buffer))))
+  (setq comint-prompt-read-only t))
 
 ;; pdf-tools
 ;; https://github.com/politza/pdf-tools
