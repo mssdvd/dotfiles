@@ -70,7 +70,6 @@
 ;; C preferences
 (setq-default c-default-style "k&r"
 			  tab-width 4)
-;;(add-hook 'c-mode-common-hook '(lambda () (c-toggle-auto-state 1)))
 
 ;; gdb
 (defvar gdb-many-windows)
@@ -142,9 +141,11 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; USE-PACKAGE
 ;;;;
 
+(use-package use-package
+  :config (setq use-package-always-ensure t))
+
 ;; moe-theme
 (use-package moe-theme
-  :ensure moe-theme
   :config
   (moe-theme-set-color 'red)
   (moe-dark))
@@ -152,7 +153,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; nlinum
 ;; https://elpa.gnu.org/packages/nlinum.html
 (use-package nlinum
-  :ensure t
   :config
   (global-nlinum-mode)
   (setq nlinum-format "%4d")
@@ -160,7 +160,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; neotree
 (use-package neotree
-  :ensure t
   :bind ([f8] . neotree-toggle)
   :config (setq neo-theme 'icons))
 
@@ -186,12 +185,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; ivy
 ;; https://github.com/abo-abo/swiper
 (use-package ivy
-  :ensure t
   :diminish ivy-mode
   :bind ("C-c r" . ivy-resume)
   :config
   (ivy-mode 1)
-  (counsel-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) "))
@@ -200,13 +197,13 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/abo-abo/swiper
 ;; Dep ripgrep
 (use-package counsel
-  :ensure t
   :diminish counsel-mode
   :bind
   ("C-x l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
   ("C-x g". counsel-rg)
   :config
+  (counsel-mode 1)
   (setq counsel-grep-base-command "grep -nEi '%s' %s")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
@@ -218,20 +215,17 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; C-7 - swiper-mc
 ;; C-c C-f - swiper-toggle-face-matching
 (use-package swiper
-  :ensure t
   :bind
   ("C-s" . counsel-grep-or-swiper)
   ("C-c s" . swiper-all))
 
 ;; ivy-hydra
 ;; https://github.com/abo-abo/swiper
-(use-package ivy-hydra
-  :ensure t)
+(use-package ivy-hydra)
 
 ;; avy
 ;; https://github.com/abo-abo/avy
 (use-package avy
-  :ensure t
   :bind
   ("C-:" . avy-goto-char)
   ("C-'" . avy-goto-char-timer)
@@ -243,7 +237,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; avy-flycheck
 ;; https://github.com/magicdirac/avy-flycheck
 (use-package avy-flycheck
-  :ensure t
   :config (avy-flycheck-setup))
 
 ;; ace-window
@@ -257,7 +250,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; i - maximize window (select which window)
 ;; o - maximize current window
 (use-package ace-window
-  :ensure t
   :bind ("M-[" . ace-window)
   :config (setq aw-dispatch-always t))
 
@@ -265,18 +257,17 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; http://www.flycheck.org
 ;; Dep flake8, clang
 (use-package flycheck
-  :ensure t
   :config
   (global-flycheck-mode)
   (setq flycheck-global-modes '(not org-mode)))
 
 ;; flycheck-pos-tip
 (use-package flycheck-pos-tip
-  :ensure t
   :config (flycheck-pos-tip-mode t))
 
 ;; recentf
 (use-package recentf
+  :ensure nil
   :config
   (recentf-mode)
   (setq recentf-max-menu-items 100)
@@ -285,7 +276,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
 (use-package highlight-indent-guides
-  :ensure t
   :config
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (setq highlight-indent-guides-method 'character))
@@ -293,22 +283,19 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;;rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
-  :ensure t
   :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 ;; org
 (use-package org
-  :ensure t
+  :pin gnu
   :config (setq org-log-done t))
 
 ;; paradox
 (use-package paradox
-  :ensure t
   :config (setq paradox-github-token t))
 
 ;; undo-tree
 (use-package undo-tree
-  :ensure t
   :diminish undo-tree-mode
   :config
   (global-undo-tree-mode)
@@ -320,13 +307,11 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; smooth-scrolling
 ;; https://github.com/aspiers/smooth-scrolling
 (use-package smooth-scrolling
-  :ensure t
   :config (smooth-scrolling-mode 1))
 
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
-  :ensure t
   :diminish company-mode
   :bind ([(M-tab)]. company-complete)
   :config
@@ -336,13 +321,14 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
-  :ensure t
-  :config (company-quickhelp-mode 1))
+  :config
+  (company-quickhelp-mode 1)
+  (setq company-quickhelp-color-background "#4e4e4e"
+		company-quickhelp-color-foreground "#5fafd7"))
 
 ;; projectile
 ;; https://github.com/bbatsov/projectile
 (use-package projectile
-  :ensure t
   :delight '(:eval (concat " " (projectile-project-name)))
   :config
   (projectile-mode)
@@ -353,14 +339,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
 (use-package counsel-projectile
-  :ensure t
   :config (counsel-projectile-on))
 
 ;; irony-mode
 ;; https://github.com/Sarcasm/irony-mode
 ;; Dep cmake, clang
 (use-package irony
-  :ensure t
   :diminish irony-mode
   :config
   (defun irony-and-platformio-hook ()
@@ -373,35 +357,29 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; irony-eldoc
 ;; https://github.com/ikirill/irony-eldoc
-(use-package irony-eldoc
-  :ensure t)
+(use-package irony-eldoc)
 
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
 (use-package flycheck-irony
-  :ensure t
   :config (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 ;; company-irony
 ;; https://github.com/Sarcasm/company-irony
-(use-package company-irony
-  :ensure t)
+(use-package company-irony)
 
 ;; company-c-headers
 ;; https://github.com/randomphrase/company-c-headers
-(use-package company-c-headers
-  :ensure t)
+(use-package company-c-headers)
 
 ;; smart-tabs-mode
 ;; http://github.com/jcsalomon/smarttabs
 (use-package smart-tabs-mode
-  :ensure t
   :config (smart-tabs-insinuate 'c 'c++ 'javascript 'java))
 
 ;; magit
 ;; https://magit.vc
 (use-package magit
-  :ensure t
   :config
   (setq magit-repository-directories
 		'(("~/Documents/dotfiles" . 3)
@@ -410,7 +388,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el
 (use-package multiple-cursors
-  :ensure t
   :bind
   ("C-S-c C-S-c" . mc/edit-lines)
   ("C->" . mc/mark-next-like-this)
@@ -421,7 +398,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; highlight-symbol
 ;; https://github.com/nschum/highlight-symbol.el
 (use-package highlight-symbol
-  :ensure t
   :bind
   ([(C-f5)] . highlight-symbol)
   ([f5] . highlight-symbol-next)
@@ -431,7 +407,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
-  :ensure t
   :diminish yas-minor-mode
   :config
   (yas-reload-all)
@@ -440,21 +415,18 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; anaconda-mode
 ;; https://github.com/proofit404/anaconda-mode
 (use-package anaconda-mode
-  :ensure t
   :config
   (add-hook 'python-mode-hook 'anaconda-mode)
   (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
 
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
-(use-package company-anaconda
-  :ensure t)
+(use-package company-anaconda)
 
 ;; yapfify
 ;; https://github.com/JorisE/yapfify
 ;; Dep yapfy
 (use-package yapfify
-  :ensure t
   :diminish yapf-mode
   :config (add-hook 'python-mode-hook 'yapf-mode))
 
@@ -462,48 +434,44 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/paetzke/py-isort.el
 ;; Dep isort
 (use-package py-isort
-  :ensure t
   :config (add-hook 'before-save-hook 'py-isort-before-save))
 
 ;; all the icons
 ;; https://github.com/domtronn/all-the-icons.el
 ;; M-x all-the-icons-install-fonts
-(use-package all-the-icons
-  :ensure t)
+(use-package all-the-icons)
 
 ;; all the icons dired
 ;; https://github.com/jtbm37/all-the-icons-dired
 (use-package all-the-icons-dired
-  :ensure t
   :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
-  :ensure t
   :diminish which-key-mode
   :config (which-key-mode))
 
 ;; platformIO-mode
 ;; https://github.com/ZachMassia/platformio-mode
 ;; Dep platformIO-core
-(use-package platformio-mode
-  :ensure t)
+(use-package platformio-mode)
 
 ;; autorevert-mode
 (use-package auto-revert
+  :ensure nil
   :diminish auto-revert-mode
   :config
-  :disabled
-  (global-auto-revert-mode 1)
   (setq auto-revert-remote-files t))
 
 ;; eldoc-mode
 (use-package eldoc
+  :ensure nil
   :diminish eldoc-mode)
 
 ;; comint-mode
 (use-package comint
+  :ensure nil
   :config
   (setq comint-prompt-read-only t))
 
@@ -511,7 +479,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/politza/pdf-tools
 ;; Dep poppler poppler-glibc
 (use-package pdf-tools
-  :ensure t
   :config
   (pdf-tools-install)
   (bind-key "C-s" 'isearch-forward pdf-view-mode-map)
@@ -551,30 +518,28 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; realgud
 ;; https://github.com/realgud/realgud
 (use-package realgud
-  :ensure t
   :config (setq realgud:pdb-command-name "python -m pdb"))
 
 ;; nyan-mode
 ;; https://github.com/TeMPOraL/nyan-mode
-(use-package nyan-mode
-  :ensure t)
+(use-package nyan-mode)
 
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
-(use-package delight
-  :ensure t)
+(use-package delight)
 
 ;; abbrev
 (use-package abbrev
+  :ensure nil
   :diminish abbrev-mode)
 
 ;; smex
 ;; https://github.com/nonsequitur/smex
-(use-package smex
-  :ensure t)
+(use-package smex)
 
 ;; tramp mode
 (use-package tramp
+  :ensure nil
   :config
   ;;  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
   (defun sudo-edit-current-file ()
@@ -594,7 +559,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
-  :ensure t
   :config (setq terminal-here-terminal-command '("termite")))
 
 ;;; .emacs ends here
