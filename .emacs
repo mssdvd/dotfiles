@@ -324,7 +324,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (company-quickhelp-mode 1)
   (setq company-quickhelp-color-background "#4e4e4e"
-		company-quickhelp-color-foreground "#5fafd7"))
+		company-quickhelp-color-foreground "#ffffff"))
 
 ;; projectile
 ;; https://github.com/bbatsov/projectile
