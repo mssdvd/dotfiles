@@ -4,6 +4,9 @@
 ;; installed packages.  Don't delete this line.  If you don't want it,
 ;; just comment it out by adding a semicolon to the start of the line.
 ;; You may delete these explanatory comments.
+;; (add-to-list 'load-path "~/build/benchmark-init-el/")
+;; (require 'benchmark-init-loaddefs)
+;; (benchmark-init/activate)
 (require 'package)
 ;;; Code:
 (add-to-list 'package-archives
@@ -137,6 +140,21 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 	  (highlight-indent-guides-mode -1)
 	  (put 'switch-highlight-indent-guides-and-whitespace-modes 'state t))))
 
+;;  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+  (defun sudo-edit-current-file ()
+	(interactive)
+	(let ((position (point)))
+	  (find-alternate-file
+	   (if (file-remote-p (buffer-file-name))
+		   (let ((vec (tramp-dissect-file-name (buffer-file-name))))
+			 (tramp-make-tramp-file-name
+			  "sudo"
+			  (tramp-file-name-user vec)
+			  (tramp-file-name-host vec)
+			  (tramp-file-name-localname vec)))
+		 (concat "/sudo:root@localhost:" (buffer-file-name))))
+	  (goto-char position)))
+
 ;;;;
 ;; USE-PACKAGE
 ;;;;
@@ -147,7 +165,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; moe-theme
 (use-package moe-theme
   :config
-  (moe-theme-set-color 'red)
+  (setq moe-theme-mode-line-color 'red)
   (moe-dark))
 
 ;; nlinum
@@ -239,6 +257,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; avy-flycheck
 ;; https://github.com/magicdirac/avy-flycheck
 (use-package avy-flycheck
+  :after (flycheck)
   :config (avy-flycheck-setup))
 
 ;; ace-window
@@ -259,7 +278,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; http://www.flycheck.org
 ;; Dep flake8, clang
 (use-package flycheck
-  :defer t
+  :defer 2
   :config
   (global-flycheck-mode)
   (setq flycheck-global-modes '(not org-mode)))
@@ -377,6 +396,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
 (use-package flycheck-irony
+  :after (irony)
   :defer t
   :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
@@ -483,6 +503,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/ZachMassia/platformio-mode
 ;; Dep platformIO-core
 (use-package platformio-mode
+  :diminish platformio-mode
   :defer t
   :init
   (add-hook 'c-mode-hook 'platformio-mode)
@@ -490,7 +511,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; eldoc-mode
 (use-package eldoc
-  :ensure nil
   :diminish eldoc-mode
   :defer t)
 
@@ -561,27 +581,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; smex
 ;; https://github.com/nonsequitur/smex
-(use-package smex)
-
-;; tramp mode
-(use-package tramp
-  :ensure nil
-  :defer t
-  :config
-  ;;  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
-  (defun sudo-edit-current-file ()
-	(interactive)
-	(let ((position (point)))
-	  (find-alternate-file
-	   (if (file-remote-p (buffer-file-name))
-		   (let ((vec (tramp-dissect-file-name (buffer-file-name))))
-			 (tramp-make-tramp-file-name
-			  "sudo"
-			  (tramp-file-name-user vec)
-			  (tramp-file-name-host vec)
-			  (tramp-file-name-localname vec)))
-		 (concat "/sudo:root@localhost:" (buffer-file-name))))
-	  (goto-char position))))
+(use-package smex
+  :defer t)
 
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
