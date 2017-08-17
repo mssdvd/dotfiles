@@ -21,7 +21,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(terminal-here smex nyan-mode yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -187,8 +187,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package ivy
   :diminish ivy-mode
   :bind ("C-c r" . ivy-resume)
+  :init (ivy-mode 1)
   :config
-  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t)
   (setq enable-recursive-minibuffers t)
   (setq ivy-count-format "(%d/%d) "))
@@ -202,6 +202,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ("C-x l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
   ("C-x g". counsel-rg)
+  :after (ivy)
   :config
   (counsel-mode 1)
   (setq counsel-grep-base-command "grep -nEi '%s' %s")
@@ -221,7 +222,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; ivy-hydra
 ;; https://github.com/abo-abo/swiper
-(use-package ivy-hydra)
+(use-package ivy-hydra
+  :defer t)
 
 ;; avy
 ;; https://github.com/abo-abo/avy
@@ -257,52 +259,61 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; http://www.flycheck.org
 ;; Dep flake8, clang
 (use-package flycheck
+  :defer t
   :config
   (global-flycheck-mode)
   (setq flycheck-global-modes '(not org-mode)))
 
 ;; flycheck-pos-tip
 (use-package flycheck-pos-tip
+  :defer t
   :config (flycheck-pos-tip-mode t))
 
 ;; recentf
 (use-package recentf
   :ensure nil
+  :defer t
   :config
   (recentf-mode)
-  (setq recentf-max-menu-items 100)
-  (setq recentf-max-saved-items 100))
+  (setq recentf-max-menu-items 100
+		recentf-max-saved-items 100))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
 (use-package highlight-indent-guides
-  :config
+  :defer t
+  :init
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (add-hook 'sgml-mode-hook 'highlight-indent-guides-mode)
+  :config
   (setq highlight-indent-guides-method 'character))
 
 ;;rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
-  :config (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  :defer t
+  :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 ;; org
 (use-package org
   :pin gnu
+  :defer t
   :config (setq org-log-done t))
 
 ;; paradox
 (use-package paradox
+  :defer t
   :config (setq paradox-github-token t))
 
 ;; undo-tree
 (use-package undo-tree
   :diminish undo-tree-mode
-  :config
-  (global-undo-tree-mode)
-  (setq undo-tree-visualizer-timestamps t)
   :bind
   ("C-z" . undo)
-  ("C-S-z" . undo-tree-redo))
+  ("C-S-z" . undo-tree-redo)
+  :init (global-undo-tree-mode)
+  :config
+  (setq undo-tree-visualizer-timestamps t))
 
 ;; smooth-scrolling
 ;; https://github.com/aspiers/smooth-scrolling
@@ -321,6 +332,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
+  :after (company)
   :config
   (company-quickhelp-mode 1)
   (setq company-quickhelp-color-background "#4e4e4e"
@@ -339,6 +351,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
 (use-package counsel-projectile
+  :after (counsel)
   :config (counsel-projectile-on))
 
 ;; irony-mode
@@ -346,31 +359,36 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; Dep cmake, clang
 (use-package irony
   :diminish irony-mode
+  :defer t
+  :init
+  (add-hook 'c-mode-hook 'irony-mode-eldoc-list)
+  (add-hook 'c++-mode-hook 'irony-mode-eldoc-list)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   :config
-  (defun irony-and-platformio-hook ()
+  (defun irony-mode-eldoc-list ()
 	(irony-mode)
-	(irony-eldoc)
-	(platformio-conditionally-enable))
-  (add-hook 'c-mode-hook 'irony-and-platformio-hook)
-  (add-hook 'c++-mode-hook 'irony-and-platformio-hook)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options))
+	(irony-eldoc)))
 
 ;; irony-eldoc
 ;; https://github.com/ikirill/irony-eldoc
-(use-package irony-eldoc)
+(use-package irony-eldoc
+  :defer t)
 
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
 (use-package flycheck-irony
-  :config (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  :defer t
+  :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
 
 ;; company-irony
 ;; https://github.com/Sarcasm/company-irony
-(use-package company-irony)
+(use-package company-irony
+  :defer t)
 
 ;; company-c-headers
 ;; https://github.com/randomphrase/company-c-headers
-(use-package company-c-headers)
+(use-package company-c-headers
+  :defer t)
 
 ;; smart-tabs-mode
 ;; http://github.com/jcsalomon/smarttabs
@@ -380,6 +398,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; magit
 ;; https://magit.vc
 (use-package magit
+  :defer t
   :config
   (setq magit-repository-directories
 		'(("~/Documents/dotfiles" . 3)
@@ -410,41 +429,49 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :diminish yas-minor-mode
   :config
   (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode))
+  (add-hook 'prog-mode-hook #'yas-minor-mode)
+  (add-hook 'text-mode-hook #'yas-minor-mode))
 
 ;; anaconda-mode
 ;; https://github.com/proofit404/anaconda-mode
 (use-package anaconda-mode
-  :config
-  (add-hook 'python-mode-hook 'anaconda-mode)
-  (add-hook 'python-mode-hook 'anaconda-eldoc-mode))
+  :defer t
+  :diminish anaconda-mode
+  :init
+  (add-hook 'python-mode-hook #'anaconda-mode)
+  (add-hook 'python-mode-hook #'anaconda-eldoc-mode))
 
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
-(use-package company-anaconda)
+(use-package company-anaconda
+  :defer t)
 
 ;; yapfify
 ;; https://github.com/JorisE/yapfify
 ;; Dep yapfy
 (use-package yapfify
   :diminish yapf-mode
-  :config (add-hook 'python-mode-hook 'yapf-mode))
+  :defer t
+  :init (add-hook 'python-mode-hook 'yapf-mode))
 
 ;; py-isort
 ;; https://github.com/paetzke/py-isort.el
 ;; Dep isort
 (use-package py-isort
-  :config (add-hook 'before-save-hook 'py-isort-before-save))
+  :defer t
+  :init (add-hook 'before-save-hook 'py-isort-before-save))
 
 ;; all the icons
 ;; https://github.com/domtronn/all-the-icons.el
 ;; M-x all-the-icons-install-fonts
-(use-package all-the-icons)
+(use-package all-the-icons
+  :defer t)
 
 ;; all the icons dired
 ;; https://github.com/jtbm37/all-the-icons-dired
 (use-package all-the-icons-dired
-  :config (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+  :defer t
+  :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
@@ -455,23 +482,22 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; platformIO-mode
 ;; https://github.com/ZachMassia/platformio-mode
 ;; Dep platformIO-core
-(use-package platformio-mode)
-
-;; autorevert-mode
-(use-package auto-revert
-  :ensure nil
-  :diminish auto-revert-mode
-  :config
-  (setq auto-revert-remote-files t))
+(use-package platformio-mode
+  :defer t
+  :init
+  (add-hook 'c-mode-hook 'platformio-mode)
+  (add-hook 'c++-mode-hook 'platformio-mode))
 
 ;; eldoc-mode
 (use-package eldoc
   :ensure nil
-  :diminish eldoc-mode)
+  :diminish eldoc-mode
+  :defer t)
 
 ;; comint-mode
 (use-package comint
   :ensure nil
+  :defer t
   :config
   (setq comint-prompt-read-only t))
 
@@ -479,12 +505,14 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/politza/pdf-tools
 ;; Dep poppler poppler-glibc
 (use-package pdf-tools
+  :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
+  :init (add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
   :config
-  (pdf-tools-install)
-  (bind-key "C-s" 'isearch-forward pdf-view-mode-map)
   (add-hook 'pdf-view-mode-hook
 			(lambda ()
 			  (nlinum-mode -1)))
+  (bind-key "C-s" 'isearch-forward pdf-view-mode-map)
+  
   ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
   ;; https://github.com/politza/pdf-tools/issues/18#issuecomment-269515117
   (defun brds/pdf-set-last-viewed-bookmark ()
@@ -518,11 +546,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; realgud
 ;; https://github.com/realgud/realgud
 (use-package realgud
+  :defer t
   :config (setq realgud:pdb-command-name "python -m pdb"))
-
-;; nyan-mode
-;; https://github.com/TeMPOraL/nyan-mode
-(use-package nyan-mode)
 
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
@@ -531,6 +556,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; abbrev
 (use-package abbrev
   :ensure nil
+  :defer t
   :diminish abbrev-mode)
 
 ;; smex
@@ -540,6 +566,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; tramp mode
 (use-package tramp
   :ensure nil
+  :defer t
   :config
   ;;  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
   (defun sudo-edit-current-file ()
@@ -559,6 +586,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
+  :defer t
   :config (setq terminal-here-terminal-command '("termite")))
 
 ;;; .emacs ends here
