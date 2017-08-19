@@ -64,5 +64,3 @@ rofi.color-active:                   argb:02d303b, #b5bd68, argb:e42d303b, #8c94
 rofi.color-window:                   argb:f22d303b, #7c8389, #1d1f21
 ! "Separator style (none, dash, solid)" Set from: XResources
 rofi.separator-style:                solid
-rofi.run-command:                    i3-msg exec "{cmd}"
-

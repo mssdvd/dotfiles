@@ -1,0 +1,1 @@
+TERMCMD=termite

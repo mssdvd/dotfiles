@@ -36,12 +36,16 @@
 
 ;; enable column number
 (column-number-mode t)
+
 ;; display size of the buffer
 (size-indication-mode t)
+
 ;; disable scrollbar
 (scroll-bar-mode -1)
+
 ;; disable toolbar
 (tool-bar-mode -1)
+
 ;; disable startup screen
 (setq inhibit-startup-screen t)
 
@@ -98,6 +102,10 @@
 
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
+
+;;;;
+;; My functions
+;;;;
 
 ;; mark current world
 (defun my-mark-current-word (&optional arg allow-extend)
@@ -156,7 +164,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 	  (goto-char position)))
 
 ;;;;
-;; USE-PACKAGE
+;; use-package
 ;;;;
 
 (use-package use-package
@@ -173,8 +181,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package nlinum
   :config
   (global-nlinum-mode)
-  (setq nlinum-format "%4d")
-  (setq nlinum-highlight-current-line t))
+  (setq nlinum-format "%4d"
+		nlinum-highlight-current-line t))
 
 ;; neotree
 (use-package neotree
@@ -207,9 +215,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :bind ("C-c r" . ivy-resume)
   :init (ivy-mode 1)
   :config
-  (setq ivy-use-virtual-buffers t)
-  (setq enable-recursive-minibuffers t)
-  (setq ivy-count-format "(%d/%d) "))
+  (setq ivy-use-virtual-buffers t
+		enable-recursive-minibuffers t
+		ivy-count-format "(%d/%d) "))
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
@@ -331,8 +339,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ("C-z" . undo)
   ("C-S-z" . undo-tree-redo)
   :init (global-undo-tree-mode)
-  :config
-  (setq undo-tree-visualizer-timestamps t))
+  :config (setq undo-tree-visualizer-timestamps t))
 
 ;; smooth-scrolling
 ;; https://github.com/aspiers/smooth-scrolling
@@ -509,6 +516,11 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (add-hook 'c-mode-hook 'platformio-mode)
   (add-hook 'c++-mode-hook 'platformio-mode))
 
+;; autorevert
+(use-package autorevert
+  :diminish auto-revert-mode
+  :defer t)
+
 ;; eldoc-mode
 (use-package eldoc
   :diminish eldoc-mode
@@ -518,8 +530,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package comint
   :ensure nil
   :defer t
-  :config
-  (setq comint-prompt-read-only t))
+  :config (setq comint-prompt-read-only t))
 
 ;; pdf-tools
 ;; https://github.com/politza/pdf-tools
@@ -576,8 +587,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; abbrev
 (use-package abbrev
   :ensure nil
-  :defer t
-  :diminish abbrev-mode)
+  :diminish abbrev-mode
+  :defer t)
 
 ;; smex
 ;; https://github.com/nonsequitur/smex

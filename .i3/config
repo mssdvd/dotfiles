@@ -29,8 +29,9 @@ font pango:Anonymous Pro 9
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+set $term termite
 # start a terminal
-bindsym $mod+Return exec termite #i3-sensible-terminal
+bindsym $mod+Return exec $term #i3-sensible-terminal
 
 # kill focused window
 bindsym $mod+Shift+q kill
@@ -208,6 +209,7 @@ for_window [class="Pamac-updater"] floating enable
 for_window [class="Engrampa"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse
+for_window [class="(?i)pinentry"] floating enable
 
 # https://github.com/ValveSoftware/steam-for-linux/issues/1040
 for_window [class="^Steam$" title="^Friends$"] floating enable
@@ -223,9 +225,8 @@ for_window [title="^Steam Keyboard$"] floating enable
 
 bindsym $mod+bracketleft exec chromium
 bindsym $mod+shift+bracketleft exec chromium --incognito
-bindsym $mod+backslash exec pcmanfm
+bindsym $mod+backslash exec $term -e ranger
 bindsym $mod+bracketright exec emacsclient -c -n
 bindsym $mod+c exec clipster -sc
-# bindsym $mod+c exec clipster -o -c -n 0 -0 | rofi -i -dmenu -sep '\x00' -e -p paste: | sed -ze 's/\n$//' | clipster -c
 
 exec --no-startup-id compton -b --config ~/.config/compton.conf
