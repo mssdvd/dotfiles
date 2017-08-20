@@ -1,7 +1,3 @@
-search dbus
-search rmata
-find Schermata
-find ranger
 rename commands_full.py
 j
 search config
@@ -32,7 +28,6 @@ setintag
 search gestore
 search_file 
 search_file gestore
-open_with 
 fi
 filter D
 filter 
@@ -40,3 +35,16 @@ shell ls
 delete
 uncut 
 
+search 
+flat gestore
+find pyth
+find ran
+find site
+find rang
+rename Urc.conf
+rename rc.conf
+flat 0
+flat 1
+open_with 
+travel 
+find inf
