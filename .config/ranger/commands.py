@@ -61,7 +61,6 @@ class my_edit(Command):
 
 
 # https://github.com/ranger/ranger/wiki/Integrating-File-Search-with-fzf
-# Now, simply bind this function to a key, by adding this to your ~/.config/ranger/rc.conf: map <C-f> fzf_select
 class fzf_select(Command):
     """
     :fzf_select
@@ -109,10 +108,8 @@ class fzf_locate(Command):
 
     def execute(self):
         import subprocess
-        if self.quantifier:
-            command = "locate / | fzf -e -i"
-        else:
-            command = "locate / | fzf -e -i"
+
+        command = "locate / | fzf -e -i"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:
