@@ -372,7 +372,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (setq projectile-completion-system 'ivy
-		projectile-enable-caching t))
+		projectile-enable-caching t
+		projectile-track-known-projects-automatically nil))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
