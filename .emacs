@@ -24,8 +24,9 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
- '(pdf-annot-tweak-tooltips nil))
+	(company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+ '(pdf-annot-tweak-tooltips nil)
+ '(safe-local-variable-values (quote ((cmake-ide-build-dir . "~/Rubrica/cmake-build/")))))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
@@ -179,6 +180,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; nlinum
 ;; https://elpa.gnu.org/packages/nlinum.html
 (use-package nlinum
+  :disabled
   :config
   (global-nlinum-mode)
   (setq nlinum-format "%4d"
@@ -212,7 +214,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/abo-abo/swiper
 (use-package ivy
   :diminish ivy-mode
-  :bind ("C-c r" . ivy-resume)
   :init (ivy-mode 1)
   :config
   (setq ivy-use-virtual-buffers t
@@ -231,7 +232,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :after (ivy)
   :config
   (counsel-mode 1)
-  (setq counsel-grep-base-command "grep -nEi '%s' %s")
+  ;; (setq counsel-grep-base-command "grep -nEi '%s' %s")
+  (setq counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' '%s'")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
@@ -286,7 +288,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; http://www.flycheck.org
 ;; Dep flake8, clang
 (use-package flycheck
-  :defer 2
   :config
   (global-flycheck-mode)
   (setq flycheck-global-modes '(not org-mode)))
@@ -308,7 +309,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
 (use-package highlight-indent-guides
-  :defer t
+  :commands (highlight-indent-guides-mode)
   :init
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
   (add-hook 'sgml-mode-hook 'highlight-indent-guides-mode)
@@ -318,7 +319,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;;rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
-  :defer t
+  :commands (rainbow-delimiters-mode)
   :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
 ;; org
@@ -351,9 +352,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package company
   :diminish company-mode
   :bind ([(M-tab)]. company-complete)
+  :bind ("C-c y" . company-yasnippet)
   :config
-  (global-company-mode)
-  (add-to-list 'company-backends '(company-c-headers company-irony company-anaconda)))
+  (global-company-mode))
 
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
@@ -363,6 +364,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (company-quickhelp-mode 1)
   (setq company-quickhelp-color-background "#4e4e4e"
 		company-quickhelp-color-foreground "#ffffff"))
+
+;; company-flx
+;; https://github.com/PythonNut/company-flx
+(use-package company-flx
+  :after (company)
+  :config (company-flx-mode +1))
 
 ;; projectile
 ;; https://github.com/bbatsov/projectile
@@ -388,13 +395,13 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :diminish irony-mode
   :defer t
   :init
-  (add-hook 'c-mode-hook 'irony-mode-eldoc-list)
-  (add-hook 'c++-mode-hook 'irony-mode-eldoc-list)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  :config
   (defun irony-mode-eldoc-list ()
 	(irony-mode)
-	(irony-eldoc)))
+	(irony-eldoc))
+  (add-hook 'c-mode-hook #'irony-mode-eldoc-list)
+  (add-hook 'c++-mode-hook #'irony-mode-eldoc-list)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  :config (eval-after-load 'company '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
 
 ;; irony-eldoc
 ;; https://github.com/ikirill/irony-eldoc
@@ -404,19 +411,65 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
 (use-package flycheck-irony
-  :after (irony)
+  :after (flycheck irony)
   :defer t
-  :init (add-hook 'flycheck-mode-hook #'flycheck-irony-setup))
+  :config (add-to-list 'flycheck-checkers 'irony))
 
 ;; company-irony
 ;; https://github.com/Sarcasm/company-irony
 (use-package company-irony
-  :defer t)
+  :defer t
+  :config (setq company-backends (delete 'company-semantic company-backends)))
 
 ;; company-c-headers
 ;; https://github.com/randomphrase/company-c-headers
 (use-package company-c-headers
+  :disabled
   :defer t)
+
+;; company-irony-c-headers
+;; https://github.com/hotpxl/company-irony-c-headers
+(use-package company-irony-c-headers
+  :defer t)
+
+;; rtags
+;; https://github.com/Andersbakken/rtags
+(use-package rtags
+  :after (irony)
+  :config
+  ;; (setq rtags-completions-enabled t)
+  (setq rtags-autostart-diagnostics t)
+  (rtags-enable-standard-keybindings))
+;  (rtags-set-periodic-reparse-timeout 1.0))
+
+;; company-rtags
+;; https://github.com/Andersbakken/rtags
+;; (use-package company-rtags
+;;   :defer t)
+
+;; flycheck-rtags
+;; https://github.com/Andersbakken/rtags
+;; (use-package flycheck-rtags
+;;   :defer t
+;;   :init
+;;   (defun my-flycheck-rtags-setup ()
+;; 	(flycheck-select-checker 'rtags)
+;; 	(setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+;; 	(setq-local flycheck-check-syntax-automatically nil))
+;;   (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup))
+
+;; flycheck-clag-analyzer
+;; https://github.com/alexmurray/flycheck-clang-analyzer
+(use-package flycheck-clang-analyzer
+  :after (flycheck)
+  :defer t
+  :config (flycheck-clang-analyzer-setup))
+
+;; cmake-ide
+;; https://github.com/atilaneves/cmake-ide
+(use-package cmake-ide
+  :after (rtags)
+  :config (cmake-ide-setup))
 
 ;; smart-tabs-mode
 ;; http://github.com/jcsalomon/smarttabs
@@ -472,7 +525,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
 (use-package company-anaconda
-  :defer t)
+  :after (anaconda-mode company)
+  :config (add-to-list 'company-backends '(company-anaconda :with company-capf)))
 
 ;; yapfify
 ;; https://github.com/JorisE/yapfify

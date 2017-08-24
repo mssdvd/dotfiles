@@ -14,7 +14,7 @@ def random_char(file_name='testrandom', row=1000000, column=80):
 
 
 def main():
-    random_char()
+    random_char('testrandom', 10000000000, 200)
 
 
 if __name__ == '__main__':
