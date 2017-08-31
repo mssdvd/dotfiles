@@ -2,3 +2,4 @@
 .config/systemd/user/*.wants
 .config/ranger/history
 .config/ranger/bookmarks
+.config/ranger/tagged

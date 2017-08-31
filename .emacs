@@ -10,7 +10,7 @@
 (require 'package)
 ;;; Code:
 (add-to-list 'package-archives
-			 '("MELPA" . "https://melpa.org/packages/"))
+	     '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil)
  '(safe-local-variable-values (quote ((cmake-ide-build-dir . "~/Rubrica/cmake-build/")))))
 (custom-set-faces
@@ -85,15 +85,14 @@
 (defvar gdb-show-main)
 (setq gdb-show-main t)
 
-;; backup files
-(setq
- backup-by-copying t      ; don't clobber symlinks
- backup-directory-alist
- '(("." . "~/.emacs.d/saves/"))
- delete-old-versions t
- kept-new-versions 6
- kept-old-versions 2
- version-control t)       ; use versioned backups
+;; Save all tempfiles in $TMPDIR/emacs$UID/
+(defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) temporary-file-directory))
+(setq backup-directory-alist
+	  `((".*" . ,emacs-tmp-dir)))
+(setq auto-save-file-name-transforms
+	  `((".*" ,emacs-tmp-dir t)))
+(setq auto-save-list-file-prefix
+	  emacs-tmp-dir)
 
 ;; window title
 (setq frame-title-format
@@ -103,6 +102,34 @@
 
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
+
+;; hippie-expand instead of dabbrev-expand
+(bind-key "M-/" 'hippie-expand)
+
+;; ibuffer is better
+(bind-key "C-x C-b" 'ibuffer)
+
+
+;; CLIPBOARD
+
+;; Disable clipboard sync
+(setq select-enable-clipboard nil)
+
+(bind-key "C-y" 'clipboard-yank)
+(bind-key "C-M-y" 'yank)
+(bind-key "C-w" 'clipboard-kill-region)
+(bind-key "M-w" 'clipboard-kill-ring-save)
+;; Pasting with middle-click puts the text where the point is
+(setq mouse-yank-at-point t)
+
+;; uniquify
+(setq uniquify-buffer-name-style 'forward)
+
+;; add new nile line at the end of file
+(setq require-final-newline t)
+
+;; Prefer newer files
+(setq load-prefer-newer t)
 
 ;;;;
 ;; My functions
@@ -233,7 +260,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (counsel-mode 1)
   ;; (setq counsel-grep-base-command "grep -nEi '%s' %s")
-  (setq counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' '%s'")
+  (setq counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' '%s'"
+		counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
@@ -655,5 +683,25 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package terminal-here
   :defer t
   :config (setq terminal-here-terminal-command '("termite")))
+
+;; ispell
+(use-package ispell
+  :defer t
+  :config
+  (setq ispell-program-name "hunspell"
+		ispell-local-dictionary "it_IT"
+		ispell-local-dictionary-alist
+		'(("it_IT" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
+
+;; apropos
+(use-package apropos
+  :ensure nil
+  :defer t
+  :config (setq apropos-do-all t))
+
+;; ediff
+(use-package ediff
+  :defer t
+  :config (setq ediff-window-setup-function 'ediff-setup-windows-plain))
 
 ;;; .emacs ends here

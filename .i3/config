@@ -228,8 +228,10 @@ bindsym Shift+Print exec gnome-screenshot -i
 bindsym $mod+bracketleft exec chromium
 bindsym $mod+shift+bracketleft exec chromium --incognito
 bindsym $mod+backslash exec $term -e ranger
+bindsym $mod+shift+backslash exec $term -e "ranger --cmd=fzf_select"
 bindsym $mod+bracketright exec emacsclient -c -n
 bindsym $mod+c exec clipster -sc
+bindsym $mod+p exec passmenu
 
 # Autostart applications
 exec --no-startup-id nm-applet
