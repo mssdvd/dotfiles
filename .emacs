@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil)
  '(safe-local-variable-values (quote ((cmake-ide-build-dir . "~/Rubrica/cmake-build/")))))
 (custom-set-faces
@@ -177,19 +177,19 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 	  (put 'switch-highlight-indent-guides-and-whitespace-modes 'state t))))
 
 ;;  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
-  (defun sudo-edit-current-file ()
-	(interactive)
-	(let ((position (point)))
-	  (find-alternate-file
-	   (if (file-remote-p (buffer-file-name))
-		   (let ((vec (tramp-dissect-file-name (buffer-file-name))))
-			 (tramp-make-tramp-file-name
-			  "sudo"
-			  (tramp-file-name-user vec)
-			  (tramp-file-name-host vec)
-			  (tramp-file-name-localname vec)))
-		 (concat "/sudo:root@localhost:" (buffer-file-name))))
-	  (goto-char position)))
+;;   (defun sudo-edit-current-file ()
+;; 	(interactive)
+;; 	(let ((position (point)))
+;; 	  (find-alternate-file
+;; 	   (if (file-remote-p (buffer-file-name))
+;; 		   (let ((vec (tramp-dissect-file-name (buffer-file-name))))
+;; 			 (tramp-make-tramp-file-name
+;; 			  "sudo"
+;; 			  (tramp-file-name-user vec)
+;; 			  (tramp-file-name-host vec)
+;; 			  (tramp-file-name-localname vec)))
+;; 		 (concat "/sudo:root@localhost:" (buffer-file-name))))
+;; 	  (goto-char position)))
 
 ;;;;
 ;; use-package
@@ -683,6 +683,11 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package terminal-here
   :defer t
   :config (setq terminal-here-terminal-command '("termite")))
+
+;; sudo-edit
+;; https://github.com/nflath/sudo-edit
+(use-package sudo-edit
+  :defer t)
 
 ;; ispell
 (use-package ispell
