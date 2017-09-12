@@ -1,2 +1,3 @@
 set render-loading false
 set show-scrollbars true
+map p search backward

@@ -10,7 +10,7 @@
 (require 'package)
 ;;; Code:
 (add-to-list 'package-archives
-	     '("MELPA" . "https://melpa.org/packages/"))
+			 '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -176,20 +176,20 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 	  (highlight-indent-guides-mode -1)
 	  (put 'switch-highlight-indent-guides-and-whitespace-modes 'state t))))
 
-;;  (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
-;;   (defun sudo-edit-current-file ()
-;; 	(interactive)
-;; 	(let ((position (point)))
-;; 	  (find-alternate-file
-;; 	   (if (file-remote-p (buffer-file-name))
-;; 		   (let ((vec (tramp-dissect-file-name (buffer-file-name))))
-;; 			 (tramp-make-tramp-file-name
-;; 			  "sudo"
-;; 			  (tramp-file-name-user vec)
-;; 			  (tramp-file-name-host vec)
-;; 			  (tramp-file-name-localname vec)))
-;; 		 (concat "/sudo:root@localhost:" (buffer-file-name))))
-;; 	  (goto-char position)))
+;; ;; (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
+;; (defun sudo-edit-current-file ()
+;;   (interactive)
+;;   (let ((position (point)))
+;; 	(find-alternate-file
+;; 	 (if (file-remote-p (buffer-file-name))
+;; 		 (let ((vec (tramp-dissect-file-name (buffer-file-name))))
+;; 		   (tramp-make-tramp-file-name
+;; 			"sudo"
+;; 			(tramp-file-name-user vec)
+;; 			(tramp-file-name-host vec)
+;; 			(tramp-file-name-localname vec)))
+;; 	   (concat "/sudo:root@localhost:" (buffer-file-name))))
+;; 	(goto-char position)))
 
 ;;;;
 ;; use-package
@@ -468,7 +468,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ;; (setq rtags-completions-enabled t)
   (setq rtags-autostart-diagnostics t)
   (rtags-enable-standard-keybindings))
-;  (rtags-set-periodic-reparse-timeout 1.0))
+										;  (rtags-set-periodic-reparse-timeout 1.0))
 
 ;; company-rtags
 ;; https://github.com/Andersbakken/rtags
@@ -511,7 +511,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (setq magit-repository-directories
 		'(("~/Documents/dotfiles" . 3)
-		  ("~/Documents/docs" . 3))))
+		  ("~/Documents/school" . 3))))
 
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el

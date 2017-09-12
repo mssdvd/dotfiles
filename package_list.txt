@@ -24,7 +24,6 @@ coreutils
 cpupower
 crda
 cryptsetup
-cython
 device-mapper
 dhcpcd
 dialog
@@ -64,7 +63,6 @@ grabc
 grep
 grml-zsh-config
 groff
-grub
 gsimplecal
 gzip
 htop
@@ -120,7 +118,6 @@ nvidia-settings
 nvidia-utils
 odt2txt
 openssh
-os-prober
 pacaur
 pacman
 pamac-aur
@@ -167,6 +164,7 @@ stress
 subliminal
 sudo
 sysfsutils
+systemd-boot-pacman-hook
 systemd-sysvcompat
 tar
 termite
@@ -265,5 +263,6 @@ xorg-xwd
 xorg-xwininfo
 xorg-xwud
 yapf
+youtube-dl
 zathura
 zsh
