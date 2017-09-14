@@ -520,7 +520,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ("C-S-c C-S-c" . mc/edit-lines)
   ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this)
-  ("C-c <" . mc/mark-all-like-this)
+  ("C-c >" . mc/mark-all-dwim)
   ("M-<down-mouse-1>" . mc/add-cursor-on-click))
 
 ;; highlight-symbol
