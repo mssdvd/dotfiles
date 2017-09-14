@@ -541,6 +541,15 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (add-hook 'prog-mode-hook #'yas-minor-mode)
   (add-hook 'text-mode-hook #'yas-minor-mode))
 
+;; Python
+(use-package python
+  :defer t
+  :config
+  (unbind-key "C-c >" python-mode-map)
+  (unbind-key "C-c <" python-mode-map)
+  (bind-key "C-c C->" 'python-indent-shift-right python-mode-map)
+  (bind-key "C-c C-<" 'python-indent-shift-left python-mode-map))
+
 ;; anaconda-mode
 ;; https://github.com/proofit404/anaconda-mode
 (use-package anaconda-mode
