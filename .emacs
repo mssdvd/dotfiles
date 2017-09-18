@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil)
  '(safe-local-variable-values (quote ((cmake-ide-build-dir . "~/Rubrica/cmake-build/")))))
 (custom-set-faces
@@ -108,7 +108,6 @@
 
 ;; ibuffer is better
 (bind-key "C-x C-b" 'ibuffer)
-
 
 ;; CLIPBOARD
 
@@ -260,7 +259,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (counsel-mode 1)
   ;; (setq counsel-grep-base-command "grep -nEi '%s' %s")
-  (setq counsel-grep-base-command "rg -i -M 120 --no-heading --line-number --color never '%s' '%s'"
+  (setq counsel-grep-base-command "rg -i --no-heading --line-number --color never '%s' '%s'"
 		counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
@@ -344,7 +343,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (setq highlight-indent-guides-method 'character))
 
-;;rainbow-delimiters
+;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
   :commands (rainbow-delimiters-mode)
@@ -416,89 +415,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :after (counsel)
   :config (counsel-projectile-on))
 
-;; irony-mode
-;; https://github.com/Sarcasm/irony-mode
-;; Dep cmake, clang
-(use-package irony
-  :diminish irony-mode
-  :defer t
-  :init
-  (defun irony-mode-eldoc-list ()
-	(irony-mode)
-	(irony-eldoc))
-  (add-hook 'c-mode-hook #'irony-mode-eldoc-list)
-  (add-hook 'c++-mode-hook #'irony-mode-eldoc-list)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
-  :config (eval-after-load 'company '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
-
-;; irony-eldoc
-;; https://github.com/ikirill/irony-eldoc
-(use-package irony-eldoc
-  :defer t)
-
-;; flycheck-irony
-;; https://github.com/Sarcasm/flycheck-irony/
-(use-package flycheck-irony
-  :after (flycheck irony)
-  :defer t
-  :config (add-to-list 'flycheck-checkers 'irony))
-
-;; company-irony
-;; https://github.com/Sarcasm/company-irony
-(use-package company-irony
-  :defer t
-  :config (setq company-backends (delete 'company-semantic company-backends)))
-
-;; company-c-headers
-;; https://github.com/randomphrase/company-c-headers
-(use-package company-c-headers
-  :disabled
-  :defer t)
-
-;; company-irony-c-headers
-;; https://github.com/hotpxl/company-irony-c-headers
-(use-package company-irony-c-headers
-  :defer t)
-
-;; rtags
-;; https://github.com/Andersbakken/rtags
-(use-package rtags
-  :after (irony)
-  :config
-  ;; (setq rtags-completions-enabled t)
-  (setq rtags-autostart-diagnostics t)
-  (rtags-enable-standard-keybindings))
-										;  (rtags-set-periodic-reparse-timeout 1.0))
-
-;; company-rtags
-;; https://github.com/Andersbakken/rtags
-;; (use-package company-rtags
-;;   :defer t)
-
-;; flycheck-rtags
-;; https://github.com/Andersbakken/rtags
-;; (use-package flycheck-rtags
-;;   :defer t
-;;   :init
-;;   (defun my-flycheck-rtags-setup ()
-;; 	(flycheck-select-checker 'rtags)
-;; 	(setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-;; 	(setq-local flycheck-check-syntax-automatically nil))
-;;   (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup))
-
-;; flycheck-clag-analyzer
-;; https://github.com/alexmurray/flycheck-clang-analyzer
-(use-package flycheck-clang-analyzer
-  :after (flycheck)
-  :defer t
-  :config (flycheck-clang-analyzer-setup))
-
-;; cmake-ide
-;; https://github.com/atilaneves/cmake-ide
-(use-package cmake-ide
-  :after (rtags)
-  :config (cmake-ide-setup))
-
 ;; smart-tabs-mode
 ;; http://github.com/jcsalomon/smarttabs
 (use-package smart-tabs-mode
@@ -520,7 +436,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ("C-S-c C-S-c" . mc/edit-lines)
   ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this)
-  ("C-c >" . mc/mark-all-dwim)
+  ("C-c c" . mc/mark-all-dwim)
   ("M-<down-mouse-1>" . mc/add-cursor-on-click))
 
 ;; highlight-symbol
@@ -540,45 +456,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (yas-reload-all)
   (add-hook 'prog-mode-hook #'yas-minor-mode)
   (add-hook 'text-mode-hook #'yas-minor-mode))
-
-;; Python
-(use-package python
-  :defer t
-  :config
-  (unbind-key "C-c >" python-mode-map)
-  (unbind-key "C-c <" python-mode-map)
-  (bind-key "C-c C->" 'python-indent-shift-right python-mode-map)
-  (bind-key "C-c C-<" 'python-indent-shift-left python-mode-map))
-
-;; anaconda-mode
-;; https://github.com/proofit404/anaconda-mode
-(use-package anaconda-mode
-  :defer t
-  :diminish anaconda-mode
-  :init
-  (add-hook 'python-mode-hook #'anaconda-mode)
-  (add-hook 'python-mode-hook #'anaconda-eldoc-mode))
-
-;; company-anaconda
-;; https://github.com/proofit404/company-anaconda
-(use-package company-anaconda
-  :after (anaconda-mode company)
-  :config (add-to-list 'company-backends '(company-anaconda :with company-capf)))
-
-;; yapfify
-;; https://github.com/JorisE/yapfify
-;; Dep yapfy
-(use-package yapfify
-  :diminish yapf-mode
-  :defer t
-  :init (add-hook 'python-mode-hook 'yapf-mode))
-
-;; py-isort
-;; https://github.com/paetzke/py-isort.el
-;; Dep isort
-(use-package py-isort
-  :defer t
-  :init (add-hook 'before-save-hook 'py-isort-before-save))
 
 ;; all the icons
 ;; https://github.com/domtronn/all-the-icons.el
@@ -717,5 +594,126 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package ediff
   :defer t
   :config (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+
+;; 
+;; Languages configurations
+;; 
+
+;; Python
+
+;; anaconda-mode
+;; https://github.com/proofit404/anaconda-mode
+(use-package anaconda-mode
+  :defer t
+  :diminish anaconda-mode
+  :init
+  (add-hook 'python-mode-hook #'anaconda-mode)
+  (add-hook 'python-mode-hook #'anaconda-eldoc-mode))
+
+;; company-anaconda
+;; https://github.com/proofit404/company-anaconda
+(use-package company-anaconda
+  :after (anaconda-mode company)
+  :config (add-to-list 'company-backends '(company-anaconda :with company-capf)))
+
+;; yapfify
+;; https://github.com/JorisE/yapfify
+;; Dep yapfy
+(use-package yapfify
+  :diminish yapf-mode
+  :defer t
+  :init (add-hook 'python-mode-hook 'yapf-mode))
+
+;; py-isort
+;; https://github.com/paetzke/py-isort.el
+;; Dep isort
+(use-package py-isort
+  :defer t
+  :init (add-hook 'before-save-hook 'py-isort-before-save))
+
+;; C & C++
+
+;; irony-mode
+;; https://github.com/Sarcasm/irony-mode
+;; Dep cmake, clang
+(use-package irony
+  :diminish irony-mode
+  :defer t
+  :init
+  (defun irony-mode-eldoc-list ()
+	(irony-mode)
+	(irony-eldoc))
+  (add-hook 'c-mode-hook #'irony-mode-eldoc-list)
+  (add-hook 'c++-mode-hook #'irony-mode-eldoc-list)
+  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  :config (eval-after-load 'company '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
+
+;; irony-eldoc
+;; https://github.com/ikirill/irony-eldoc
+(use-package irony-eldoc
+  :defer t)
+
+;; flycheck-irony
+;; https://github.com/Sarcasm/flycheck-irony/
+(use-package flycheck-irony
+  :after (flycheck irony)
+  :defer t
+  :config (add-to-list 'flycheck-checkers 'irony))
+
+;; company-irony
+;; https://github.com/Sarcasm/company-irony
+(use-package company-irony
+  :defer t
+  :config (setq company-backends (delete 'company-semantic company-backends)))
+
+;; company-c-headers
+;; https://github.com/randomphrase/company-c-headers
+(use-package company-c-headers
+  :disabled
+  :defer t)
+
+;; company-irony-c-headers
+;; https://github.com/hotpxl/company-irony-c-headers
+(use-package company-irony-c-headers
+  :defer t)
+
+;; rtags
+;; https://github.com/Andersbakken/rtags
+(use-package rtags
+  :after (irony)
+  :config
+  ;; (setq rtags-completions-enabled t)
+  (setq rtags-autostart-diagnostics t)
+  (rtags-enable-standard-keybindings))
+  ;; (rtags-set-periodic-reparse-timeout 1.0))
+
+;; company-rtags
+;; https://github.com/Andersbakken/rtags
+;; (use-package company-rtags
+;;   :defer t)
+
+;; flycheck-rtags
+;; https://github.com/Andersbakken/rtags
+;; (use-package flycheck-rtags
+;;   :defer t
+;;   :init
+;;   (defun my-flycheck-rtags-setup ()
+;; 	(flycheck-select-checker 'rtags)
+;; 	(setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+;; 	(setq-local flycheck-check-syntax-automatically nil))
+;;   (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup))
+
+;; flycheck-clag-analyzer
+;; https://github.com/alexmurray/flycheck-clang-analyzer
+(use-package flycheck-clang-analyzer
+  :after (flycheck irony)
+  :defer t
+  :config (flycheck-clang-analyzer-setup))
+
+;; cmake-ide
+;; https://github.com/atilaneves/cmake-ide
+(use-package cmake-ide
+  :after (rtags)
+  :config (cmake-ide-setup))
 
 ;;; .emacs ends here
