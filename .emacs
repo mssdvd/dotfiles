@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil)
  '(safe-local-variable-values (quote ((cmake-ide-build-dir . "~/Rubrica/cmake-build/")))))
 (custom-set-faces
@@ -66,9 +66,6 @@
 ;; highlight line
 (global-hl-line-mode)
 
-;; enable delete-selection-mode
-(delete-selection-mode 1)
-
 ;; improve comint performance
 (setq-default bidi-display-reordering nil)
 
@@ -78,12 +75,6 @@
 ;; C preferences
 (setq-default c-default-style "k&r"
 			  tab-width 4)
-
-;; gdb
-(defvar gdb-many-windows)
-(setq gdb-many-windows t)
-(defvar gdb-show-main)
-(setq gdb-show-main t)
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) temporary-file-directory))
@@ -429,6 +420,20 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 		'(("~/Documents/dotfiles" . 3)
 		  ("~/Documents/school" . 3))))
 
+;; gitconfig-mode
+;; https://github.com/magit/git-modes
+(use-package gitconfig-mode
+  :defer t)
+
+;; gitignore-mode
+;; https://github.com/magit/git-modes
+(use-package gitignore-mode
+  :defer t)
+
+;; gitignore
+;; https://github.com/syohex/emacs-gitignore
+(autoload 'gitignore "~/build/emacs-gitignore/gitignore.el" "Generate .gitignore file by using gitignore.io API" t nil)
+
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el
 (use-package multiple-cursors
@@ -594,6 +599,13 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package ediff
   :defer t
   :config (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+
+;; gdb-mi
+(use-package gdb-mi
+  :defer t
+  :config
+  (setq gdb-many-windows t
+		gdb-show-main t))
 
 ;; 
 ;; Languages configurations
