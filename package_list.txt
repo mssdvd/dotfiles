@@ -29,6 +29,7 @@ dhcpcd
 dialog
 diffutils
 e2fsprogs
+eclipse-java
 efibootmgr
 emacs
 engrampa
@@ -105,7 +106,6 @@ mesa-demos
 mlocate
 mpv
 nano
-netbeans
 netctl
 network-manager-applet
 ninja
@@ -133,6 +133,7 @@ pkg-config
 pkgfile
 platformio
 poppler-glib
+powertop
 procps-ng
 psmisc
 pulseaudio
