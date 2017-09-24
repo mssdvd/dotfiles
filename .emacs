@@ -406,11 +406,17 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; magit
 ;; https://magit.vc
 (use-package magit
-  :defer t
+  :bind ("C-c g" . magit-status)
   :config
   (setq magit-repository-directories
 		'(("~/Documents/dotfiles" . 3)
 		  ("~/Documents/school" . 3))))
+
+;; magithub
+;; https://github.com/vermiculus/magithub
+(use-package magithub
+  :after magit
+  :config (magithub-feature-autoinject t))
 
 ;; gitconfig-mode
 ;; https://github.com/magit/git-modes
