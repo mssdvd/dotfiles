@@ -364,7 +364,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :bind ([(M-tab)]. company-complete)
   :bind ("C-c y" . company-yasnippet)
   :config
-  (global-company-mode))
+  (global-company-mode)
+  (setq company-tooltip-align-annotations t))
 
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
