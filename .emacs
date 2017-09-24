@@ -166,20 +166,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 	  (highlight-indent-guides-mode -1)
 	  (put 'switch-highlight-indent-guides-and-whitespace-modes 'state t))))
 
-;; ;; (set-default 'tramp-default-proxies-alist (quote ((".*" "\\`root\\'" "/ssh:%h:"))))
-;; (defun sudo-edit-current-file ()
-;;   (interactive)
-;;   (let ((position (point)))
-;; 	(find-alternate-file
-;; 	 (if (file-remote-p (buffer-file-name))
-;; 		 (let ((vec (tramp-dissect-file-name (buffer-file-name))))
-;; 		   (tramp-make-tramp-file-name
-;; 			"sudo"
-;; 			(tramp-file-name-user vec)
-;; 			(tramp-file-name-host vec)
-;; 			(tramp-file-name-localname vec)))
-;; 	   (concat "/sudo:root@localhost:" (buffer-file-name))))
-;; 	(goto-char position)))
+(defun ranger-launch-here ()
+  "Open the current file's directory in ranger."
+  (interactive)
+  (if default-directory
+	(call-process-shell-command "termite -e ranger" (expand-file-name default-directory) 0 nil)
+    (error "No `default-directory' to open")))
 
 ;;;;
 ;; use-package
