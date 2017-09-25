@@ -381,6 +381,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :after (company)
   :config (company-flx-mode +1))
 
+;; company-statistics
+;; https://github.com/company-mode/company-statistics
+(use-package company-statistics
+  :after (company)
+  :config (company-statistics-mode))
+
 ;; projectile
 ;; https://github.com/bbatsov/projectile
 (use-package projectile
