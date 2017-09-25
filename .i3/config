@@ -224,8 +224,7 @@ bindsym --release Caps_Lock exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
 
 # Screenshot bindings
-bindsym Print exec gnome-screenshot
-bindsym Shift+Print exec gnome-screenshot -i
+bindsym Print exec gnome-screenshot -i
 
 # Personal bindings
 bindsym $mod+bracketleft exec chromium
