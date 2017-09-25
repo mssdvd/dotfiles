@@ -660,7 +660,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package emmet-mode
   :diminish emmet-mode
   :defer t
-  :init (add-hook 'web-mode-hook 'emmet-mode)
+  :init
+  (add-hook 'css-mode-hook 'emmet-mode)
+  (add-hook 'web-mode-hook 'emmet-mode)
   :config (setq emmet-move-cursor-between-quotes t))
 
 ;; Python
