@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode pdf-tools paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil)
  '(safe-local-variable-values (quote ((cmake-ide-build-dir . "~/Rubrica/cmake-build/")))))
 (custom-set-faces
@@ -619,7 +619,49 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; 
 ;; Languages configurations
-;; 
+;;
+
+;; Web
+
+;; web-mode
+;; https://github.com/fxbois/web-mode
+(use-package web-mode
+  :mode
+  ("\\.php\\'" . web-mode)
+  ("\\.html?\\'" . web-mode))
+
+;; js2-mode
+;; https://github.com/mooz/js2-mode
+(use-package js2-mode
+  :mode ("\\.js\\'" . js2-mode))
+
+;; tern
+;; http://ternjs.net
+(use-package tern
+  :diminish tern-mode
+  :defer t
+  :init (add-hook 'js2-mode-hook (lambda () (tern-mode))))
+
+;; company-tern
+;; https://github.com/proofit404/company-tern
+(use-package company-tern
+  :after (js2-mode tern company)
+  :config
+  (add-to-list 'company-backends 'company-tern))
+
+;; company-web
+;; https://github.com/osv/company-web
+(use-package company-web
+  :after (web-mode company-mode)
+  :config (add-to-list 'company-backends 'company-web-html))
+
+;; emmet-mode
+;; https://github.com/smihica/emmet-mode#html-abbreviations
+(use-package emmet-mode
+  :diminish emmet-mode
+  :defer t
+  :init (add-hook 'web-mode-hook 'emmet-mode)
+  :config (setq emmet-move-cursor-between-quotes t))
 
 ;; Python
 
