@@ -94,8 +94,8 @@
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
 
-;; hippie-expand instead of dabbrev-expand
-(bind-key "M-/" 'hippie-expand)
+;; disable this fucking keybind
+(unbind-key "C-x C-z")
 
 ;; ibuffer is better
 (bind-key "C-x C-b" 'ibuffer)
