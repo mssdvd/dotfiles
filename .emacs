@@ -207,11 +207,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (show-smartparens-global-mode t)
   (smartparens-global-mode t)
-  ;;(sp-local-pair '(c-mode c++-mode java-mode) "{" nil :post-handlers '(("||\n[i]" "RET")))
-  (sp-local-pair '(c-mode c++-mode java-mode) "/*" "*/" :post-handlers '((" | " "SPC")
+  (sp-local-pair '(c-mode c++-mode java-mode js2-mode) "/*" "*/" :post-handlers '((" | " "SPC")
 																		 ("* ||\n[i]""RET")))
 
-  (sp-local-pair '(c-mode c++-mode java-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(c-mode c++-mode java-mode js2-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
 	"Open a new brace or bracket expression, with relevant newlines and indent. "
 	(newline)
