@@ -611,6 +611,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (setq gdb-many-windows t
 		gdb-show-main t))
 
+;; hippie-exp
+(use-package hippie-exp
+  :bind
+  ("M-/" . hippie-expand)
+  ("<C-return>" . hippie-expand))
+
 ;; 
 ;; Languages configurations
 ;; 
