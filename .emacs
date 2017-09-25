@@ -674,10 +674,15 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package emmet-mode
   :diminish emmet-mode
   :defer t
+  :bind (:map emmet-mode-keymap
+			  ("C-M->" . emmet-next-edit-point)
+			  ("C-M-<" . emmet-prev-edit-point))
   :init
   (add-hook 'css-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode)
-  :config (setq emmet-move-cursor-between-quotes t))
+  :config
+  (setq emmet-move-cursor-between-quotes t)
+  (unbind-key "<C-return>" emmet-mode-keymap))
 
 ;; Python
 
