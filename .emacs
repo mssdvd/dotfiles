@@ -321,7 +321,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :commands (highlight-indent-guides-mode)
   :init
   (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
-  (add-hook 'sgml-mode-hook 'highlight-indent-guides-mode)
+  (add-hook 'web-mode-hook (lambda () (highlight-indent-guides-mode -1)))
   :config
   (setq highlight-indent-guides-method 'character))
 
