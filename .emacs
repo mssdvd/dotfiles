@@ -627,8 +627,22 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/fxbois/web-mode
 (use-package web-mode
   :mode
-  ("\\.php\\'" . web-mode)
-  ("\\.html?\\'" . web-mode))
+  ("\\.phtml\\'"      . web-mode)
+  ("\\.tpl\\.php\\'"  . web-mode)
+  ("\\.php\\'"        . web-mode)
+  ("\\.twig\\'"       . web-mode)
+  ("\\.html\\'"       . web-mode)
+  ("\\.htm\\'"        . web-mode)
+  ("\\.[gj]sp\\'"     . web-mode)
+  ("\\.as[cp]x?\\'"   . web-mode)
+  ("\\.eex\\'"        . web-mode)
+  ("\\.erb\\'"        . web-mode)
+  ("\\.mustache\\'"   . web-mode)
+  ("\\.handlebars\\'" . web-mode)
+  ("\\.hbs\\'"        . web-mode)
+  ("\\.eco\\'"        . web-mode)
+  ("\\.ejs\\'"        . web-mode)
+  ("\\.djhtml\\'"     . web-mode))
 
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
