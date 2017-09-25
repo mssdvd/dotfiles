@@ -666,7 +666,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; company-web
 ;; https://github.com/osv/company-web
 (use-package company-web
-  :after (web-mode company-mode)
+  :after (web-mode company)
   :config (add-to-list 'company-backends 'company-web-html))
 
 ;; emmet-mode
