@@ -576,7 +576,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
-  :defer t
+  :bind ("C-c t" . terminal-here-launch)
   :config (setq terminal-here-terminal-command '("termite")))
 
 ;; sudo-edit
