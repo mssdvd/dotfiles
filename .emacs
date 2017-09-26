@@ -208,7 +208,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (show-smartparens-global-mode t)
   (smartparens-global-mode t)
-  (sp-local-pair '(c-mode c++-mode java-mode js2-mode) "/*" "*/" :post-handlers '((" | " "SPC")
+  (ad-disable-advice 'company--insert-candidate 'after 'sp-company--insert-candidate)
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode) "/*" "*/" :post-handlers '((" | " "SPC")
 																		 ("* ||\n[i]""RET")))
 
