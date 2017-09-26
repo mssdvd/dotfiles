@@ -172,6 +172,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (if default-directory
 	(call-process-shell-command "termite -e ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
+(bind-key "C-c r" 'ranger-launch-here)
 
 ;;;;
 ;; use-package
