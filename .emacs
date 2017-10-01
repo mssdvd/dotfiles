@@ -115,7 +115,7 @@
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
 
-;; add new nile line at the end of file
+;; add new line at the end of file
 (setq require-final-newline t)
 
 ;; Prefer newer files
