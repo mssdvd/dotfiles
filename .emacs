@@ -534,7 +534,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 			(lambda ()
 			  (nlinum-mode -1)))
   (bind-key "C-s" 'isearch-forward pdf-view-mode-map)
-  
+
   ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
   ;; https://github.com/politza/pdf-tools/issues/18#issuecomment-269515117
   (defun brds/pdf-set-last-viewed-bookmark ()
@@ -630,7 +630,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ("M-/" . hippie-expand)
   ("<C-return>" . hippie-expand))
 
-;; 
+;;
 ;; Languages configurations
 ;;
 
@@ -798,9 +798,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;;   :defer t
 ;;   :init
 ;;   (defun my-flycheck-rtags-setup ()
-;; 	(flycheck-select-checker 'rtags)
-;; 	(setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-;; 	(setq-local flycheck-check-syntax-automatically nil))
+;;	(flycheck-select-checker 'rtags)
+;;	(setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+;;	(setq-local flycheck-check-syntax-automatically nil))
 ;;   (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup))
 
 ;; flycheck-clag-analyzer
