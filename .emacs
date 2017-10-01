@@ -729,11 +729,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :diminish irony-mode
   :commands (irony-mode)
   :init
-  (defun irony-mode-eldoc-list ()
-	(irony-mode)
-	(irony-eldoc))
-  (add-hook 'c-mode-hook #'irony-mode-eldoc-list)
-  (add-hook 'c++-mode-hook #'irony-mode-eldoc-list)
+  (add-hook 'c-mode-hook 'irony-mode)
+  (add-hook 'c++-mode-hook 'irony-mode)
   (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
   :config (eval-after-load 'company '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
 
@@ -741,6 +738,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/ikirill/irony-eldoc
 (use-package irony-eldoc
   :commands (irony-eldoc)
+  :init
+  (add-hook 'c-mode-hook 'irony-eldoc)
+  (add-hook 'c++-mode-hook 'irony-eldoc))
 
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
