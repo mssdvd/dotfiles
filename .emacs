@@ -629,6 +629,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; web-mode
 ;; https://github.com/fxbois/web-mode
+;; Dep tidy
 (use-package web-mode
   :mode
   ("\\.phtml\\'"      . web-mode)
@@ -646,7 +647,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ("\\.hbs\\'"        . web-mode)
   ("\\.eco\\'"        . web-mode)
   ("\\.ejs\\'"        . web-mode)
-  ("\\.djhtml\\'"     . web-mode))
+  ("\\.djhtml\\'"     . web-mode)
+  :config (flycheck-add-mode 'html-tidy 'web-mode))
 
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
