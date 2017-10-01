@@ -209,10 +209,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (show-smartparens-global-mode t)
   (smartparens-global-mode t)
   (ad-disable-advice 'company--insert-candidate 'after 'sp-company--insert-candidate)
-  (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode) "/*" "*/" :post-handlers '((" | " "SPC")
+  (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
 																		 ("* ||\n[i]""RET")))
 
-  (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode css-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
 	"Open a new brace or bracket expression, with relevant newlines and indent. "
 	(newline)
