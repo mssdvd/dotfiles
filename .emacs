@@ -298,7 +298,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; flycheck
 ;; http://www.flycheck.org
-;; Dep flake8, clang
+;; Dep flake8, clang, tidy, csslint
 (use-package flycheck
   :config
   (global-flycheck-mode)
