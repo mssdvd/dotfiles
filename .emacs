@@ -224,6 +224,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/abo-abo/swiper
 (use-package ivy
   :diminish ivy-mode
+  :commands (ivy-mode)
   :init (ivy-mode 1)
   :config
   (setq ivy-use-virtual-buffers t
@@ -347,6 +348,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; undo-tree
 (use-package undo-tree
   :diminish undo-tree-mode
+  :commands (global-undo-tree-mode)
   :bind
   ("C-z" . undo)
   ("C-S-z" . undo-tree-redo)
@@ -477,7 +479,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; all the icons dired
 ;; https://github.com/jtbm37/all-the-icons-dired
 (use-package all-the-icons-dired
-  :defer t
+  :commands (all-the-icons-dired-mode)
   :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
 
 ;; which-key
@@ -491,7 +493,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; Dep platformIO-core
 (use-package platformio-mode
   :diminish platformio-mode
-  :defer t
+  :commands (platformio-mode)
   :init
   (add-hook 'c-mode-hook 'platformio-mode)
   (add-hook 'c++-mode-hook 'platformio-mode))
@@ -655,7 +657,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; http://ternjs.net
 (use-package tern
   :diminish tern-mode
-  :defer t
+  :commands (tern-mode)
   :init (add-hook 'js2-mode-hook (lambda () (tern-mode))))
 
 ;; company-tern
@@ -675,7 +677,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/smihica/emmet-mode#html-abbreviations
 (use-package emmet-mode
   :diminish emmet-mode
-  :defer t
+  :commands (emmet-mode)
   :bind (:map emmet-mode-keymap
 			  ("C-M->" . emmet-next-edit-point)
 			  ("C-M-<" . emmet-prev-edit-point))
@@ -691,8 +693,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; anaconda-mode
 ;; https://github.com/proofit404/anaconda-mode
 (use-package anaconda-mode
-  :defer t
   :diminish anaconda-mode
+  :commands (anaconda-mode anaconda-eldoc-mode)
   :init
   (add-hook 'python-mode-hook #'anaconda-mode)
   (add-hook 'python-mode-hook #'anaconda-eldoc-mode))
@@ -708,14 +710,14 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; Dep yapfy
 (use-package yapfify
   :diminish yapf-mode
-  :defer t
+  :commands (yapf-mode)
   :init (add-hook 'python-mode-hook 'yapf-mode))
 
 ;; py-isort
 ;; https://github.com/paetzke/py-isort.el
 ;; Dep isort
 (use-package py-isort
-  :defer t
+  :commands (py-isort-before-save)
   :init (add-hook 'before-save-hook 'py-isort-before-save))
 
 ;; C & C++
@@ -725,7 +727,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; Dep cmake, clang
 (use-package irony
   :diminish irony-mode
-  :defer t
+  :commands (irony-mode)
   :init
   (defun irony-mode-eldoc-list ()
 	(irony-mode)
@@ -738,7 +740,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; irony-eldoc
 ;; https://github.com/ikirill/irony-eldoc
 (use-package irony-eldoc
-  :defer t)
+  :commands (irony-eldoc)
 
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
