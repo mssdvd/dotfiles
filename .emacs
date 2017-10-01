@@ -334,6 +334,15 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :commands (rainbow-delimiters-mode)
   :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
 
+;; rainbow-mode
+;; https://elpa.gnu.org/packages/rainbow-mode.html
+(use-package rainbow-mode
+  :diminish (rainbow-mode)
+  :commands (rainbow-mode)
+  :init
+  (add-hook 'prog-mode-hook 'rainbow-mode)
+  (add-hook 'sgml-mode 'rainbow-mode))
+
 ;; org
 (use-package org
   :pin gnu
