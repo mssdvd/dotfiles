@@ -118,6 +118,9 @@
 ;; add new line at the end of file
 (setq require-final-newline t)
 
+;; Delete trailing whitespace before save
+(add-hook 'before-save-hook 'delete-trailing-whitespace)
+
 ;; Prefer newer files
 (setq load-prefer-newer t)
 
