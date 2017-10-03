@@ -240,7 +240,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package counsel
   :diminish counsel-mode
   :bind
-  ("C-x l" . counsel-locate)
+  ("C-c l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
   ("C-c f" . counsel-file-jump)
