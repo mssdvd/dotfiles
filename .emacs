@@ -764,7 +764,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 
 ;; yapfify
 ;; https://github.com/JorisE/yapfify
-;; Dep yapfy
+;; Dep yapf
 (use-package yapfify
   :diminish yapf-mode
   :commands (yapf-mode)
