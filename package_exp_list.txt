@@ -99,6 +99,7 @@ fftw
 file
 filesystem
 findutils
+fish
 fixesproto
 flac
 flake8
@@ -129,6 +130,7 @@ geogebra
 geoip
 geoip-database
 gettext
+giblib
 giflib
 gimp
 girara
@@ -188,6 +190,7 @@ hicolor-icon-theme
 highlight
 hspell
 htop
+http-parser
 hunspell
 hunspell-it
 hwids
@@ -216,12 +219,12 @@ jasper
 java-environment-common
 java-runtime-common
 jbig2dec
-jdk8-openjdk
+jdk9-openjdk
 jemalloc
 jfsutils
 jq
-jre8-openjdk
-jre8-openjdk-headless
+jre9-openjdk
+jre9-openjdk-headless
 js
 json-glib
 jsoncpp
@@ -490,9 +493,11 @@ network-manager-applet
 networkmanager
 ninja
 nm-connection-editor
+nodejs
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
+npm
 npth
 nspr
 nss
@@ -536,6 +541,7 @@ pcre
 pcre2
 perl
 perl-error
+php
 pinentry
 pixman
 pkg-config
@@ -546,6 +552,8 @@ poppler
 poppler-glib
 popt
 portaudio
+postgresql
+postgresql-libs
 powertop
 presentproto
 procps-ng
@@ -572,6 +580,7 @@ python-jedi
 python-keyutils
 python-mccabe
 python-packaging
+python-parso
 python-pexpect
 python-pickleshare
 python-pip
@@ -650,10 +659,12 @@ s-nail
 schroedinger
 screenfetch
 scrnsaverproto
+scrot
 sdl
 sdl2
 seabios
 sed
+semver
 shadow
 shared-mime-info
 sl
@@ -682,6 +693,7 @@ termite-terminfo
 texinfo
 thefuck
 thin-provisioning-tools
+tidy
 tk
 transmission-gtk
 trash-cli

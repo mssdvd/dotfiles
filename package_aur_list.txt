@@ -23,6 +23,7 @@ systemd-boot-pacman-hook
 ttf-caladea
 ttf-carlito
 ttf-font-awesome
+ttf-iosevka
 ttf-ms-fonts
 unclutter-xfixes-git
 virtualbox-ext-oracle
