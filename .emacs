@@ -239,7 +239,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :bind
   ("C-x l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
-  ("C-x g". counsel-rg)
+  ("C-x g" . counsel-rg)
+  ("C-c f" . counsel-file-jump)
   :after (ivy)
   :config
   (counsel-mode 1)
