@@ -700,6 +700,22 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (setq emmet-move-cursor-between-quotes t)
   (unbind-key "<C-return>" emmet-mode-keymap))
 
+;; impatient-mode
+;; https://github.com/netguy204/imp.el
+(use-package impatient-mode
+  :diminish (impatient-mode)
+  :commands (impatient-mode)
+  :init
+  (add-hook 'web-mode-hook 'impatient-mode)
+  (add-hook 'css-mode-hook 'impatient-mode))
+  :config
+  (defun run-impatient ()
+  "Attach a browser to Emacs for a impatient instace. Uses
+`browse-url' to launch a browser."
+  (interactive)
+  (httpd-start)
+  (browse-url (format "http://127.0.0.1:%d/imp" httpd-port)))
+
 ;; Python
 
 ;; anaconda-mode
