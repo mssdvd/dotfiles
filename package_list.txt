@@ -108,7 +108,6 @@ flac
 flake8
 flex
 fontconfig
-fontconfig-ttf-ms-fonts
 fontsproto
 freeglut
 freetype2
@@ -590,11 +589,9 @@ python-gobject
 python-guessit
 python-idna
 python-isort
-python-jedi
 python-keyutils
 python-mccabe
 python-packaging
-python-parso
 python-pexpect
 python-pickleshare
 python-pip
@@ -645,6 +642,7 @@ python2-six
 python2-urllib3
 qalculate-gtk
 qemu
+qpdf
 qt5-base
 qt5-multimedia
 qt5-svg

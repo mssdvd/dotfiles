@@ -1,7 +1,6 @@
 aurvote
 clipster
 cower
-fontconfig-ttf-ms-fonts
 google-chrome
 grabc
 libreoffice-extension-languagetool
