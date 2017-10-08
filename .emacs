@@ -72,9 +72,11 @@
 ;; use tab to indent
 (setq tab-always-indent 'complete)
 
+;; Tab size
+(setq tab-width 4)
+
 ;; C preferences
-(setq-default c-default-style "k&r"
-			  tab-width 4)
+(setq-default c-default-style "k&r")
 
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) temporary-file-directory))
