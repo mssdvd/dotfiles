@@ -632,7 +632,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package hippie-exp
   :bind
   ("M-/" . hippie-expand)
-  ("<C-return>" . hippie-expand))
+  ("C-=" . hippie-expand))
 
 ;;
 ;; Languages configurations
