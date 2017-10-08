@@ -499,7 +499,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
   :diminish which-key-mode
-  :config (which-key-mode))
+  :config
+  (which-key-mode)
+  (bind-key "C-h" 'which-key-C-h-dispatch help-map))
 
 ;; platformIO-mode
 ;; https://github.com/ZachMassia/platformio-mode
