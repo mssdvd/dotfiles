@@ -377,8 +377,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://company-mode.github.io/
 (use-package company
   :diminish company-mode
-  :bind ([(M-tab)]. company-complete)
-  :bind ("C-c y" . company-yasnippet)
+  :bind
+  ([(M-tab)]. company-complete)
+  ("C-c y" . company-yasnippet)
   :config
   (global-company-mode)
   (setq company-tooltip-align-annotations t))
@@ -710,9 +711,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package emmet-mode
   :diminish emmet-mode
   :commands (emmet-mode)
-  :bind (:map emmet-mode-keymap
-			  ("C-M->" . emmet-next-edit-point)
-			  ("C-M-<" . emmet-prev-edit-point))
+  :bind
+  (:map emmet-mode-keymap
+		("C-M->" . emmet-next-edit-point)
+		("C-M-<" . emmet-prev-edit-point))
   :init
   (add-hook 'css-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode)
