@@ -43,8 +43,10 @@ ca-certificates-utils
 cairo
 cairomm
 cantarell-fonts
+celt
 celt0.5.1
 ceph
+chromaprint
 chromium
 clang
 clucene
@@ -91,6 +93,8 @@ exfat-utils
 exiv2
 expac
 expat
+faac
+faad2
 fakeroot
 fcgi
 feh
@@ -143,7 +147,6 @@ glibmm
 glproto
 glu
 gmp
-gnome-chess
 gnome-disk-utility
 gnome-icon-theme
 gnome-icon-theme-symbolic
@@ -151,7 +154,6 @@ gnome-keyring
 gnome-screenshot
 gnome-system-monitor
 gnome-themes-standard
-gnuchess
 gnupg
 gnuplot
 gnutls
@@ -161,6 +163,7 @@ gperftools
 gpgme
 gpm
 gptfdisk
+graphene
 graphite
 grep
 grml-zsh-config
@@ -170,6 +173,7 @@ gsfonts
 gsimplecal
 gsl
 gsm
+gst-plugins-bad
 gst-plugins-base-libs
 gstreamer
 gtk-update-icon-cache
@@ -180,9 +184,6 @@ gtkmm
 gtkmm3
 guile
 guile2.0
-gvfs
-gvfs-gphoto2
-gvfs-mtp
 gzip
 harfbuzz
 harfbuzz-icu
@@ -211,7 +212,6 @@ iptables
 iputils
 ipython
 iso-codes
-itstool
 iw
 jack
 jansson
@@ -223,6 +223,8 @@ jdk9-openjdk
 jemalloc
 jfsutils
 jq
+jre8-openjdk
+jre8-openjdk-headless
 jre9-openjdk
 jre9-openjdk-headless
 js
@@ -233,6 +235,7 @@ kbproto
 keyutils
 kmod
 krb5
+ladspa
 lame
 lcms
 lcms2
@@ -269,8 +272,11 @@ libcups
 libcurl-compat
 libdaemon
 libdatrie
+libdc1394
+libdca
 libdmx
 libdrm
+libdv
 libdvdcss
 libdvdnav
 libdvdread
@@ -285,16 +291,14 @@ libevent
 libexif
 libexttextcat
 libfbclient
+libfdk-aac
 libffi
-libfm
-libfm-extra
-libfm-gtk3
 libfontenc
 libgcrypt
 libglade
 libglvnd
+libgme
 libgpg-error
-libgphoto2
 libgtop
 libgudev
 libice
@@ -314,9 +318,11 @@ libmms
 libmng
 libmnl
 libmodplug
+libmp4v2
 libmpc
+libmpcdec
+libmpeg2
 libmspub
-libmtp
 libmwaw
 libndp
 libnetfilter_conntrack
@@ -330,6 +336,7 @@ libnm
 libnm-glib
 libnotify
 libodfgen
+libofa
 libogg
 libomxil-bellagio
 liborcus
@@ -362,6 +369,7 @@ libsodium
 libsoup
 libsoxr
 libspiro
+libsrtp
 libssh
 libssh2
 libstemmer
@@ -459,7 +467,6 @@ lua
 lua52
 lvm2
 lxappearance
-lxmenu-data
 lxsession-gtk3
 lz4
 lzo
@@ -471,10 +478,10 @@ man-db
 man-pages
 mdadm
 mediainfo
-menu-cache
 mesa
 mesa-demos
 minizip
+mjpegtools
 mkinitcpio
 mkinitcpio-busybox
 mlocate
@@ -535,7 +542,6 @@ pass
 patch
 pavucontrol
 pciutils
-pcmanfm-gtk3
 pcmciautils
 pcre
 pcre2
@@ -655,6 +661,7 @@ ruby
 rxvt-unicode
 rxvt-unicode-terminfo
 s-nail
+sbc
 schroedinger
 screenfetch
 scrnsaverproto
@@ -670,6 +677,8 @@ sl
 slang
 snappy
 sound-theme-freedesktop
+soundtouch
+spandsp
 speex
 speexdsp
 spice
@@ -721,7 +730,6 @@ usbredir
 usbutils
 util-linux
 v4l-utils
-vala
 vamp-plugin-sdk
 vde2
 vdpauinfo
@@ -740,6 +748,7 @@ virtualbox-host-dkms
 volume_key
 vte-common
 vte3-ng
+vulkan-icd-loader
 w3m
 wayland
 wayland-protocols
@@ -747,6 +756,7 @@ webkit2gtk
 webrtc-audio-processing
 wget
 which
+wildmidi
 wireless-regdb
 wireshark-cli
 wireshark-common
@@ -849,3 +859,4 @@ zita-alsa-pcmi
 zita-resampler
 zlib
 zsh
+zvbi
