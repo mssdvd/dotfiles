@@ -441,8 +441,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :bind ("C-c g" . magit-status)
   :config
   (setq magit-repository-directories
-		'(("~/Documents/dotfiles" . 3)
-		  ("~/Documents/school" . 3))))
+	'(("~/Documents/school" . 3)
+	  ("~/Documents/dotfiles" . 3))))
 
 ;; magithub
 ;; https://github.com/vermiculus/magithub
