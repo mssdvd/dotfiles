@@ -1,1 +1,1 @@
-localectl set-x11-keymap "" "" "" "ctrl:swapcaps"
+localectl set-x11-keymap "" "" "" "ctrl:swapcaps,ctrl:swap_rwin_rctl"
