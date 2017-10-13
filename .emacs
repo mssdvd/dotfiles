@@ -182,6 +182,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; use-package
 ;;;;
 
+;; use-package
+;; https://github.com/jwiegley/use-package
 (use-package use-package
   :config (setq use-package-always-ensure t))
 
