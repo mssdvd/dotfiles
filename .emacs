@@ -182,8 +182,14 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; use-package
 ;;;;
 
+;; use-package
+;; https://github.com/jwiegley/use-package
 (use-package use-package
   :config (setq use-package-always-ensure t))
+
+;; delight
+;; https://savannah.nongnu.org/projects/delight
+(use-package delight)
 
 ;; moe-theme
 (use-package moe-theme
@@ -381,6 +387,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :bind
   ([(M-tab)]. company-complete)
   ("C-c y" . company-yasnippet)
+  :init (add-hook 'after-init-hook 'global-company-mode)
   :config
   (global-company-mode)
   (setq company-tooltip-align-annotations t))
@@ -579,10 +586,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :defer t
   :config (setq realgud:pdb-command-name "python -m pdb"))
 
-;; delight
-;; https://savannah.nongnu.org/projects/delight
-(use-package delight)
-
 ;; abbrev
 (use-package abbrev
   :ensure nil
@@ -630,7 +633,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :defer t
   :config
   (setq gdb-many-windows t
-		gdb-show-main t))
+	gdb-show-main t))
 
 ;; hippie-exp
 (use-package hippie-exp
