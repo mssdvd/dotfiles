@@ -4,6 +4,7 @@ cower
 google-chrome
 grabc
 libreoffice-extension-languagetool
+light-git
 pacaur
 pamac-aur
 pasystray
