@@ -630,7 +630,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :defer t
   :config
   (setq gdb-many-windows t
-		gdb-show-main t))
+	gdb-show-main t))
 
 ;; hippie-exp
 (use-package hippie-exp
