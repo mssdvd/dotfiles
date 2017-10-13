@@ -10,7 +10,7 @@
 (require 'package)
 ;;; Code:
 (add-to-list 'package-archives
-			 '("MELPA" . "https://melpa.org/packages/"))
+	     '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (wolfram ac-html-bootstrap ac-html-csswatcher rainbow-mode pdf-tools org impatient-mode skewer-mode emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode paradox nlinum neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+    (wolfram ac-html-bootstrap ac-html-csswatcher rainbow-mode pdf-tools org impatient-mode skewer-mode emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode paradox neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -80,17 +80,17 @@
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) temporary-file-directory))
 (setq backup-directory-alist
-	  `((".*" . ,emacs-tmp-dir)))
+      `((".*" . ,emacs-tmp-dir)))
 (setq auto-save-file-name-transforms
-	  `((".*" ,emacs-tmp-dir t)))
+      `((".*" ,emacs-tmp-dir t)))
 (setq auto-save-list-file-prefix
-	  emacs-tmp-dir)
+      emacs-tmp-dir)
 
 ;; window title
 (setq frame-title-format
-	  '((:eval (if (buffer-modified-p) "• "))
-		(:eval (if (buffer-file-name)
-				   (abbreviate-file-name (buffer-file-name)) "%b"))))
+      '((:eval (if (buffer-modified-p) "• "))
+	(:eval (if (buffer-file-name)
+		   (abbreviate-file-name (buffer-file-name)) "%b"))))
 
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
@@ -136,45 +136,45 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (interactive "p\np")
   (setq arg (if arg arg 1))
   (if (and allow-extend
-		   (or (and (eq last-command this-command) (mark t))
-			   (region-active-p)))
-	  (set-mark
-	   (save-excursion
-		 (when (< (mark) (point))
-		   (setq arg (- arg)))
-		 (goto-char (mark))
-		 (forward-word arg)
-		 (point)))
-	(let ((wbounds (bounds-of-thing-at-point 'word)))
-	  (unless (consp wbounds)
-		(error "No word at point"))
-	  (if (>= arg 0)
-		  (goto-char (car wbounds))
-		(goto-char (cdr wbounds)))
-	  (push-mark (save-excursion
-				   (forward-word arg)
-				   (point)))
-	  (activate-mark))))
+	   (or (and (eq last-command this-command) (mark t))
+	       (region-active-p)))
+      (set-mark
+       (save-excursion
+	 (when (< (mark) (point))
+	   (setq arg (- arg)))
+	 (goto-char (mark))
+	 (forward-word arg)
+	 (point)))
+    (let ((wbounds (bounds-of-thing-at-point 'word)))
+      (unless (consp wbounds)
+	(error "No word at point"))
+      (if (>= arg 0)
+	  (goto-char (car wbounds))
+	(goto-char (cdr wbounds)))
+      (push-mark (save-excursion
+		   (forward-word arg)
+		   (point)))
+      (activate-mark))))
 (bind-key "C-c m" 'my-mark-current-word)
 
 (defun switch-highlight-indent-guides-and-whitespace-modes ()
   "Switch between highlight-indent-guides and whitespace modes."
   (interactive)
   (if (get 'switch-highlight-indent-guides-and-whitespace-modes 'state)
-	  (progn
-		(whitespace-mode -1)
-		(highlight-indent-guides-mode 1)
-		(put 'switch-highlight-indent-guides-and-whitespace-modes 'state nil))
-	(progn
-	  (whitespace-mode 1)
-	  (highlight-indent-guides-mode -1)
-	  (put 'switch-highlight-indent-guides-and-whitespace-modes 'state t))))
+      (progn
+	(whitespace-mode -1)
+	(highlight-indent-guides-mode 1)
+	(put 'switch-highlight-indent-guides-and-whitespace-modes 'state nil))
+    (progn
+      (whitespace-mode 1)
+      (highlight-indent-guides-mode -1)
+      (put 'switch-highlight-indent-guides-and-whitespace-modes 'state t))))
 
 (defun ranger-launch-here ()
   "Open the current file's directory in ranger."
   (interactive)
   (if default-directory
-	(call-process-shell-command "termite -e ranger" (expand-file-name default-directory) 0 nil)
+      (call-process-shell-command "termite -e ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
 (bind-key "C-c r" 'ranger-launch-here)
 
@@ -197,15 +197,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (setq moe-theme-mode-line-color 'red)
   (moe-dark))
 
-;; nlinum
-;; https://elpa.gnu.org/packages/nlinum.html
-(use-package nlinum
-  :disabled
-  :config
-  (global-nlinum-mode)
-  (setq nlinum-format "%4d"
-		nlinum-highlight-current-line t))
-
 ;; neotree
 (use-package neotree
   :bind ([f8] . neotree-toggle)
@@ -220,15 +211,15 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (smartparens-global-mode t)
   (ad-disable-advice 'company--insert-candidate 'after 'sp-company--insert-candidate)
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
-																		 ("* ||\n[i]""RET")))
+												    ("* ||\n[i]""RET")))
 
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode css-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
-	"Open a new brace or bracket expression, with relevant newlines and indent. "
-	(newline)
-	(indent-according-to-mode)
-	(forward-line -1)
-	(indent-according-to-mode)))
+    "Open a new brace or bracket expression, with relevant newlines and indent. "
+    (newline)
+    (indent-according-to-mode)
+    (forward-line -1)
+    (indent-according-to-mode)))
 
 ;; ivy
 ;; https://github.com/abo-abo/swiper
@@ -238,8 +229,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :init (ivy-mode 1)
   :config
   (setq ivy-use-virtual-buffers t
-		enable-recursive-minibuffers t
-		ivy-count-format "(%d/%d) "))
+	enable-recursive-minibuffers t
+	ivy-count-format "(%d/%d) "))
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
@@ -256,7 +247,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (counsel-mode 1)
   ;; (setq counsel-grep-base-command "grep -nEi '%s' %s")
   (setq counsel-grep-base-command "rg -i --no-heading --line-number --color never '%s' '%s'"
-		counsel-find-file-ignore-regexp "\\`\\.")
+	counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
@@ -327,7 +318,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (recentf-mode)
   (setq recentf-max-menu-items 150
-		recentf-max-saved-items 150))
+	recentf-max-saved-items 150))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
@@ -399,7 +390,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :config
   (company-quickhelp-mode 1)
   (setq company-quickhelp-color-background "#4e4e4e"
-		company-quickhelp-color-foreground "#ffffff"))
+	company-quickhelp-color-foreground "#ffffff"))
 
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
@@ -421,8 +412,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (setq projectile-completion-system 'ivy
-		projectile-enable-caching t
-		projectile-track-known-projects-automatically nil))
+	projectile-enable-caching t
+	projectile-track-known-projects-automatically nil))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
@@ -545,40 +536,37 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :init (add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
   :config
-  (add-hook 'pdf-view-mode-hook
-			(lambda ()
-			  (nlinum-mode -1)))
   (bind-key "C-s" 'isearch-forward pdf-view-mode-map)
 
   ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
   ;; https://github.com/politza/pdf-tools/issues/18#issuecomment-269515117
   (defun brds/pdf-set-last-viewed-bookmark ()
-	(interactive)
-	(when (eq major-mode 'pdf-view-mode)
-	  (bookmark-set (brds/pdf-generate-bookmark-name))))
+    (interactive)
+    (when (eq major-mode 'pdf-view-mode)
+      (bookmark-set (brds/pdf-generate-bookmark-name))))
 
   (defun brds/pdf-jump-last-viewed-bookmark ()
-	(bookmark-set "fake") ; this is new
-	(when
-		(brds/pdf-has-last-viewed-bookmark)
-	  (bookmark-jump (brds/pdf-generate-bookmark-name))))
+    (bookmark-set "fake") ; this is new
+    (when
+	(brds/pdf-has-last-viewed-bookmark)
+      (bookmark-jump (brds/pdf-generate-bookmark-name))))
 
   (defun brds/pdf-has-last-viewed-bookmark ()
-	(assoc
-	 (brds/pdf-generate-bookmark-name) bookmark-alist))
+    (assoc
+     (brds/pdf-generate-bookmark-name) bookmark-alist))
 
   (defun brds/pdf-generate-bookmark-name ()
-	(concat "PDF-LAST-VIEWED: " (buffer-file-name)))
+    (concat "PDF-LAST-VIEWED: " (buffer-file-name)))
 
   (defun brds/pdf-set-all-last-viewed-bookmarks ()
-	(dolist (buf (buffer-list))
-	  (with-current-buffer buf
-		(brds/pdf-set-last-viewed-bookmark))))
+    (dolist (buf (buffer-list))
+      (with-current-buffer buf
+	(brds/pdf-set-last-viewed-bookmark))))
 
   (add-hook 'kill-buffer-hook 'brds/pdf-set-last-viewed-bookmark)
   (add-hook 'pdf-view-mode-hook 'brds/pdf-jump-last-viewed-bookmark)
   (unless noninteractive  ; as `save-place-mode' does
-	(add-hook 'kill-emacs-hook #'brds/pdf-set-all-last-viewed-bookmarks)))
+    (add-hook 'kill-emacs-hook #'brds/pdf-set-all-last-viewed-bookmarks)))
 
 ;; realgud
 ;; https://github.com/realgud/realgud
@@ -613,9 +601,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :defer t
   :config
   (setq ispell-program-name "hunspell"
-		ispell-local-dictionary "it_IT"
-		ispell-local-dictionary-alist
-		'(("it_IT" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
+	ispell-local-dictionary "it_IT"
+	ispell-local-dictionary-alist
+	'(("it_IT" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
 
 ;; apropos
 (use-package apropos
@@ -725,8 +713,8 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :commands (emmet-mode)
   :bind
   (:map emmet-mode-keymap
-		("C-M->" . emmet-next-edit-point)
-		("C-M-<" . emmet-prev-edit-point))
+	("C-M->" . emmet-next-edit-point)
+	("C-M-<" . emmet-prev-edit-point))
   :init
   (add-hook 'css-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode)
@@ -744,11 +732,11 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   (add-hook 'css-mode-hook 'impatient-mode))
   :config
   (defun run-impatient ()
-  "Attach a browser to Emacs for a impatient instace. Uses
-`browse-url' to launch a browser."
-  (interactive)
-  (httpd-start)
-  (browse-url (format "http://127.0.0.1:%d/imp" httpd-port)))
+    "Attach a browser to Emacs for a impatient instace. Uses
+    `browse-url' to launch a browser."
+    (interactive)
+    (httpd-start)
+    (browse-url (format "http://127.0.0.1:%d/imp" httpd-port)))
 
 ;; skewer-mode
 ;; https://github.com/skeeto/skewer-mode
@@ -847,7 +835,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ;; (setq rtags-completions-enabled t)
   (setq rtags-autostart-diagnostics t)
   (rtags-enable-standard-keybindings))
-  ;; (rtags-set-periodic-reparse-timeout 1.0))
+;; (rtags-set-periodic-reparse-timeout 1.0))
 
 ;; company-rtags
 ;; https://github.com/Andersbakken/rtags
