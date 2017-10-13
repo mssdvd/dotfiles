@@ -385,6 +385,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   :bind
   ([(M-tab)]. company-complete)
   ("C-c y" . company-yasnippet)
+  :init (add-hook 'after-init-hook 'global-company-mode)
   :config
   (global-company-mode)
   (setq company-tooltip-align-annotations t))
