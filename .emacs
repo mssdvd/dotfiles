@@ -185,6 +185,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package use-package
   :config (setq use-package-always-ensure t))
 
+;; delight
+;; https://savannah.nongnu.org/projects/delight
+(use-package delight)
+
 ;; moe-theme
 (use-package moe-theme
   :config
@@ -578,10 +582,6 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package realgud
   :defer t
   :config (setq realgud:pdb-command-name "python -m pdb"))
-
-;; delight
-;; https://savannah.nongnu.org/projects/delight
-(use-package delight)
 
 ;; abbrev
 (use-package abbrev
