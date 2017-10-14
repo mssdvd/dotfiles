@@ -72,7 +72,7 @@
 (setq tab-always-indent 'complete)
 
 ;; Tab size
-(setq tab-width 4)
+(setq-default tab-width 4)
 
 ;; C preferences
 (setq-default c-default-style "k&r")
