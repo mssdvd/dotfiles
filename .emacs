@@ -478,10 +478,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
+  :init
+  (add-hook 'text-mode-hook #'yas-minor-mode)
   :config
-  (yas-reload-all)
-  (add-hook 'prog-mode-hook #'yas-minor-mode)
-  (add-hook 'text-mode-hook #'yas-minor-mode))
+  (yas-reload-all))
 
 ;; all the icons
 ;; https://github.com/domtronn/all-the-icons.el
