@@ -478,7 +478,12 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
+<<<<<<< HEAD
   :init (add-hook 'text-mode-hook #'yas-minor-mode)
+=======
+  :init
+  (add-hook 'text-mode-hook #'yas-minor-mode)
+>>>>>>> 55513e09e50435c56a64de406b687013c3300581
   :config
   (yas-reload-all))
 
