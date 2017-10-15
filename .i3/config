@@ -9,6 +9,7 @@
 #
 # Please see http://i3wm.org/docs/userguide.html for a complete reference!
 
+# set $mod as Super key
 set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
@@ -29,6 +30,7 @@ font pango:Anonymous Pro 8
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
+# set default terminal
 set $term termite
 
 # start a terminal
@@ -37,7 +39,7 @@ bindsym $mod+Return exec $term #i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# Rofi
+# rofi
 bindsym $mod+Tab exec --no-startup-id "rofi -combi-modi window,drun -show combi -modi combi"
 
 # change focus
@@ -137,9 +139,7 @@ mode "$mode_system" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-
 bindsym $mod+Shift+e mode "$mode_system"
-
 
 # resize window (you can also use the mouse for that)
 mode "resize" {
@@ -164,10 +164,9 @@ mode "resize" {
 	bindsym Return mode "default"
 	bindsym Escape mode "default"
 }
-
 bindsym $mod+r mode "resize"
 
-# Start i3bar to display a workspace bar (plus the system information i3status
+# Start i3bar to display a workspace bar (plus the system information i3blocks
 # finds out, if available)
 bar {
     tray_output primary
@@ -176,17 +175,22 @@ bar {
 
 # Make the currently focused window a scratchpad
 bindsym $mod+Shift+minus move scratchpad
+
 # Show the first scratchpad window
 bindsym $mod+minus scratchpad show
 
 # Hide vertical edge borders
 hide_edge_borders vertical
+
 # Don't follow the mouse
 focus_follows_mouse no
+
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
+
 # The middle button over a titlebar kills the window
 bindsym --release $mod+button2 kill
+
 # The right button toggles floating
 bindsym $mod+button3 floating toggle
 
@@ -198,17 +202,7 @@ for_window [class="Engrampa"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse
 for_window [class="(?i)pinentry"] floating enable
-# https://github.com/ValveSoftware/steam-for-linux/issues/1040
-for_window [class="^Steam$" title="^Friends$"] floating enable
-for_window [class="^Steam$" title="Steam - News"] floating enable
-for_window [class="^Steam$" title=".* - Chat"] floating enable
-for_window [class="^Steam$" title="^Settings$"] floating enable
-for_window [class="^Steam$" title=".* - event started"] floating enable
-for_window [class="^Steam$" title=".* CD key"] floating enable
-for_window [class="^Steam$" title="^Steam - Self Updater$"] floating enable
-for_window [class="^Steam$" title="^Screenshot Uploader$"] floating enable
-for_window [class="^Steam$" title="^Steam Guard - Computer Authorization Required$"] floating enable
-for_window [title="^Steam Keyboard$"] floating enable
+for_window [class="Steam"] floating enable, border none
 
 # Backlight bindings
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
@@ -230,10 +224,10 @@ bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 bindsym --release Caps_Lock exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
 
-# Screenshot bindings
+# Screenshot binding
 bindsym Print exec gnome-screenshot -i
 
-# Personal bindings
+# Launch applications bindings
 bindsym $mod+bracketleft exec chromium
 bindsym $mod+shift+bracketleft exec chromium --incognito
 bindsym $mod+backslash exec $term -e ranger
@@ -245,7 +239,7 @@ bindsym $mod+apostrophe exec zathura
 
 # Autostart applications
 exec --no-startup-id nm-applet
-exec --no-startup-id /usr/bin/lxpolkit
+exec --no-startup-id lxpolkit
 exec --no-startup-id pamac-tray
 exec --no-startup-id sh $HOME/.fehbg
 exec --no-startup-id pasystray
