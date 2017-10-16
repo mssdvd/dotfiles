@@ -271,11 +271,10 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 ;; https://github.com/abo-abo/avy
 (use-package avy
   :bind
-  ("C-:" . avy-goto-char)
   ("C-'" . avy-goto-char-timer)
   ("M-g f" . avy-goto-line)
-  ;;  ("M-g w" . avy-goto-word-1)
-  ("M-g e" . avy-goto-word-0)
+  ("M-g w" . avy-goto-word-1)
+  ("M-g y" . avy-copy-line)
   :config (avy-setup-default))
 
 ;; avy-flycheck
