@@ -210,6 +210,7 @@
 (use-package ivy
   :diminish ivy-mode
   :commands (ivy-mode)
+  :bind ("C-c i" . ivy-resume)
   :init (ivy-mode 1)
   :config
   (setq ivy-use-virtual-buffers t
