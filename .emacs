@@ -130,6 +130,18 @@
 ;; My functions
 ;;;;
 
+(defun my-create-fake-cursor-at-point ()
+  "Create fake cursor at point whith the keyboard."
+  (interactive)
+      (if (numberp (point))
+          ;; is there a fake cursor with the actual *point* right where we are?
+          (let ((existing (mc/fake-cursor-at-point (point))))
+            (if existing
+                (mc/remove-fake-cursor existing)
+              (save-excursion
+                (goto-char (point))
+                (mc/create-fake-cursor-at-point))))))
+
 (defun my-copy-line ()
   "Copy current line."
   (interactive)
@@ -460,7 +472,7 @@
   ("C-<" . mc/mark-previous-like-this)
   ("C-c c" . mc/mark-all-dwim)
   ("M-<down-mouse-1>" . mc/add-cursor-on-click)
-  ("C-c o c" . mc/create-fake-cursor-at-point)
+  ("C-c o c" . my-create-fake-cursor-at-point)
   ("C-c o m" . multiple-cursors-mode))
 
 ;; highlight-symbol
