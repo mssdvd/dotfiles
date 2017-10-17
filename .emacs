@@ -274,6 +274,13 @@
 (use-package expand-region
   :bind ("C-=" . er/expand-region))
 
+;; move-text
+;; https://github.com/emacsfodder/move-text
+(use-package move-text
+  :bind
+  ("<M-up>" . move-text-up)
+  ("<M-down>" . move-text-down))
+
 ;; flycheck
 ;; http://www.flycheck.org
 ;; Dep flake8, clang, tidy, csslint
