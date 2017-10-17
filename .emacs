@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-    (wolfram ac-html-bootstrap ac-html-csswatcher rainbow-mode pdf-tools org impatient-mode skewer-mode emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode paradox neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(expand-region wolfram ac-html-bootstrap ac-html-csswatcher rainbow-mode pdf-tools org impatient-mode skewer-mode emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode paradox neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -110,6 +110,7 @@
 (bind-key "C-M-y" 'yank)
 (bind-key "C-w" 'clipboard-kill-region)
 (bind-key "M-w" 'clipboard-kill-ring-save)
+
 ;; Pasting with middle-click puts the text where the point is
 (setq mouse-yank-at-point t)
 
@@ -129,33 +130,29 @@
 ;; My functions
 ;;;;
 
-;; mark current world
-(defun my-mark-current-word (&optional arg allow-extend)
-  "Put point at beginning of current word, set mark at end.
-ARG fa qualcosa, ALLOW-EXTEND altro"
-  (interactive "p\np")
-  (setq arg (if arg arg 1))
-  (if (and allow-extend
-	   (or (and (eq last-command this-command) (mark t))
-	       (region-active-p)))
-      (set-mark
-       (save-excursion
-	 (when (< (mark) (point))
-	   (setq arg (- arg)))
-	 (goto-char (mark))
-	 (forward-word arg)
-	 (point)))
-    (let ((wbounds (bounds-of-thing-at-point 'word)))
-      (unless (consp wbounds)
-	(error "No word at point"))
-      (if (>= arg 0)
-	  (goto-char (car wbounds))
-	(goto-char (cdr wbounds)))
-      (push-mark (save-excursion
-		   (forward-word arg)
-		   (point)))
-      (activate-mark))))
-(bind-key "C-c m" 'my-mark-current-word)
+(defun my-create-fake-cursor-at-point ()
+  "Create fake cursor at point whith the keyboard."
+  (interactive)
+  (require 'multiple-cursors)
+      (if (numberp (point))
+          ;; is there a fake cursor with the actual *point* right where we are?
+          (let ((existing (mc/fake-cursor-at-point (point))))
+            (if existing
+                (mc/remove-fake-cursor existing)
+              (save-excursion
+                (goto-char (point))
+                (mc/create-fake-cursor-at-point))))))
+
+(defun my-copy-line ()
+  "Copy current line."
+  (interactive)
+  (save-excursion
+    (back-to-indentation)
+    (clipboard-kill-ring-save
+     (point)
+     (line-end-position)))
+  (message "1 line copied"))
+(bind-key "C-c k" 'my-copy-line)
 
 (defun switch-highlight-indent-guides-and-whitespace-modes ()
   "Switch between highlight-indent-guides and whitespace modes."
@@ -226,6 +223,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package ivy
   :diminish ivy-mode
   :commands (ivy-mode)
+  :bind ("C-c i" . ivy-resume)
   :init (ivy-mode 1)
   :config
   (setq ivy-use-virtual-buffers t
@@ -296,6 +294,18 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package ace-window
   :bind ("M-[" . ace-window)
   :config (setq aw-dispatch-always t))
+
+;; expand-region.el
+;; https://github.com/magnars/expand-region.el
+(use-package expand-region
+  :bind ("C-=" . er/expand-region))
+
+;; move-text
+;; https://github.com/emacsfodder/move-text
+(use-package move-text
+  :bind
+  ("<M-up>" . move-text-up)
+  ("<M-down>" . move-text-down))
 
 ;; flycheck
 ;; http://www.flycheck.org
@@ -462,7 +472,9 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
   ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this)
   ("C-c c" . mc/mark-all-dwim)
-  ("M-<down-mouse-1>" . mc/add-cursor-on-click))
+  ("M-<down-mouse-1>" . mc/add-cursor-on-click)
+  ("C-c o c" . my-create-fake-cursor-at-point)
+  ("C-c o m" . multiple-cursors-mode))
 
 ;; highlight-symbol
 ;; https://github.com/nschum/highlight-symbol.el
@@ -627,7 +639,7 @@ ARG fa qualcosa, ALLOW-EXTEND altro"
 (use-package hippie-exp
   :bind
   ("M-/" . hippie-expand)
-  ("C-=" . hippie-expand))
+  ("C-M-=" . hippie-expand))
 
 ;; Wolfram.el
 ;; https://github.com/hsjunnesson/wolfram.el
