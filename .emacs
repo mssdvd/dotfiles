@@ -110,6 +110,7 @@
 (bind-key "C-M-y" 'yank)
 (bind-key "C-w" 'clipboard-kill-region)
 (bind-key "M-w" 'clipboard-kill-ring-save)
+
 ;; Pasting with middle-click puts the text where the point is
 (setq mouse-yank-at-point t)
 
@@ -128,6 +129,17 @@
 ;;;;
 ;; My functions
 ;;;;
+
+(defun my-copy-line ()
+  "Copy current line."
+  (interactive)
+  (save-excursion
+    (back-to-indentation)
+    (clipboard-kill-ring-save
+     (point)
+     (line-end-position)))
+  (message "1 line copied"))
+(bind-key "C-c k" 'my-copy-line)
 
 (defun switch-highlight-indent-guides-and-whitespace-modes ()
   "Switch between highlight-indent-guides and whitespace modes."
