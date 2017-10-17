@@ -459,7 +459,9 @@
   ("C->" . mc/mark-next-like-this)
   ("C-<" . mc/mark-previous-like-this)
   ("C-c c" . mc/mark-all-dwim)
-  ("M-<down-mouse-1>" . mc/add-cursor-on-click))
+  ("M-<down-mouse-1>" . mc/add-cursor-on-click)
+  ("C-c o c" . mc/create-fake-cursor-at-point)
+  ("C-c o m" . multiple-cursors-mode))
 
 ;; highlight-symbol
 ;; https://github.com/nschum/highlight-symbol.el
