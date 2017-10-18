@@ -683,6 +683,12 @@
 (use-package js2-mode
   :mode ("\\.js\\'" . js2-mode))
 
+;; js2-refactor
+;; https://github.com/magnars/js2-refactor.el
+(use-package js2-refactor
+  :diminish js2-refactor-mode
+  :init (add-hook 'js2-mode-hook #'js2-refactor-mode))
+
 ;; tern
 ;; http://ternjs.net
 (use-package tern
