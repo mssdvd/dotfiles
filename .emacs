@@ -24,7 +24,7 @@
  ;; If there is more than one, they won't work right.
  '(package-selected-packages
    (quote
-	(expand-region wolfram ac-html-bootstrap ac-html-csswatcher rainbow-mode pdf-tools org impatient-mode skewer-mode emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode paradox neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
+	(auto-yasnippet define-word js2-refactor expand-region wolfram ac-html-bootstrap ac-html-csswatcher rainbow-mode pdf-tools org impatient-mode skewer-mode emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode paradox neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
  '(pdf-annot-tweak-tooltips nil))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
@@ -492,8 +492,12 @@
   :init
   (add-hook 'text-mode-hook #'yas-minor-mode)
   (add-hook 'prog-mode-hook #'yas-minor-mode)
-  :config
-  (yas-reload-all))
+  :config (yas-reload-all))
+
+;; auto-yasnippet
+;; https://github.com/abo-abo/auto-yasnippet
+(use-package auto-yasnippet
+  :defer t)
 
 ;; all the icons
 ;; https://github.com/domtronn/all-the-icons.el
@@ -647,6 +651,11 @@
   :defer t
   :config
   (setq wolfram-alpha-app-id "***REMOVED***"))
+
+;; define-word
+;; https://github.com/abo-abo/define-word
+(use-package define-word
+  :defer t)
 
 
 ;;
