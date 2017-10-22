@@ -55,3 +55,8 @@ source /usr/share/fzf/key-bindings.zsh
 source /usr/share/fzf/completion.zsh
 export FZF_COMPLETION_TRIGGER='``'
 export FZF_DEFAULT_OPTS="--bind '?:toggle-preview' --preview 'highlight -O ansi -l {}' --preview-window 'right:hidden'"
+
+# fix vte bug
+if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
+        source /etc/profile.d/vte.sh
+fi
