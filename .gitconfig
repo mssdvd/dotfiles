@@ -5,3 +5,5 @@
 	hideCampaign = true
 [github]
 	user = mssdvd
+[core]
+	autocrlf = input
