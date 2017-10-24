@@ -1,14 +1,12 @@
 ;;; package --- Summary
 ;;; Commentary:
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+
 ;; (add-to-list 'load-path "~/build/benchmark-init-el/")
 ;; (require 'benchmark-init-loaddefs)
 ;; (benchmark-init/activate)
-(require 'package)
+
 ;;; Code:
+(require 'package)
 (add-to-list 'package-archives
 	     '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -17,22 +15,9 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-	(auto-yasnippet define-word js2-refactor expand-region wolfram ac-html-bootstrap ac-html-csswatcher rainbow-mode pdf-tools org impatient-mode skewer-mode emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode paradox neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
- '(pdf-annot-tweak-tooltips nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Iosevka" :foundry "CYEL" :slant normal :weight normal :height 113 :width normal))))
- '(paradox-mode-line-face ((t (:inherit mode-line-buffer-id :weight normal)))))
+;; custom-stuff goes to another file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
 
 ;; enable column number
 (column-number-mode t)
