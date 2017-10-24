@@ -396,9 +396,7 @@
 (use-package company-quickhelp
   :after (company)
   :config
-  (company-quickhelp-mode 1)
-  (setq company-quickhelp-color-background "#4e4e4e"
-	company-quickhelp-color-foreground "#ffffff"))
+  (company-quickhelp-mode 1))
 
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
