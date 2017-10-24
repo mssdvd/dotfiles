@@ -188,6 +188,7 @@
 
 ;; moe-theme
 (use-package moe-theme
+  :disabled
   :config
   (setq moe-theme-mode-line-color 'red)
   (moe-dark))
