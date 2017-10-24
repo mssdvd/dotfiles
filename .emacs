@@ -111,6 +111,19 @@
 ;; Prefer newer files
 (setq load-prefer-newer t)
 
+;; Focus frame
+(defun my-focus-new-frame (&optional frame)
+  "Focus new FRAME."
+    (when window-system
+      (raise-frame frame)
+      (x-focus-frame frame)))
+(add-hook 'after-make-frame-functions 'my-focus-new-frame)
+;; Focus initial frame
+(my-focus-new-frame)
+
+;; Always open *scratch*
+(setq initial-buffer-choice t)
+
 ;;;;
 ;; My functions
 ;;;;
