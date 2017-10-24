@@ -693,6 +693,7 @@
 ;; https://github.com/magnars/js2-refactor.el
 (use-package js2-refactor
   :diminish js2-refactor-mode
+  :defer t
   :init (add-hook 'js2-mode-hook #'js2-refactor-mode))
 
 ;; tern
