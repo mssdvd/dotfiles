@@ -204,6 +204,7 @@
 (use-package smartparens-config
   :ensure smartparens
   :diminish smartparens-mode
+  :defer 1
   :config
   (show-smartparens-global-mode t)
   (smartparens-global-mode t)
@@ -223,10 +224,11 @@
 ;; https://github.com/abo-abo/swiper
 (use-package ivy
   :diminish ivy-mode
+  :defer 1
   :commands (ivy-mode)
   :bind ("C-c i" . ivy-resume)
-  :init (ivy-mode 1)
   :config
+  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
 	enable-recursive-minibuffers t
 	ivy-count-format "(%d/%d) "))
@@ -237,6 +239,8 @@
 (use-package counsel
   :diminish counsel-mode
   :bind
+  ("C-c C-f" . counsel-find-file)
+  ("M-x" . counsel-M-x)
   ("C-c l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
@@ -312,13 +316,14 @@
 ;; http://www.flycheck.org
 ;; Dep flake8, clang, tidy, csslint
 (use-package flycheck
+  :defer 1
   :config
   (global-flycheck-mode)
   (setq flycheck-global-modes '(not org-mode)))
 
 ;; flycheck-pos-tip
 (use-package flycheck-pos-tip
-  :defer t
+  :after (flycheck)
   :config (flycheck-pos-tip-mode t))
 
 ;; recentf
@@ -379,16 +384,17 @@
 ;; smooth-scrolling
 ;; https://github.com/aspiers/smooth-scrolling
 (use-package smooth-scrolling
+  :defer 1
   :config (smooth-scrolling-mode 1))
 
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
   :diminish company-mode
+  :defer 1
   :bind
   ([(M-tab)]. company-complete)
   ("C-c y" . company-yasnippet)
-  :init (add-hook 'after-init-hook 'global-company-mode)
   :config
   (global-company-mode)
   (setq company-tooltip-align-annotations t))
@@ -416,6 +422,7 @@
 ;; https://github.com/bbatsov/projectile
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
+  :defer 1
   :config
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
@@ -426,12 +433,13 @@
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
 (use-package counsel-projectile
-  :after (counsel)
+  :after (counsel projectile)
   :config (counsel-projectile-on))
 
 ;; smart-tabs-mode
 ;; http://github.com/jcsalomon/smarttabs
 (use-package smart-tabs-mode
+  :defer 1
   :config (smart-tabs-insinuate 'c 'c++ 'javascript 'java))
 
 ;; magit
@@ -488,10 +496,8 @@
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
-  :init
-  (add-hook 'text-mode-hook #'yas-minor-mode)
-  (add-hook 'prog-mode-hook #'yas-minor-mode)
-  :config (yas-reload-all))
+  :defer 1
+  :config (yas-global-mode 1))
 
 ;; auto-yasnippet
 ;; https://github.com/abo-abo/auto-yasnippet
@@ -514,6 +520,7 @@
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
   :diminish which-key-mode
+  :defer 1
   :config
   (which-key-mode)
   (bind-key "C-h" 'which-key-C-h-dispatch help-map))
