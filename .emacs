@@ -663,6 +663,13 @@
 (use-package define-word
   :defer t)
 
+;; systemd
+;; https://github.com/holomorph/systemd-mode
+(use-package systemd
+  :mode
+  ("\\.service\\'" . systemd-mode)
+  ("\\.timer\\'" . systemd-mode))
+
 
 ;;
 ;; Languages configurations
