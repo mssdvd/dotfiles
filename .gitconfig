@@ -7,5 +7,3 @@
 	user = mssdvd
 [core]
 	autocrlf = input
-[credential]
-	helper = cache
