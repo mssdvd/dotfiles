@@ -111,6 +111,9 @@
 ;; Prefer newer files
 (setq load-prefer-newer t)
 
+;; Save position
+(save-place-mode 1)
+
 ;;;;
 ;; My functions
 ;;;;
