@@ -50,7 +50,3 @@ fi
 
 export _JAVA_AWT_WM_NONREPARENTING=1
 [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || export QT_QPA_PLATFORMTHEME="qt5ct"
-
-numlockx &
-TERM=urxvt
-exec i3
