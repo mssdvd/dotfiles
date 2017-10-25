@@ -541,7 +541,7 @@
 ;; autorevert
 (use-package autorevert
   :diminish auto-revert-mode
-  :defer t)
+  :config (global-auto-revert-mode 1))
 
 ;; eldoc-mode
 (use-package eldoc
