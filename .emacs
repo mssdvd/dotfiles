@@ -1,14 +1,12 @@
 ;;; package --- Summary
 ;;; Commentary:
-;; Added by Package.el.  This must come before configurations of
-;; installed packages.  Don't delete this line.  If you don't want it,
-;; just comment it out by adding a semicolon to the start of the line.
-;; You may delete these explanatory comments.
+
 ;; (add-to-list 'load-path "~/build/benchmark-init-el/")
 ;; (require 'benchmark-init-loaddefs)
 ;; (benchmark-init/activate)
-(require 'package)
+
 ;;; Code:
+(require 'package)
 (add-to-list 'package-archives
 	     '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
@@ -17,22 +15,9 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(custom-set-variables
- ;; custom-set-variables was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(package-selected-packages
-   (quote
-	(auto-yasnippet define-word js2-refactor expand-region wolfram ac-html-bootstrap ac-html-csswatcher rainbow-mode pdf-tools org impatient-mode skewer-mode emmet-mode company-web company-statistics company-tern js2-mode web-mode magithub gitignore-mode gitconfig-mode avy company swiper ivy counsel flycheck sudo-edit projectile company-flx flycheck-clang-analyzer all-the-icons-dired anaconda-mode irony cmake-ide flycheck-rtags company-rtags rtags company-irony-c-headers terminal-here smex yasnippet yapfify which-key use-package undo-tree smooth-scrolling smartparens smart-tabs-mode realgud rainbow-delimiters py-isort platformio-mode paradox neotree multiple-cursors moe-theme magit ivy-hydra irony-eldoc highlight-symbol highlight-indent-guides flycheck-pos-tip flycheck-irony delight counsel-projectile company-quickhelp company-irony company-c-headers company-anaconda avy-flycheck all-the-icons ace-window)))
- '(pdf-annot-tweak-tooltips nil))
-(custom-set-faces
- ;; custom-set-faces was added by Custom.
- ;; If you edit it by hand, you could mess it up, so be careful.
- ;; Your init file should contain only one such instance.
- ;; If there is more than one, they won't work right.
- '(default ((t (:family "Iosevka" :foundry "CYEL" :slant normal :weight normal :height 113 :width normal))))
- '(paradox-mode-line-face ((t (:inherit mode-line-buffer-id :weight normal)))))
+;; custom-stuff goes to another file
+(setq custom-file "~/.emacs.d/custom.el")
+(load custom-file 'noerror)
 
 ;; enable column number
 (column-number-mode t)
@@ -126,6 +111,9 @@
 ;; Prefer newer files
 (setq load-prefer-newer t)
 
+;; Save position
+(save-place-mode 1)
+
 ;;;;
 ;; My functions
 ;;;;
@@ -176,6 +164,21 @@
 (bind-key "C-c r" 'ranger-launch-here)
 
 ;;;;
+;; Hydra
+;;;;
+
+(defhydra hydra-flycheck
+  (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
+   :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+   :hint nil)
+  "Errors"
+  ("f"  flycheck-error-list-set-filter  "Filter")
+  ("n"  flycheck-next-error             "Next")
+  ("p"  flycheck-previous-error         "Previous")
+  ("q"  nil                             "Quit"))
+(bind-key "C-c ! !" 'hydra-flycheck/body)
+
+;;;;
 ;; use-package
 ;;;;
 
@@ -190,6 +193,7 @@
 
 ;; moe-theme
 (use-package moe-theme
+  :disabled
   :config
   (setq moe-theme-mode-line-color 'red)
   (moe-dark))
@@ -203,6 +207,7 @@
 (use-package smartparens-config
   :ensure smartparens
   :diminish smartparens-mode
+  :defer 1
   :config
   (show-smartparens-global-mode t)
   (smartparens-global-mode t)
@@ -222,10 +227,11 @@
 ;; https://github.com/abo-abo/swiper
 (use-package ivy
   :diminish ivy-mode
+  :defer 1
   :commands (ivy-mode)
   :bind ("C-c i" . ivy-resume)
-  :init (ivy-mode 1)
   :config
+  (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
 	enable-recursive-minibuffers t
 	ivy-count-format "(%d/%d) "))
@@ -236,6 +242,8 @@
 (use-package counsel
   :diminish counsel-mode
   :bind
+  ("C-c C-f" . counsel-find-file)
+  ("M-x" . counsel-M-x)
   ("C-c l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
@@ -244,7 +252,7 @@
   :config
   (counsel-mode 1)
   ;; (setq counsel-grep-base-command "grep -nEi '%s' %s")
-  (setq counsel-grep-base-command "rg -i --no-heading --line-number --color never '%s' '%s'"
+  (setq counsel-grep-base-command "rg -i --no-heading --line-number --color never '%s' %s"
 	counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
@@ -311,13 +319,14 @@
 ;; http://www.flycheck.org
 ;; Dep flake8, clang, tidy, csslint
 (use-package flycheck
+  :defer 1
   :config
   (global-flycheck-mode)
   (setq flycheck-global-modes '(not org-mode)))
 
 ;; flycheck-pos-tip
 (use-package flycheck-pos-tip
-  :defer t
+  :after (flycheck)
   :config (flycheck-pos-tip-mode t))
 
 ;; recentf
@@ -378,16 +387,17 @@
 ;; smooth-scrolling
 ;; https://github.com/aspiers/smooth-scrolling
 (use-package smooth-scrolling
+  :defer 1
   :config (smooth-scrolling-mode 1))
 
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
   :diminish company-mode
+  :defer 1
   :bind
   ([(M-tab)]. company-complete)
   ("C-c y" . company-yasnippet)
-  :init (add-hook 'after-init-hook 'global-company-mode)
   :config
   (global-company-mode)
   (setq company-tooltip-align-annotations t))
@@ -397,9 +407,7 @@
 (use-package company-quickhelp
   :after (company)
   :config
-  (company-quickhelp-mode 1)
-  (setq company-quickhelp-color-background "#4e4e4e"
-	company-quickhelp-color-foreground "#ffffff"))
+  (company-quickhelp-mode 1))
 
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
@@ -417,6 +425,7 @@
 ;; https://github.com/bbatsov/projectile
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
+  :defer 1
   :config
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
@@ -427,12 +436,13 @@
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
 (use-package counsel-projectile
-  :after (counsel)
+  :after (counsel projectile)
   :config (counsel-projectile-on))
 
 ;; smart-tabs-mode
 ;; http://github.com/jcsalomon/smarttabs
 (use-package smart-tabs-mode
+  :defer 1
   :config (smart-tabs-insinuate 'c 'c++ 'javascript 'java))
 
 ;; magit
@@ -489,10 +499,8 @@
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
   :diminish yas-minor-mode
-  :init
-  (add-hook 'text-mode-hook #'yas-minor-mode)
-  (add-hook 'prog-mode-hook #'yas-minor-mode)
-  :config (yas-reload-all))
+  :defer 1
+  :config (yas-global-mode 1))
 
 ;; auto-yasnippet
 ;; https://github.com/abo-abo/auto-yasnippet
@@ -515,6 +523,7 @@
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
   :diminish which-key-mode
+  :defer 1
   :config
   (which-key-mode)
   (bind-key "C-h" 'which-key-C-h-dispatch help-map))
@@ -657,6 +666,13 @@
 (use-package define-word
   :defer t)
 
+;; systemd
+;; https://github.com/holomorph/systemd-mode
+(use-package systemd
+  :mode
+  ("\\.service\\'" . systemd-mode)
+  ("\\.timer\\'" . systemd-mode))
+
 
 ;;
 ;; Languages configurations
@@ -696,6 +712,7 @@
 ;; https://github.com/magnars/js2-refactor.el
 (use-package js2-refactor
   :diminish js2-refactor-mode
+  :defer t
   :init (add-hook 'js2-mode-hook #'js2-refactor-mode))
 
 ;; tern
