@@ -1,4 +1,4 @@
 set render-loading false
 set show-scrollbars true
-set font "Iosevka 10"
+set font "Anonymous Pro 10"
 map p search backward
