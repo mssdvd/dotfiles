@@ -178,6 +178,15 @@
   ("q"  nil                             "Quit"))
 (bind-key "C-c ! !" 'hydra-flycheck/body)
 
+(defhydra hydra-navigate ()
+  "Navigate"
+  ("h" backward-char "←")
+  ("j" next-line     "↓")
+  ("k" previous-line "↑")
+  ("l" forward-char  "→")
+  ("q" nil           "Quit"))
+(bind-key "C-c n" 'hydra-navigate/body)
+
 ;;;;
 ;; use-package
 ;;;;
