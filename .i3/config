@@ -199,6 +199,7 @@ for_window [class="(?i)virtualbox"] floating enable border normal
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pamac-updater"] floating enable
 for_window [class="Engrampa"] floating enable
+for_window [class="File-roller"] floating enable
 for_window [class="Qalculate-gtk"] floating enable
 for_window [class="(?i)gsimplecal"] floating enable, move position mouse
 for_window [class="(?i)pinentry"] floating enable
@@ -210,10 +211,9 @@ bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
 bindsym XF86MonBrightnessDown exec --no-startup-id light -U 10
 
 # Audio bindings
-bindsym XF86AudioRaiseVolume exec --no-startup-id pactl set-sink-volume 0 +5% && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioLowerVolume exec --no-startup-id pactl set-sink-volume 0 -5% && pkill -RTMIN+1 i3blocks
-bindsym XF86AudioMute exec --no-startup-id  pactl set-sink-mute 0 toggle && pkill -RTMIN+1 i3blocks
-bindsym shift+XF86AudioMute exec --no-startup-id pactl set-sink-volume 0 100% && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym XF86AudioMute exec --no-startup-id  amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 
 # Playerctl bindings
 bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
@@ -233,7 +233,7 @@ bindsym $mod+bracketleft exec chromium
 bindsym $mod+shift+bracketleft exec chromium --incognito
 bindsym $mod+backslash exec $term -e ranger
 bindsym $mod+shift+backslash exec $term -e "ranger --cmd=fzf_select"
-bindsym $mod+bracketright exec emacsclient -c -n
+bindsym $mod+bracketright exec emacsclient -c -a ''
 bindsym $mod+c exec clipster -sc
 bindsym $mod+p exec passmenu
 bindsym $mod+apostrophe exec zathura

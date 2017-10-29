@@ -178,6 +178,15 @@
   ("q"  nil                             "Quit"))
 (bind-key "C-c ! !" 'hydra-flycheck/body)
 
+(defhydra hydra-navigate ()
+  "Navigate"
+  ("h" backward-char "←")
+  ("j" next-line     "↓")
+  ("k" previous-line "↑")
+  ("l" forward-char  "→")
+  ("q" nil           "Quit"))
+(bind-key "C-c n" 'hydra-navigate/body)
+
 ;;;;
 ;; use-package
 ;;;;
@@ -672,6 +681,13 @@
   :mode
   ("\\.service\\'" . systemd-mode)
   ("\\.timer\\'" . systemd-mode))
+
+;; exec-path-from-shell
+;; https://github.com/purcell/exec-path-from-shell
+(use-package exec-path-from-shell
+  :defer 1
+  :if (memq window-system '(x ns))
+  :config (exec-path-from-shell-initialize))
 
 
 ;;
