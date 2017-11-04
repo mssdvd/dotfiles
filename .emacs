@@ -200,6 +200,12 @@
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight)
 
+;; spacemacs
+;; https://github.com/nashamri/spacemacs-theme
+(use-package spacemacs-theme
+  :defer t
+  :init (load-theme 'spacemacs-dark t))
+
 ;; moe-theme
 (use-package moe-theme
   :disabled
@@ -261,7 +267,7 @@
   :config
   (counsel-mode 1)
   ;; (setq counsel-grep-base-command "grep -nEi '%s' %s")
-  (setq counsel-grep-base-command "rg -i --no-heading --line-number --color never '%s' %s"
+  (setq counsel-grep-base-command "rg -i --no-heading --line-number --color never -- '%s' %s"
 	counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
