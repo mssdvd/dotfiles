@@ -200,6 +200,12 @@
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight)
 
+;; spacemacs
+;; https://github.com/nashamri/spacemacs-theme
+(use-package spacemacs-theme
+  :defer t
+  :init (load-theme 'spacemacs-dark t))
+
 ;; moe-theme
 (use-package moe-theme
   :disabled
