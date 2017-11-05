@@ -204,7 +204,10 @@
 ;; https://github.com/nashamri/spacemacs-theme
 (use-package spacemacs-common
   :ensure spacemacs-theme
-  :config (load-theme 'spacemacs-dark t)
+  :config
+  (setq spacemacs-theme-comment-bg nil
+		spacemacs-theme-comment-italic t)
+  (load-theme 'spacemacs-dark t)
   (if (daemonp)
   (add-hook 'after-make-frame-functions
 			(lambda (frame)
