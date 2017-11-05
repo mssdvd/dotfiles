@@ -200,11 +200,16 @@
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight)
 
-;; spacemacs
+;; spacemacs-theme
 ;; https://github.com/nashamri/spacemacs-theme
-(use-package spacemacs-theme
-  :defer t
-  :init (load-theme 'spacemacs-dark t))
+(use-package spacemacs-common
+  :ensure spacemacs-theme
+  :config (load-theme 'spacemacs-dark t)
+  (if (daemonp)
+  (add-hook 'after-make-frame-functions
+			(lambda (frame)
+			  (select-frame frame)
+			  (load-theme 'spacemacs-dark t)))))
 
 ;; moe-theme
 (use-package moe-theme
