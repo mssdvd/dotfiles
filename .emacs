@@ -339,6 +339,7 @@
 ;; n - select the previous window
 ;; i - maximize window (select which window)
 ;; o - maximize current window
+;; j - switch buffer
 (use-package ace-window
   :bind ("M-[" . ace-window)
   :config (setq aw-dispatch-always t))
