@@ -331,15 +331,6 @@
 
 ;; ace-window
 ;; https://github.com/abo-abo/ace-window
-;; x - delete window
-;; m - swap (move) window
-;; c - split window fairly, either vertically or horizontally
-;; v - split window vertically
-;; b - split window horizontally
-;; n - select the previous window
-;; i - maximize window (select which window)
-;; o - maximize current window
-;; j - switch buffer
 (use-package ace-window
   :bind ("M-[" . ace-window)
   :config (setq aw-dispatch-always t))
@@ -472,7 +463,8 @@
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (setq projectile-completion-system 'ivy
 	projectile-enable-caching t
-	projectile-track-known-projects-automatically nil))
+	projectile-track-known-projects-automatically nil
+	projectile-files-cache-expire 2592000))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
