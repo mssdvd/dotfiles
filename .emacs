@@ -53,7 +53,7 @@
 ;; improve comint performance
 (setq-default bidi-display-reordering nil)
 
-;; use tab to indent
+;; use tab to indent and complete
 (setq tab-always-indent 'complete)
 
 ;; Tab size
