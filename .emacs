@@ -472,7 +472,8 @@
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (setq projectile-completion-system 'ivy
 	projectile-enable-caching t
-	projectile-track-known-projects-automatically nil))
+	projectile-track-known-projects-automatically nil
+	projectile-files-cache-expire 2592000))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
