@@ -691,8 +691,7 @@
 ;; https://github.com/hsjunnesson/wolfram.el
 (use-package wolfram
   :defer t
-  :config
-  (setq wolfram-alpha-app-id "***REMOVED***"))
+  :config (setq wolfram-alpha-app-id "***REMOVED***"))
 
 ;; define-word
 ;; https://github.com/abo-abo/define-word
@@ -712,6 +711,29 @@
   :defer 1
   :if (memq window-system '(x ns))
   :config (exec-path-from-shell-initialize))
+
+;; google-this
+;; https://github.com/Malabarba/emacs-google-this
+(use-package google-this
+  :diminish google-this-mode
+  :defer 1
+  :config (google-this-mode 1))
+
+;; google-translate
+;; https://github.com/atykhonov/google-translate
+(use-package google-translate
+  :defer t)
+
+;; google-maps
+;; https://github.com/jd/google-maps.el
+(use-package google-maps
+  :defer t
+  :bind
+  (:map google-maps-static-mode-map
+		("h" . google-maps-static-move-west)
+		("j" . google-maps-static-move-south)
+		("k" . google-maps-static-move-north)
+		("l" . google-maps-static-move-east)))
 
 
 ;;
