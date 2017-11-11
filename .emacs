@@ -715,6 +715,7 @@
 ;; google-this
 ;; https://github.com/Malabarba/emacs-google-this
 (use-package google-this
+  :diminish google-this-mode
   :defer 1
   :config (google-this-mode 1))
 
