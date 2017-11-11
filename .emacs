@@ -691,8 +691,7 @@
 ;; https://github.com/hsjunnesson/wolfram.el
 (use-package wolfram
   :defer t
-  :config
-  (setq wolfram-alpha-app-id "***REMOVED***"))
+  :config (setq wolfram-alpha-app-id "***REMOVED***"))
 
 ;; define-word
 ;; https://github.com/abo-abo/define-word
