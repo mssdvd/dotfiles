@@ -1,12 +1,15 @@
 aurvote
+chrome-gnome-shell
 clipster
 cower
+gnome-mpv
 google-chrome
 grabc
+gtkd
 libreoffice-extension-languagetool
+neofetch
 pacaur
 pamac-aur
-pasystray
 platformio
 python-babelfish
 python-enzyme
@@ -19,9 +22,9 @@ rtags
 spotify
 subliminal
 systemd-boot-pacman-hook
+tilix
 ttf-caladea
 ttf-carlito
-ttf-font-awesome
 ttf-iosevka
 ttf-ms-fonts
 unclutter-xfixes-git
