@@ -38,7 +38,7 @@
 (fset 'yes-or-no-p 'y-or-n-p)
 
 ;; revert buffer
-(bind-key "C-x m" 'revert-buffer)
+(bind-key "C-x m" #'revert-buffer)
 
 ;; enable up/down case
 (put 'upcase-region 'disabled nil)
@@ -84,17 +84,17 @@
 (unbind-key "C-x C-z")
 
 ;; ibuffer is better
-(bind-key "C-x C-b" 'ibuffer)
+(bind-key "C-x C-b" #'ibuffer)
 
 ;; CLIPBOARD
 
 ;; Disable clipboard sync
 (setq select-enable-clipboard nil)
 
-(bind-key "C-y" 'clipboard-yank)
-(bind-key "C-M-y" 'yank)
-(bind-key "C-w" 'clipboard-kill-region)
-(bind-key "M-w" 'clipboard-kill-ring-save)
+(bind-key "C-y" #'clipboard-yank)
+(bind-key "C-M-y" #'yank)
+(bind-key "C-w" #'clipboard-kill-region)
+(bind-key "M-w" #'clipboard-kill-ring-save)
 
 ;; Pasting with middle-click puts the text where the point is
 (setq mouse-yank-at-point t)
@@ -106,7 +106,7 @@
 (setq require-final-newline t)
 
 ;; Delete trailing whitespace before save
-(add-hook 'before-save-hook 'delete-trailing-whitespace)
+(add-hook 'before-save-hook #'delete-trailing-whitespace)
 
 ;; Prefer newer files
 (setq load-prefer-newer t)
@@ -140,7 +140,7 @@
      (point)
      (line-end-position)))
   (message "1 line copied"))
-(bind-key "C-c k" 'my-copy-line)
+(bind-key "C-c k" #'my-copy-line)
 
 (defun switch-highlight-indent-guides-and-whitespace-modes ()
   "Switch between highlight-indent-guides and whitespace modes."
@@ -161,7 +161,7 @@
   (if default-directory
       (call-process-shell-command "termite -e ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
-(bind-key "C-c r" 'ranger-launch-here)
+(bind-key "C-c r" #'ranger-launch-here)
 
 ;;;;
 ;; Hydra
@@ -176,7 +176,7 @@
   ("n"  flycheck-next-error             "Next")
   ("p"  flycheck-previous-error         "Previous")
   ("q"  nil                             "Quit"))
-(bind-key "C-c ! !" 'hydra-flycheck/body)
+(bind-key "C-c ! !" #'hydra-flycheck/body)
 
 (defhydra hydra-navigate ()
   "Navigate"
@@ -185,7 +185,7 @@
   ("k" previous-line "↑")
   ("l" forward-char  "→")
   ("q" nil           "Quit"))
-(bind-key "C-c n" 'hydra-navigate/body)
+(bind-key "C-c n" #'hydra-navigate/body)
 
 ;;;;
 ;; use-package
@@ -291,9 +291,10 @@
   :after (ivy)
   :config
   (counsel-mode 1)
-  ;; (setq counsel-grep-base-command "grep -nEi '%s' %s")
-  (setq counsel-grep-base-command "rg -i --no-heading --line-number --color never -- '%s' %s"
-		counsel-find-file-ignore-regexp "\\`\\.")
+  (if (executable-find "rg")
+	  (setq  counsel-grep-base-command "rg -i --no-heading --line-number --color never -- '%s' %s")
+	(setq counsel-grep-base-command "grep -nEi '%s' %s"))
+  (setq counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
@@ -375,7 +376,7 @@
 (use-package highlight-indent-guides
   :commands (highlight-indent-guides-mode)
   :init
-  (add-hook 'prog-mode-hook 'highlight-indent-guides-mode)
+  (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
   (add-hook 'web-mode-hook (lambda () (highlight-indent-guides-mode -1)))
   :config
   (setq highlight-indent-guides-method 'character))
@@ -392,8 +393,8 @@
   :diminish (rainbow-mode)
   :commands (rainbow-mode)
   :init
-  (add-hook 'prog-mode-hook 'rainbow-mode)
-  (add-hook 'sgml-mode 'rainbow-mode))
+  (add-hook 'prog-mode-hook #'rainbow-mode)
+  (add-hook 'sgml-mode #'rainbow-mode))
 
 ;; org
 (use-package org
@@ -549,7 +550,7 @@
 ;; https://github.com/jtbm37/all-the-icons-dired
 (use-package all-the-icons-dired
   :commands (all-the-icons-dired-mode)
-  :init (add-hook 'dired-mode-hook 'all-the-icons-dired-mode))
+  :init (add-hook 'dired-mode-hook #'all-the-icons-dired-mode))
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
@@ -558,7 +559,7 @@
   :defer 1
   :config
   (which-key-mode)
-  (bind-key "C-h" 'which-key-C-h-dispatch help-map))
+  (bind-key "C-h" #'which-key-C-h-dispatch help-map))
 
 ;; platformIO-mode
 ;; https://github.com/ZachMassia/platformio-mode
@@ -567,8 +568,8 @@
   :diminish platformio-mode
   :commands (platformio-mode)
   :init
-  (add-hook 'c-mode-hook 'platformio-mode)
-  (add-hook 'c++-mode-hook 'platformio-mode))
+  (add-hook 'c-mode-hook #'platformio-mode)
+  (add-hook 'c++-mode-hook #'platformio-mode))
 
 ;; autorevert
 (use-package autorevert
@@ -591,9 +592,9 @@
 ;; Dep poppler poppler-glibc
 (use-package pdf-tools
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
-  :init (add-hook 'pdf-view-mode-hook 'pdf-tools-enable-minor-modes)
+  :init (add-hook 'pdf-view-mode-hook #'pdf-tools-enable-minor-modes)
   :config
-  (bind-key "C-s" 'isearch-forward pdf-view-mode-map)
+  (bind-key "C-s" #'isearch-forward pdf-view-mode-map)
 
   ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
   ;; https://github.com/politza/pdf-tools/issues/18#issuecomment-269515117
@@ -620,8 +621,8 @@
       (with-current-buffer buf
 		(brds/pdf-set-last-viewed-bookmark))))
 
-  (add-hook 'kill-buffer-hook 'brds/pdf-set-last-viewed-bookmark)
-  (add-hook 'pdf-view-mode-hook 'brds/pdf-jump-last-viewed-bookmark)
+  (add-hook 'kill-buffer-hook #'brds/pdf-set-last-viewed-bookmark)
+  (add-hook 'pdf-view-mode-hook #'brds/pdf-jump-last-viewed-bookmark)
   (unless noninteractive  ; as `save-place-mode' does
     (add-hook 'kill-emacs-hook #'brds/pdf-set-all-last-viewed-bookmarks)))
 
@@ -708,8 +709,16 @@
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
   :defer 1
-  :if (memq window-system '(x ns))
+  :if (memq window-system '(nil x ns))
   :config (exec-path-from-shell-initialize))
+
+;; dumb-jump
+;; https://github.com/jacktasia/dumb-jump
+(use-package dumb-jump
+  :defer 1
+  :config
+  (dumb-jump-mode)
+  (setq dumb-jump-selector 'ivy))
 
 ;; google-this
 ;; https://github.com/Malabarba/emacs-google-this
@@ -821,8 +830,8 @@
 		("C-M->" . emmet-next-edit-point)
 		("C-M-<" . emmet-prev-edit-point))
   :init
-  (add-hook 'css-mode-hook 'emmet-mode)
-  (add-hook 'web-mode-hook 'emmet-mode)
+  (add-hook 'css-mode-hook #'emmet-mode)
+  (add-hook 'web-mode-hook #'emmet-mode)
   :config
   (setq emmet-move-cursor-between-quotes t)
   (unbind-key "<C-return>" emmet-mode-keymap))
@@ -833,8 +842,8 @@
   :diminish (impatient-mode)
   :commands (impatient-mode)
   :init
-  (add-hook 'web-mode-hook 'impatient-mode)
-  (add-hook 'css-mode-hook 'impatient-mode))
+  (add-hook 'web-mode-hook #'impatient-mode)
+  (add-hook 'css-mode-hook #'impatient-mode))
 :config
 (defun run-impatient ()
   "Attach a browser to Emacs for a impatient instace.  Use `browse-url' to launch a browser."
@@ -848,9 +857,9 @@
   :diminish (skewer-mode)
   :commands (skewer-mode skewer-css-mode)
   :init
-  (add-hook 'js2-mode-hook 'skewer-mode)
-  (add-hook 'css-mode-hook 'skewer-css-mode)
-  ;; (add-hook 'web-mode-hook 'skewer-html-mode)
+  (add-hook 'js2-mode-hook #'skewer-mode)
+  (add-hook 'css-mode-hook #'skewer-css-mode)
+  ;; (add-hook 'web-mode-hook #'skewer-html-mode)
   )
 
 ;; Python
@@ -876,14 +885,14 @@
 (use-package yapfify
   :diminish yapf-mode
   :commands (yapf-mode)
-  :init (add-hook 'python-mode-hook 'yapf-mode))
+  :init (add-hook 'python-mode-hook #'yapf-mode))
 
 ;; py-isort
 ;; https://github.com/paetzke/py-isort.el
 ;; Dep isort
 (use-package py-isort
   :commands (py-isort-before-save)
-  :init (add-hook 'before-save-hook 'py-isort-before-save))
+  :init (add-hook 'before-save-hook #'py-isort-before-save))
 
 ;; C & C++
 
@@ -894,9 +903,9 @@
   :diminish irony-mode
   :commands (irony-mode)
   :init
-  (add-hook 'c-mode-hook 'irony-mode)
-  (add-hook 'c++-mode-hook 'irony-mode)
-  (add-hook 'irony-mode-hook 'irony-cdb-autosetup-compile-options)
+  (add-hook 'c-mode-hook #'irony-mode)
+  (add-hook 'c++-mode-hook #'irony-mode)
+  (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options)
   :config (eval-after-load 'company '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
 
 ;; irony-eldoc
@@ -904,8 +913,8 @@
 (use-package irony-eldoc
   :commands (irony-eldoc)
   :init
-  (add-hook 'c-mode-hook 'irony-eldoc)
-  (add-hook 'c++-mode-hook 'irony-eldoc))
+  (add-hook 'c-mode-hook #'irony-eldoc)
+  (add-hook 'c++-mode-hook #'irony-eldoc))
 
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
