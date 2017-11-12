@@ -8,7 +8,7 @@
 ;;; Code:
 (require 'package)
 (add-to-list 'package-archives
-	     '("MELPA" . "https://melpa.org/packages/"))
+			 '("MELPA" . "https://melpa.org/packages/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -74,8 +74,8 @@
 ;; window title
 (setq frame-title-format
       '((:eval (if (buffer-modified-p) "• "))
-	(:eval (if (buffer-file-name)
-		   (abbreviate-file-name (buffer-file-name)) "%b"))))
+		(:eval (if (buffer-file-name)
+				   (abbreviate-file-name (buffer-file-name)) "%b"))))
 
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
@@ -122,14 +122,14 @@
   "Create fake cursor at point whith the keyboard."
   (interactive)
   (require 'multiple-cursors)
-      (if (numberp (point))
-          ;; is there a fake cursor with the actual *point* right where we are?
-          (let ((existing (mc/fake-cursor-at-point (point))))
-            (if existing
-                (mc/remove-fake-cursor existing)
-              (save-excursion
-                (goto-char (point))
-                (mc/create-fake-cursor-at-point))))))
+  (if (numberp (point))
+	  ;; is there a fake cursor with the actual *point* right where we are?
+	  (let ((existing (mc/fake-cursor-at-point (point))))
+		(if existing
+			(mc/remove-fake-cursor existing)
+		  (save-excursion
+			(goto-char (point))
+			(mc/create-fake-cursor-at-point))))))
 
 (defun my-copy-line ()
   "Copy current line."
@@ -147,9 +147,9 @@
   (interactive)
   (if (get 'switch-highlight-indent-guides-and-whitespace-modes 'state)
       (progn
-	(whitespace-mode -1)
-	(highlight-indent-guides-mode 1)
-	(put 'switch-highlight-indent-guides-and-whitespace-modes 'state nil))
+		(whitespace-mode -1)
+		(highlight-indent-guides-mode 1)
+		(put 'switch-highlight-indent-guides-and-whitespace-modes 'state nil))
     (progn
       (whitespace-mode 1)
       (highlight-indent-guides-mode -1)
@@ -169,8 +169,8 @@
 
 (defhydra hydra-flycheck
   (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
-   :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
-   :hint nil)
+		:post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+		:hint nil)
   "Errors"
   ("f"  flycheck-error-list-set-filter  "Filter")
   ("n"  flycheck-next-error             "Next")
@@ -213,23 +213,23 @@
   (defvar my:theme-terminal-loaded nil)
   (if (daemonp)
 	  (add-hook 'after-make-frame-functions (lambda (frame)
-											 (select-frame frame)
-											 (if (window-system frame)
-												 (unless my:theme-window-loaded
-												   (if my:theme-terminal-loaded
-													   (enable-theme my:theme)
-													 (load-theme my:theme t))
-												   (setq my:theme-window-loaded t))
-											   (unless my:theme-terminal-loaded
-												 (if my:theme-window-loaded
-													 (enable-theme my:theme)
-												   (load-theme my:theme t))
-												 (setq my:theme-terminal-loaded t)))))
-  (progn
-    (load-theme my:theme t)
-    (if (display-graphic-p)
-        (setq my:theme-window-loaded t)
-      (setq my:theme-terminal-loaded t)))))
+											  (select-frame frame)
+											  (if (window-system frame)
+												  (unless my:theme-window-loaded
+													(if my:theme-terminal-loaded
+														(enable-theme my:theme)
+													  (load-theme my:theme t))
+													(setq my:theme-window-loaded t))
+												(unless my:theme-terminal-loaded
+												  (if my:theme-window-loaded
+													  (enable-theme my:theme)
+													(load-theme my:theme t))
+												  (setq my:theme-terminal-loaded t)))))
+	(progn
+	  (load-theme my:theme t)
+	  (if (display-graphic-p)
+		  (setq my:theme-window-loaded t)
+		(setq my:theme-terminal-loaded t)))))
 
 ;; moe-theme
 (use-package moe-theme
@@ -253,7 +253,7 @@
   (smartparens-global-mode t)
   (ad-disable-advice 'company--insert-candidate 'after 'sp-company--insert-candidate)
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
-												    ("* ||\n[i]""RET")))
+																									("* ||\n[i]""RET")))
 
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode css-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
@@ -273,8 +273,8 @@
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
-	enable-recursive-minibuffers t
-	ivy-count-format "(%d/%d) "))
+		enable-recursive-minibuffers t
+		ivy-count-format "(%d/%d) "))
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
@@ -293,7 +293,7 @@
   (counsel-mode 1)
   ;; (setq counsel-grep-base-command "grep -nEi '%s' %s")
   (setq counsel-grep-base-command "rg -i --no-heading --line-number --color never -- '%s' %s"
-	counsel-find-file-ignore-regexp "\\`\\.")
+		counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
@@ -368,7 +368,7 @@
   :config
   (recentf-mode)
   (setq recentf-max-menu-items 150
-	recentf-max-saved-items 150))
+		recentf-max-saved-items 150))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
@@ -438,8 +438,7 @@
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
   :after (company)
-  :config
-  (company-quickhelp-mode 1))
+  :config (company-quickhelp-mode 1))
 
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
@@ -462,9 +461,9 @@
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (setq projectile-completion-system 'ivy
-	projectile-enable-caching t
-	projectile-track-known-projects-automatically nil
-	projectile-files-cache-expire 2592000))
+		projectile-enable-caching t
+		projectile-track-known-projects-automatically nil
+		projectile-files-cache-expire 2592000))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
@@ -484,8 +483,8 @@
   :bind ("C-c g" . magit-status)
   :config
   (setq magit-repository-directories
-	'(("~/Documents/school" . 3)
-	  ("~/Documents/dotfiles" . 3))))
+		'(("~/Documents/school" . 3)
+		  ("~/Documents/dotfiles" . 3))))
 
 ;; magithub
 ;; https://github.com/vermiculus/magithub
@@ -606,7 +605,7 @@
   (defun brds/pdf-jump-last-viewed-bookmark ()
     (bookmark-set "fake") ; this is new
     (when
-	(brds/pdf-has-last-viewed-bookmark)
+		(brds/pdf-has-last-viewed-bookmark)
       (bookmark-jump (brds/pdf-generate-bookmark-name))))
 
   (defun brds/pdf-has-last-viewed-bookmark ()
@@ -619,7 +618,7 @@
   (defun brds/pdf-set-all-last-viewed-bookmarks ()
     (dolist (buf (buffer-list))
       (with-current-buffer buf
-	(brds/pdf-set-last-viewed-bookmark))))
+		(brds/pdf-set-last-viewed-bookmark))))
 
   (add-hook 'kill-buffer-hook 'brds/pdf-set-last-viewed-bookmark)
   (add-hook 'pdf-view-mode-hook 'brds/pdf-jump-last-viewed-bookmark)
@@ -659,9 +658,9 @@
   :defer t
   :config
   (setq ispell-program-name "hunspell"
-	ispell-local-dictionary "it_IT"
-	ispell-local-dictionary-alist
-	'(("it_IT" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
+		ispell-local-dictionary "it_IT"
+		ispell-local-dictionary-alist
+		'(("it_IT" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
 
 ;; apropos
 (use-package apropos
@@ -679,7 +678,7 @@
   :defer t
   :config
   (setq gdb-many-windows t
-	gdb-show-main t))
+		gdb-show-main t))
 
 ;; hippie-exp
 (use-package hippie-exp
@@ -819,8 +818,8 @@
   :commands (emmet-mode)
   :bind
   (:map emmet-mode-keymap
-	("C-M->" . emmet-next-edit-point)
-	("C-M-<" . emmet-prev-edit-point))
+		("C-M->" . emmet-next-edit-point)
+		("C-M-<" . emmet-prev-edit-point))
   :init
   (add-hook 'css-mode-hook 'emmet-mode)
   (add-hook 'web-mode-hook 'emmet-mode)
@@ -836,13 +835,12 @@
   :init
   (add-hook 'web-mode-hook 'impatient-mode)
   (add-hook 'css-mode-hook 'impatient-mode))
-  :config
-  (defun run-impatient ()
-    "Attach a browser to Emacs for a impatient instace. Uses
-    `browse-url' to launch a browser."
-    (interactive)
-    (httpd-start)
-    (browse-url (format "http://127.0.0.1:%d/imp" httpd-port)))
+:config
+(defun run-impatient ()
+  "Attach a browser to Emacs for a impatient instace.  Use `browse-url' to launch a browser."
+  (interactive)
+  (httpd-start)
+  (browse-url (format "http://127.0.0.1:%d/imp" httpd-port)))
 
 ;; skewer-mode
 ;; https://github.com/skeeto/skewer-mode
