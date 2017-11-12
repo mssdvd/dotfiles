@@ -708,7 +708,7 @@
 ;; https://github.com/purcell/exec-path-from-shell
 (use-package exec-path-from-shell
   :defer 1
-  :if (memq window-system '(x ns))
+  :if (memq window-system '(nil x ns))
   :config (exec-path-from-shell-initialize))
 
 ;; dumb-jump
