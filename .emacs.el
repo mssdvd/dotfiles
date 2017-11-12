@@ -711,6 +711,14 @@
   :if (memq window-system '(x ns))
   :config (exec-path-from-shell-initialize))
 
+;; dumb-jump
+;; https://github.com/jacktasia/dumb-jump
+(use-package dumb-jump
+  :defer 1
+  :config
+  (dumb-jump-mode)
+  (setq dumb-jump-selector 'ivy))
+
 ;; google-this
 ;; https://github.com/Malabarba/emacs-google-this
 (use-package google-this
