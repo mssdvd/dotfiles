@@ -244,6 +244,7 @@
   :config (setq neo-theme 'icons))
 
 ;; smartparens
+;; https://github.com/Fuco1/smartparens
 (use-package smartparens-config
   :ensure smartparens
   :diminish smartparens-mode
