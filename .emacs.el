@@ -376,26 +376,22 @@
 ;; https://github.com/DarthFennec/highlight-indent-guides
 (use-package highlight-indent-guides
   :commands (highlight-indent-guides-mode)
-  :init
-  (add-hook 'prog-mode-hook #'highlight-indent-guides-mode)
-  (add-hook 'web-mode-hook (lambda () (highlight-indent-guides-mode -1)))
+  :hook
+  (prog-mode . highlight-indent-guides-mode)
+  (web-mode . (lambda () (highlight-indent-guides-mode -1)))
   :config
   (setq highlight-indent-guides-method 'character))
 
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
-  :commands (rainbow-delimiters-mode)
-  :init (add-hook 'prog-mode-hook #'rainbow-delimiters-mode))
+  :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; rainbow-mode
 ;; https://elpa.gnu.org/packages/rainbow-mode.html
 (use-package rainbow-mode
-  :commands (rainbow-mode)
-  :init
-  (add-hook 'prog-mode-hook #'rainbow-mode)
-  (add-hook 'sgml-mode #'rainbow-mode))
   :delight
+  :hook (prog-mode sgml-mode))
 
 ;; org
 (use-package org
@@ -550,8 +546,7 @@
 ;; all the icons dired
 ;; https://github.com/jtbm37/all-the-icons-dired
 (use-package all-the-icons-dired
-  :commands (all-the-icons-dired-mode)
-  :init (add-hook 'dired-mode-hook #'all-the-icons-dired-mode))
+  :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
@@ -566,11 +561,8 @@
 ;; https://github.com/ZachMassia/platformio-mode
 ;; Dep platformIO-core
 (use-package platformio-mode
-  :commands (platformio-mode)
-  :init
-  (add-hook 'c-mode-hook #'platformio-mode)
-  (add-hook 'c++-mode-hook #'platformio-mode))
   :delight
+  :hook (c-mode c++-mode))
 
 ;; autorevert
 (use-package autorevert
@@ -593,7 +585,7 @@
 ;; Dep poppler poppler-glibc
 (use-package pdf-tools
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
-  :init (add-hook 'pdf-view-mode-hook #'pdf-tools-enable-minor-modes)
+  :hook (pdf-view-mode . pdf-tools-enable-minor-modes)
   :config
   (bind-key "C-s" #'isearch-forward pdf-view-mode-map)
 
@@ -783,15 +775,13 @@
 ;; https://github.com/magnars/js2-refactor.el
 (use-package js2-refactor
   :delight
-  :defer t
-  :init (add-hook 'js2-mode-hook #'js2-refactor-mode))
+  :hook (js-mode . js2-refactor-mode))
 
 ;; tern
 ;; http://ternjs.net
 (use-package tern
-  :commands (tern-mode)
-  :init (add-hook 'js2-mode-hook (lambda () (tern-mode))))
   :delight
+  :hook (js-mode . tern-mode))
 
 ;; company-tern
 ;; https://github.com/proofit404/company-tern
@@ -824,15 +814,12 @@
 ;; emmet-mode
 ;; https://github.com/smihica/emmet-mode#html-abbreviations
 (use-package emmet-mode
-  :commands (emmet-mode)
   :delight
   :bind
   (:map emmet-mode-keymap
 		("C-M->" . emmet-next-edit-point)
 		("C-M-<" . emmet-prev-edit-point))
-  :init
-  (add-hook 'css-mode-hook #'emmet-mode)
-  (add-hook 'web-mode-hook #'emmet-mode)
+  :hook (css-mode web-mode)
   :config
   (setq emmet-move-cursor-between-quotes t)
   (unbind-key "<C-return>" emmet-mode-keymap))
@@ -840,11 +827,8 @@
 ;; impatient-mode
 ;; https://github.com/netguy204/imp.el
 (use-package impatient-mode
-  :commands (impatient-mode)
-  :init
-  (add-hook 'web-mode-hook #'impatient-mode)
-  (add-hook 'css-mode-hook #'impatient-mode))
   :delight
+  :hook (web-mode css-mode))
 :config
 (defun run-impatient ()
   "Attach a browser to Emacs for a impatient instace.  Use `browse-url' to launch a browser."
@@ -855,11 +839,10 @@
 ;; skewer-mode
 ;; https://github.com/skeeto/skewer-mode
 (use-package skewer-mode
-  :commands (skewer-mode skewer-css-mode)
-  :init
-  (add-hook 'js2-mode-hook #'skewer-mode)
-  (add-hook 'css-mode-hook #'skewer-css-mode)
   :delight
+  :hook
+  (js2-mode)
+  (css-mode . skewer-css-mode)
   ;; (add-hook 'web-mode-hook #'skewer-html-mode)
   )
 
@@ -868,11 +851,10 @@
 ;; anaconda-mode
 ;; https://github.com/proofit404/anaconda-mode
 (use-package anaconda-mode
-  :commands (anaconda-mode anaconda-eldoc-mode)
-  :init
-  (add-hook 'python-mode-hook #'anaconda-mode)
-  (add-hook 'python-mode-hook #'anaconda-eldoc-mode))
   :delight
+  :hook
+  (python-mode)
+  (python-mode . anaconda-eldoc-mode))
 
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
@@ -884,16 +866,14 @@
 ;; https://github.com/JorisE/yapfify
 ;; Dep yapf
 (use-package yapfify
-  :commands (yapf-mode)
-  :init (add-hook 'python-mode-hook #'yapf-mode))
   :delight yapf-mode
+  :hook (python-mode . yapf-mode))
 
 ;; py-isort
 ;; https://github.com/paetzke/py-isort.el
 ;; Dep isort
 (use-package py-isort
-  :commands (py-isort-before-save)
-  :init (add-hook 'before-save-hook #'py-isort-before-save))
+  :hook (before-save . py-isort-before-save))
 
 ;; C & C++
 
@@ -901,21 +881,17 @@
 ;; https://github.com/Sarcasm/irony-mode
 ;; Dep cmake, clang
 (use-package irony
-  :commands (irony-mode)
-  :init
-  (add-hook 'c-mode-hook #'irony-mode)
-  (add-hook 'c++-mode-hook #'irony-mode)
-  (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options)
-  :config (eval-after-load 'company '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
   :delight
+  :hook
+  ((c-mode c++-mode) . irony-mode)
+  :config
+  (irony-cdb-autosetup-compile-options)
+  (eval-after-load 'company '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
 
 ;; irony-eldoc
 ;; https://github.com/ikirill/irony-eldoc
 (use-package irony-eldoc
-  :commands (irony-eldoc)
-  :init
-  (add-hook 'c-mode-hook #'irony-eldoc)
-  (add-hook 'c++-mode-hook #'irony-eldoc))
+  :hook (c-mode c++-mode))
 
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
