@@ -293,7 +293,7 @@
   :config
   (counsel-mode 1)
   (if (executable-find "rg")
-	  (setq  counsel-grep-base-command "rg -i --no-heading --line-number --color never -- '%s' %s")
+	  (setq  counsel-grep-base-command "rg -i --no-heading --line-number --color never -- %s %s")
 	(setq counsel-grep-base-command "grep -nEi '%s' %s"))
   (setq counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
