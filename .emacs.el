@@ -648,7 +648,7 @@
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
   :bind ("C-c t" . terminal-here-launch)
-  :config (setq terminal-here-terminal-command '("tilix")))
+  :config (setq terminal-here-terminal-command '("termite")))
 
 ;; sudo-edit
 ;; https://github.com/nflath/sudo-edit
