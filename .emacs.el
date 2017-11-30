@@ -247,7 +247,7 @@
 ;; https://github.com/Fuco1/smartparens
 (use-package smartparens-config
   :ensure smartparens
-  :diminish smartparens-mode
+  :delight smartparens-mode
   :defer 1
   :config
   (show-smartparens-global-mode t)
@@ -267,7 +267,7 @@
 ;; ivy
 ;; https://github.com/abo-abo/swiper
 (use-package ivy
-  :diminish ivy-mode
+  :delight
   :defer 1
   :commands (ivy-mode)
   :bind ("C-c i" . ivy-resume)
@@ -281,7 +281,7 @@
 ;; https://github.com/abo-abo/swiper
 ;; Dep ripgrep
 (use-package counsel
-  :diminish counsel-mode
+  :delight
   :bind
   ("C-c C-f" . counsel-find-file)
   ("M-x" . counsel-M-x)
@@ -391,11 +391,11 @@
 ;; rainbow-mode
 ;; https://elpa.gnu.org/packages/rainbow-mode.html
 (use-package rainbow-mode
-  :diminish (rainbow-mode)
   :commands (rainbow-mode)
   :init
   (add-hook 'prog-mode-hook #'rainbow-mode)
   (add-hook 'sgml-mode #'rainbow-mode))
+  :delight
 
 ;; org
 (use-package org
@@ -410,7 +410,7 @@
 
 ;; undo-tree
 (use-package undo-tree
-  :diminish undo-tree-mode
+  :delight
   :commands (global-undo-tree-mode)
   :bind
   ("C-z" . undo)
@@ -427,7 +427,7 @@
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
-  :diminish company-mode
+  :delight
   :defer 1
   :bind
   ([(M-tab)]. company-complete)
@@ -532,7 +532,7 @@
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
-  :diminish yas-minor-mode
+  :delight yas-minor-mode
   :defer 1
   :config (yas-global-mode 1))
 
@@ -556,7 +556,7 @@
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
-  :diminish which-key-mode
+  :delight
   :defer 1
   :config
   (which-key-mode)
@@ -566,20 +566,20 @@
 ;; https://github.com/ZachMassia/platformio-mode
 ;; Dep platformIO-core
 (use-package platformio-mode
-  :diminish platformio-mode
   :commands (platformio-mode)
   :init
   (add-hook 'c-mode-hook #'platformio-mode)
   (add-hook 'c++-mode-hook #'platformio-mode))
+  :delight
 
 ;; autorevert
 (use-package autorevert
-  :diminish auto-revert-mode
+  :delight auto-revert-mode
   :config (global-auto-revert-mode 1))
 
 ;; eldoc-mode
 (use-package eldoc
-  :diminish eldoc-mode
+  :delight
   :defer t)
 
 ;; comint-mode
@@ -636,7 +636,7 @@
 ;; abbrev
 (use-package abbrev
   :ensure nil
-  :diminish abbrev-mode
+  :delight
   :defer t)
 
 ;; smex
@@ -724,7 +724,7 @@
 ;; google-this
 ;; https://github.com/Malabarba/emacs-google-this
 (use-package google-this
-  :diminish google-this-mode
+  :delight
   :defer 1
   :config (google-this-mode 1))
 
@@ -782,16 +782,16 @@
 ;; js2-refactor
 ;; https://github.com/magnars/js2-refactor.el
 (use-package js2-refactor
-  :diminish js2-refactor-mode
+  :delight
   :defer t
   :init (add-hook 'js2-mode-hook #'js2-refactor-mode))
 
 ;; tern
 ;; http://ternjs.net
 (use-package tern
-  :diminish tern-mode
   :commands (tern-mode)
   :init (add-hook 'js2-mode-hook (lambda () (tern-mode))))
+  :delight
 
 ;; company-tern
 ;; https://github.com/proofit404/company-tern
@@ -824,8 +824,8 @@
 ;; emmet-mode
 ;; https://github.com/smihica/emmet-mode#html-abbreviations
 (use-package emmet-mode
-  :diminish emmet-mode
   :commands (emmet-mode)
+  :delight
   :bind
   (:map emmet-mode-keymap
 		("C-M->" . emmet-next-edit-point)
@@ -840,11 +840,11 @@
 ;; impatient-mode
 ;; https://github.com/netguy204/imp.el
 (use-package impatient-mode
-  :diminish (impatient-mode)
   :commands (impatient-mode)
   :init
   (add-hook 'web-mode-hook #'impatient-mode)
   (add-hook 'css-mode-hook #'impatient-mode))
+  :delight
 :config
 (defun run-impatient ()
   "Attach a browser to Emacs for a impatient instace.  Use `browse-url' to launch a browser."
@@ -855,11 +855,11 @@
 ;; skewer-mode
 ;; https://github.com/skeeto/skewer-mode
 (use-package skewer-mode
-  :diminish (skewer-mode)
   :commands (skewer-mode skewer-css-mode)
   :init
   (add-hook 'js2-mode-hook #'skewer-mode)
   (add-hook 'css-mode-hook #'skewer-css-mode)
+  :delight
   ;; (add-hook 'web-mode-hook #'skewer-html-mode)
   )
 
@@ -868,11 +868,11 @@
 ;; anaconda-mode
 ;; https://github.com/proofit404/anaconda-mode
 (use-package anaconda-mode
-  :diminish anaconda-mode
   :commands (anaconda-mode anaconda-eldoc-mode)
   :init
   (add-hook 'python-mode-hook #'anaconda-mode)
   (add-hook 'python-mode-hook #'anaconda-eldoc-mode))
+  :delight
 
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
@@ -884,9 +884,9 @@
 ;; https://github.com/JorisE/yapfify
 ;; Dep yapf
 (use-package yapfify
-  :diminish yapf-mode
   :commands (yapf-mode)
   :init (add-hook 'python-mode-hook #'yapf-mode))
+  :delight yapf-mode
 
 ;; py-isort
 ;; https://github.com/paetzke/py-isort.el
@@ -901,13 +901,13 @@
 ;; https://github.com/Sarcasm/irony-mode
 ;; Dep cmake, clang
 (use-package irony
-  :diminish irony-mode
   :commands (irony-mode)
   :init
   (add-hook 'c-mode-hook #'irony-mode)
   (add-hook 'c++-mode-hook #'irony-mode)
   (add-hook 'irony-mode-hook #'irony-cdb-autosetup-compile-options)
   :config (eval-after-load 'company '(add-to-list 'company-backends '(company-irony-c-headers company-irony))))
+  :delight
 
 ;; irony-eldoc
 ;; https://github.com/ikirill/irony-eldoc
