@@ -275,7 +275,8 @@
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
 		enable-recursive-minibuffers t
-		ivy-count-format "(%d/%d) "))
+		ivy-count-format "(%d/%d) "
+		ivy-use-selectable-prompt t))
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
