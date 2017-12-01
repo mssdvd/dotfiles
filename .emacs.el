@@ -629,7 +629,7 @@
 ;; abbrev
 (use-package abbrev
   :ensure nil
-  :diminish abbrev-mode
+  :delight
   :defer t)
 
 ;; smex
