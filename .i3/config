@@ -40,7 +40,7 @@ bindsym $mod+Return exec $term #i3-sensible-terminal
 bindsym $mod+Shift+q kill
 
 # rofi
-bindsym $mod+Tab exec --no-startup-id "rofi -combi-modi window,drun -show combi -modi combi -theme solarized_alternate"
+bindsym $mod+Tab exec --no-startup-id "rofi -combi-modi window,drun -show combi -modi combi"
 
 # change focus
 bindsym $mod+h focus left
@@ -233,7 +233,7 @@ bindsym $mod+shift+bracketleft exec chromium --incognito
 bindsym $mod+backslash exec $term -e ranger
 bindsym $mod+shift+backslash exec $term -e "ranger --cmd=fzf_select"
 bindsym $mod+bracketright exec emacsclient -c -a ''
-bindsym $mod+c exec clipster -sc
+bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
 bindsym $mod+p exec passmenu
 bindsym $mod+apostrophe exec zathura
 
@@ -244,7 +244,7 @@ exec --no-startup-id pamac-tray
 exec --no-startup-id sh $HOME/.fehbg
 exec --no-startup-id pasystray
 exec --no-startup-id redshift-gtk
-exec --no-startup-id clipster -d
+exec --no-startup-id greenclip daemon
 exec --no-startup-id udiskie --no-automount --tray
 exec --no-startup-id unclutter --timeout 10
 exec --no-startup-id numlockx
