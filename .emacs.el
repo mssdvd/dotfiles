@@ -53,6 +53,9 @@
 ;; improve comint performance
 (setq-default bidi-display-reordering nil)
 
+;; use spaces instead of tabs
+(setq-default indent-tabs-mode nil)
+
 ;; use tab to indent and complete
 (setq tab-always-indent 'complete)
 
