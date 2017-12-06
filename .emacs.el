@@ -450,7 +450,8 @@
 (use-package magit
   :bind ("C-c g" . magit-status)
   :config
-  (setq magit-repository-directories
+  (setq magit-diff-refine-hunk "all"
+		magit-repository-directories
 		'(("~/Documents/school" . 3)
 		  ("~/Documents/dotfiles" . 3))))
 
