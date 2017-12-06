@@ -200,43 +200,9 @@
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight)
 
-;; spacemacs-theme
-;; https://github.com/nashamri/spacemacs-theme
-(use-package spacemacs-common
-  :ensure spacemacs-theme
-  :config
-  (setq spacemacs-theme-comment-bg nil
-		spacemacs-theme-comment-italic t)
-  (load-theme 'spacemacs-dark t)
-  (defvar my:theme 'spacemacs-dark)
-  (defvar my:theme-window-loaded nil)
-  (defvar my:theme-terminal-loaded nil)
-  (if (daemonp)
-	  (add-hook 'after-make-frame-functions (lambda (frame)
-											  (select-frame frame)
-											  (if (window-system frame)
-												  (unless my:theme-window-loaded
-													(if my:theme-terminal-loaded
-														(enable-theme my:theme)
-													  (load-theme my:theme t))
-													(setq my:theme-window-loaded t))
-												(unless my:theme-terminal-loaded
-												  (if my:theme-window-loaded
-													  (enable-theme my:theme)
-													(load-theme my:theme t))
-												  (setq my:theme-terminal-loaded t)))))
-	(progn
-	  (load-theme my:theme t)
-	  (if (display-graphic-p)
-		  (setq my:theme-window-loaded t)
-		(setq my:theme-terminal-loaded t)))))
-
-;; moe-theme
-(use-package moe-theme
-  :disabled
-  :config
-  (setq moe-theme-mode-line-color 'red)
-  (moe-dark))
+;; kaolin
+(use-package kaolin-themes
+  :config (load-theme 'kaolin-galaxy t))
 
 ;; neotree
 (use-package neotree
