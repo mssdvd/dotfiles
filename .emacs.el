@@ -448,8 +448,8 @@
   :config
   (setq magit-diff-refine-hunk 'all
 		magit-repository-directories
-		'(("~/Documents/school" . 3)
-		  ("~/Documents/dotfiles" . 3))))
+		'(("~/Documents/school" . 0)
+		  ("~/Documents/dotfiles" . 0))))
 
 ;; magithub
 ;; https://github.com/vermiculus/magithub
