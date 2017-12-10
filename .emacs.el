@@ -238,7 +238,6 @@
 (use-package ivy
   :delight
   :defer 1
-  :commands (ivy-mode)
   :bind ("C-c i" . ivy-resume)
   :config
   (ivy-mode 1)
@@ -345,7 +344,6 @@
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
 (use-package highlight-indent-guides
-  :commands (highlight-indent-guides-mode)
   :hook
   (prog-mode . highlight-indent-guides-mode)
   (web-mode . (lambda () (highlight-indent-guides-mode -1)))
