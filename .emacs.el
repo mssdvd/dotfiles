@@ -402,7 +402,10 @@
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
   :after (company)
-  :config (company-quickhelp-mode 1))
+  :config
+  (company-quickhelp-mode 1)
+  (setq company-quickhelp-color-background "#4e4e4e"
+		company-quickhelp-color-foreground "#ffffff"))
 
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
