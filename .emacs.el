@@ -252,6 +252,7 @@
 ;; Dep ripgrep
 (use-package counsel
   :delight
+  :defer 1
   :bind
   ("C-c C-f" . counsel-find-file)
   ("M-x" . counsel-M-x)
@@ -259,7 +260,6 @@
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
   ("C-c f" . counsel-file-jump)
-  :after (ivy)
   :config
   (counsel-mode 1)
   (if (executable-find "rg")
