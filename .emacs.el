@@ -238,7 +238,6 @@
 (use-package ivy
   :delight
   :defer 1
-  :commands (ivy-mode)
   :bind ("C-c i" . ivy-resume)
   :config
   (ivy-mode 1)
@@ -252,6 +251,7 @@
 ;; Dep ripgrep
 (use-package counsel
   :delight
+  :defer 1
   :bind
   ("C-c C-f" . counsel-find-file)
   ("M-x" . counsel-M-x)
@@ -259,7 +259,6 @@
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
   ("C-c f" . counsel-file-jump)
-  :after (ivy)
   :config
   (counsel-mode 1)
   (if (executable-find "rg")
@@ -338,19 +337,16 @@
   :ensure nil
   :defer t
   :config
-  (recentf-mode)
   (setq recentf-max-menu-items 150
 		recentf-max-saved-items 150))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
 (use-package highlight-indent-guides
-  :commands (highlight-indent-guides-mode)
   :hook
   (prog-mode . highlight-indent-guides-mode)
   (web-mode . (lambda () (highlight-indent-guides-mode -1)))
-  :config
-  (setq highlight-indent-guides-method 'character))
+  :config (setq highlight-indent-guides-method 'character))
 
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
@@ -406,7 +402,10 @@
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
   :after (company)
-  :config (company-quickhelp-mode 1))
+  :config
+  (company-quickhelp-mode 1)
+  (setq company-quickhelp-color-background "#4e4e4e"
+		company-quickhelp-color-foreground "#ffffff"))
 
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
@@ -450,15 +449,15 @@
 (use-package magit
   :bind ("C-c g" . magit-status)
   :config
-  (setq magit-diff-refine-hunk "all"
+  (setq magit-diff-refine-hunk 'all
 		magit-repository-directories
-		'(("~/Documents/school" . 3)
-		  ("~/Documents/dotfiles" . 3))))
+		'(("~/Documents/school" . 0)
+		  ("~/Documents/dotfiles" . 0))))
 
 ;; magithub
 ;; https://github.com/vermiculus/magithub
 (use-package magithub
-  :after magit
+  :after (magit)
   :config (magithub-feature-autoinject t))
 
 ;; gitconfig-mode
@@ -538,6 +537,7 @@
 ;; autorevert
 (use-package autorevert
   :delight auto-revert-mode
+  :defer 1
   :config (global-auto-revert-mode 1))
 
 ;; eldoc-mode
@@ -758,8 +758,7 @@
 ;; https://github.com/proofit404/company-tern
 (use-package company-tern
   :after (js2-mode tern company)
-  :config
-  (add-to-list 'company-backends 'company-tern))
+  :config (add-to-list 'company-backends 'company-tern))
 
 ;; company-web
 ;; https://github.com/osv/company-web
