@@ -337,7 +337,6 @@
   :ensure nil
   :defer t
   :config
-  (recentf-mode)
   (setq recentf-max-menu-items 150
 		recentf-max-saved-items 150))
 
@@ -455,7 +454,7 @@
 ;; magithub
 ;; https://github.com/vermiculus/magithub
 (use-package magithub
-  :after magit
+  :after (magit)
   :config (magithub-feature-autoinject t))
 
 ;; gitconfig-mode
@@ -535,6 +534,7 @@
 ;; autorevert
 (use-package autorevert
   :delight auto-revert-mode
+  :defer 1
   :config (global-auto-revert-mode 1))
 
 ;; eldoc-mode
@@ -755,8 +755,7 @@
 ;; https://github.com/proofit404/company-tern
 (use-package company-tern
   :after (js2-mode tern company)
-  :config
-  (add-to-list 'company-backends 'company-tern))
+  :config (add-to-list 'company-backends 'company-tern))
 
 ;; company-web
 ;; https://github.com/osv/company-web
