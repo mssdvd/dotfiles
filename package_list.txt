@@ -37,6 +37,7 @@ bison
 bluez
 bluez-libs
 boost-libs
+brandr
 breeze-icons
 brltty
 btrfs-progs
@@ -91,6 +92,7 @@ device-mapper
 dhcpcd
 dialog
 diffutils
+discord
 djvulibre
 dkms
 dmraid
@@ -102,8 +104,6 @@ double-conversion
 dri2proto
 dri3proto
 e2fsprogs
-eclipse-common
-eclipse-java
 efibootmgr
 efivar
 emacs
@@ -123,6 +123,7 @@ faac
 faad2
 fakeroot
 farstream
+fd-rs
 feh
 ffmpeg
 fftw
@@ -150,8 +151,8 @@ fzf
 gawk
 gc
 gcab
-gcc-libs-multilib
-gcc-multilib
+gcc
+gcc-libs
 gconf
 gcr
 gd
@@ -197,6 +198,8 @@ gnome-desktop
 gnome-dictionary
 gnome-disk-utility
 gnome-font-viewer
+gnome-icon-theme
+gnome-icon-theme-symbolic
 gnome-keyring
 gnome-logs
 gnome-maps
@@ -226,6 +229,7 @@ gptfdisk
 grabc
 graphene
 graphite
+greenclip
 grep
 grilo
 grilo-plugins
@@ -244,11 +248,11 @@ gstreamer
 gtk-update-icon-cache
 gtk2
 gtk3
-gtk3-print-backends
 gtkd
 gtkmm
 gtkmm3
 gtksourceview3
+gtkspell
 gucharmap
 guile
 guile2.0
@@ -282,6 +286,7 @@ ilmbase
 imagemagick
 imlib2
 inetutils
+inkscape
 inputproto
 intel-ucode
 iproute2
@@ -339,6 +344,8 @@ libblockdev
 libbluray
 libbsd
 libbytesize
+libc++
+libc++abi
 libcaca
 libcacard
 libcanberra
@@ -381,6 +388,7 @@ libfbclient
 libfdk-aac
 libffi
 libfontenc
+libfreehand
 libgcrypt
 libgdata
 libgdm
@@ -403,6 +411,7 @@ libical
 libice
 libid3tag
 libidn
+libidn2
 libiec61883
 libieee1284
 libimobiledevice
@@ -415,6 +424,8 @@ liblangtag
 libldap
 liblphobos
 liblqr
+libmagick
+libmagick6
 libmariadbclient
 libmediaart
 libmediainfo
@@ -471,7 +482,6 @@ libquvi
 libquvi-scripts
 libraqm
 libraw1394
-libreoffice-extension-languagetool
 libreoffice-fresh
 librevenge
 librsvg
@@ -491,6 +501,7 @@ libspiro
 libsrtp
 libssh
 libssh2
+libstaroffice
 libstemmer
 libsynctex
 libsystemd
@@ -502,6 +513,7 @@ libtiff
 libtirpc
 libtommath
 libtool
+libtorrent-rasterbar
 libtxc_dxtn
 libunistring
 libunwind
@@ -568,6 +580,9 @@ libzen
 libzip
 libzmf
 licenses
+lightdm
+lightdm-gtk-greeter
+lightdm-gtk-greeter-settings
 links
 linux
 linux-api-headers
@@ -666,8 +681,10 @@ pamac-aur
 pambase
 pango
 pangomm
+papirus-icon-theme
 parted
 pass
+pasystray-git
 patch
 pavucontrol
 pciutils
@@ -691,11 +708,13 @@ platformio
 playerctl
 polkit
 poppler
+poppler-data
 poppler-glib
 popt
 portaudio
 postgresql
 postgresql-libs
+potrace
 powertop
 presentproto
 procps-ng
@@ -734,9 +753,11 @@ python-markupsafe
 python-mccabe
 python-packaging
 python-parso
+python-pew
 python-pexpect
 python-pickleshare
 python-pip
+python-pipenv
 python-prompt_toolkit
 python-psutil
 python-ptyprocess
@@ -759,6 +780,8 @@ python-six
 python-stevedore
 python-traitlets
 python-urllib3
+python-virtualenv
+python-virtualenv-clone
 python-wcwidth
 python-xdg
 python-yaml
@@ -786,6 +809,7 @@ python2-setuptools
 python2-six
 python2-urllib3
 qalculate-gtk
+qbittorrent
 qemu
 qpdf
 qt5-base
@@ -888,8 +912,6 @@ totem-plparser
 traceroute
 tracker
 tracker-miners
-transmission-cli
-transmission-gtk
 trash-cli
 tree
 tslib
@@ -1063,4 +1085,5 @@ zita-alsa-pcmi
 zita-resampler
 zlib
 zsh
+zstd
 zvbi

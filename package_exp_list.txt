@@ -12,6 +12,7 @@ bash
 bash-completion
 binutils
 bison
+brandr
 breeze-icons
 bzip2
 cantarell-fonts
@@ -30,8 +31,8 @@ device-mapper
 dhcpcd
 dialog
 diffutils
+discord
 e2fsprogs
-eclipse-java
 efibootmgr
 emacs
 empathy
@@ -40,6 +41,7 @@ epiphany
 evince
 exfat-utils
 fakeroot
+fd-rs
 feh
 figlet
 file
@@ -85,12 +87,12 @@ gnome-user-share
 google-chrome
 gparted
 grabc
+greenclip
 grep
 grilo-plugins
 grml-zsh-config
 groff
 gsimplecal
-gtk3-print-backends
 gucharmap
 gvfs
 gvfs-afc
@@ -107,6 +109,7 @@ i3-wm
 i3blocks
 i3lock
 inetutils
+inkscape
 intel-ucode
 iproute2
 iputils
@@ -116,12 +119,13 @@ jfsutils
 less
 lib32-gcc-libs
 libdvdcss
-libreoffice-extension-languagetool
 libreoffice-fresh
 libtool
 libva-utils
 libva-vdpau-driver
 licenses
+lightdm
+lightdm-gtk-greeter-settings
 links
 linux
 linux-headers
@@ -161,7 +165,9 @@ openssh
 pacaur
 pacman
 pamac-aur
+papirus-icon-theme
 pass
+pasystray-git
 patch
 pavucontrol
 pciutils
@@ -182,10 +188,12 @@ pulseaudio-alsa
 pv
 python-isort
 python-pip
+python-pipenv
 python-xdg
 python2-nautilus
 python2-setuptools
 qalculate-gtk
+qbittorrent
 qemu
 qpdf
 qt5ct
@@ -224,8 +232,6 @@ totem
 traceroute
 tracker
 tracker-miners
-transmission-cli
-transmission-gtk
 trash-cli
 ttf-anonymous-pro
 ttf-bitstream-vera
