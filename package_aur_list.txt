@@ -1,8 +1,9 @@
 aurvote
-clipster
+brandr
 cower
 google-chrome
 grabc
+greenclip
 libreoffice-extension-languagetool
 light-git
 pacaur
@@ -15,14 +16,12 @@ python-guessit
 python-rarfile
 python-rebulk
 python2-click-5.1
-python2-semantic-version
 rtags
 spotify
 subliminal
 systemd-boot-pacman-hook
 ttf-caladea
 ttf-carlito
-ttf-font-awesome
 ttf-iosevka
 ttf-ms-fonts
 unclutter-xfixes-git
