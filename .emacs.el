@@ -337,7 +337,7 @@
   :ensure nil
   :defer 1
   :config
-  (setq recentf-max-menu-items 150
+  (setq recentf-max-menu-items 25
 		recentf-max-saved-items 150))
 
 ;; highlight-indent-guides
