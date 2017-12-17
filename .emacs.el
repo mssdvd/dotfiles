@@ -335,7 +335,7 @@
 ;; recentf
 (use-package recentf
   :ensure nil
-  :defer t
+  :defer 1
   :config
   (setq recentf-max-menu-items 150
 		recentf-max-saved-items 150))
