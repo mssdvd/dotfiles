@@ -1,4 +1,6 @@
 set render-loading false
 set show-scrollbars true
+set recolor-reverse-video true
+set selection-clipboard clipboard
 set font "Anonymous Pro 10"
 map p search backward

@@ -304,7 +304,10 @@
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
   :bind ("M-[" . ace-window)
-  :config (setq aw-dispatch-always t))
+  :config
+  (setq aw-dispatch-always t
+        aw-background nil)
+  :custom-face (aw-leading-char-face ((t (:foreground "red")))))
 
 ;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
@@ -335,9 +338,9 @@
 ;; recentf
 (use-package recentf
   :ensure nil
-  :defer t
+  :defer 1
   :config
-  (setq recentf-max-menu-items 150
+  (setq recentf-max-menu-items 25
 		recentf-max-saved-items 150))
 
 ;; highlight-indent-guides
@@ -701,7 +704,6 @@
 ;; google-maps
 ;; https://github.com/jd/google-maps.el
 (use-package google-maps
-  :defer t
   :bind
   (:map google-maps-static-mode-map
 		("h" . google-maps-static-move-west)
@@ -709,6 +711,9 @@
 		("k" . google-maps-static-move-north)
 		("l" . google-maps-static-move-east)))
 
+;; calc
+(use-package calc
+  :bind ("M-#" . calc))
 
 ;;
 ;; Languages configurations
