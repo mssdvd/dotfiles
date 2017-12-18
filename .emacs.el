@@ -704,7 +704,6 @@
 ;; google-maps
 ;; https://github.com/jd/google-maps.el
 (use-package google-maps
-  :defer t
   :bind
   (:map google-maps-static-mode-map
 		("h" . google-maps-static-move-west)
