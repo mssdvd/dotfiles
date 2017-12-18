@@ -304,7 +304,10 @@
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
   :bind ("M-[" . ace-window)
-  :config (setq aw-dispatch-always t))
+  :config
+  (setq aw-dispatch-always t
+        aw-background nil)
+  :custom-face (aw-leading-char-face ((t (:foreground "red")))))
 
 ;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
