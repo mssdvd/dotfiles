@@ -711,6 +711,9 @@
 		("k" . google-maps-static-move-north)
 		("l" . google-maps-static-move-east)))
 
+;; calc
+(use-package calc
+  :bind ("M-#" . calc))
 
 ;;
 ;; Languages configurations
