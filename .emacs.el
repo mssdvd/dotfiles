@@ -439,7 +439,7 @@
 ;; https://github.com/ericdanan/counsel-projectile
 (use-package counsel-projectile
   :after (counsel projectile)
-  :config (counsel-projectile-on))
+  :config (counsel-projectile-mode))
 
 ;; smart-tabs-mode
 ;; http://github.com/jcsalomon/smarttabs
