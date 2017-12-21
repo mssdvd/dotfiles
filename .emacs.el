@@ -717,6 +717,7 @@
 ;; calc
 (use-package calc
   :bind
+  ("M-#" . quick-calc)
   ("C-M-#" . calc))
 
 ;;
