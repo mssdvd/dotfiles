@@ -47,6 +47,9 @@
 ;; enable dired-find-alternate-file
 (put 'dired-find-alternate-file 'disabled nil)
 
+;; enable narrow-to-region
+(put 'narrow-to-region 'disabled nil)
+
 ;; highlight line
 (global-hl-line-mode)
 
