@@ -716,7 +716,8 @@
 
 ;; calc
 (use-package calc
-  :bind ("M-#" . calc))
+  :bind
+  ("C-M-#" . calc))
 
 ;;
 ;; Languages configurations
