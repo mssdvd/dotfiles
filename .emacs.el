@@ -47,6 +47,9 @@
 ;; enable dired-find-alternate-file
 (put 'dired-find-alternate-file 'disabled nil)
 
+;; enable narrow-to-region
+(put 'narrow-to-region 'disabled nil)
+
 ;; highlight line
 (global-hl-line-mode)
 
@@ -340,6 +343,7 @@
   :ensure nil
   :defer 1
   :config
+  (recentf-mode)
   (setq recentf-max-menu-items 25
 		recentf-max-saved-items 150))
 
@@ -407,7 +411,8 @@
   :after (company)
   :config
   (company-quickhelp-mode 1)
-  (setq company-quickhelp-color-background "#4e4e4e"
+  (setq company-quickhelp-use-propertized-text t
+        company-quickhelp-color-background "#4e4e4e"
 		company-quickhelp-color-foreground "#ffffff"))
 
 ;; company-flx
@@ -713,7 +718,9 @@
 
 ;; calc
 (use-package calc
-  :bind ("M-#" . calc))
+  :bind
+  ("M-#" . quick-calc)
+  ("C-M-#" . calc))
 
 ;;
 ;; Languages configurations
