@@ -343,6 +343,7 @@
   :ensure nil
   :defer 1
   :config
+  (recentf-mode)
   (setq recentf-max-menu-items 25
 		recentf-max-saved-items 150))
 
