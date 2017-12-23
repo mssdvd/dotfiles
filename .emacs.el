@@ -208,7 +208,8 @@
 
 ;; kaolin
 (use-package kaolin-themes
-  :config (load-theme 'kaolin-galaxy t))
+  :config (load-theme 'kaolin-galaxy t)
+  :custom-face (tooltip (t (:background "#4e4e4e" :foreground "white"))))
 
 ;; neotree
 (use-package neotree
@@ -411,9 +412,7 @@
   :after (company)
   :config
   (company-quickhelp-mode 1)
-  (setq company-quickhelp-use-propertized-text t
-        company-quickhelp-color-background "#4e4e4e"
-		company-quickhelp-color-foreground "#ffffff"))
+  (setq company-quickhelp-use-propertized-text t))
 
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
