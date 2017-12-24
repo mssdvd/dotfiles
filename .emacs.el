@@ -174,6 +174,7 @@
   (interactive)
   (let ((primary (gui-get-primary-selection)))
     (insert-for-yank primary)))
+(bind-key "S-<insert>" #'yank-primary)
 
 ;;;;
 ;; Hydra
