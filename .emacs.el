@@ -169,6 +169,13 @@
     (error "No `default-directory' to open")))
 (bind-key "C-c r" #'ranger-launch-here)
 
+(defun yank-primary ()
+  "Insert the primary selection at the position."
+  (interactive)
+  (let ((primary (gui-get-primary-selection)))
+    (insert-for-yank primary)))
+(bind-key "S-<insert>" #'yank-primary)
+
 ;;;;
 ;; Hydra
 ;;;;
