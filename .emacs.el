@@ -728,6 +728,20 @@
   ("M-#" . quick-calc)
   ("C-M-#" . calc))
 
+;; eyebrowse
+;; https://github.com/wasamasa/eyebrowse
+(use-package eyebrowse
+  :defer 1
+  :config (eyebrowse-mode t))
+
+;; shackle
+;; https://github.com/wasamasa/shackle
+(use-package shackle
+  :defer 1
+  :config
+  (shackle-mode)
+  (setq shackle-rules '((help-mode :select t))))
+
 ;;
 ;; Languages configurations
 ;;
