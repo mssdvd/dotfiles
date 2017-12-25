@@ -728,6 +728,12 @@
   ("M-#" . quick-calc)
   ("C-M-#" . calc))
 
+;; eyebrowse
+;; https://github.com/wasamasa/eyebrowse
+(use-package eyebrowse
+  :defer 1
+  :config (eyebrowse-mode t))
+
 ;;
 ;; Languages configurations
 ;;
