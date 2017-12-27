@@ -22,6 +22,7 @@ clang
 clipster
 cmake
 compton
+cool-retro-term
 coreutils
 cpupower
 crda
@@ -63,7 +64,6 @@ git
 glibc
 gnome-backgrounds
 gnome-calculator
-gnome-calendar
 gnome-characters
 gnome-contacts
 gnome-control-center
@@ -114,6 +114,7 @@ intel-ucode
 iproute2
 iputils
 ipython
+jdk8-openjdk
 jdk9-openjdk
 jfsutils
 less
@@ -123,6 +124,7 @@ libreoffice-fresh
 libtool
 libva-utils
 libva-vdpau-driver
+libvirt
 licenses
 lightdm
 lightdm-gtk-greeter-settings
@@ -152,6 +154,7 @@ nethogs
 network-manager-applet
 ninja
 nodejs
+nomacs
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -186,6 +189,7 @@ psmisc
 pulseaudio
 pulseaudio-alsa
 pv
+python-ipdb
 python-isort
 python-pip
 python-pipenv
@@ -228,6 +232,7 @@ texinfo
 thefuck
 tidy
 tilix
+tokei
 totem
 traceroute
 tracker
@@ -257,7 +262,6 @@ usbutils
 util-linux
 vdpauinfo
 vi
-viewnior
 vim
 vino
 virtualbox

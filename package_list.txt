@@ -23,6 +23,7 @@ atk
 atkmm
 atool
 attr
+augeas
 aurvote
 autoconf
 automake
@@ -34,12 +35,12 @@ bash-completion
 bc
 binutils
 bison
+blas
 bluez
 bluez-libs
 boost-libs
 brandr
 breeze-icons
-brltty
 btrfs-progs
 bubblewrap
 bzip2
@@ -52,9 +53,11 @@ cairo
 cairomm
 cantarell-fonts
 caribou
+cblas
 cdparanoia
 celt
 celt0.5.1
+ceph-libs
 cheese
 chromaprint
 chrome-gnome-shell
@@ -72,6 +75,7 @@ colord
 colord-gtk
 compositeproto
 compton
+cool-retro-term
 coreutils
 cower
 cpio
@@ -111,7 +115,6 @@ empathy
 enchant
 eog
 epiphany
-espeak
 evince
 evolution-data-server
 exempi
@@ -189,7 +192,6 @@ gnome-autoar
 gnome-backgrounds
 gnome-bluetooth
 gnome-calculator
-gnome-calendar
 gnome-characters
 gnome-color-manager
 gnome-contacts
@@ -223,6 +225,7 @@ gobject-introspection-runtime
 gom
 google-chrome
 gparted
+gperftools
 gpgme
 gpm
 gptfdisk
@@ -249,6 +252,7 @@ gtk-update-icon-cache
 gtk2
 gtk3
 gtkd
+gtkglext
 gtkmm
 gtkmm3
 gtksourceview3
@@ -288,6 +292,7 @@ imlib2
 inetutils
 inkscape
 inputproto
+intel-tbb
 intel-ucode
 iproute2
 iptables
@@ -302,6 +307,7 @@ java-environment-common
 java-runtime-common
 jbig2dec
 jdk7-openjdk
+jdk8-openjdk
 jdk9-openjdk
 jemalloc
 jfsutils
@@ -324,11 +330,13 @@ kmod
 krb5
 ladspa
 lame
+lapack
 lcms
 lcms2
 ldb
 ldns
 less
+leveldb
 lib32-gcc-libs
 lib32-glibc
 libabw
@@ -481,6 +489,7 @@ libqalculate
 libquvi
 libquvi-scripts
 libraqm
+libraw
 libraw1394
 libreoffice-fresh
 librevenge
@@ -514,7 +523,6 @@ libtirpc
 libtommath
 libtool
 libtorrent-rasterbar
-libtxc_dxtn
 libunistring
 libunwind
 libusb
@@ -525,6 +533,7 @@ libva
 libva-utils
 libva-vdpau-driver
 libvdpau
+libvirt
 libvisio
 libvisual
 libvoikko
@@ -573,6 +582,7 @@ libxss
 libxt
 libxtst
 libxv
+libxvmc
 libxxf86dga
 libxxf86vm
 libyaml
@@ -635,6 +645,7 @@ ncurses
 neofetch
 neon
 net-snmp
+netcf
 netctl
 nethogs
 nettle
@@ -643,6 +654,7 @@ networkmanager
 ninja
 nm-connection-editor
 nodejs
+nomacs
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -661,6 +673,7 @@ odt2txt
 oniguruma
 openal
 opencore-amr
+opencv
 openexr
 openjpeg2
 openresolv
@@ -681,6 +694,7 @@ pamac-aur
 pambase
 pango
 pangomm
+pangox-compat
 papirus-icon-theme
 parted
 pass
@@ -700,7 +714,6 @@ perl-ipc-system-simple
 perl-uri
 php
 pinentry
-pipewire
 pixman
 pkg-config
 pkgfile
@@ -711,7 +724,6 @@ poppler
 poppler-data
 poppler-glib
 popt
-portaudio
 postgresql
 postgresql-libs
 potrace
@@ -745,6 +757,7 @@ python-enzyme
 python-gobject
 python-guessit
 python-idna
+python-ipdb
 python-isort
 python-jedi
 python-jinja
@@ -811,11 +824,14 @@ python2-urllib3
 qalculate-gtk
 qbittorrent
 qemu
+qmltermwidget
 qpdf
 qt5-base
 qt5-declarative
+qt5-graphicaleffects
 qt5-location
 qt5-multimedia
+qt5-quickcontrols
 qt5-svg
 qt5-tools
 qt5-webchannel
@@ -907,6 +923,7 @@ thin-provisioning-tools
 tidy
 tilix
 tk
+tokei
 totem
 totem-plparser
 traceroute
@@ -953,7 +970,6 @@ vdpauinfo
 vi
 vid.stab
 videoproto
-viewnior
 vim
 vim-runtime
 vino
@@ -1009,6 +1025,7 @@ xf86vidmodeproto
 xfce4-notifyd
 xfconf
 xfsprogs
+xine-lib
 xineramaproto
 xkeyboard-config
 xmlsec
