@@ -19,6 +19,7 @@ breeze-icons
 bzip2
 chromium
 compton
+cool-retro-term
 coreutils
 cpupower
 crda
@@ -28,7 +29,6 @@ dhcpcd
 dialog
 diffutils
 e2fsprogs
-eclipse-java
 efibootmgr
 emacs
 engrampa
@@ -61,6 +61,7 @@ gnome-keyring
 gnome-screenshot
 gnome-system-monitor
 gnome-themes-standard
+gnuplot
 google-chrome
 gparted
 grabc
@@ -118,6 +119,7 @@ network-manager-applet
 networkmanager
 ninja
 nodejs
+nomacs
 noto-fonts
 noto-fonts-cjk
 noto-fonts-emoji
@@ -149,11 +151,14 @@ procps-ng
 psmisc
 pulseaudio
 pulseaudio-alsa
+python-ipdb
 python-isort
 python-pip
 python-pmw
+python-rope
 python-xdg
 qalculate-gtk
+qbittorrent
 qemu
 qpdf
 qt5ct
@@ -191,6 +196,7 @@ thefuck
 thunar
 tidy
 tlp
+tokei
 transmission-gtk
 trash-cli
 ttf-anonymous-pro
