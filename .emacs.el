@@ -321,7 +321,7 @@
   :config
   (setq aw-dispatch-always t
         aw-background nil)
-  :custom-face (aw-leading-char-face ((t (:foreground "red")))))
+  :custom-face (aw-leading-char-face ((t (:foreground "red" :slant normal)))))
 
 ;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
