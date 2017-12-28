@@ -273,6 +273,7 @@
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
   ("C-c f" . counsel-file-jump)
+  ("C-c d" . counsel-dired-jump)
   :config
   (counsel-mode 1)
   (if (executable-find "rg")
