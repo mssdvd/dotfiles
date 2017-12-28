@@ -239,7 +239,7 @@
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
 																									("* ||\n[i]""RET")))
 
-  (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode css-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
     "Open a new brace or bracket expression, with relevant newlines and indent. "
     (newline)
@@ -273,6 +273,7 @@
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
   ("C-c f" . counsel-file-jump)
+  ("C-c d" . counsel-dired-jump)
   :config
   (counsel-mode 1)
   (if (executable-find "rg")
