@@ -66,6 +66,11 @@ _fzf_compgen_dir() {
     fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
+# pip
+export PIP_REQUIRE_VIRTUALENV=true
+gpip() {
+    PIP_REQUIRE_VIRTUALENV="" pip "$@"
+}
 
 # fix vte bug
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
