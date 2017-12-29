@@ -11,6 +11,7 @@ eval $(thefuck --alias)
 alias open=xdg-open
 alias locate="locate -bi"
 alias rn="termite -e ranger . &"
+alias trz=trizen
 
 # look for new exe in path
 zstyle ':completion:*' rehash true
