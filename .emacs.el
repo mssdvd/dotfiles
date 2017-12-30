@@ -730,7 +730,8 @@
 (use-package calc
   :bind
   ("M-#" . quick-calc)
-  ("C-M-#" . calc))
+  ("C-M-#" . calc)
+  (:map calc-mode-map ("C-S-z" . calc-redo)))
 
 ;; eyebrowse
 ;; https://github.com/wasamasa/eyebrowse
