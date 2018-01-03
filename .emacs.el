@@ -494,7 +494,7 @@
 ;; https://github.com/dgutov/diff-hl
 (use-package diff-hl
   :defer 1
-  :hook (magit-post-refresh-hook . diff-hl-magit-post-refresh)
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
   :config
   (global-diff-hl-mode t)
   (diff-hl-flydiff-mode)
