@@ -500,7 +500,12 @@
   (diff-hl-flydiff-mode)
   (diff-hl-margin-mode)
   (setq diff-hl-draw-borders nil
-        diff-hl-side 'right))
+        diff-hl-side 'right)
+  :custom-face
+  (diff-hl-margin-change ((t (:inherit diff-hl-change :foreground "black" :slant normal))))
+  (diff-hl-margin-delete ((t (:inherit diff-hl-delete :foreground "black"))))
+  (diff-hl-margin-ignored ((t (:inherit dired-ignored :foreground "black"))))
+  (diff-hl-margin-insert ((t (:inherit diff-hl-insert :foreground "black")))))
 
 ;; gitignore
 ;; https://github.com/syohex/emacs-gitignore
