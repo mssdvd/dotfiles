@@ -61,7 +61,7 @@ class my_edit(Command):
         return self._tab_directory_content()
 
 
-# https://github.com/ranger/ranger/wiki/Integrating-File-Search-with-fzf
+# https://github.com/ranger/ranger/wiki/Commands
 class fzf_select(Command):
     """
     :fzf_select
