@@ -91,14 +91,11 @@ class fzf_select(Command):
                 self.fm.select_file(fzf_file)
 
 
-# fzf_locate
 class fzf_locate(Command):
     """
     :fzf_locate
 
     Find a file using fzf.
-
-    With a prefix argument select only directories.
 
     See: https://github.com/junegunn/fzf
     """
@@ -144,7 +141,7 @@ class mkcd(Command):
                                  and not self.fm.settings['show_hidden']):
                     self.fm.cd(s)
                 else:
-                    # We force ranger to load content before calling `scout`.
+                    ## We force ranger to load content before calling `scout`.
                     self.fm.thisdir.load_content(schedule=False)
                     self.fm.execute_console('scout -ae ^{}$'.format(s))
         else:
