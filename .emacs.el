@@ -387,7 +387,7 @@
 ;; paradox
 (use-package paradox
   :defer t
-  :config (setq paradox-github-token t))
+  :config (setq paradox-execute-asynchronously t))
 
 ;; undo-tree
 (use-package undo-tree
