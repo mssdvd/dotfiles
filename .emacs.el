@@ -496,7 +496,9 @@
   :config
   (global-diff-hl-mode t)
   (diff-hl-flydiff-mode)
-  (setq diff-hl-draw-borders nil))
+  (diff-hl-margin-mode)
+  (setq diff-hl-draw-borders nil
+        diff-hl-side 'right))
 
 ;; gitignore
 ;; https://github.com/syohex/emacs-gitignore
