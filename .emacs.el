@@ -387,7 +387,9 @@
 ;; paradox
 (use-package paradox
   :defer t
-  :config (setq paradox-execute-asynchronously t))
+  :config
+  (setq paradox-github-token t)
+  (setq paradox-execute-asynchronously t))
 
 ;; undo-tree
 (use-package undo-tree
@@ -487,6 +489,23 @@
 ;; https://github.com/magit/git-modes
 (use-package gitignore-mode
   :defer t)
+
+;; diff-hl
+;; https://github.com/dgutov/diff-hl
+(use-package diff-hl
+  :defer 1
+  :hook (magit-post-refresh . diff-hl-magit-post-refresh)
+  :config
+  (global-diff-hl-mode t)
+  (diff-hl-flydiff-mode)
+  (diff-hl-margin-mode)
+  (setq diff-hl-draw-borders nil
+        diff-hl-side 'right)
+  :custom-face
+  (diff-hl-margin-change ((t (:inherit diff-hl-change :foreground "black" :slant normal))))
+  (diff-hl-margin-delete ((t (:inherit diff-hl-delete :foreground "black"))))
+  (diff-hl-margin-ignored ((t (:inherit dired-ignored :foreground "black"))))
+  (diff-hl-margin-insert ((t (:inherit diff-hl-insert :foreground "black")))))
 
 ;; gitignore
 ;; https://github.com/syohex/emacs-gitignore
@@ -746,6 +765,29 @@
   :config
   (shackle-mode)
   (setq shackle-rules '((help-mode :select t))))
+
+;; calendar
+(use-package calendar
+  :defer t
+  :config
+  (setq calendar-week-start-day 1
+        holiday-general-holidays
+        '((holiday-fixed 1 1 "Capodanno")
+          (holiday-fixed 5 1 "1 Maggio")
+          (holiday-fixed 4 25 "Liberazione")
+          (holiday-fixed 6 2 "Festa Repubblica"))
+        holiday-christian-holidays
+        '((holiday-fixed 12 8 "Immacolata Concezione")
+          (holiday-fixed 12 25 "Natale")
+          (holiday-fixed 12 26 "Santo Stefano")
+          (holiday-fixed 1 6 "Epifania")
+          (holiday-easter-etc -52 "Giovedì grasso")
+          (holiday-easter-etc -47 "Martedì grasso")
+          (holiday-easter-etc  -2 "Venerdì Santo")
+          (holiday-easter-etc   0 "Pasqua")
+          (holiday-easter-etc  +1 "Lunedì Pasqua")
+          (holiday-fixed 8 15 "Assunzione di Maria")
+          (holiday-fixed 11 1 "Ognissanti"))))
 
 ;;
 ;; Languages configurations
