@@ -488,6 +488,16 @@
 (use-package gitignore-mode
   :defer t)
 
+;; diff-hl
+;; https://github.com/dgutov/diff-hl
+(use-package diff-hl
+  :defer 1
+  :hook (magit-post-refresh-hook . diff-hl-magit-post-refresh)
+  :config
+  (global-diff-hl-mode t)
+  (diff-hl-flydiff-mode)
+  (setq diff-hl-draw-borders nil))
+
 ;; gitignore
 ;; https://github.com/syohex/emacs-gitignore
 (autoload 'gitignore "~/build/emacs-gitignore/gitignore.el" "Generate .gitignore file by using gitignore.io API" t nil)
