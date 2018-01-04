@@ -523,7 +523,8 @@
   ("C-c c" . mc/mark-all-dwim)
   ("M-<down-mouse-1>" . mc/add-cursor-on-click)
   ("C-c o c" . my-create-fake-cursor-at-point)
-  ("C-c o m" . multiple-cursors-mode))
+  ("C-c o m" . multiple-cursors-mode)
+  :custom-face (mc/cursor-face ((t (:inherit cursor :foreground "black")))))
 
 ;; highlight-symbol
 ;; https://github.com/nschum/highlight-symbol.el
