@@ -14,7 +14,7 @@ binutils
 bison
 blueman
 bluez
-bluez-utils
+bluez-utils-compat
 brandr
 bzip2
 caja

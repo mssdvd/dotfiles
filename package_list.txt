@@ -33,7 +33,7 @@ blas
 blueman
 bluez
 bluez-libs
-bluez-utils
+bluez-utils-compat
 boost-libs
 brandr
 btrfs-progs
