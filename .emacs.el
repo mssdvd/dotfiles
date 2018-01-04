@@ -299,6 +299,11 @@
 (use-package ivy-hydra
   :defer t)
 
+;; wgrep
+;; https://github.com/mhayashi1120/Emacs-wgrep
+(use-package wgrep
+  :defer t)
+
 ;; avy
 ;; https://github.com/abo-abo/avy
 (use-package avy
