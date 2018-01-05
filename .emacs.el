@@ -558,11 +558,6 @@
 (use-package all-the-icons
   :defer t)
 
-;; all the icons dired
-;; https://github.com/jtbm37/all-the-icons-dired
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
-
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
