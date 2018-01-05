@@ -277,7 +277,7 @@
   :config
   (counsel-mode 1)
   (if (executable-find "rg")
-	  (setq  counsel-grep-base-command "rg -i --no-heading --line-number --color never -- %s %s")
+	  (setq  counsel-grep-base-command "rg -S --no-heading --line-number --color never -- %s %s")
 	(setq counsel-grep-base-command "grep -nEi '%s' %s"))
   (setq counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
@@ -297,6 +297,11 @@
 ;; ivy-hydra
 ;; https://github.com/abo-abo/swiper
 (use-package ivy-hydra
+  :defer t)
+
+;; wgrep
+;; https://github.com/mhayashi1120/Emacs-wgrep
+(use-package wgrep
   :defer t)
 
 ;; avy
@@ -552,11 +557,6 @@
 ;; M-x all-the-icons-install-fonts
 (use-package all-the-icons
   :defer t)
-
-;; all the icons dired
-;; https://github.com/jtbm37/all-the-icons-dired
-(use-package all-the-icons-dired
-  :hook (dired-mode . all-the-icons-dired-mode))
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
