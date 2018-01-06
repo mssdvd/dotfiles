@@ -547,6 +547,11 @@
   :defer 1
   :config (yas-global-mode 1))
 
+;; yasnippet-snippets
+;; https://github.com/AndreaCrotti/yasnippet-snippets
+(use-package yasnippet-snippets
+  :defer t)
+
 ;; auto-yasnippet
 ;; https://github.com/abo-abo/auto-yasnippet
 (use-package auto-yasnippet
