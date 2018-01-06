@@ -1,4 +1,4 @@
-rofi.font:                           Iosevka Regular 14
+rofi.font:                           Iosevka Slab Regular 14
 rofi.auto-select:                    true
 rofi.separator-style:                solid
 rofi.theme:                          solarized_alternate
