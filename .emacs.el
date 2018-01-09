@@ -177,30 +177,6 @@
 (bind-key "S-<insert>" #'yank-primary)
 
 ;;;;
-;; Hydra
-;;;;
-
-(defhydra hydra-flycheck
-  (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
-		:post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
-		:hint nil)
-  "Errors"
-  ("f"  flycheck-error-list-set-filter  "Filter")
-  ("n"  flycheck-next-error             "Next")
-  ("p"  flycheck-previous-error         "Previous")
-  ("q"  nil                             "Quit"))
-(bind-key "C-c ! !" #'hydra-flycheck/body)
-
-(defhydra hydra-navigate ()
-  "Navigate"
-  ("h" backward-char "←")
-  ("j" next-line     "↓")
-  ("k" previous-line "↑")
-  ("l" forward-char  "→")
-  ("q" nil           "Quit"))
-(bind-key "C-c n" #'hydra-navigate/body)
-
-;;;;
 ;; use-package
 ;;;;
 
@@ -294,10 +270,24 @@
   ("C-s" . counsel-grep-or-swiper)
   ("C-c s" . swiper-all))
 
+;; hydra
+;; https://github.com/abo-abo/hydra
+(use-package hydra
+  :bind
+  ("C-c n" . hydra-navigate/body)
+  :config
+  (defhydra hydra-navigate ()
+    "Navigate"
+    ("h" backward-char "←")
+    ("j" next-line     "↓")
+    ("k" previous-line "↑")
+    ("l" forward-char  "→")
+    ("q" nil           "Quit")))
+
 ;; ivy-hydra
 ;; https://github.com/abo-abo/swiper
 (use-package ivy-hydra
-  :defer t)
+  :after (ivy))
 
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
@@ -346,9 +336,20 @@
 ;; Dep flake8, clang, tidy, csslint
 (use-package flycheck
   :defer 1
+  :bind
+  (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
   :config
   (global-flycheck-mode)
-  (setq flycheck-global-modes '(not org-mode)))
+  (setq flycheck-global-modes '(not org-mode))
+  (defhydra hydra-flycheck
+    (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
+          :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
+          :hint nil)
+    "Errors"
+    ("f"  flycheck-error-list-set-filter  "Filter")
+    ("n"  flycheck-next-error             "Next")
+    ("p"  flycheck-previous-error         "Previous")
+    ("q"  nil                             "Quit")))
 
 ;; flycheck-pos-tip
 (use-package flycheck-pos-tip
