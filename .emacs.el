@@ -311,6 +311,12 @@
   :after (flycheck)
   :config (avy-flycheck-setup))
 
+;; ace-link
+;; https://github.com/abo-abo/ace-link
+(use-package ace-link
+  :defer 1
+  :config (ace-link-setup-default))
+
 ;; ace-window
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
