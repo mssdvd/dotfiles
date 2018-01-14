@@ -482,6 +482,7 @@
   :bind ("C-c g" . magit-status)
   :config
   (setq magit-diff-refine-hunk 'all
+        magit-delete-by-moving-to-trash nil
 		magit-repository-directories
 		'(("~/Documents/school" . 0)
 		  ("~/Documents/dotfiles" . 0))))
