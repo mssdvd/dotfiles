@@ -470,12 +470,6 @@
   :after (counsel projectile)
   :config (counsel-projectile-mode))
 
-;; smart-tabs-mode
-;; http://github.com/jcsalomon/smarttabs
-(use-package smart-tabs-mode
-  :defer 1
-  :config (smart-tabs-insinuate 'c 'c++ 'javascript 'java))
-
 ;; magit
 ;; https://magit.vc
 (use-package magit
