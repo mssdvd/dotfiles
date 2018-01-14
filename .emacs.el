@@ -470,21 +470,17 @@
   :after (counsel projectile)
   :config (counsel-projectile-mode))
 
-;; smart-tabs-mode
-;; http://github.com/jcsalomon/smarttabs
-(use-package smart-tabs-mode
-  :defer 1
-  :config (smart-tabs-insinuate 'c 'c++ 'javascript 'java))
-
 ;; magit
 ;; https://magit.vc
 (use-package magit
   :bind ("C-c g" . magit-status)
   :config
   (setq magit-diff-refine-hunk 'all
+        magit-delete-by-moving-to-trash nil
 		magit-repository-directories
 		'(("~/Documents/school" . 0)
-		  ("~/Documents/dotfiles" . 0))))
+		  ("~/Documents/dotfiles" . 0))
+        vc-handled-backends (delq 'Git vc-handled-backends)))
 
 ;; magithub
 ;; https://github.com/vermiculus/magithub
