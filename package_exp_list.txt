@@ -49,6 +49,7 @@ filesystem
 findutils
 fish
 flake8
+flameshot
 flatpak
 flex
 fltk
@@ -93,7 +94,6 @@ libreoffice-fresh
 libtool
 libva-utils
 libva-vdpau-driver
-libvirt
 licenses
 lightdm
 lightdm-gtk-greeter-settings
@@ -194,6 +194,7 @@ termite
 texinfo
 thefuck
 tidy
+tldr
 tokei
 traceroute
 trash-cli
@@ -276,6 +277,7 @@ xorg-xkbutils
 xorg-xkill
 xorg-xlsatoms
 xorg-xlsclients
+xorg-xmag
 xorg-xmodmap
 xorg-xpr
 xorg-xprop

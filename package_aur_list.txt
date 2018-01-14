@@ -3,6 +3,7 @@ bluez-utils-compat
 brandr
 clipster
 discord
+flameshot
 google-chrome
 grabc
 greenclip

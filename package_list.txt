@@ -10,6 +10,7 @@ android-tools
 appstream-glib
 archlinux-appstream-data
 archlinux-keyring
+argon2
 asp
 at-spi2-atk
 at-spi2-core
@@ -17,7 +18,6 @@ atk
 atkmm
 atool
 attr
-augeas
 aurvote
 autoconf
 automake
@@ -50,7 +50,6 @@ caja
 cantarell-fonts
 cblas
 celt0.5.1
-ceph-libs
 chromium
 cifs-utils
 clang
@@ -111,6 +110,7 @@ fish
 fixesproto
 flac
 flake8
+flameshot
 flatpak
 flex
 fltk
@@ -168,7 +168,6 @@ gnutls
 gobject-introspection-runtime
 google-chrome
 gparted
-gperftools
 gpgme
 gpm
 gptfdisk
@@ -258,7 +257,6 @@ lcms2
 ldb
 ldns
 less
-leveldb
 libabw
 libaio
 libarchive
@@ -416,7 +414,6 @@ libva
 libva-utils
 libva-vdpau-driver
 libvdpau
-libvirt
 libvisio
 libvorbis
 libvpx
@@ -517,7 +514,6 @@ ncurses
 neofetch
 neon
 net-snmp
-netcf
 netctl
 nethogs
 nettle
@@ -688,6 +684,7 @@ python-setuptools
 python-sip
 python-six
 python-stevedore
+python-termcolor
 python-traitlets
 python-urllib3
 python-virtualenv
@@ -806,6 +803,7 @@ thefuck
 thin-provisioning-tools
 tidy
 tk
+tldr
 tokei
 traceroute
 trash-cli
@@ -944,6 +942,7 @@ xorg-xkbutils
 xorg-xkill
 xorg-xlsatoms
 xorg-xlsclients
+xorg-xmag
 xorg-xmodmap
 xorg-xpr
 xorg-xprop
