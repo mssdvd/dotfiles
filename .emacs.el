@@ -193,7 +193,6 @@
 (use-package kaolin-themes
   :config (load-theme 'kaolin-galaxy t)
   :custom-face
-  (tooltip ((t (:background "#4e4e4e" :foreground "white"))))
   (font-lock-comment-delimiter-face ((t (:slant italic))))
   (font-lock-comment-face ((t (:slant italic)))))
 
