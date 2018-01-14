@@ -940,6 +940,12 @@
 (use-package py-isort
   :hook (before-save . py-isort-before-save))
 
+;; emacs-traad
+;; https://github.com/abingham/emacs-traad
+;; M-x traad-install-server
+(use-package traad
+  :defer t)
+
 ;; C & C++
 
 ;; irony-mode
