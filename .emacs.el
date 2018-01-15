@@ -369,7 +369,7 @@
   :config
   (recentf-mode)
   (setq recentf-max-menu-items 25
-		recentf-max-saved-items 150))
+		recentf-max-saved-items 500))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
