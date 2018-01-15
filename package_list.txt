@@ -36,6 +36,7 @@ bluez-libs
 bluez-utils-compat
 boost-libs
 brandr
+breeze-icons
 btrfs-progs
 bubblewrap
 bzip2
@@ -484,7 +485,6 @@ lsof
 lua
 lua52
 lvm2
-lxappearance
 lxsession-gtk3
 lz4
 lzo
