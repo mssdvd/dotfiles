@@ -811,6 +811,15 @@ Repeated invocations toggle between the two most recently open buffers."
           (holiday-fixed 8 15 "Assunzione di Maria")
           (holiday-fixed 11 1 "Ognissanti"))))
 
+;; helpful
+;; https://github.com/wilfred/helpful
+(use-package helpful
+  :bind
+  ("C-h f" . helpful-callable)
+  ("C-h v" . helpful-variable)
+  ("C-h k" . helpful-key)
+  (:map lisp-mode-map ("C-c C-d" . helpful-at-point)))
+
 ;;
 ;; Languages configurations
 ;;
