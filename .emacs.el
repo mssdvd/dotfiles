@@ -346,11 +346,11 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; flycheck
 ;; http://www.flycheck.org
-;; Dep flake8, clang, tidy, csslint
+;; Dep pylint, clang, tidy, csslint
 (use-package flycheck
   :defer 1
-  :bind
-  (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
+  :bind (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
+  :hook (python-mode . (lambda () (setq-local flycheck-checker 'python-pylint)))
   :config
   (global-flycheck-mode)
   (setq flycheck-global-modes '(not org-mode))
