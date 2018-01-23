@@ -350,10 +350,10 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package flycheck
   :defer 1
   :bind (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
-  :hook (python-mode . (lambda () (setq-local flycheck-checker 'python-pylint)))
   :config
   (global-flycheck-mode)
-  (setq flycheck-global-modes '(not org-mode))
+  (setq-default flycheck-global-modes '(not org-mode)
+                flycheck-disabled-checkers '(python-flake8))
   (defhydra hydra-flycheck
     (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
           :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
