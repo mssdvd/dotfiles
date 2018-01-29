@@ -240,8 +240,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (setq ivy-use-virtual-buffers t
 		enable-recursive-minibuffers t
 		ivy-count-format "(%d/%d) "
-		ivy-use-selectable-prompt t)
-  :custom-face (ivy-cursor ((t (:inherit cursor)))))
+		ivy-use-selectable-prompt t))
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
