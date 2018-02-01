@@ -463,6 +463,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
   :defer 1
+  :init (setq projectile-keymap-prefix (kbd "<menu>"))
   :config
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
