@@ -843,7 +843,9 @@ Repeated invocations toggle between the two most recently open buffers."
   ("\\.eco\\'"        . web-mode)
   ("\\.ejs\\'"        . web-mode)
   ("\\.djhtml\\'"     . web-mode)
-  :config (flycheck-add-mode 'html-tidy 'web-mode))
+  :config
+  (require 'flycheck)
+  (flycheck-add-mode 'html-tidy 'web-mode))
 
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
