@@ -827,6 +827,13 @@ Repeated invocations toggle between the two most recently open buffers."
   ("C-h k" . helpful-key)
   (:map emacs-lisp-mode-map ("C-c C-d" . helpful-at-point)))
 
+;; which-func
+(use-package which-func
+  :defer 1
+  :config
+  (which-function-mode)
+  (setq which-func-modes '(c-mode c++-mode java-mode org-mode python-mode)))
+
 ;;
 ;; Languages configurations
 ;;
