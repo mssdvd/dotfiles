@@ -124,7 +124,7 @@
 ;; My functions
 ;;;;
 
-(defun my-create-fake-cursor-at-point ()
+(defun create-fake-cursor-at-point ()
   "Create fake cursor at point whith the keyboard."
   (interactive)
   (require 'multiple-cursors)
@@ -137,7 +137,7 @@
 			(goto-char (point))
 			(mc/create-fake-cursor-at-point))))))
 
-(defun my-copy-line ()
+(defun copy-line ()
   "Copy current line."
   (interactive)
   (save-excursion
@@ -146,7 +146,7 @@
      (point)
      (line-end-position)))
   (message "1 line copied"))
-(bind-key "C-c k" #'my-copy-line)
+(bind-key "C-c k" #'copy-line)
 
 (defun switch-highlight-indent-guides-and-whitespace-modes ()
   "Switch between highlight-indent-guides and whitespace modes."
@@ -538,7 +538,7 @@ Repeated invocations toggle between the two most recently open buffers."
   ("C-M-<" . mc/skip-to-previous-like-this)
   ("C-c c" . mc/mark-all-dwim)
   ("M-<down-mouse-1>" . mc/add-cursor-on-click)
-  ("C-c o c" . my-create-fake-cursor-at-point)
+  ("C-c o c" . create-fake-cursor-at-point)
   ("C-c o m" . multiple-cursors-mode)
   :custom-face (mc/cursor-face ((t (:inherit cursor :foreground "black")))))
 
