@@ -3,6 +3,7 @@ adobe-source-sans-pro-fonts
 adobe-source-serif-pro-fonts
 alsa-utils
 android-tools
+apache
 asp
 aurvote
 autoconf
@@ -22,7 +23,6 @@ caja
 cantarell-fonts
 chromium
 clang
-clipster
 cmake
 compton
 cool-retro-term
@@ -41,7 +41,7 @@ emacs
 evince
 exfat-utils
 fakeroot
-fd-rs
+fd
 feh
 figlet
 file
@@ -51,7 +51,6 @@ findutils
 fish
 flake8
 flameshot
-flatpak
 flex
 fltk
 fzf
@@ -61,8 +60,10 @@ geogebra
 gettext
 gimp
 git
+glances
 glibc
 gnome-disk-utility
+gnome-mines
 gnome-screenshot
 gnome-system-monitor
 gnome-themes-standard
@@ -100,7 +101,6 @@ lightdm
 lightdm-gtk-greeter-settings
 links
 linux
-linux-headers
 logrotate
 lsof
 lvm2
@@ -109,17 +109,20 @@ m4
 make
 man-db
 man-pages
+mariadb
 mdadm
 mesa-demos
 mg
 mlocate
 mpv
+mypy
 nano
 neofetch
 netctl
 nethogs
 network-manager-applet
 ninja
+nmap
 nodejs
 nomacs
 noto-fonts
@@ -132,6 +135,7 @@ nvidia-settings
 nvidia-utils
 odt2txt
 openssh
+otf-font-awesome
 pacman
 pamac-aur
 pass
@@ -143,6 +147,8 @@ pcmciautils
 perl
 perl-file-mimeinfo
 php
+php-apache
+phpmyadmin
 pkg-config
 pkgfile
 platformio
@@ -158,6 +164,8 @@ python-ipdb
 python-isort
 python-pip
 python-pipenv
+python-pylint
+python-pyserial
 python-xdg
 python2-setuptools
 qalculate-gtk
@@ -175,7 +183,6 @@ rofi
 rsync
 rtags
 s-nail
-screen
 scrot
 sed
 shadow
@@ -206,7 +213,6 @@ ttf-carlito
 ttf-croscore
 ttf-dejavu
 ttf-droid
-ttf-font-awesome
 ttf-freefont
 ttf-hack
 ttf-inconsolata
@@ -231,6 +237,7 @@ virtualbox-host-modules-arch
 wget
 which
 wireshark-qt
+wmctrl
 wpa_supplicant
 xdg-user-dirs
 xdg-utils

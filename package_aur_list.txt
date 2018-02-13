@@ -1,7 +1,6 @@
 aurvote
 bluez-utils-compat
 brandr
-clipster
 discord
 flameshot
 google-chrome
@@ -9,6 +8,7 @@ grabc
 greenclip
 libc++
 libc++abi
+mypy
 neofetch
 pamac-aur
 pasystray-git
@@ -18,6 +18,7 @@ python-enzyme
 python-guessit
 python-rarfile
 python-rebulk
+python-typed-ast
 python2-click-5.1
 rtags
 spotify
