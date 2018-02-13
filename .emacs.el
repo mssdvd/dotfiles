@@ -814,7 +814,7 @@ Repeated invocations toggle between the two most recently open buffers."
   ("C-h f" . helpful-callable)
   ("C-h v" . helpful-variable)
   ("C-h k" . helpful-key)
-  (:map lisp-mode-map ("C-c C-d" . helpful-at-point)))
+  (:map emacs-lisp-mode-map ("C-c C-d" . helpful-at-point)))
 
 ;;
 ;; Languages configurations
