@@ -659,7 +659,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
-  :bind ("C-c t" . terminal-here-launch)
+  :bind
+  ("C-c t" . terminal-here-launch)
+  ("C-c e" . terminal-here-project-launch)
   :config (setq terminal-here-terminal-command '("termite")))
 
 ;; sudo-edit
