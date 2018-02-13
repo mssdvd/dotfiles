@@ -351,8 +351,19 @@ Repeated invocations toggle between the two most recently open buffers."
   :bind (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
   :config
   (global-flycheck-mode)
-  (setq-default flycheck-global-modes '(not org-mode)
-                flycheck-disabled-checkers '(python-flake8))
+  (setq-default flycheck-global-modes '(not org-mode))
+  (flycheck-define-checker
+      python-mypy ""
+      :command ("mypy"
+                "--ignore-missing-imports" "--fast-parser"
+                "--python-version" "3.6"
+                source-original)
+      :error-patterns
+      ((error line-start (file-name) ":" line ": error:" (message) line-end))
+      :modes python-mode)
+  (add-to-list 'flycheck-checkers 'python-mypy t)
+  (flycheck-add-next-checker 'python-flake8 'python-mypy t)
+  ;; hydra
   (defhydra hydra-flycheck
     (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
           :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
