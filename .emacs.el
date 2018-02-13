@@ -466,6 +466,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :config
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
+  (add-to-list 'projectile-project-root-files "Pipfile")
   (setq projectile-completion-system 'ivy
 		projectile-enable-caching t
 		projectile-files-cache-expire 2592000))
@@ -959,6 +960,12 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; M-x traad-install-server
 (use-package traad
   :defer t)
+
+;; pipenv.el
+;; https://github.com/pwalsh/pipenv.el
+;; Dep pipenv
+(use-package pipenv
+  :hook (python-mode . pipenv-mode))
 
 ;; C & C++
 
