@@ -205,8 +205,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; neotree
 (use-package neotree
-  :bind ([f8] . neotree-toggle)
-  :config (setq neo-theme 'icons))
+  :bind ([f8] . neotree-toggle))
 
 ;; smartparens
 ;; https://github.com/Fuco1/smartparens
@@ -566,12 +565,6 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; auto-yasnippet
 ;; https://github.com/abo-abo/auto-yasnippet
 (use-package auto-yasnippet
-  :defer t)
-
-;; all the icons
-;; https://github.com/domtronn/all-the-icons.el
-;; M-x all-the-icons-install-fonts
-(use-package all-the-icons
   :defer t)
 
 ;; which-key
