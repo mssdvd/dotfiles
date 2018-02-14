@@ -124,7 +124,7 @@
 ;; My functions
 ;;;;
 
-(defun my-create-fake-cursor-at-point ()
+(defun create-fake-cursor-at-point ()
   "Create fake cursor at point whith the keyboard."
   (interactive)
   (require 'multiple-cursors)
@@ -137,7 +137,7 @@
 			(goto-char (point))
 			(mc/create-fake-cursor-at-point))))))
 
-(defun my-copy-line ()
+(defun copy-line ()
   "Copy current line."
   (interactive)
   (save-excursion
@@ -146,7 +146,7 @@
      (point)
      (line-end-position)))
   (message "1 line copied"))
-(bind-key "C-c k" #'my-copy-line)
+(bind-key "C-c k" #'copy-line)
 
 (defun switch-highlight-indent-guides-and-whitespace-modes ()
   "Switch between highlight-indent-guides and whitespace modes."
@@ -205,8 +205,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; neotree
 (use-package neotree
-  :bind ([f8] . neotree-toggle)
-  :config (setq neo-theme 'icons))
+  :bind ([f8] . neotree-toggle))
 
 ;; smartparens
 ;; https://github.com/Fuco1/smartparens
@@ -240,8 +239,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (setq ivy-use-virtual-buffers t
 		enable-recursive-minibuffers t
 		ivy-count-format "(%d/%d) "
-		ivy-use-selectable-prompt t)
-  :custom-face (ivy-cursor ((t (:inherit cursor)))))
+		ivy-use-selectable-prompt t))
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
@@ -262,7 +260,8 @@ Repeated invocations toggle between the two most recently open buffers."
   (if (executable-find "rg")
 	  (setq  counsel-grep-base-command "rg -S --no-heading --line-number --color never -- %s %s")
 	(setq counsel-grep-base-command "grep -nEi '%s' %s"))
-  (setq counsel-find-file-ignore-regexp "\\`\\.")
+  (setq counsel-find-file-ignore-regexp "\\`\\."
+        counsel-rg-base-command "rg -S --hidden --no-heading --line-number --color never %s .")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
@@ -352,8 +351,19 @@ Repeated invocations toggle between the two most recently open buffers."
   :bind (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
   :config
   (global-flycheck-mode)
-  (setq-default flycheck-global-modes '(not org-mode)
-                flycheck-disabled-checkers '(python-flake8))
+  (setq-default flycheck-global-modes '(not org-mode))
+  (flycheck-define-checker
+      python-mypy ""
+      :command ("mypy"
+                "--ignore-missing-imports" "--fast-parser"
+                "--python-version" "3.6"
+                source-original)
+      :error-patterns
+      ((error line-start (file-name) ":" line ": error:" (message) line-end))
+      :modes python-mode)
+  (add-to-list 'flycheck-checkers 'python-mypy t)
+  (flycheck-add-next-checker 'python-flake8 'python-mypy t)
+  ;; hydra
   (defhydra hydra-flycheck
     (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
           :post (progn (setq hydra-lv nil) (quit-windows-on "*Flycheck errors*"))
@@ -463,12 +473,13 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
   :defer 1
+  :init (setq projectile-keymap-prefix (kbd "<menu>"))
   :config
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
+  (add-to-list 'projectile-project-root-files "Pipfile")
   (setq projectile-completion-system 'ivy
 		projectile-enable-caching t
-		projectile-track-known-projects-automatically nil
 		projectile-files-cache-expire 2592000))
 
 ;; counsel-projectile
@@ -537,7 +548,7 @@ Repeated invocations toggle between the two most recently open buffers."
   ("C-M-<" . mc/skip-to-previous-like-this)
   ("C-c c" . mc/mark-all-dwim)
   ("M-<down-mouse-1>" . mc/add-cursor-on-click)
-  ("C-c o c" . my-create-fake-cursor-at-point)
+  ("C-c o c" . create-fake-cursor-at-point)
   ("C-c o m" . multiple-cursors-mode)
   :custom-face (mc/cursor-face ((t (:inherit cursor :foreground "black")))))
 
@@ -565,12 +576,6 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; auto-yasnippet
 ;; https://github.com/abo-abo/auto-yasnippet
 (use-package auto-yasnippet
-  :defer t)
-
-;; all the icons
-;; https://github.com/domtronn/all-the-icons.el
-;; M-x all-the-icons-install-fonts
-(use-package all-the-icons
   :defer t)
 
 ;; which-key
@@ -665,7 +670,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
-  :bind ("C-c t" . terminal-here-launch)
+  :bind
+  ("C-c t" . terminal-here-launch)
+  ("C-c e" . terminal-here-project-launch)
   :config (setq terminal-here-terminal-command '("termite")))
 
 ;; sudo-edit
@@ -818,7 +825,14 @@ Repeated invocations toggle between the two most recently open buffers."
   ("C-h f" . helpful-callable)
   ("C-h v" . helpful-variable)
   ("C-h k" . helpful-key)
-  (:map lisp-mode-map ("C-c C-d" . helpful-at-point)))
+  (:map emacs-lisp-mode-map ("C-c C-d" . helpful-at-point)))
+
+;; which-func
+(use-package which-func
+  :defer 1
+  :config
+  (which-function-mode)
+  (setq which-func-modes '(c-mode c++-mode java-mode org-mode python-mode)))
 
 ;;
 ;; Languages configurations
@@ -847,7 +861,9 @@ Repeated invocations toggle between the two most recently open buffers."
   ("\\.eco\\'"        . web-mode)
   ("\\.ejs\\'"        . web-mode)
   ("\\.djhtml\\'"     . web-mode)
-  :config (flycheck-add-mode 'html-tidy 'web-mode))
+  :config
+  (require 'flycheck)
+  (flycheck-add-mode 'html-tidy 'web-mode))
 
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
@@ -962,6 +978,12 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; M-x traad-install-server
 (use-package traad
   :defer t)
+
+;; pipenv.el
+;; https://github.com/pwalsh/pipenv.el
+;; Dep pipenv
+(use-package pipenv
+  :hook (python-mode . pipenv-mode))
 
 ;; C & C++
 
