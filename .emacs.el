@@ -220,7 +220,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
 																									("* ||\n[i]""RET")))
 
-  (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(rust-mode c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
     "Open a new brace or bracket expression, with relevant newlines and indent. "
     (newline)
@@ -837,6 +837,27 @@ Repeated invocations toggle between the two most recently open buffers."
 ;;
 ;; Languages configurations
 ;;
+
+;; Rust
+
+;; rust-mode
+;; https://github.com/rust-lang/rust-mode
+(use-package rust-mode
+  :mode ("\\.rs\\'" . rust-mode))
+
+;; flycheck-rust
+;; https://github.com/flycheck/flycheck-rust
+(use-package flycheck-rust
+  :hook (flycheck-mode . flycheck-rust-setup))
+
+;; racer
+;; https://github.com/racer-rust/emacs-racer
+(use-package racer
+  :delight
+  :hook
+  (rust-mode . racer-mode)
+  (racer-mode . eldoc-mode)
+  :config (setq racer-rust-src-path nil))
 
 ;; Web
 
