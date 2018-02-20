@@ -799,10 +799,12 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; shackle
 ;; https://github.com/wasamasa/shackle
 (use-package shackle
+  :disabled
   :defer 1
   :config
   (shackle-mode)
-  (setq shackle-rules '((help-mode :select t))))
+  (setq shackle-rules '((help-mode :select t)
+                        (compilation-mode :select t :popup t))))
 
 ;; calendar
 (use-package calendar
