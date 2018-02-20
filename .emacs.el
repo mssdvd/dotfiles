@@ -1094,8 +1094,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; flycheck-clag-analyzer
 ;; https://github.com/alexmurray/flycheck-clang-analyzer
 (use-package flycheck-clang-analyzer
-  :after (flycheck irony)
-  :defer t
+  :after (flycheck)
   :config (flycheck-clang-analyzer-setup))
 
 ;; cmake-ide
