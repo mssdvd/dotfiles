@@ -849,7 +849,11 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/m2ym/popwin-el
 (use-package popwin
   :defer 1
-  :config (popwin-mode 1))
+  :config
+  (popwin-mode 1)
+  (push "*Racer Help*" popwin:special-display-config)
+  (push '(cargo-process-mode :noselect t) popwin:special-display-config)
+  (setq popwin:popup-window-height 20))
 
 ;;
 ;; Languages configurations
