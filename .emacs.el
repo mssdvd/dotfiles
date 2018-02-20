@@ -539,6 +539,11 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/syohex/emacs-gitignore
 (autoload 'gitignore "~/build/emacs-gitignore/gitignore.el" "Generate .gitignore file by using gitignore.io API" t nil)
 
+;; git-timemachine
+;; https://github.com/pidu/git-timemachine
+(use-package git-timemachine
+  :defer t)
+
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el
 (use-package multiple-cursors
