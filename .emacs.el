@@ -1031,6 +1031,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; Dep cmake, clang
 (use-package irony
   :delight
+  :mode ("\\.ino\\'" . c++-mode)
   :hook
   ((c-mode c++-mode) . irony-mode)
   :config
