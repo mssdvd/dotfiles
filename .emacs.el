@@ -1046,9 +1046,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
 (use-package flycheck-irony
-  :after (flycheck irony)
-  :defer t
-  :config (add-to-list 'flycheck-checkers 'irony))
+  :hook (flycheck-mode . flycheck-irony-setup))
 
 ;; company-irony
 ;; https://github.com/Sarcasm/company-irony
