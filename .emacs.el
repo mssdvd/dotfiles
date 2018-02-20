@@ -432,6 +432,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; smooth-scrolling
 ;; https://github.com/aspiers/smooth-scrolling
 (use-package smooth-scrolling
+  :disabled
   :defer 1
   :config (smooth-scrolling-mode 1))
 
