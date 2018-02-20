@@ -843,6 +843,12 @@ Repeated invocations toggle between the two most recently open buffers."
   (which-function-mode)
   (setq which-func-modes '(c-mode c++-mode java-mode org-mode python-mode)))
 
+;; popwin-el
+;; https://github.com/m2ym/popwin-el
+(use-package popwin
+  :defer 1
+  :config (popwin-mode 1))
+
 ;;
 ;; Languages configurations
 ;;
