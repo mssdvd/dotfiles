@@ -599,7 +599,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; Dep platformIO-core
 (use-package platformio-mode
   :delight
-  :hook (c-mode c++-mode))
+  :hook (c-mode c++-mode)
+  :config
+  (irony-cdb-autosetup-compile-options))
 
 ;; autorevert
 (use-package autorevert
