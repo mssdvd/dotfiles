@@ -1068,6 +1068,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; rtags
 ;; https://github.com/Andersbakken/rtags
 (use-package rtags
+  :disabled
   :after (irony)
   :config
   ;; (setq rtags-completions-enabled t)
