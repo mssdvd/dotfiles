@@ -442,7 +442,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :delight
   :defer 1
   :bind
-  ([(M-tab)]. company-complete)
+  ([remap indent-for-tab-command] . company-indent-or-complete-common)
   ("C-c y" . company-yasnippet)
   :config
   (global-company-mode)
