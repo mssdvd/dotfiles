@@ -447,6 +447,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :config
   (global-company-mode)
   (setq company-tooltip-align-annotations t))
+  (company-tng-configure-default)
 
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
