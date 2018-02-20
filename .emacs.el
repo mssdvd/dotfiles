@@ -198,10 +198,9 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; kaolin
 (use-package kaolin-themes
-  :config (load-theme 'kaolin-galaxy t)
-  :custom-face
-  (font-lock-comment-delimiter-face ((t (:slant italic))))
-  (font-lock-comment-face ((t (:slant italic)))))
+  :config
+  (setq kaolin-italic-comments t)
+  (load-theme 'kaolin-galaxy t))
 
 ;; neotree
 (use-package neotree
