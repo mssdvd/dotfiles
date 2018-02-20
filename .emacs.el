@@ -872,9 +872,8 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/racer-rust/emacs-racer
 (use-package racer
   :delight
-  :hook
-  (rust-mode . racer-mode)
-  (racer-mode . eldoc-mode)
+  :bind (:map racer-mode-map ("M-?" . racer-describe))
+  :hook (rust-mode . racer-mode)
   :config (setq racer-rust-src-path nil))
 
 ;; cargo
