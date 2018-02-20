@@ -860,7 +860,8 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; rust-mode
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
-  :mode ("\\.rs\\'" . rust-mode))
+  :mode ("\\.rs\\'" . rust-mode)
+  :config (setq rust-format-on-save t))
 
 ;; flycheck-rust
 ;; https://github.com/flycheck/flycheck-rust
