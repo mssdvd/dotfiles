@@ -877,6 +877,11 @@ Repeated invocations toggle between the two most recently open buffers."
   (racer-mode . eldoc-mode)
   :config (setq racer-rust-src-path nil))
 
+;; cargo
+;; https://github.com/kwrooijen/cargo.el
+(use-package cargo
+  :hook (rust-mode . cargo-minor-mode))
+
 ;; Web
 
 ;; web-mode
