@@ -443,6 +443,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :defer 1
   :bind
   ([remap indent-for-tab-command] . company-indent-or-complete-common)
+  (:map company-active-map ([tab] . company-complete-common-or-cycle))
   ("C-c y" . company-yasnippet)
   :config
   (global-company-mode)
