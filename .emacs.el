@@ -894,6 +894,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; cargo
 ;; https://github.com/kwrooijen/cargo.el
 (use-package cargo
+  :delight cargo-minor-mode
   :hook (rust-mode . cargo-minor-mode))
 
 ;; Web
