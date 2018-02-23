@@ -855,6 +855,16 @@ Repeated invocations toggle between the two most recently open buffers."
   (push '(cargo-process-mode :noselect t) popwin:special-display-config)
   (setq popwin:popup-window-height 20))
 
+;; spotify
+;; https://github.com/remvee/spotify-el
+(use-package spotify
+  :defer t)
+
+;; hackernews
+;; https://github.com/clarete/hackernews.el
+(use-package hackernews
+  :defer t)
+
 ;;
 ;; Languages configurations
 ;;
