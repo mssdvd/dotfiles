@@ -260,7 +260,7 @@ Repeated invocations toggle between the two most recently open buffers."
 	  (setq  counsel-grep-base-command "rg -S --no-heading --line-number --color never -- %s %s")
 	(setq counsel-grep-base-command "grep -nEi '%s' %s"))
   (setq counsel-find-file-ignore-regexp "\\`\\."
-        counsel-rg-base-command "rg -S --hidden --no-heading --line-number --color never %s .")
+        counsel-rg-base-command "rg -S -z --hidden --no-heading --line-number --color never %s .")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
