@@ -74,6 +74,9 @@ gpip() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
 
+# rust
+export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
+
 # fix vte bug
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh

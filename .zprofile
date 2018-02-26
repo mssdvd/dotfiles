@@ -1,2 +1,2 @@
 typeset -U path
-path=($path[@] ~/.local/bin ~/bin)
+path=(~/.cargo/bin $path[@] ~/.local/bin ~/bin)

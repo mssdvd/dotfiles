@@ -198,10 +198,9 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; kaolin
 (use-package kaolin-themes
-  :config (load-theme 'kaolin-galaxy t)
-  :custom-face
-  (font-lock-comment-delimiter-face ((t (:slant italic))))
-  (font-lock-comment-face ((t (:slant italic)))))
+  :config
+  (setq kaolin-italic-comments t)
+  (load-theme 'kaolin-galaxy t))
 
 ;; neotree
 (use-package neotree
@@ -220,7 +219,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
 																									("* ||\n[i]""RET")))
 
-  (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(rust-mode c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
     "Open a new brace or bracket expression, with relevant newlines and indent. "
     (newline)
@@ -261,7 +260,7 @@ Repeated invocations toggle between the two most recently open buffers."
 	  (setq  counsel-grep-base-command "rg -S --no-heading --line-number --color never -- %s %s")
 	(setq counsel-grep-base-command "grep -nEi '%s' %s"))
   (setq counsel-find-file-ignore-regexp "\\`\\."
-        counsel-rg-base-command "rg -S --hidden --no-heading --line-number --color never %s .")
+        counsel-rg-base-command "rg -S -z --hidden --no-heading --line-number --color never %s .")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
@@ -433,6 +432,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; smooth-scrolling
 ;; https://github.com/aspiers/smooth-scrolling
 (use-package smooth-scrolling
+  :disabled
   :defer 1
   :config (smooth-scrolling-mode 1))
 
@@ -442,10 +442,12 @@ Repeated invocations toggle between the two most recently open buffers."
   :delight
   :defer 1
   :bind
-  ([(M-tab)]. company-complete)
+  ([remap indent-for-tab-command] . company-indent-or-complete-common)
+  (:map company-active-map ([tab] . company-complete-common-or-cycle))
   ("C-c y" . company-yasnippet)
   :config
   (global-company-mode)
+  (company-tng-configure-default)
   (setq company-tooltip-align-annotations t))
 
 ;; company-quickhelp
@@ -537,6 +539,11 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/syohex/emacs-gitignore
 (autoload 'gitignore "~/build/emacs-gitignore/gitignore.el" "Generate .gitignore file by using gitignore.io API" t nil)
 
+;; git-timemachine
+;; https://github.com/pidu/git-timemachine
+(use-package git-timemachine
+  :defer t)
+
 ;; multiple-cursors
 ;; https://github.com/magnars/multiple-cursors.el
 (use-package multiple-cursors
@@ -592,7 +599,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; Dep platformIO-core
 (use-package platformio-mode
   :delight
-  :hook (c-mode c++-mode))
+  :hook (c-mode c++-mode)
+  :config
+  (irony-cdb-autosetup-compile-options))
 
 ;; autorevert
 (use-package autorevert
@@ -790,10 +799,12 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; shackle
 ;; https://github.com/wasamasa/shackle
 (use-package shackle
+  :disabled
   :defer 1
   :config
   (shackle-mode)
-  (setq shackle-rules '((help-mode :select t))))
+  (setq shackle-rules '((help-mode :select t)
+                        (compilation-mode :select t :popup t))))
 
 ;; calendar
 (use-package calendar
@@ -834,9 +845,56 @@ Repeated invocations toggle between the two most recently open buffers."
   (which-function-mode)
   (setq which-func-modes '(c-mode c++-mode java-mode org-mode python-mode)))
 
+;; popwin-el
+;; https://github.com/m2ym/popwin-el
+(use-package popwin
+  :defer 1
+  :config
+  (popwin-mode 1)
+  (push "*Racer Help*" popwin:special-display-config)
+  (push '(cargo-process-mode :noselect t) popwin:special-display-config)
+  (setq popwin:popup-window-height 20))
+
+;; spotify
+;; https://github.com/remvee/spotify-el
+(use-package spotify
+  :defer t)
+
+;; hackernews
+;; https://github.com/clarete/hackernews.el
+(use-package hackernews
+  :defer t)
+
 ;;
 ;; Languages configurations
 ;;
+
+;; Rust
+
+;; rust-mode
+;; https://github.com/rust-lang/rust-mode
+(use-package rust-mode
+  :mode ("\\.rs\\'" . rust-mode)
+  :config (setq rust-format-on-save t))
+
+;; flycheck-rust
+;; https://github.com/flycheck/flycheck-rust
+(use-package flycheck-rust
+  :hook (flycheck-mode . flycheck-rust-setup))
+
+;; racer
+;; https://github.com/racer-rust/emacs-racer
+(use-package racer
+  :delight
+  :bind (:map racer-mode-map ("M-?" . racer-describe))
+  :hook (rust-mode . racer-mode)
+  :config (setq racer-rust-src-path nil))
+
+;; cargo
+;; https://github.com/kwrooijen/cargo.el
+(use-package cargo
+  :delight cargo-minor-mode
+  :hook (rust-mode . cargo-minor-mode))
 
 ;; Web
 
@@ -992,6 +1050,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; Dep cmake, clang
 (use-package irony
   :delight
+  :mode ("\\.ino\\'" . c++-mode)
   :hook
   ((c-mode c++-mode) . irony-mode)
   :config
@@ -1006,9 +1065,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
 (use-package flycheck-irony
-  :after (flycheck irony)
-  :defer t
-  :config (add-to-list 'flycheck-checkers 'irony))
+  :hook (flycheck-mode . flycheck-irony-setup))
 
 ;; company-irony
 ;; https://github.com/Sarcasm/company-irony
@@ -1030,6 +1087,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; rtags
 ;; https://github.com/Andersbakken/rtags
 (use-package rtags
+  :disabled
   :after (irony)
   :config
   ;; (setq rtags-completions-enabled t)
@@ -1056,8 +1114,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; flycheck-clag-analyzer
 ;; https://github.com/alexmurray/flycheck-clang-analyzer
 (use-package flycheck-clang-analyzer
-  :after (flycheck irony)
-  :defer t
+  :after (flycheck)
   :config (flycheck-clang-analyzer-setup))
 
 ;; cmake-ide
