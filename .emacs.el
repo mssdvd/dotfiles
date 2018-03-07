@@ -273,7 +273,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package swiper
   :bind
   ("C-s" . counsel-grep-or-swiper)
-  ("C-c s" . swiper-all))
+  ("C-r" . swiper-all))
 
 ;; hydra
 ;; https://github.com/abo-abo/hydra
@@ -936,6 +936,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; tern
 ;; http://ternjs.net
+;; Dep tern
 (use-package tern
   :delight
   :hook (js-mode . tern-mode))
