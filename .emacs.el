@@ -347,7 +347,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; Dep pylint, clang, tidy, csslint
 (use-package flycheck
   :defer 1
-  :bind (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
+  :bind
+  (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
+  ("M-g l" . flycheck-list-errors)
   :config
   (global-flycheck-mode)
   (setq-default flycheck-global-modes '(not org-mode))
