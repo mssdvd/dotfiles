@@ -940,14 +940,14 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/magnars/js2-refactor.el
 (use-package js2-refactor
   :delight
-  :hook (js-mode . js2-refactor-mode))
+  :hook (js2-mode . js2-refactor-mode))
 
 ;; tern
 ;; http://ternjs.net
 ;; Dep tern
 (use-package tern
   :delight
-  :hook (js-mode . tern-mode))
+  :hook (js2-mode . tern-mode))
 
 ;; company-tern
 ;; https://github.com/proofit404/company-tern
