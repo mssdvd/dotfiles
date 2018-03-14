@@ -412,8 +412,9 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; org
 (use-package org
-  :pin gnu
+  :pin org
   :defer t
+  :bind (:map org-mode-map ([M-tab] . company-complete))
   :config (setq org-log-done t))
 
 ;; paradox
@@ -449,10 +450,13 @@ Repeated invocations toggle between the two most recently open buffers."
   ([remap indent-for-tab-command] . company-indent-or-complete-common)
   (:map company-active-map ([tab] . company-complete-common-or-cycle))
   ("C-c y" . company-yasnippet)
+  :hook (org-mode . add-pcomplete-to-capf)
   :config
   (global-company-mode)
   (company-tng-configure-default)
-  (setq company-tooltip-align-annotations t))
+  (setq company-tooltip-align-annotations t)
+  (defun add-pcomplete-to-capf ()
+    (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t)))
 
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
