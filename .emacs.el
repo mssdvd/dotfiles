@@ -472,7 +472,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package company-quickhelp
   :after (company)
   :config
-  (company-quickhelp-mode 1)
+  (company-quickhelp-mode)
   (setq company-quickhelp-use-propertized-text t))
 
 ;; company-flx
@@ -939,6 +939,11 @@ Repeated invocations toggle between the two most recently open buffers."
   :config
   (require 'flycheck)
   (flycheck-add-mode 'html-tidy 'web-mode))
+
+;; json-mode
+;; https://github.com/joshwnj/json-mode
+(use-package json-mode
+  :mode ("\\.json\\'" . json-mode))
 
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
