@@ -420,6 +420,11 @@ Repeated invocations toggle between the two most recently open buffers."
   (require 'mode-local)
   (setq-mode-local org-mode save-interprogram-paste-before-kill t select-enable-clipboard t))
 
+;; ox-reveal
+;; https://github.com/yjwen/org-reveal
+(use-package ox-reveal
+  :defer t
+  :config (setq org-reveal-root "https://cdn.rawgit.com/hakimel/reveal.js/3.6.0/"))
 
 ;; paradox
 (use-package paradox
