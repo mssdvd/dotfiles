@@ -415,7 +415,11 @@ Repeated invocations toggle between the two most recently open buffers."
   :pin org
   :defer t
   :bind (:map org-mode-map ([M-tab] . company-complete))
-  :config (setq org-log-done t))
+  :config
+  (setq org-log-done t)
+  (require 'mode-local)
+  (setq-mode-local org-mode save-interprogram-paste-before-kill t select-enable-clipboard t))
+
 
 ;; paradox
 (use-package paradox
