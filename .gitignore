@@ -3,4 +3,6 @@
 .config/ranger/history
 .config/ranger/bookmarks
 .config/ranger/tagged
-/.config/gtk-3.0/servers
+.config/gtk-3.0/servers
+.mypy_cache
+__pycache__
