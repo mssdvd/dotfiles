@@ -191,6 +191,7 @@ for_window [class="(?i)gsimplecal"] floating enable, move position mouse
 for_window [class="(?i)pinentry"] floating enable
 for_window [class="Steam"] floating enable, border none
 for_window [title="Android Emulator*"] floating enable
+for_window [class="Peek"] floating enable
 
 # Backlight bindings
 bindsym XF86MonBrightnessUp exec --no-startup-id light -A 10
