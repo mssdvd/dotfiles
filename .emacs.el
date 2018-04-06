@@ -522,6 +522,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; magithub
 ;; https://github.com/vermiculus/magithub
 (use-package magithub
+  :disabled
   :after (magit)
   :config (magithub-feature-autoinject t))
 
