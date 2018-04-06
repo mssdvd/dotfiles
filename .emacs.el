@@ -888,6 +888,11 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package counsel-world-clock
   :defer t)
 
+;; ivy-pass
+;; https://github.com/ecraven/ivy-pass/
+(use-package ivy-pass
+  :defer t)
+
 ;;
 ;; Languages configurations
 ;;
