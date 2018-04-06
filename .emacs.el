@@ -948,6 +948,7 @@ Repeated invocations toggle between the two most recently open buffers."
   ("\\.ejs\\'"        . web-mode)
   ("\\.djhtml\\'"     . web-mode)
   :config
+  (setq web-mode-enable-engine-detection t)
   (require 'flycheck)
   (flycheck-add-mode 'html-tidy 'web-mode))
 
