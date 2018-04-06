@@ -883,6 +883,11 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package hackernews
   :defer t)
 
+;; counsel-world-clock
+;; https://github.com/kchenphy/counsel-world-clock
+(use-package counsel-world-clock
+  :defer t)
+
 ;;
 ;; Languages configurations
 ;;
