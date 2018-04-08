@@ -424,7 +424,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/yjwen/org-reveal
 (use-package ox-reveal
   :defer t
-  :config (setq org-reveal-root "https://cdn.rawgit.com/hakimel/reveal.js/3.6.0/"))
+  :config (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/"))
 
 ;; paradox
 (use-package paradox
