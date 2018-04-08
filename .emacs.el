@@ -861,7 +861,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :defer 1
   :config
   (which-function-mode)
-  (setq which-func-modes '(c-mode c++-mode java-mode org-mode python-mode)))
+  (setq which-func-modes '(c-mode c++-mode java-mode  python-mode)))
 
 ;; popwin-el
 ;; https://github.com/m2ym/popwin-el
