@@ -1045,7 +1045,8 @@ Repeated invocations toggle between the two most recently open buffers."
   :delight
   :hook
   (python-mode)
-  (python-mode . anaconda-eldoc-mode))
+  (python-mode . anaconda-eldoc-mode)
+  (python-mode . (lambda () (yas-minor-mode -1))))
 
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
