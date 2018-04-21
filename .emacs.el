@@ -935,6 +935,17 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; Web
 
+;; restclient.el
+;; https://github.com/pashky/restclient.el
+(use-package restclient
+  :defer t)
+
+;; company-restclient
+;; https://github.com/iquiw/company-restclient
+(use-package company-restclient
+  :after (restclient company)
+  :config (add-to-list 'company-backends 'company-restclient))
+
 ;; web-mode
 ;; https://github.com/fxbois/web-mode
 ;; Dep tidy
