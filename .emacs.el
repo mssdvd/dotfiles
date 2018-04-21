@@ -191,6 +191,11 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package use-package
   :config (setq use-package-always-ensure t))
 
+;; use-package-chords
+;; https://github.com/jwiegley/use-package
+(use-package use-package-chords
+  :config (key-chord-mode 1))
+
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight)
