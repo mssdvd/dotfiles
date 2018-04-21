@@ -52,9 +52,6 @@
 ;; enable narrow-to-region
 (put 'narrow-to-region 'disabled nil)
 
-;; highlight line
-(global-hl-line-mode)
-
 ;; improve comint performance
 (setq-default bidi-display-reordering nil)
 
