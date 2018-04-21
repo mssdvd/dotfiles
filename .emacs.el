@@ -895,6 +895,13 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package ivy-pass
   :defer t)
 
+;; evil-mode
+;; https://github.com/emacs-evil/evil
+(use-package evil
+  :defer 1
+  :chords (:map evil-insert-state-map ("jj" . evil-normal-state))
+  :config (evil-mode 1))
+
 ;;
 ;; Languages configurations
 ;;
