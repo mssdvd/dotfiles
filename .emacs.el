@@ -727,7 +727,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; ediff
 (use-package ediff
   :defer t
-  :config (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+  :config
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain
+        ediff-split-window-function 'split-window-horizontally))
 
 ;; gdb-mi
 (use-package gdb-mi
