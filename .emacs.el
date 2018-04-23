@@ -902,7 +902,23 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package evil
   :defer 1
   :chords (:map evil-insert-state-map ("jj" . evil-normal-state))
-  :config (evil-mode 1))
+  :init (setq evil-want-integration nil)
+  :config
+  (evil-mode 1)
+  (add-to-list 'evil-motion-state-modes 'helpful-mode)
+  (setq evil-complete-next-func 'hippie-expand))
+
+;; evil-surrond
+;; https://github.com/emacs-evil/evil-surround
+(use-package evil-surround
+  :after (evil)
+  :config (global-evil-surround-mode 1))
+
+;; evil-collection
+;; https://github.com/emacs-evil/evil-collection
+(use-package evil-collection
+  :after (evil)
+  :config (evil-collection-init))
 
 ;;
 ;; Languages configurations
