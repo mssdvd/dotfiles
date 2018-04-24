@@ -920,6 +920,12 @@ Repeated invocations toggle between the two most recently open buffers."
   :after (evil)
   :config (evil-collection-init))
 
+;; evil-lion
+;; https://github.com/edkolev/evil-lion
+(use-package evil-lion
+  :after (evil)
+  :config (evil-lion-mode))
+
 ;;
 ;; Languages configurations
 ;;
