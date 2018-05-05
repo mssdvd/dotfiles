@@ -25,9 +25,6 @@ bindsym $mod+Return exec $term #i3-sensible-terminal
 # kill focused window
 bindsym $mod+Shift+q kill
 
-# rofi
-bindsym $mod+Tab exec --no-startup-id "rofi -combi-modi window,drun -show combi -modi combi"
-
 # change focus
 bindsym $mod+h focus left
 bindsym $mod+j focus down
@@ -216,6 +213,7 @@ bindsym --release Num_Lock  exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
 bindsym Print exec flameshot gui
 
 # Launch applications bindings
+bindsym $mod+Tab exec --no-startup-id "rofi -combi-modi drun,window -show combi -modi combi"
 bindsym $mod+bracketleft exec chromium
 bindsym $mod+shift+bracketleft exec chromium --incognito
 bindsym $mod+backslash exec $term -e ranger
