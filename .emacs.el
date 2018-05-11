@@ -399,7 +399,9 @@ Repeated invocations toggle between the two most recently open buffers."
   :hook
   (prog-mode . highlight-indent-guides-mode)
   (web-mode . (lambda () (highlight-indent-guides-mode -1)))
-  :config (setq highlight-indent-guides-method 'character))
+  :config
+  (setq highlight-indent-guides-method 'character
+        highlight-indent-guides-responsive 'top))
 
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
