@@ -203,7 +203,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; kaolin
 (use-package kaolin-themes
   :config
-  (setq kaolin-italic-comments t)
+  (setq kaolin-themes-italic-comments t)
   (load-theme 'kaolin-valley-dark t))
 
 ;; neotree
