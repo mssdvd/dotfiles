@@ -901,6 +901,12 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package ivy-pass
   :defer t)
 
+;; lang-tool
+;; https://github.com/mhayashi1120/Emacs-langtool
+(use-package langtool
+  :defer t
+  :config (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"))
+
 ;; evil-mode
 ;; https://github.com/emacs-evil/evil
 (use-package evil
