@@ -9,6 +9,8 @@
 (require 'package)
 (add-to-list 'package-archives
 			 '("MELPA" . "https://melpa.org/packages/"))
+(add-to-list 'package-archives
+			 '("org" . "https://orgmode.org/elpa/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -49,9 +51,6 @@
 
 ;; enable narrow-to-region
 (put 'narrow-to-region 'disabled nil)
-
-;; highlight line
-(global-hl-line-mode)
 
 ;; improve comint performance
 (setq-default bidi-display-reordering nil)
@@ -192,6 +191,11 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package use-package
   :config (setq use-package-always-ensure t))
 
+;; use-package-chords
+;; https://github.com/jwiegley/use-package
+(use-package use-package-chords
+  :config (key-chord-mode 1))
+
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight)
@@ -199,8 +203,8 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; kaolin
 (use-package kaolin-themes
   :config
-  (setq kaolin-italic-comments t)
-  (load-theme 'kaolin-galaxy t))
+  (setq kaolin-themes-italic-comments t)
+  (load-theme 'kaolin-valley-dark t))
 
 ;; neotree
 (use-package neotree
@@ -219,7 +223,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
 																									("* ||\n[i]""RET")))
 
-  (sp-local-pair '(rust-mode c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(python-mode rust-mode c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
     "Open a new brace or bracket expression, with relevant newlines and indent. "
     (newline)
@@ -273,7 +277,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package swiper
   :bind
   ("C-s" . counsel-grep-or-swiper)
-  ("C-c s" . swiper-all))
+  ("C-r" . swiper-all))
 
 ;; hydra
 ;; https://github.com/abo-abo/hydra
@@ -347,7 +351,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; Dep pylint, clang, tidy, csslint
 (use-package flycheck
   :defer 1
-  :bind (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
+  :bind
+  (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
+  ("M-g l" . flycheck-list-errors)
   :config
   (global-flycheck-mode)
   (setq-default flycheck-global-modes '(not org-mode))
@@ -393,7 +399,9 @@ Repeated invocations toggle between the two most recently open buffers."
   :hook
   (prog-mode . highlight-indent-guides-mode)
   (web-mode . (lambda () (highlight-indent-guides-mode -1)))
-  :config (setq highlight-indent-guides-method 'character))
+  :config
+  (setq highlight-indent-guides-method 'character
+        highlight-indent-guides-responsive 'top))
 
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
@@ -408,9 +416,21 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; org
 (use-package org
-  :pin gnu
+  :pin org
   :defer t
-  :config (setq org-log-done t))
+  :bind (:map org-mode-map ([M-tab] . company-complete))
+  :config
+  (setq org-log-done t)
+  (require 'mode-local)
+  (setq-mode-local org-mode save-interprogram-paste-before-kill t select-enable-clipboard t))
+
+;; ox-reveal
+;; https://github.com/yjwen/org-reveal
+(use-package ox-reveal
+  :defer t
+  :config
+  (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/"
+        org-reveal-title-slide nil))
 
 ;; paradox
 (use-package paradox
@@ -445,17 +465,20 @@ Repeated invocations toggle between the two most recently open buffers."
   ([remap indent-for-tab-command] . company-indent-or-complete-common)
   (:map company-active-map ([tab] . company-complete-common-or-cycle))
   ("C-c y" . company-yasnippet)
+  :hook (org-mode . add-pcomplete-to-capf)
   :config
   (global-company-mode)
   (company-tng-configure-default)
-  (setq company-tooltip-align-annotations t))
+  (setq company-tooltip-align-annotations t)
+  (defun add-pcomplete-to-capf ()
+    (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t)))
 
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
   :after (company)
   :config
-  (company-quickhelp-mode 1)
+  (company-quickhelp-mode)
   (setq company-quickhelp-use-propertized-text t))
 
 ;; company-flx
@@ -505,6 +528,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; magithub
 ;; https://github.com/vermiculus/magithub
 (use-package magithub
+  :disabled
   :after (magit)
   :config (magithub-feature-autoinject t))
 
@@ -707,7 +731,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; ediff
 (use-package ediff
   :defer t
-  :config (setq ediff-window-setup-function 'ediff-setup-windows-plain))
+  :config
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain
+        ediff-split-window-function 'split-window-horizontally))
 
 ;; gdb-mi
 (use-package gdb-mi
@@ -843,7 +869,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :defer 1
   :config
   (which-function-mode)
-  (setq which-func-modes '(c-mode c++-mode java-mode org-mode python-mode)))
+  (setq which-func-modes '(c-mode c++-mode java-mode  python-mode)))
 
 ;; popwin-el
 ;; https://github.com/m2ym/popwin-el
@@ -864,6 +890,51 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/clarete/hackernews.el
 (use-package hackernews
   :defer t)
+
+;; counsel-world-clock
+;; https://github.com/kchenphy/counsel-world-clock
+(use-package counsel-world-clock
+  :defer t)
+
+;; ivy-pass
+;; https://github.com/ecraven/ivy-pass/
+(use-package ivy-pass
+  :defer t)
+
+;; lang-tool
+;; https://github.com/mhayashi1120/Emacs-langtool
+(use-package langtool
+  :defer t
+  :config (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"))
+
+;; evil-mode
+;; https://github.com/emacs-evil/evil
+(use-package evil
+  :defer 1
+  :chords (:map evil-insert-state-map ("jj" . evil-normal-state))
+  :init (setq evil-want-integration nil)
+  :config
+  (evil-mode 1)
+  (add-to-list 'evil-motion-state-modes 'helpful-mode)
+  (setq evil-complete-next-func 'hippie-expand))
+
+;; evil-surrond
+;; https://github.com/emacs-evil/evil-surround
+(use-package evil-surround
+  :after (evil)
+  :config (global-evil-surround-mode 1))
+
+;; evil-collection
+;; https://github.com/emacs-evil/evil-collection
+(use-package evil-collection
+  :after (evil)
+  :config (evil-collection-init))
+
+;; evil-lion
+;; https://github.com/edkolev/evil-lion
+(use-package evil-lion
+  :after (evil)
+  :config (evil-lion-mode))
 
 ;;
 ;; Languages configurations
@@ -898,6 +969,17 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; Web
 
+;; restclient.el
+;; https://github.com/pashky/restclient.el
+(use-package restclient
+  :defer t)
+
+;; company-restclient
+;; https://github.com/iquiw/company-restclient
+(use-package company-restclient
+  :after (restclient company)
+  :config (add-to-list 'company-backends 'company-restclient))
+
 ;; web-mode
 ;; https://github.com/fxbois/web-mode
 ;; Dep tidy
@@ -920,8 +1002,14 @@ Repeated invocations toggle between the two most recently open buffers."
   ("\\.ejs\\'"        . web-mode)
   ("\\.djhtml\\'"     . web-mode)
   :config
+  (setq web-mode-enable-engine-detection t)
   (require 'flycheck)
   (flycheck-add-mode 'html-tidy 'web-mode))
+
+;; json-mode
+;; https://github.com/joshwnj/json-mode
+(use-package json-mode
+  :mode ("\\.json\\'" . json-mode))
 
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
@@ -932,13 +1020,14 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/magnars/js2-refactor.el
 (use-package js2-refactor
   :delight
-  :hook (js-mode . js2-refactor-mode))
+  :hook (js2-mode . js2-refactor-mode))
 
 ;; tern
 ;; http://ternjs.net
+;; Dep tern
 (use-package tern
   :delight
-  :hook (js-mode . tern-mode))
+  :hook (js2-mode . tern-mode))
 
 ;; company-tern
 ;; https://github.com/proofit404/company-tern
@@ -1010,7 +1099,8 @@ Repeated invocations toggle between the two most recently open buffers."
   :delight
   :hook
   (python-mode)
-  (python-mode . anaconda-eldoc-mode))
+  (python-mode . anaconda-eldoc-mode)
+  (python-mode . (lambda () (yas-minor-mode -1))))
 
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
