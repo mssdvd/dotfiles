@@ -421,6 +421,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :bind (:map org-mode-map ([M-tab] . company-complete))
   :config
   (setq org-log-done t)
+  (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
   (require 'mode-local)
   (setq-mode-local org-mode save-interprogram-paste-before-kill t select-enable-clipboard t))
 
