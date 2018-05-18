@@ -908,10 +908,19 @@ Repeated invocations toggle between the two most recently open buffers."
   :defer t
   :config (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"))
 
+;;
+;; Evil
+;;
+
 ;; evil-mode
 ;; https://github.com/emacs-evil/evil
 (use-package evil
   :defer 1
+  :bind
+  (:map evil-normal-state-map
+        ("M-y" . counsel-evil-registers)
+        :map evil-insert-state-map
+        ("M-y" . counsel-evil-registers))
   :chords (:map evil-insert-state-map ("jj" . evil-normal-state))
   :init (setq evil-want-integration nil)
   :config
