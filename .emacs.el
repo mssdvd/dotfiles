@@ -246,7 +246,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
-;; Dep ripgrep
+;; Dep fzf, ripgrep
 (use-package counsel
   :delight
   :defer 1
@@ -256,7 +256,7 @@ Repeated invocations toggle between the two most recently open buffers."
   ("C-c l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
-  ("C-c f" . counsel-file-jump)
+  ("C-c f" . counsel-fzf)
   ("C-c d" . counsel-dired-jump)
   :config
   (counsel-mode 1)
