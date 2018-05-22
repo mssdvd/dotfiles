@@ -246,7 +246,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
-;; Dep ripgrep
+;; Dep fzf, ripgrep
 (use-package counsel
   :delight
   :defer 1
@@ -256,7 +256,7 @@ Repeated invocations toggle between the two most recently open buffers."
   ("C-c l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
   ("C-x g" . counsel-rg)
-  ("C-c f" . counsel-file-jump)
+  ("C-c f" . counsel-fzf)
   ("C-c d" . counsel-dired-jump)
   :config
   (counsel-mode 1)
@@ -421,6 +421,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :bind (:map org-mode-map ([M-tab] . company-complete))
   :config
   (setq org-log-done t)
+  (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
   (require 'mode-local)
   (setq-mode-local org-mode save-interprogram-paste-before-kill t select-enable-clipboard t))
 
@@ -552,12 +553,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (diff-hl-flydiff-mode)
   (diff-hl-margin-mode)
   (setq diff-hl-draw-borders nil
-        diff-hl-side 'right)
-  :custom-face
-  (diff-hl-margin-change ((t (:inherit diff-hl-change :foreground "black" :slant normal))))
-  (diff-hl-margin-delete ((t (:inherit diff-hl-delete :foreground "black"))))
-  (diff-hl-margin-ignored ((t (:inherit dired-ignored :foreground "black"))))
-  (diff-hl-margin-insert ((t (:inherit diff-hl-insert :foreground "black")))))
+        diff-hl-side 'right))
 
 ;; gitignore
 ;; https://github.com/syohex/emacs-gitignore
@@ -907,10 +903,19 @@ Repeated invocations toggle between the two most recently open buffers."
   :defer t
   :config (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"))
 
+;;
+;; Evil
+;;
+
 ;; evil-mode
 ;; https://github.com/emacs-evil/evil
 (use-package evil
   :defer 1
+  :bind
+  (:map evil-normal-state-map
+        ("M-y" . counsel-evil-registers)
+        :map evil-insert-state-map
+        ("M-y" . counsel-evil-registers))
   :chords (:map evil-insert-state-map ("jj" . evil-normal-state))
   :init (setq evil-want-integration nil)
   :config
