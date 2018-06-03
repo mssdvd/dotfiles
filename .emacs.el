@@ -255,7 +255,7 @@ Repeated invocations toggle between the two most recently open buffers."
   ("M-x" . counsel-M-x)
   ("C-c l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
-  ("C-x g" . counsel-rg)
+  ("C-c g" . counsel-rg)
   ("C-c f" . counsel-fzf)
   ("C-c d" . counsel-dired-jump)
   :config
@@ -517,7 +517,7 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; magit
 ;; https://magit.vc
 (use-package magit
-  :bind ("C-c g" . magit-status)
+  :bind ("C-x g" . magit-status)
   :config
   (setq magit-diff-refine-hunk 'all
         magit-delete-by-moving-to-trash nil
