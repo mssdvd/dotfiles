@@ -1014,7 +1014,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; json-mode
 ;; https://github.com/joshwnj/json-mode
 (use-package json-mode
-  :mode ("\\.json\\'" . json-mode))
+  :mode
+  ("\\.json\\'" . json-mode)
+  ("Pipfile.lock" . json-mode))
 
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
