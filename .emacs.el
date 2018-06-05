@@ -922,7 +922,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :init (setq evil-want-integration nil)
   :config
   (evil-mode 1)
-  (add-to-list 'evil-motion-state-modes 'helpful-mode)
+  (evil-set-initial-state 'helpful-mode 'motion)
   (setq evil-complete-next-func 'hippie-expand))
 
 ;; evil-surrond
