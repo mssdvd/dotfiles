@@ -935,7 +935,10 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
   :after (evil)
-  :config (evil-collection-init))
+  :custom (evil-collection-company-use-tng nil)
+  :config
+  (mapc (lambda (x) (setq evil-collection-mode-list (delq x evil-collection-mode-list))) '(anaconda-mode))
+  (evil-collection-init))
 
 ;; evil-lion
 ;; https://github.com/edkolev/evil-lion
