@@ -8,9 +8,9 @@
 ;;; Code:
 (require 'package)
 (add-to-list 'package-archives
-			 '("MELPA" . "https://melpa.org/packages/"))
+             '("MELPA" . "https://melpa.org/packages/"))
 (add-to-list 'package-archives
-			 '("org" . "https://orgmode.org/elpa/"))
+             '("org" . "https://orgmode.org/elpa/"))
 (package-initialize)
 
 (unless (package-installed-p 'use-package)
@@ -79,8 +79,8 @@
 ;; window title
 (setq frame-title-format
       '((:eval (if (buffer-modified-p) "• "))
-		(:eval (if (buffer-file-name)
-				   (abbreviate-file-name (buffer-file-name)) "%b"))))
+        (:eval (if (buffer-file-name)
+                   (abbreviate-file-name (buffer-file-name)) "%b"))))
 
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
@@ -128,13 +128,13 @@
   (interactive)
   (require 'multiple-cursors)
   (if (numberp (point))
-	  ;; is there a fake cursor with the actual *point* right where we are?
-	  (let ((existing (mc/fake-cursor-at-point (point))))
-		(if existing
-			(mc/remove-fake-cursor existing)
-		  (save-excursion
-			(goto-char (point))
-			(mc/create-fake-cursor-at-point))))))
+      ;; is there a fake cursor with the actual *point* right where we are?
+      (let ((existing (mc/fake-cursor-at-point (point))))
+        (if existing
+            (mc/remove-fake-cursor existing)
+          (save-excursion
+            (goto-char (point))
+            (mc/create-fake-cursor-at-point))))))
 
 (defun copy-line ()
   "Copy current line."
@@ -152,9 +152,9 @@
   (interactive)
   (if (get 'switch-highlight-indent-guides-and-whitespace-modes 'state)
       (progn
-		(whitespace-mode -1)
-		(highlight-indent-guides-mode 1)
-		(put 'switch-highlight-indent-guides-and-whitespace-modes 'state nil))
+        (whitespace-mode -1)
+        (highlight-indent-guides-mode 1)
+        (put 'switch-highlight-indent-guides-and-whitespace-modes 'state nil))
     (progn
       (whitespace-mode 1)
       (highlight-indent-guides-mode -1)
@@ -221,9 +221,11 @@ Repeated invocations toggle between the two most recently open buffers."
   (smartparens-global-mode t)
   (ad-disable-advice 'company--insert-candidate 'after 'sp-company--insert-candidate)
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
-																									("* ||\n[i]""RET")))
+                                                                                                    ("* ||\n[i]""RET")))
 
   (sp-local-pair '(python-mode rust-mode c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(python-mode) "[" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(python-mode) "(" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
     "Open a new brace or bracket expression, with relevant newlines and indent. "
     (newline)
@@ -240,9 +242,9 @@ Repeated invocations toggle between the two most recently open buffers."
   :config
   (ivy-mode 1)
   (setq ivy-use-virtual-buffers t
-		enable-recursive-minibuffers t
-		ivy-count-format "(%d/%d) "
-		ivy-use-selectable-prompt t))
+        enable-recursive-minibuffers t
+        ivy-count-format "(%d/%d) "
+        ivy-use-selectable-prompt t))
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
@@ -255,14 +257,14 @@ Repeated invocations toggle between the two most recently open buffers."
   ("M-x" . counsel-M-x)
   ("C-c l" . counsel-locate)
   ("C-x C-r" . counsel-recentf)
-  ("C-x g" . counsel-rg)
+  ("C-c g" . counsel-rg)
   ("C-c f" . counsel-fzf)
   ("C-c d" . counsel-dired-jump)
   :config
   (counsel-mode 1)
   (if (executable-find "rg")
-	  (setq  counsel-grep-base-command "rg -S --no-heading --line-number --color never -- %s %s")
-	(setq counsel-grep-base-command "grep -nEi '%s' %s"))
+      (setq  counsel-grep-base-command "rg -S --no-heading --line-number --color never -- %s %s")
+    (setq counsel-grep-base-command "grep -nEi '%s' %s"))
   (setq counsel-find-file-ignore-regexp "\\`\\."
         counsel-rg-base-command "rg -S -z --hidden --no-heading --line-number --color never %s .")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
@@ -277,7 +279,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package swiper
   :bind
   ("C-s" . counsel-grep-or-swiper)
-  ("C-r" . swiper-all))
+  ("C-M-s" . swiper-all))
 
 ;; hydra
 ;; https://github.com/abo-abo/hydra
@@ -391,7 +393,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :config
   (recentf-mode)
   (setq recentf-max-menu-items 25
-		recentf-max-saved-items 500))
+        recentf-max-saved-items 500))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
@@ -505,8 +507,8 @@ Repeated invocations toggle between the two most recently open buffers."
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (add-to-list 'projectile-project-root-files "Pipfile")
   (setq projectile-completion-system 'ivy
-		projectile-enable-caching t
-		projectile-files-cache-expire 2592000))
+        projectile-enable-caching t
+        projectile-files-cache-expire 2592000))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
@@ -517,13 +519,13 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; magit
 ;; https://magit.vc
 (use-package magit
-  :bind ("C-c g" . magit-status)
+  :bind ("C-x g" . magit-status)
   :config
   (setq magit-diff-refine-hunk 'all
         magit-delete-by-moving-to-trash nil
-		magit-repository-directories
-		'(("~/Documents/school" . 0)
-		  ("~/Documents/dotfiles" . 0))
+        magit-repository-directories
+        '(("~/Documents/school" . 0)
+          ("~/Documents/dotfiles" . 0))
         vc-handled-backends (delq 'Git vc-handled-backends)))
 
 ;; magithub
@@ -659,7 +661,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (defun brds/pdf-jump-last-viewed-bookmark ()
     (bookmark-set "fake") ; this is new
     (when
-		(brds/pdf-has-last-viewed-bookmark)
+        (brds/pdf-has-last-viewed-bookmark)
       (bookmark-jump (brds/pdf-generate-bookmark-name))))
 
   (defun brds/pdf-has-last-viewed-bookmark ()
@@ -672,7 +674,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (defun brds/pdf-set-all-last-viewed-bookmarks ()
     (dolist (buf (buffer-list))
       (with-current-buffer buf
-		(brds/pdf-set-last-viewed-bookmark))))
+        (brds/pdf-set-last-viewed-bookmark))))
 
   (add-hook 'kill-buffer-hook #'brds/pdf-set-last-viewed-bookmark)
   (add-hook 'pdf-view-mode-hook #'brds/pdf-jump-last-viewed-bookmark)
@@ -714,9 +716,9 @@ Repeated invocations toggle between the two most recently open buffers."
   :defer t
   :config
   (setq ispell-program-name "hunspell"
-		ispell-local-dictionary "it_IT"
-		ispell-local-dictionary-alist
-		'(("it_IT" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
+        ispell-local-dictionary "it_IT"
+        ispell-local-dictionary-alist
+        '(("it_IT" "[[:alpha:]]" "[^[:alpha:]]" "[']" nil nil nil utf-8))))
 
 ;; apropos
 (use-package apropos
@@ -736,7 +738,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :defer t
   :config
   (setq gdb-many-windows t
-		gdb-show-main t))
+        gdb-show-main t))
 
 ;; hippie-exp
 (use-package hippie-exp
@@ -800,10 +802,10 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package google-maps
   :bind
   (:map google-maps-static-mode-map
-		("h" . google-maps-static-move-west)
-		("j" . google-maps-static-move-south)
-		("k" . google-maps-static-move-north)
-		("l" . google-maps-static-move-east)))
+        ("h" . google-maps-static-move-west)
+        ("j" . google-maps-static-move-south)
+        ("k" . google-maps-static-move-north)
+        ("l" . google-maps-static-move-east)))
 
 ;; calc
 (use-package calc
@@ -865,7 +867,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :defer 1
   :config
   (which-function-mode)
-  (setq which-func-modes '(c-mode c++-mode java-mode  python-mode)))
+  (setq which-func-modes '(c-mode c++-mode java-mode python-mode)))
 
 ;; popwin-el
 ;; https://github.com/m2ym/popwin-el
@@ -920,7 +922,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :init (setq evil-want-integration nil)
   :config
   (evil-mode 1)
-  (add-to-list 'evil-motion-state-modes 'helpful-mode)
+  (evil-set-initial-state 'helpful-mode 'motion)
   (setq evil-complete-next-func 'hippie-expand))
 
 ;; evil-surrond
@@ -933,7 +935,10 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
   :after (evil)
-  :config (evil-collection-init))
+  :custom (evil-collection-company-use-tng nil)
+  :config
+  (mapc (lambda (x) (setq evil-collection-mode-list (delq x evil-collection-mode-list))) '(anaconda-mode))
+  (evil-collection-init))
 
 ;; evil-lion
 ;; https://github.com/edkolev/evil-lion
@@ -1014,7 +1019,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;; json-mode
 ;; https://github.com/joshwnj/json-mode
 (use-package json-mode
-  :mode ("\\.json\\'" . json-mode))
+  :mode
+  ("\\.json\\'" . json-mode)
+  ("Pipfile.lock" . json-mode))
 
 ;; js2-mode
 ;; https://github.com/mooz/js2-mode
@@ -1067,8 +1074,8 @@ Repeated invocations toggle between the two most recently open buffers."
   :delight
   :bind
   (:map emmet-mode-keymap
-		("C-M->" . emmet-next-edit-point)
-		("C-M-<" . emmet-prev-edit-point))
+        ("C-M->" . emmet-next-edit-point)
+        ("C-M-<" . emmet-prev-edit-point))
   :hook (css-mode web-mode)
   :config
   (setq emmet-move-cursor-between-quotes t)
@@ -1201,9 +1208,9 @@ Repeated invocations toggle between the two most recently open buffers."
 ;;   :defer t
 ;;   :init
 ;;   (defun my-flycheck-rtags-setup ()
-;;	(flycheck-select-checker 'rtags)
-;;	(setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-;;	(setq-local flycheck-check-syntax-automatically nil))
+;;  (flycheck-select-checker 'rtags)
+;;  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
+;;  (setq-local flycheck-check-syntax-automatically nil))
 ;;   (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup))
 
 ;; flycheck-clag-analyzer
