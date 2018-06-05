@@ -279,7 +279,7 @@ Repeated invocations toggle between the two most recently open buffers."
 (use-package swiper
   :bind
   ("C-s" . counsel-grep-or-swiper)
-  ("C-r" . swiper-all))
+  ("C-M-s" . swiper-all))
 
 ;; hydra
 ;; https://github.com/abo-abo/hydra
