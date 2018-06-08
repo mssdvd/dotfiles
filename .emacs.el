@@ -94,7 +94,7 @@
 ;; CLIPBOARD
 
 ;; Disable clipboard sync
-(setq select-enable-clipboard nil)
+;; (setq select-enable-clipboard nil)
 
 (bind-key "C-y" #'clipboard-yank)
 (bind-key "C-M-y" #'yank)
