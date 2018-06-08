@@ -1,3 +1,5 @@
-localectl set-x11-keymap "" "" "" "ctrl:swapcaps,ctrl:swap_rwin_rctl"
+setxkbmap us -variant euro
+setxkbmap -option "ctrl:swapcaps"
+setxkbmap -option "ctrl:swap_rwin_rctl"
 export RUST_SRC_PATH="$(rustc --print sysroot)/lib/rustlib/src/rust/src"
 [ "$XDG_CURRENT_DESKTOP" = "KDE" ] || [ "$XDG_CURRENT_DESKTOP" = "GNOME" ] || export QT_QPA_PLATFORMTHEME="qt5ct"
