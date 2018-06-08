@@ -692,9 +692,9 @@ Repeated invocations toggle between the two most recently open buffers."
   :delight
   :defer t)
 
-;; smex
-;; https://github.com/nonsequitur/smex
-(use-package smex
+;; amx
+;; https://github.com/DarwinAwardWinner/amx
+(use-package amx
   :defer t)
 
 ;; terminal here
