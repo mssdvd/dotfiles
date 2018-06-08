@@ -1,5 +1,5 @@
 [options]
-font = Anonymous Pro 10
+font = Iosevka Term Slab 10
 scrollback_lines = -1
 [colors]
 foreground = #b2b2b2
