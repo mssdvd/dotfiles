@@ -359,7 +359,6 @@ Repeated invocations toggle between the two most recently open buffers."
   :config
   (global-flycheck-mode)
   (setq-default flycheck-global-modes '(not org-mode))
-  (flycheck-add-next-checker 'python-flake8 'python-mypy t)
   ;; hydra
   (defhydra hydra-flycheck
     (:pre (progn (setq hydra-lv t) (flycheck-list-errors))
