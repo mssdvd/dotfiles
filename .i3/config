@@ -246,8 +246,8 @@ bindcode $mod+34 exec chromium
 bindcode $mod+shift+34 exec chromium --incognito
 # bindsym $mod+backslash exec $term -e ranger
 bindcode $mod+51 exec $term -e ranger
-# bindsym $mod+shift+backslash exec $term -e "ranger --cmd=fzf_select"
-bindcode $mod+shift+51 exec $term -e "ranger --cmd=fzf_select"
+# bindsym $mod+shift+backslash exec thunar
+bindcode $mod+shift+51 exec thunar
 # bindsym $mod+bracketright exec emacsclient -c -a ''
 bindcode $mod+35 exec emacsclient -c -a ''
 bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
