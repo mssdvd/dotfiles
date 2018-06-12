@@ -350,7 +350,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; flycheck
 ;; http://www.flycheck.org
-;; Dep pylint, clang, tidy, csslint
+;; Dep flake8, clang, tidy, csslint
 (use-package flycheck
   :defer 1
   :bind
@@ -1127,7 +1127,7 @@ Repeated invocations toggle between the two most recently open buffers."
 
 ;; py-isort
 ;; https://github.com/paetzke/py-isort.el
-;; Dep isort
+;; Dep python-isort
 (use-package py-isort
   :hook (before-save . py-isort-before-save))
 
