@@ -229,7 +229,7 @@ bindsym XF86AudioNext exec --no-startup-id playerctl next
 bindsym XF86AudioPrev exec --no-startup-id playerctl previous
 
 # Change layout
-bindsym XF86Launch2 exec --no-startup-id (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap it || setxkbmap us -variant euro
+bindsym XF86Launch2 exec --no-startup-id (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap it || setxkbmap us -variant euro && pkill -SIGRTMIN+8 i3blocks
 
 # Caps & Num Lock bindings
 bindsym --release Caps_Lock exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
