@@ -223,7 +223,7 @@ Repeated invocations toggle between the two most recently open buffers."
   (sp-local-pair '(c-mode c++-mode java-mode js2-mode web-mode ccs-mode) "/*" "*/" :post-handlers '((" | " "SPC")
                                                                                                     ("* ||\n[i]""RET")))
 
-  (sp-local-pair '(python-mode rust-mode c-mode c++-mode java-mode js2-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(python-mode rust-mode c-mode c++-mode java-mode js2-mode json-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (sp-local-pair '(python-mode) "[" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (sp-local-pair '(python-mode) "(" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
