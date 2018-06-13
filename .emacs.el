@@ -925,6 +925,7 @@ Repeated invocations toggle between the two most recently open buffers."
   :after (evil)
   :custom (evil-collection-company-use-tng nil)
   :config
+  (mapc (lambda (x) (setq evil-collection-mode-list (delq x evil-collection-mode-list))) '(calc))
   (evil-collection-init))
 
 ;; evil-lion
