@@ -1,5 +1,5 @@
 set render-loading false
 set show-scrollbars true
 set recolor-reverse-video true
-set font "Anonymous Pro 10"
+set font "Iosevka Slab 9"
 map p search backward
