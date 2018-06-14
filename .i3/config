@@ -193,9 +193,6 @@ floating_modifier $mod
 # The middle button over a titlebar kills the window
 bindsym --release $mod+button2 kill
 
-# The right button toggles floating
-bindsym $mod+button3 floating toggle
-
 # Settigs per software
 for_window [class="Pamac-manager"] floating enable
 for_window [class="Pamac-updater"] floating enable
