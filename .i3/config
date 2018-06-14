@@ -13,9 +13,6 @@ font pango:Iosevka Slab 8
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
 #font pango:DejaVu Sans Mono 8
 
-# Use Mouse+$mod to drag floating windows to their wanted position
-floating_modifier $mod
-
 # set default terminal
 set $term termite
 
