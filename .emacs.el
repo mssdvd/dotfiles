@@ -91,6 +91,9 @@
 ;; ibuffer is better
 (bind-key "C-x C-b" #'ibuffer)
 
+;; switch to previous buffer
+(bind-key "M-o" #'mode-line-other-buffer)
+
 ;; CLIPBOARD
 
 ;; Disable clipboard sync
@@ -174,13 +177,6 @@
   (let ((primary (gui-get-primary-selection)))
     (insert-for-yank primary)))
 (bind-key "S-<insert>" #'yank-primary)
-
-(defun switch-to-previous-buffer ()
-  "Switch to previously open buffer.
-Repeated invocations toggle between the two most recently open buffers."
-  (interactive)
-  (switch-to-buffer (other-buffer (current-buffer) 1)))
-(bind-key "C-c b" #'switch-to-previous-buffer)
 
 ;;;;
 ;; use-package
