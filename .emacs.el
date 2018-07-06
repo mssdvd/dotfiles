@@ -375,6 +375,12 @@ Repeated invocations toggle between the two most recently open buffers."
   :after (flycheck)
   :config (flycheck-pos-tip-mode t))
 
+;; flycheck-inline
+;; https://github.com/flycheck/flycheck-inline
+(use-package flycheck-inline
+  :after (flycheck)
+  :config(flycheck-inline-mode))
+
 ;; recentf
 (use-package recentf
   :ensure nil
