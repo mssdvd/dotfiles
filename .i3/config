@@ -234,6 +234,8 @@ bindsym --release Num_Lock  exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
 # Turn off screen
 bindsym --release XF86Tools exec --no-startup-id "sleep 1; xset dpms force off"
 
+# Turn off redshift
+bindsym XF86Launch2 exec --no-startup-id pkill -USR1 redshift-gtk
 # Screenshot binding
 bindsym Print exec flameshot gui
 
