@@ -232,7 +232,7 @@ bindsym --release Caps_Lock exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
 bindsym --release Num_Lock  exec --no-startup-id pkill -SIGRTMIN+11 i3blocks
 
 # Turn off screen
-bindsym --release XF86Launch2 exec --no-startup-id xset dpms force off
+bindsym --release XF86Tools exec --no-startup-id "sleep 1; xset dpms force off"
 
 # Screenshot binding
 bindsym Print exec flameshot gui
