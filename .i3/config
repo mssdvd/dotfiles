@@ -268,4 +268,5 @@ exec --no-startup-id greenclip daemon
 exec --no-startup-id udiskie --no-automount --tray
 exec --no-startup-id unclutter --timeout 10
 exec --no-startup-id syncthing-gtk
+exec --no-startup-id libinput-gestures-setup start
 exec --no-startup-id compton -b --config ~/.config/compton.conf
