@@ -191,7 +191,7 @@ focus_follows_mouse no
 floating_modifier $mod
 
 # The middle button over a titlebar kills the window
-bindsym --release $mod+button2 kill
+bindsym --release $mod+Button2 kill
 
 # Settigs per software
 for_window [class="Pamac-manager"] floating enable
@@ -243,19 +243,19 @@ bindsym Print exec flameshot gui
 
 # Launch applications bindings
 bindsym $mod+Tab exec --no-startup-id "rofi -combi-modi drun,window -show combi -modi combi"
-# bindsym $mod+bracketleft exec chromium
+# bindsym $mod+Bracketleft exec chromium
 bindcode $mod+34 exec chromium
-# bindsym $mod+shift+bracketleft exec chromium --incognito
-bindcode $mod+shift+34 exec chromium --incognito
-# bindsym $mod+backslash exec $term -e ranger
+# bindsym $mod+Shift+Bracketleft exec chromium --incognito
+bindcode $mod+Shift+34 exec chromium --incognito
+# bindsym $mod+Backslash exec $term -e ranger
 bindcode $mod+51 exec $term -e ranger
-# bindsym $mod+shift+backslash exec thunar
-bindcode $mod+shift+51 exec thunar
-# bindsym $mod+bracketright exec emacsclient -c -a ''
+# bindsym $mod+Shift+Backslash exec thunar
+bindcode $mod+Shift+51 exec thunar
+# bindsym $mod+Bracketright exec emacsclient -c -a ''
 bindcode $mod+35 exec emacsclient -c -a ''
 bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
 bindsym $mod+p exec passmenu
-# bindsym $mod+apostrophe exec zathura
+# bindsym $mod+Apostrophe exec zathura
 bindcode $mod+48 exec zathura
 bindcode $mod+Shift+48 exec evince
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
