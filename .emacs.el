@@ -895,6 +895,11 @@
   :defer t
   :config (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"))
 
+;; zeal-at-point
+;; https://github.com/jinzhu/zeal-at-point
+(use-package zeal-at-point
+  :defer t)
+
 ;;
 ;; Evil
 ;;
