@@ -259,6 +259,7 @@ bindsym $mod+p exec passmenu --type
 bindcode $mod+48 exec zathura
 bindcode $mod+Shift+48 exec evince
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
+bindsym $mod+z exec zeal
 
 # Autostart applications
 exec --no-startup-id nm-applet
