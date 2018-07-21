@@ -813,16 +813,6 @@
   :defer 1
   :config (eyebrowse-mode t))
 
-;; shackle
-;; https://github.com/wasamasa/shackle
-(use-package shackle
-  :disabled
-  :defer 1
-  :config
-  (shackle-mode)
-  (setq shackle-rules '((help-mode :select t)
-                        (compilation-mode :select t :popup t))))
-
 ;; calendar
 (use-package calendar
   :defer t
@@ -861,16 +851,6 @@
   :config
   (which-function-mode)
   (setq which-func-modes '(c-mode c++-mode java-mode python-mode)))
-
-;; popwin-el
-;; https://github.com/m2ym/popwin-el
-(use-package popwin
-  :defer 1
-  :config
-  (popwin-mode 1)
-  (push "*Racer Help*" popwin:special-display-config)
-  (push '(cargo-process-mode :noselect t) popwin:special-display-config)
-  (setq popwin:popup-window-height 20))
 
 ;; spotify
 ;; https://github.com/remvee/spotify-el
