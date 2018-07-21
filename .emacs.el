@@ -97,16 +97,6 @@
 ;; save buffer
 (bind-key [f6] #'save-buffer)
 
-;; CLIPBOARD
-
-;; Disable clipboard sync
-;; (setq select-enable-clipboard nil)
-
-(bind-key "C-y" #'clipboard-yank)
-(bind-key "C-M-y" #'yank)
-(bind-key "C-w" #'clipboard-kill-region)
-(bind-key "M-w" #'clipboard-kill-ring-save)
-
 ;; Pasting with middle-click puts the text where the point is
 (setq mouse-yank-at-point t)
 
