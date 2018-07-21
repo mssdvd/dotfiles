@@ -435,13 +435,6 @@
   :init (global-undo-tree-mode)
   :config (setq undo-tree-visualizer-timestamps t))
 
-;; smooth-scrolling
-;; https://github.com/aspiers/smooth-scrolling
-(use-package smooth-scrolling
-  :disabled
-  :defer 1
-  :config (smooth-scrolling-mode 1))
-
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
