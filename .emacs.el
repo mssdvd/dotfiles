@@ -897,12 +897,12 @@
         ("M-y" . counsel-evil-registers)
         :map evil-insert-state-map
         ("M-y" . counsel-evil-registers))
-  :chords (:map evil-insert-state-map ("jj" . evil-normal-state))
   :init (setq evil-want-integration nil)
   :config
   (evil-mode 1)
   (evil-set-initial-state 'helpful-mode 'motion)
-  (setq evil-complete-next-func 'hippie-expand))
+  (setq evil-complete-next-func 'hippie-expand)
+  (bind-chord "jj" #'evil-normal-state evil-insert-state-map))
 
 ;; evil-surrond
 ;; https://github.com/emacs-evil/evil-surround
