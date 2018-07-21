@@ -500,6 +500,15 @@
   :after (counsel projectile)
   :config (counsel-projectile-mode))
 
+;; ibuffer-projectile
+;; https://github.com/purcell/ibuffer-projectile
+(use-package ibuffer-projectile
+  :hook
+  (ibuffer . (lambda ()
+               (ibuffer-projectile-set-filter-groups)
+               (unless (eq ibuffer-sorting-mode 'alphabetic)
+                 (ibuffer-do-sort-by-alphabetic)))))
+
 ;; magit
 ;; https://magit.vc
 (use-package magit
