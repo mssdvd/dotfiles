@@ -448,7 +448,8 @@
         ([M-tab] . company-complete-common-or-cycle))
   ("C-c y" . company-yasnippet)
   :config
-  (setq company-tooltip-align-annotations t)
+  (setq company-tooltip-align-annotations t
+        company-show-numbers t)
   (company-tng-configure-default)
   (global-company-mode)
   (defun add-pcomplete-to-capf ()
