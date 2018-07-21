@@ -461,6 +461,14 @@
   (company-quickhelp-mode)
   (setq company-quickhelp-use-propertized-text t))
 
+;; company-box
+;; https://github.com/sebastiencs/company-box
+(use-package company-box
+  :disabled
+  :delight
+  :config (setq company-box-enable-icon nil)
+  :hook (company-mode . company-box-mode))
+
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
 (use-package company-flx
