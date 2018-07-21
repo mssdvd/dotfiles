@@ -122,6 +122,9 @@
 ;; Prefer newer files
 (setq load-prefer-newer t)
 
+;; Do not ask to save before compilation
+(setq compilation-ask-about-save nil)
+
 ;; Save position
 (save-place-mode 1)
 
