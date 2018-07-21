@@ -489,7 +489,6 @@
   :config
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
-  (add-to-list 'projectile-project-root-files "Pipfile")
   (setq projectile-completion-system 'ivy
         projectile-enable-caching t
         projectile-files-cache-expire 2592000))
