@@ -1093,8 +1093,7 @@
   :delight
   :hook
   (python-mode)
-  (python-mode . anaconda-eldoc-mode)
-  (python-mode . (lambda () (yas-minor-mode -1))))
+  (python-mode . anaconda-eldoc-mode))
 
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
