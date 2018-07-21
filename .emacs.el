@@ -248,7 +248,6 @@
   ("C-x C-r" . counsel-recentf)
   ("C-c g" . counsel-rg)
   ("C-c f" . counsel-fzf)
-  ("C-c d" . counsel-dired-jump)
   :config
   (counsel-mode 1)
   (if (executable-find "rg")
@@ -890,8 +889,9 @@
 
 ;; zeal-at-point
 ;; https://github.com/jinzhu/zeal-at-point
+;; Dep zeal
 (use-package zeal-at-point
-  :defer t)
+  :bind ("C-c d" . zeal-at-point))
 
 ;;
 ;; Evil
