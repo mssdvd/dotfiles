@@ -954,6 +954,9 @@
 ;; https://github.com/kwrooijen/cargo.el
 (use-package cargo
   :delight cargo-minor-mode
+  :bind (:map cargo-minor-mode-map
+              ([f7] . cargo-process-run)
+              ([f8] . cargo-process-test))
   :hook (rust-mode . cargo-minor-mode))
 
 ;; Web
