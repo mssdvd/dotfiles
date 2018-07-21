@@ -442,15 +442,16 @@
   :defer 1
   :bind
   ([remap indent-for-tab-command] . company-indent-or-complete-common)
+  ([M-tab] . company-indent-or-complete-common)
   (:map company-active-map ([tab] . company-complete-common-or-cycle))
   ("C-c y" . company-yasnippet)
-  :hook (org-mode . add-pcomplete-to-capf)
   :config
-  (global-company-mode)
-  (company-tng-configure-default)
   (setq company-tooltip-align-annotations t)
+  (company-tng-configure-default)
+  (global-company-mode)
   (defun add-pcomplete-to-capf ()
-    (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t)))
+    (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
+  :hook (org-mode . add-pcomplete-to-capf))
 
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
