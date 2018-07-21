@@ -199,10 +199,6 @@
         kaolin-themes-distinct-company-scrollbar t)
   (load-theme 'kaolin-valley-dark t))
 
-;; neotree
-(use-package neotree
-  :bind ([f8] . neotree-toggle))
-
 ;; smartparens
 ;; https://github.com/Fuco1/smartparens
 (use-package smartparens-config
