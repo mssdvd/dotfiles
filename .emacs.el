@@ -213,8 +213,8 @@
                                                                                                     ("* ||\n[i]""RET")))
 
   (sp-local-pair '(python-mode rust-mode c-mode c++-mode java-mode js2-mode json-mode web-mode css-mode sh-mode) "{" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
-  (sp-local-pair '(python-mode) "[" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
-  (sp-local-pair '(python-mode) "(" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(python-mode rust-mode) "[" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
+  (sp-local-pair '(python-mode rust-mode) "(" nil :post-handlers '((my-create-newline-and-enter-sexp "RET")))
   (defun my-create-newline-and-enter-sexp (&rest _ignored)
     "Open a new brace or bracket expression, with relevant newlines and indent. "
     (newline)
