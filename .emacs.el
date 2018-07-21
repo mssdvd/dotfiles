@@ -94,6 +94,9 @@
 ;; switch to previous buffer
 (bind-key "M-o" #'mode-line-other-buffer)
 
+;; save buffer
+(bind-key [f6] #'save-buffer)
+
 ;; CLIPBOARD
 
 ;; Disable clipboard sync
