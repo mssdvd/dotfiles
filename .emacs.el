@@ -491,7 +491,8 @@
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (setq projectile-completion-system 'ivy
         projectile-enable-caching t
-        projectile-files-cache-expire 2592000))
+        projectile-files-cache-expire 2592000
+        projectile-keymap-prefix (kbd "C-c p")))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
