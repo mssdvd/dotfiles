@@ -195,7 +195,8 @@
 ;; kaolin
 (use-package kaolin-themes
   :config
-  (setq kaolin-themes-italic-comments t)
+  (setq kaolin-themes-italic-comments t
+        kaolin-themes-distinct-company-scrollbar t)
   (load-theme 'kaolin-valley-dark t))
 
 ;; neotree
