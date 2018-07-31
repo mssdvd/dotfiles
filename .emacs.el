@@ -855,6 +855,7 @@
 
 ;; which-func
 (use-package which-func
+  :disabled
   :defer 1
   :config
   (which-function-mode)
