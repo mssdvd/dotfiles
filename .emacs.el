@@ -236,7 +236,8 @@
   (setq ivy-use-virtual-buffers t
         enable-recursive-minibuffers t
         ivy-count-format "(%d/%d) "
-        ivy-use-selectable-prompt t))
+        ivy-use-selectable-prompt t
+        ivy-extra-directories nil))
 
 ;; counsel
 ;; https://github.com/abo-abo/swiper
