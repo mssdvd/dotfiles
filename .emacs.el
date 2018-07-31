@@ -115,6 +115,9 @@
 ;; Do not ask to save before compilation
 (setq compilation-ask-about-save nil)
 
+;; show buffer boundaries
+(setq-default indicate-buffer-boundaries 'left)
+
 ;; Save position
 (save-place-mode 1)
 
