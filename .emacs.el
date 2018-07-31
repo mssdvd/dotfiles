@@ -934,6 +934,28 @@
   :after (evil)
   :config (evil-lion-mode))
 
+;; evil-matchit
+;; https://github.com/redguardtoo/evil-matchit
+(use-package evil-matchit
+  :after (evil)
+  :config (global-evil-matchit-mode 1))
+
+;; evil-nerd-commenter
+;; https://github.com/redguardtoo/evil-nerd-commenter
+(use-package evil-nerd-commenter
+  :bind ("M-;" . evilnc-comment-or-uncomment-lines)
+  :config (evilnc-default-hotkeys nil t))
+
+;; evil-numbers
+;; https://github.com/cofi/evil-numbers
+(use-package evil-numbers
+  :bind
+  (("C-c +" . evil-numbers/inc-at-pt)
+   ("C-c -" . evil-numbers/dec-at-pt)
+   :map evil-normal-state-map
+   ("<kp-add>" . evil-numbers/inc-at-pt)
+   ("<kp-subtract>" . evil-numbers/dec-at-pt)))
+
 ;;
 ;; Languages configurations
 ;;
