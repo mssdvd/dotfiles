@@ -923,6 +923,18 @@
 (use-package zeal-at-point
   :bind ("C-c d" . zeal-at-point))
 
+;; elfeed
+;; https://github.com/skeeto/elfeed
+(use-package elfeed
+  :defer t
+  :config)
+
+;; elfeed-org
+;; https://github.com/remyhonig/elfeed-org
+(use-package elfeed-org
+  :after elfeed
+  :config (elfeed-org))
+
 ;;
 ;; Evil
 ;;
