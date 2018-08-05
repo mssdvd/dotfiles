@@ -294,7 +294,7 @@
 ;; ivy-hydra
 ;; https://github.com/abo-abo/swiper
 (use-package ivy-hydra
-  :after (ivy))
+  :after ivy)
 
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
@@ -314,7 +314,7 @@
 ;; avy-flycheck
 ;; https://github.com/magicdirac/avy-flycheck
 (use-package avy-flycheck
-  :after (flycheck)
+  :after flycheck
   :config (avy-flycheck-setup))
 
 ;; ace-link
@@ -368,13 +368,13 @@
 
 ;; flycheck-pos-tip
 (use-package flycheck-pos-tip
-  :after (flycheck)
+  :after flycheck
   :config (flycheck-pos-tip-mode t))
 
 ;; flycheck-inline
 ;; https://github.com/flycheck/flycheck-inline
 (use-package flycheck-inline
-  :after (flycheck)
+  :after flycheck
   :config(flycheck-inline-mode))
 
 ;; recentf
@@ -468,7 +468,7 @@
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
-  :after (company)
+  :after company
   :config
   (company-quickhelp-mode)
   (setq company-quickhelp-use-propertized-text t))
@@ -484,13 +484,13 @@
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
 (use-package company-flx
-  :after (company)
+  :after company
   :config (company-flx-mode +1))
 
 ;; company-statistics
 ;; https://github.com/company-mode/company-statistics
 (use-package company-statistics
-  :after (company)
+  :after company
   :config (company-statistics-mode))
 
 ;; projectile
@@ -509,7 +509,7 @@
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
 (use-package counsel-projectile
-  :after (counsel projectile)
+  :after counsel projectile
   :config (counsel-projectile-mode))
 
 ;; ibuffer-projectile
@@ -537,7 +537,7 @@
 ;; https://github.com/vermiculus/magithub
 (use-package magithub
   :disabled
-  :after (magit)
+  :after magit
   :config (magithub-feature-autoinject t))
 
 ;; gitconfig-mode
@@ -920,13 +920,13 @@
 ;; evil-surrond
 ;; https://github.com/emacs-evil/evil-surround
 (use-package evil-surround
-  :after (evil)
+  :after evil
   :config (global-evil-surround-mode 1))
 
 ;; evil-collection
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
-  :after (evil)
+  :after evil
   :custom (evil-collection-company-use-tng nil)
   :config
   (mapc (lambda (x) (setq evil-collection-mode-list (delq x evil-collection-mode-list))) '(calc))
@@ -935,13 +935,13 @@
 ;; evil-lion
 ;; https://github.com/edkolev/evil-lion
 (use-package evil-lion
-  :after (evil)
+  :after evil
   :config (evil-lion-mode))
 
 ;; evil-matchit
 ;; https://github.com/redguardtoo/evil-matchit
 (use-package evil-matchit
-  :after (evil)
+  :after evil
   :config (global-evil-matchit-mode 1))
 
 ;; evil-nerd-commenter
@@ -1004,7 +1004,7 @@
 ;; company-restclient
 ;; https://github.com/iquiw/company-restclient
 (use-package company-restclient
-  :after (restclient company)
+  :after restclient company
   :config (add-to-list 'company-backends 'company-restclient))
 
 ;; web-mode
@@ -1061,13 +1061,13 @@
 ;; company-tern
 ;; https://github.com/proofit404/company-tern
 (use-package company-tern
-  :after (js2-mode tern company)
+  :after js2-mode tern company
   :config (add-to-list 'company-backends 'company-tern))
 
 ;; company-web
 ;; https://github.com/osv/company-web
 (use-package company-web
-  :after (web-mode company)
+  :after web-mode company
   :config (add-to-list 'company-backends 'company-web-html))
 
 ;; ac-html-csswatcher
@@ -1075,7 +1075,7 @@
 ;; Dep csswatcher (sudo cpan i CSS::Watcher)
 ;; Remember: add .csswatcher or use projectile
 (use-package ac-html-csswatcher
-  :after (company-web)
+  :after company-web
   :config
   (company-web-csswatcher-setup)
   (company-web-csswatcher+))
@@ -1133,7 +1133,7 @@
 ;; company-anaconda
 ;; https://github.com/proofit404/company-anaconda
 (use-package company-anaconda
-  :after (anaconda-mode company)
+  :after anaconda-mode company
   :config (add-to-list 'company-backends '(company-anaconda :with company-capf)))
 
 ;; yapfify
@@ -1206,7 +1206,7 @@
 ;; https://github.com/Andersbakken/rtags
 (use-package rtags
   :disabled
-  :after (irony)
+  :after irony
   :config
   ;; (setq rtags-completions-enabled t)
   (setq rtags-autostart-diagnostics t)
@@ -1232,13 +1232,13 @@
 ;; flycheck-clag-analyzer
 ;; https://github.com/alexmurray/flycheck-clang-analyzer
 (use-package flycheck-clang-analyzer
-  :after (flycheck)
+  :after flycheck
   :config (flycheck-clang-analyzer-setup))
 
 ;; cmake-ide
 ;; https://github.com/atilaneves/cmake-ide
 (use-package cmake-ide
-  :after (rtags)
+  :after rtags
   :config (cmake-ide-setup))
 
 ;;; .emacs ends here
