@@ -435,7 +435,14 @@
   (setq org-log-done t)
   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
   (require 'mode-local)
-  (setq-mode-local org-mode save-interprogram-paste-before-kill t select-enable-clipboard t))
+  (setq-mode-local org-mode save-interprogram-paste-before-kill t select-enable-clipboard t)
+  (defun sort-all-org-entries ()
+    (interactive)
+    (let ((fun #'(lambda nil
+                   (condition-case nil
+                       (org-sort-entries nil ?a)
+                     (user-error t)))))
+      (org-map-entries fun))))
 
 ;; ox-reveal
 ;; https://github.com/yjwen/org-reveal
