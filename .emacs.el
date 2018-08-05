@@ -17,10 +17,6 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-;; custom-stuff goes to another file
-(setq custom-file "~/.emacs.d/custom.el")
-(load custom-file 'noerror)
-
 ;; enable column number
 (column-number-mode t)
 
@@ -190,6 +186,13 @@
 ;; https://github.com/jwiegley/use-package
 (use-package use-package-chords
   :config (key-chord-mode 1))
+
+;; no-littering
+;; https://github.com/emacscollective/no-littering
+(use-package no-littering
+  :config
+  (setq custom-file (no-littering-expand-etc-file-name "custom.el"))
+  (load custom-file 'noerror))
 
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
