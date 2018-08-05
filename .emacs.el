@@ -344,6 +344,25 @@
   ("<M-up>" . move-text-up)
   ("<M-down>" . move-text-down))
 
+;; treemacs
+;; https://github.com/Alexander-Miller/treemacs
+(use-package treemacs
+  :bind
+  ("M-0" . treemacs)
+  (:map treemacs-mode-map
+        ([mouse-1] . treemacs-single-click-expand-action))
+  :config (setq treemacs-show-hidden-files nil))
+
+;; treemacs-evil
+;; https://github.com/Alexander-Miller/treemacs
+(use-package treemacs-evil
+  :after treemacs evil)
+
+;; treemacs-projectile
+;; https://github.com/Alexander-Miller/treemacs
+(use-package treemacs-projectile
+  :after treemacs projectile)
+
 ;; flycheck
 ;; http://www.flycheck.org
 ;; Dep flake8, clang, tidy, csslint
