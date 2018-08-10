@@ -612,15 +612,6 @@
   ("C-c o m" . multiple-cursors-mode)
   :custom-face (mc/cursor-face ((t (:inherit cursor :foreground "black")))))
 
-;; highlight-symbol
-;; https://github.com/nschum/highlight-symbol.el
-(use-package highlight-symbol
-  :bind
-  ([(C-f5)] . highlight-symbol)
-  ([f5] . highlight-symbol-next)
-  ([(S-f5)] . highlight-symbol-prev)
-  ([(M-f5)] . highlight-symbol-query-replace))
-
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
