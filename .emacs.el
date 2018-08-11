@@ -1019,6 +1019,12 @@
   :mode ("\\.rs\\'" . rust-mode)
   :config (setq rust-format-on-save t))
 
+;; lsp-rust
+;; https://github.com/emacs-lsp/lsp-rust
+(use-package lsp-rust
+  :bind (:map rust-mode-map ([remap flycheck-explain-error-at-point] . lsp-rust-explain-error-at-point))
+  :hook (rust-mode . lsp-rust-enable))
+
 ;; flycheck-rust
 ;; https://github.com/flycheck/flycheck-rust
 (use-package flycheck-rust
