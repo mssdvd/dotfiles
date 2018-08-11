@@ -478,14 +478,10 @@
   ([remap indent-for-tab-command] . company-indent-or-complete-common)
   ([M-tab] . company-indent-or-complete-common)
   ("C-c y" . company-yasnippet)
-  (:map company-active-map
-        ([tab] . company-complete-common-or-cycle)
-        ([M-tab] . company-complete-common-or-cycle))
   :config
   (setq company-tooltip-align-annotations t
         company-show-numbers t
         company-minimum-prefix-length 2)
-  (company-tng-configure-default)
   (global-company-mode)
   (defun add-pcomplete-to-capf ()
     (add-hook 'completion-at-point-functions 'pcomplete-completions-at-point nil t))
