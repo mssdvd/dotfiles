@@ -1025,19 +1025,6 @@
   :bind (:map rust-mode-map ([remap flycheck-explain-error-at-point] . lsp-rust-explain-error-at-point))
   :hook (rust-mode . lsp-rust-enable))
 
-;; flycheck-rust
-;; https://github.com/flycheck/flycheck-rust
-(use-package flycheck-rust
-  :hook (flycheck-mode . flycheck-rust-setup))
-
-;; racer
-;; https://github.com/racer-rust/emacs-racer
-(use-package racer
-  :delight
-  :bind (:map racer-mode-map ("M-?" . racer-describe))
-  :hook (rust-mode . racer-mode)
-  :config (setq racer-rust-src-path nil))
-
 ;; cargo
 ;; https://github.com/kwrooijen/cargo.el
 (use-package cargo
