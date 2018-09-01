@@ -995,7 +995,6 @@
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-mode)
-  :config (setq rust-format-on-save t))
 
 ;; lsp-rust
 ;; https://github.com/emacs-lsp/lsp-rust
