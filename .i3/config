@@ -203,6 +203,7 @@ for_window [class="(?i)pinentry"] floating enable
 for_window [class="Steam"] floating enable, border none
 for_window [title="Android Emulator*"] floating enable
 for_window [class="Peek"] floating enable
+for_window [class="flameshot"] floating enable
 for_window [class="^chromium$"] move window to workspace current
 for_window [class="^Chromium$"] move window to workspace current
 
