@@ -795,16 +795,6 @@
 (use-package google-translate
   :defer t)
 
-;; google-maps
-;; https://github.com/jd/google-maps.el
-(use-package google-maps
-  :bind
-  (:map google-maps-static-mode-map
-        ("h" . google-maps-static-move-west)
-        ("j" . google-maps-static-move-south)
-        ("k" . google-maps-static-move-north)
-        ("l" . google-maps-static-move-east)))
-
 ;; calc
 (use-package calc
   :bind
@@ -849,34 +839,6 @@
   ("C-h v" . helpful-variable)
   ("C-h k" . helpful-key)
   (:map emacs-lisp-mode-map ("C-c C-d" . helpful-at-point)))
-
-;; which-func
-(use-package which-func
-  :disabled
-  :defer 1
-  :config
-  (which-function-mode)
-  (setq which-func-modes '(c-mode c++-mode java-mode python-mode)))
-
-;; spotify
-;; https://github.com/remvee/spotify-el
-(use-package spotify
-  :defer t)
-
-;; hackernews
-;; https://github.com/clarete/hackernews.el
-(use-package hackernews
-  :defer t)
-
-;; counsel-world-clock
-;; https://github.com/kchenphy/counsel-world-clock
-(use-package counsel-world-clock
-  :defer t)
-
-;; ivy-pass
-;; https://github.com/ecraven/ivy-pass/
-(use-package ivy-pass
-  :defer t)
 
 ;; lang-tool
 ;; https://github.com/mhayashi1120/Emacs-langtool
@@ -1015,17 +977,6 @@
   :hook (rust-mode . cargo-minor-mode))
 
 ;; Web
-
-;; restclient.el
-;; https://github.com/pashky/restclient.el
-(use-package restclient
-  :defer t)
-
-;; company-restclient
-;; https://github.com/iquiw/company-restclient
-(use-package company-restclient
-  :after restclient company
-  :config (add-to-list 'company-backends 'company-restclient))
 
 ;; web-mode
 ;; https://github.com/fxbois/web-mode
@@ -1211,54 +1162,9 @@
   :defer t
   :config (setq company-backends (delete 'company-semantic company-backends)))
 
-;; company-c-headers
-;; https://github.com/randomphrase/company-c-headers
-(use-package company-c-headers
-  :disabled
-  :defer t)
-
 ;; company-irony-c-headers
 ;; https://github.com/hotpxl/company-irony-c-headers
 (use-package company-irony-c-headers
   :defer t)
-
-;; rtags
-;; https://github.com/Andersbakken/rtags
-(use-package rtags
-  :disabled
-  :after irony
-  :config
-  ;; (setq rtags-completions-enabled t)
-  (setq rtags-autostart-diagnostics t)
-  (rtags-enable-standard-keybindings))
-;; (rtags-set-periodic-reparse-timeout 1.0))
-
-;; company-rtags
-;; https://github.com/Andersbakken/rtags
-;; (use-package company-rtags
-;;   :defer t)
-
-;; flycheck-rtags
-;; https://github.com/Andersbakken/rtags
-;; (use-package flycheck-rtags
-;;   :defer t
-;;   :init
-;;   (defun my-flycheck-rtags-setup ()
-;;  (flycheck-select-checker 'rtags)
-;;  (setq-local flycheck-highlighting-mode nil) ;; RTags creates more accurate overlays.
-;;  (setq-local flycheck-check-syntax-automatically nil))
-;;   (add-hook 'c-mode-common-hook #'my-flycheck-rtags-setup))
-
-;; flycheck-clag-analyzer
-;; https://github.com/alexmurray/flycheck-clang-analyzer
-(use-package flycheck-clang-analyzer
-  :after flycheck
-  :config (flycheck-clang-analyzer-setup))
-
-;; cmake-ide
-;; https://github.com/atilaneves/cmake-ide
-(use-package cmake-ide
-  :after rtags
-  :config (cmake-ide-setup))
 
 ;;; .emacs ends here
