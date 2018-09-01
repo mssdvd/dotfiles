@@ -1,5 +1,9 @@
 #! /bin/bash
 
 URL="$(xclip -selection primary -o)"
-echo $URL
-mpv "${URL}"
+mpv $URL
+
+if [ $? -eq 2 ]; then
+    URL="$(xclip -o)"
+    mpv $URL
+fi
