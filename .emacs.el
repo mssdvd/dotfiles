@@ -117,6 +117,12 @@
 ;; Save position
 (save-place-mode 1)
 
+;; electric-pair-mode
+(electric-pair-mode 1)
+
+;; Show parens mode
+(show-paren-mode)
+
 ;;;;
 ;; My functions
 ;;;;
@@ -209,6 +215,7 @@
 ;; smartparens
 ;; https://github.com/Fuco1/smartparens
 (use-package smartparens-config
+  :disabled
   :ensure smartparens
   :delight smartparens-mode
   :defer 1
