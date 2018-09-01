@@ -91,7 +91,7 @@
 (bind-key "M-o" #'mode-line-other-buffer)
 
 ;; save buffer
-(bind-key [f6] #'save-buffer)
+(bind-key [f5] #'save-buffer)
 
 ;; Pasting with middle-click puts the text where the point is
 (setq mouse-yank-at-point t)
