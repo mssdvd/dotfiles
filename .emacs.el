@@ -542,13 +542,6 @@
           ("~/Documents/dotfiles" . 0))
         vc-handled-backends (delq 'Git vc-handled-backends)))
 
-;; magithub
-;; https://github.com/vermiculus/magithub
-(use-package magithub
-  :disabled
-  :after magit
-  :config (magithub-feature-autoinject t))
-
 ;; gitconfig-mode
 ;; https://github.com/magit/git-modes
 (use-package gitconfig-mode
