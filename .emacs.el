@@ -976,6 +976,12 @@
   :after lsp-mode company
   :config (push 'company-lsp company-backends))
 
+;; lsp-python
+;; https://github.com/emacs-lsp/lsp-python
+(use-package lsp-python
+  :disabled
+  :hook (python-mode . lsp-python-enable))
+
 ;; Rust
 
 ;; rust-mode
