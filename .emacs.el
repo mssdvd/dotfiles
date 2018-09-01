@@ -1008,6 +1008,7 @@
 (use-package cargo
   :delight cargo-minor-mode
   :bind (:map cargo-minor-mode-map
+              ([f6]. cargo-process-check)
               ([f7] . cargo-process-run)
               ([f8] . cargo-process-test))
   :hook (rust-mode . cargo-minor-mode))
