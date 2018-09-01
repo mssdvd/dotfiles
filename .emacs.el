@@ -1083,6 +1083,7 @@
 ;; Dep csswatcher (sudo cpan i CSS::Watcher)
 ;; Remember: add .csswatcher or use projectile
 (use-package ac-html-csswatcher
+  :disabled
   :after company-web
   :config
   (company-web-csswatcher-setup)
@@ -1091,6 +1092,7 @@
 ;; ac-html-bootstrap
 ;; https://github.com/osv/ac-html-bootstrap
 (use-package ac-html-bootstrap
+  :disabled
   :defer t)
 
 ;; emmet-mode
