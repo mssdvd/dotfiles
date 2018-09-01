@@ -276,16 +276,7 @@
 ;; hydra
 ;; https://github.com/abo-abo/hydra
 (use-package hydra
-  :bind
-  ("C-c n" . hydra-navigate/body)
-  :config
-  (defhydra hydra-navigate ()
-    "Navigate"
-    ("h" backward-char "←")
-    ("j" next-line     "↓")
-    ("k" previous-line "↑")
-    ("l" forward-char  "→")
-    ("q" nil           "Quit")))
+  :defer t)
 
 ;; ivy-hydra
 ;; https://github.com/abo-abo/swiper
