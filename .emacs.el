@@ -507,13 +507,13 @@
 (use-package projectile
   :delight '(:eval (concat " " (projectile-project-name)))
   :defer 1
+  :bind (:map projectile-mode-map ("C-c p" . projectile-command-map))
   :config
   (projectile-mode)
   (add-to-list 'projectile-project-root-files "platformio.ini")
   (setq projectile-completion-system 'ivy
         projectile-enable-caching t
-        projectile-files-cache-expire 2592000
-        projectile-keymap-prefix (kbd "C-c p")))
+        projectile-files-cache-expire 2592000))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
