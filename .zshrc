@@ -10,7 +10,7 @@ eval $(thefuck --alias)
 # alias
 alias open=xdg-open
 alias locate="locate -bi"
-alias rn="termite -e ranger . &"
+alias rn="kitty -e ranger . &"
 alias trz=trizen
 
 # look for new exe in path
@@ -78,3 +78,6 @@ gpip() {
 if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
     source /etc/profile.d/vte.sh
 fi
+
+# Completion for kitty
+kitty + complete setup zsh | source /dev/stdin

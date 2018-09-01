@@ -162,7 +162,7 @@
   "Open the current file's directory in ranger."
   (interactive)
   (if default-directory
-      (call-process-shell-command "termite -e ranger" (expand-file-name default-directory) 0 nil)
+      (call-process-shell-command "kitty -e ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
 (bind-key "C-c r" #'ranger-launch-here)
 
@@ -722,7 +722,7 @@
   :bind
   ("C-c t" . terminal-here-launch)
   ("C-c e" . terminal-here-project-launch)
-  :config (setq terminal-here-terminal-command '("termite")))
+  :config (setq terminal-here-terminal-command '("kitty")))
 
 ;; sudo-edit
 ;; https://github.com/nflath/sudo-edit

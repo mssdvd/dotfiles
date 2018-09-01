@@ -14,7 +14,7 @@ font pango:Iosevka Slab 8
 #font pango:DejaVu Sans Mono 8
 
 # set default terminal
-set $term termite
+set $term kitty
 
 # start a terminal
 bindsym $mod+Return exec $term #i3-sensible-terminal
