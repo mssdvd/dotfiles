@@ -140,17 +140,6 @@
             (goto-char (point))
             (mc/create-fake-cursor-at-point))))))
 
-(defun copy-line ()
-  "Copy current line."
-  (interactive)
-  (save-excursion
-    (back-to-indentation)
-    (clipboard-kill-ring-save
-     (point)
-     (line-end-position)))
-  (message "1 line copied"))
-(bind-key "C-c k" #'copy-line)
-
 (defun switch-highlight-indent-guides-and-whitespace-modes ()
   "Switch between highlight-indent-guides and whitespace modes."
   (interactive)
