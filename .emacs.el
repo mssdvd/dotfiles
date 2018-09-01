@@ -966,8 +966,15 @@
 (use-package lsp-ui
   :bind
   (:map lsp-ui-mode-map
+        ([remap save-buffer] . lsp-format-and-save)
         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
         ([remap xref-find-references] . lsp-ui-peek-find-references))
+  :config
+  (setq lsp-ui-doc-position 'bottom)
+  (defun lsp-format-and-save ()
+    (interactive)
+    (lsp-format-buffer)
+    (save-buffer))
   :hook (lsp-mode . lsp-ui-mode))
 
 ;; company-lsp
