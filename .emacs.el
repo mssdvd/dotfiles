@@ -931,7 +931,30 @@
 ;; Languages configurations
 ;;
 
+;; eglot
+;; https://github.com/joaotavora/eglot
+(use-package eglot
+  :disabled
+  :bind
+  (:map eglot-mode-map
+        ([remap save-buffer] . eglot-format-and-save)
+        ([remap next-error] . flymake-goto-next-error)
+        ([remap previous-error] . flymake-goto-prev-error))
+  :config
+  (advice-add 'eglot-eldoc-function :around
+              (lambda (oldfun)
+                (let ((help (help-at-pt-kbd-string)))
+                  (if help (message "%s" help) (funcall oldfun)))))
+  (defun eglot-format-and-save ()
+    (interactive)
+    (eglot-format-buffer)
+    (save-buffer))
+  :hook
+  (rust-mode . eglot-ensure)
+  (rust-mode . (lambda () (flycheck-mode -1))))
+
 ;; lsp
+
 
 ;; lsp-mode
 ;; https://github.com/emacs-lsp/lsp-mode
