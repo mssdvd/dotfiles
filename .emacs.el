@@ -877,7 +877,7 @@
         ("M-y" . counsel-evil-registers)
         :map evil-insert-state-map
         ("M-y" . counsel-evil-registers))
-  :init (setq evil-want-integration nil)
+  :init (setq evil-want-keybinding nil)
   :config
   (evil-mode 1)
   (evil-set-initial-state 'helpful-mode 'motion)
