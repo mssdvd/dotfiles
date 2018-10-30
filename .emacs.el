@@ -395,6 +395,8 @@
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
 (use-package highlight-indent-guides
+  :defer 2
+  :delight
   :hook
   (prog-mode . highlight-indent-guides-mode)
   (web-mode . (lambda () (highlight-indent-guides-mode -1)))
