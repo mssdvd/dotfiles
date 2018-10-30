@@ -495,12 +495,14 @@
 ;; company-flx
 ;; https://github.com/PythonNut/company-flx
 (use-package company-flx
+  :disabled
   :after company
   :config (company-flx-mode +1))
 
 ;; company-statistics
 ;; https://github.com/company-mode/company-statistics
 (use-package company-statistics
+  :disabled
   :after company
   :config (company-statistics-mode))
 
