@@ -268,7 +268,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id lxpolkit
 exec --no-startup-id pamac-tray
 exec --no-startup-id pasystray
-exec --no-startup-id redshift-gtk
+exec --no-startup-id sleep 5; redshift-gtk
 exec --no-startup-id greenclip daemon
 exec --no-startup-id udiskie --no-automount --tray
 exec --no-startup-id unclutter --timeout 10
