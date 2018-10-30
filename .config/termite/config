@@ -2,7 +2,7 @@
 font = Iosevka Term Slab 10
 scrollback_lines = -1
 [colors]
-foreground = #b2b2b2
+foreground = #ffffff
 background = #000000
 # blue
 color4 = #0030FF
