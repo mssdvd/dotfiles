@@ -22,3 +22,6 @@
 [submodule ".i3/i3blocks-Anachron"]
 	path = .i3/i3blocks-Anachron
 	url = https://github.com/Anachron/i3blocks
+[submodule ".i3/i3blocks-mssdvd"]
+	path = .i3/i3blocks-mssdvd
+	url = https://gitlab.com/mssdvd/i3blocks-mssdvd
