@@ -14,7 +14,7 @@ font pango:Iosevka Slab 8
 #font pango:DejaVu Sans Mono 8
 
 # set default terminal
-set $term kitty
+set $term termite
 
 # start a terminal
 bindsym $mod+Return exec $term #i3-sensible-terminal
@@ -248,7 +248,7 @@ bindcode $mod+34 exec chromium
 # bindsym $mod+Shift+Bracketleft exec chromium --incognito
 bindcode $mod+Shift+34 exec chromium --incognito
 # bindsym $mod+Backslash exec $term -e ranger
-bindcode $mod+51 exec $term -e ranger
+bindcode $mod+51 exec kitty ranger
 # bindsym $mod+Shift+Backslash exec thunar
 bindcode $mod+Shift+51 exec thunar
 # bindsym $mod+Bracketright exec emacsclient -c -a ''

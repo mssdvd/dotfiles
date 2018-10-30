@@ -10,7 +10,7 @@ eval $(thefuck --alias)
 # alias
 alias open=xdg-open
 alias locate="locate -bi"
-alias rn="kitty -e ranger . &"
+alias rn="termite -e ranger . &"
 alias trz=trizen
 
 # look for new exe in path
