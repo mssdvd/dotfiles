@@ -271,7 +271,7 @@ exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id nm-applet
 exec --no-startup-id lxpolkit
 exec --no-startup-id pamac-tray
-exec --no-startup-id pasystray
+exec --no-startup-id pasystray --notify=none
 exec --no-startup-id sleep 5; redshift-gtk
 exec --no-startup-id greenclip daemon
 exec --no-startup-id udiskie --no-automount --tray
