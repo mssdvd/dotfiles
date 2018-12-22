@@ -866,6 +866,25 @@
   :after elfeed
   :config (elfeed-org))
 
+;; ledger-mode
+;; https://github.com/ledger/ledger-mode
+(use-package ledger-mode
+  :mode ("\\.ldg\\'" . ledger-mode)
+  :bind
+  (:map ledger-mode-map ([f6] . my/insert-euro-symbol))
+  :config
+  (setq ledger-reconcile-default-commodity "€")
+  (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
+  (defun my/insert-euro-symbol ()
+    "Insert € at point"
+    (interactive)
+    (insert "€")))
+
+;; flycheck-ledger
+;; https://github.com/purcell/flycheck-ledger
+(use-package flycheck-ledger
+  :after flycheck)
+
 ;;
 ;; Evil
 ;;
