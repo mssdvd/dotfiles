@@ -8,3 +8,4 @@ set hlsearch
 
 inoremap jj <esc>
 
+syntax on
