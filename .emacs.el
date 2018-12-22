@@ -186,7 +186,7 @@
   (setq kaolin-themes-italic-comments t
         kaolin-themes-distinct-company-scrollbar t
         kaolin-themes-underline-wave t)
-  (load-theme 'kaolin-valley-dark t))
+  (load-theme 'kaolin-ocean t))
 
 ;; smartparens
 ;; https://github.com/Fuco1/smartparens
