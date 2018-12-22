@@ -858,8 +858,7 @@
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
 (use-package elfeed
-  :defer t
-  :config)
+  :defer t)
 
 ;; elfeed-org
 ;; https://github.com/remyhonig/elfeed-org
