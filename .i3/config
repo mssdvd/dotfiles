@@ -264,6 +264,7 @@ bindcode $mod+Shift+48 exec evince
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
 bindsym $mod+z exec zeal
 bindsym $mod+q exec qalculate-gtk
+bindsym $mod+i exec i3-input
 
 # Autostart applications
 exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
