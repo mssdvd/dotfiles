@@ -5,7 +5,7 @@ scrollback_lines = -1
 foreground = #ffffff
 background = #000000
 # blue
-color4 = #0030FF
+color4 = #0050FF
 [hints]
 foreground = #000000
 background = #ffffff
