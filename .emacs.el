@@ -980,29 +980,30 @@
 ;; lsp-mode
 ;; https://github.com/emacs-lsp/lsp-mode
 (use-package lsp-mode
-  :defer t)
+  :commands lsp
+  :init (setq lsp-prefer-flymake nil)
+  :hook (rust-mode . lsp))
 
 ;; lsp-ui
 ;; https://github.com/emacs-lsp/lsp-ui
 (use-package lsp-ui
+  :commands lsp-ui-mode
   :bind
   (:map lsp-ui-mode-map
-        ([remap save-buffer] . lsp-format-and-save)
+        ([remap save-buffer] . my/lsp-format-and-save)
         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
         ([remap xref-find-references] . lsp-ui-peek-find-references))
   :config
   (setq lsp-ui-doc-position 'bottom)
-  (defun lsp-format-and-save ()
+  (defun my/lsp-format-and-save ()
     (interactive)
     (lsp-format-buffer)
-    (save-buffer))
-  :hook (lsp-mode . lsp-ui-mode))
+    (save-buffer)))
 
 ;; company-lsp
 ;; https://github.com/tigersoldier/company-lsp
 (use-package company-lsp
-  :after lsp-mode company
-  :config (push 'company-lsp company-backends))
+  :commands company-lsp)
 
 ;; lsp-python
 ;; https://github.com/emacs-lsp/lsp-python
@@ -1016,12 +1017,7 @@
 ;; https://github.com/rust-lang/rust-mode
 (use-package rust-mode
   :mode ("\\.rs\\'" . rust-mode)
-
-;; lsp-rust
-;; https://github.com/emacs-lsp/lsp-rust
-(use-package lsp-rust
-  :bind (:map rust-mode-map ([remap flycheck-explain-error-at-point] . lsp-rust-explain-error-at-point))
-  :hook (rust-mode . lsp-rust-enable))
+  :config (setq rust-match-angle-brackets nil))
 
 ;; cargo
 ;; https://github.com/kwrooijen/cargo.el
