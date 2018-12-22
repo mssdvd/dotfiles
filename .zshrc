@@ -7,11 +7,15 @@ compinit
 # thefuck
 eval $(thefuck --alias)
 
+# Default editor
+export EDITOR="emacsclient -t -a ''"
+
 # alias
 alias open=xdg-open
 alias locate="locate -bi"
 alias rn="termite -e ranger . &"
 alias trz=trizen
+alias edit="emacsclient -t -a ''"
 
 # look for new exe in path
 zstyle ':completion:*' rehash true
