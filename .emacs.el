@@ -882,7 +882,8 @@
   :bind
   (:map ledger-mode-map ([f6] . my/insert-euro-symbol))
   :config
-  (setq ledger-reconcile-default-commodity "€")
+  (setq ledger-reconcile-default-commodity "€"
+        ledger-highlight-xact-under-point nil)
   (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
   (defun my/insert-euro-symbol ()
     "Insert € at point"
