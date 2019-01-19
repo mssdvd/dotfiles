@@ -18,6 +18,8 @@ set $term termite
 
 # start a terminal
 bindsym $mod+Return exec $term #i3-sensible-terminal
+bindsym $mod+Shift+Return exec $term --class floatingTerm
+for_window [class="^floatingTerm$"] floating enable
 
 # kill focused window
 bindsym $mod+Shift+q kill
