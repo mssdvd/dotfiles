@@ -756,7 +756,9 @@
 ;; https://github.com/hsjunnesson/wolfram.el
 (use-package wolfram
   :defer t
-  :config (setq wolfram-alpha-app-id "***REMOVED***"))
+  :config
+  (setq wolfram-alpha-app-id "***REMOVED***"
+        wolfram-alpha-magnification-factor 1.5))
 
 ;; define-word
 ;; https://github.com/abo-abo/define-word
