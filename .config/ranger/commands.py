@@ -7,7 +7,7 @@
 # You can import any python module as needed.
 import os
 
-from ranger.api.commands import *
+from ranger.api.commands import Command
 from ranger.core.loader import CommandLoader
 
 # A simple command for demonstration purposes follows.
