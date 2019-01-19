@@ -78,10 +78,5 @@ gpip() {
     PIP_REQUIRE_VIRTUALENV="" pip "$@"
 }
 
-# fix vte bug
-if [ $TILIX_ID ] || [ $VTE_VERSION ]; then
-    source /etc/profile.d/vte.sh
-fi
-
 # Completion for kitty
 kitty + complete setup zsh | source /dev/stdin
