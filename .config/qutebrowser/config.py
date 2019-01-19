@@ -7,6 +7,8 @@
 # Type: Bool
 c.auto_save.session = True
 
+c.editor.command = ["emacsclient", "-c", "-a ''", "{file}"]
+
 # Search engines which can be used via the address bar. Maps a search
 # engine name (such as `DEFAULT`, or `ddg`) to a URL with a `{}`
 # placeholder. The placeholder will be replaced by the search term, use
