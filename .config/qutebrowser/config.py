@@ -41,8 +41,8 @@ config.bind(',p', 'spawn --userscript qute-pass')
 config.bind(',u', 'spawn --userscript qute-pass --username-only')
 config.bind('<Alt+Left>', 'back')
 config.bind('<Alt+Right>', 'forward')
-config.bind('M', 'hint links spawn mpv {hint-url}')
-config.bind('m', 'spawn mpv {url}')
+config.bind(',M', 'hint links spawn mpv {hint-url}')
+config.bind(',m', 'spawn mpv {url}')
 
 # Uncomment this to still load settings configured via autoconfig.yml
 config.load_autoconfig()
