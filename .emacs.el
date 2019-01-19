@@ -908,11 +908,12 @@
         ("M-y" . counsel-evil-registers)
         :map evil-insert-state-map
         ("M-y" . counsel-evil-registers))
-  :init (setq evil-want-keybinding nil)
+  :init
+  (setq evil-complete-next-func 'hippie-expand
+        evil-search-module 'evil-search
+        evil-want-keybinding nil)
   :config
   (evil-mode 1)
-  (evil-set-initial-state 'helpful-mode 'motion)
-  (setq evil-complete-next-func 'hippie-expand)
   (bind-chord "jj" #'evil-normal-state evil-insert-state-map))
 
 ;; evil-surrond
