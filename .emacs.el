@@ -363,7 +363,7 @@
 ;; flycheck-inline
 ;; https://github.com/flycheck/flycheck-inline
 (use-package flycheck-inline
-  :hook (flycheck-mode . turn-on-flycheck-inline))
+  :hook (flycheck-mode . flycheck-inline-mode))
 
 ;; recentf
 (use-package recentf
