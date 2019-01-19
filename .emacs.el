@@ -816,7 +816,9 @@
 ;; https://github.com/wasamasa/eyebrowse
 (use-package eyebrowse
   :defer 1
-  :config (eyebrowse-mode t))
+  :config
+  (eyebrowse-mode t)
+  (eyebrowse-setup-evil-keys))
 
 ;; calendar
 (use-package calendar
