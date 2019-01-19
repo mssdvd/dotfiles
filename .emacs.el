@@ -1,10 +1,6 @@
 ;;; package --- Summary
 ;;; Commentary:
 
-;; (add-to-list 'load-path "~/build/benchmark-init-el/")
-;; (require 'benchmark-init-loaddefs)
-;; (benchmark-init/activate)
-
 ;;; Code:
 (require 'package)
 (add-to-list 'package-archives
