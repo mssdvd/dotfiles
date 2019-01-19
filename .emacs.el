@@ -809,7 +809,7 @@
 (use-package calc
   :bind
   ("M-#" . quick-calc)
-  ("C-M-#" . calc)
+  ("C-M-#" . full-calc)
   (:map calc-mode-map ("C-S-z" . calc-redo)))
 
 ;; eyebrowse
