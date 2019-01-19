@@ -499,7 +499,14 @@
   (setq projectile-completion-system 'ivy
         projectile-enable-caching t
         projectile-files-cache-expire 2592000
-        projectile-mode-line-function '(lambda () (format " [%s:%s]" (projectile-project-name) (projectile-project-type)))))
+        projectile-mode-line-function 'my/projectile-default-mode-line)
+  (defun my/projectile-default-mode-line ()
+    "Report project name and type in the modeline."
+    (let ((project-name (projectile-project-name))
+          (project-type (projectile-project-type)))
+      (if (and project-name project-type)
+          (format " [%s:%s]" project-name project-type)
+        " Projectile"))))
 
 ;; counsel-projectile
 ;; https://github.com/ericdanan/counsel-projectile
