@@ -526,7 +526,9 @@
 ;; magit
 ;; https://magit.vc
 (use-package magit
-  :bind ("C-x g" . magit-status)
+  :bind
+  ("C-x g" . magit-status)
+  ("C-x M-g" . magit-dispatch-popup)
   :config
   (setq magit-diff-refine-hunk 'all
         magit-delete-by-moving-to-trash nil
