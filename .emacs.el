@@ -517,8 +517,8 @@
 ;; ibuffer-projectile
 ;; https://github.com/purcell/ibuffer-projectile
 (use-package ibuffer-projectile
-  :hook
-  (ibuffer . (lambda ()
+  :after projectile
+  :hook (ibuffer . (lambda ()
                (ibuffer-projectile-set-filter-groups)
                (unless (eq ibuffer-sorting-mode 'alphabetic)
                  (ibuffer-do-sort-by-alphabetic)))))
