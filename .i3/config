@@ -264,7 +264,7 @@ bindcode $mod+48 exec zathura
 bindcode $mod+Shift+48 exec evince
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
 bindsym $mod+z exec zeal
-bindsym $mod+q exec qalculate-gtk
+bindsym $mod+q exec emacs -Q -D -r -f full-calc
 bindsym $mod+i exec i3-input
 
 # Autostart applications
