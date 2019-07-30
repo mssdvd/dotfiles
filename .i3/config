@@ -152,15 +152,17 @@ bindsym $mod+r mode "resize"
 
 ## Manual management of external displays
 # Set the shortcuts and what they do
-set $mode_display External Screen (h) Share screen, (j) Extend desktop, (k) HDMI OFF
+set $mode_display External Screen (h) Share screen, (r) Extend desktop (right), (l) Extend desktop (left), (k) HDMI OFF
 mode "$mode_display" {
     bindsym h exec --no-startup-id xrandr --output HDMI-2 --auto --same-as eDP-1, mode "default"
-    bindsym j exec --no-startup-id xrandr --output HDMI-2 --auto --right-of eDP-1, mode "default"
+    bindsym r exec --no-startup-id xrandr --output HDMI-2 --auto --right-of eDP-1, mode "default"
+    bindsym l exec --no-startup-id xrandr --output HDMI-2 --auto --left-of eDP-1, mode "default"
     bindsym k exec --no-startup-id xrandr --output HDMI-2 --auto --off, mode "default"
 
     # back to normal: Enter or Escape
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym XF86Display mode "default"
 }
 bindsym XF86Display mode "$mode_display"
 
