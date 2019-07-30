@@ -290,7 +290,7 @@
 ;; ace-link
 ;; https://github.com/abo-abo/ace-link
 (use-package ace-link
-  :defer 1
+  :defer 2
   :config (ace-link-setup-default))
 
 ;; ace-window
@@ -337,7 +337,7 @@
 ;; http://www.flycheck.org
 ;; Dep flake8, clang, tidy, csslint
 (use-package flycheck
-  :defer 1
+  :defer 2
   :bind
   (:map flycheck-mode-map ("C-c ! !" . hydra-flycheck/body))
   ("M-g l" . flycheck-list-errors)
@@ -389,11 +389,13 @@
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
+  :defer 2
   :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; rainbow-mode
 ;; https://elpa.gnu.org/packages/rainbow-mode.html
 (use-package rainbow-mode
+  :defer 2
   :delight
   :hook (prog-mode sgml-mode))
 
@@ -815,7 +817,7 @@
 ;; eyebrowse
 ;; https://github.com/wasamasa/eyebrowse
 (use-package eyebrowse
-  :defer 1
+  :defer 2
   :config
   (eyebrowse-mode t)
   (eyebrowse-setup-evil-keys))
