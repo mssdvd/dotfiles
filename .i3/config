@@ -250,9 +250,11 @@ bindsym Print exec flameshot gui
 # Launch applications bindings
 bindsym $mod+Tab exec --no-startup-id "rofi -combi-modi drun,window -show combi -modi combi"
 # bindsym $mod+Bracketleft exec chromium
-bindcode $mod+34 exec chromium
+# bindcode $mod+34 exec qutebrowser
+bindcode $mod+34 exec ~/build/firefox/firefox
 # bindsym $mod+Shift+Bracketleft exec chromium --incognito
-bindcode $mod+Shift+34 exec chromium --incognito
+bindcode $mod+Shift+34 exec ~/build/firefox/firefox --private-window
+# bindcode $mod+Shift+34 exec qutebrowser --temp-basedir -s content.private_browsing true
 # bindsym $mod+Backslash exec $term -e ranger
 bindcode $mod+51 exec kitty -e ranger
 # bindsym $mod+Shift+Backslash exec kitty -e ranger --cmd=fzf_select
