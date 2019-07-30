@@ -263,16 +263,20 @@ bindcode $mod+Shift+51 exec kitty -e ranger --cmd=fzf_select
 bindcode $mod+35 exec emacsclient -c -a ''
 bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
 bindsym $mod+p exec passmenu --type
-# bindsym $mod+Apostrophe exec zathura
-bindcode $mod+48 exec zathura
-bindcode $mod+Shift+48 exec evince
+# bindsym $mod+Apostrophe exec evince
+bindcode $mod+48 exec evince
+bindcode $mod+Shift+48 exec zathura
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
 bindsym $mod+z exec zeal
-bindsym $mod+q exec emacs -Q -D -r -f full-calc
+bindsym $mod+q exec emacs -Q -D -r -f full-calc --eval="(progn (setq select-enable-primary t))"
 bindsym $mod+i exec i3-input
 
+bindcode $mod+59 exec playerctl previous && pkill -SIGRTMIN+2 i3blocks
+bindcode $mod+60 exec playerctl next && pkill -SIGRTMIN+2 i3blocks
+bindcode $mod+61 exec playerctl play-pause && pkill -SIGRTMIN+2 i3blocks
+
 # Autostart applications
-exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+# exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
 exec --no-startup-id nm-applet
 exec --no-startup-id lxpolkit
 exec --no-startup-id pamac-tray
