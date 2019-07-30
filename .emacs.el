@@ -869,7 +869,12 @@
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
 (use-package elfeed
-  :defer t)
+  :defer t
+  :bind
+  (:map elfeed-show-mode-map
+        ([f6] . elfeed-show-prev)
+        ([f7] . elfeed-show-next))
+  :config (setq elfeed-sort-order 'ascending))
 
 ;; elfeed-org
 ;; https://github.com/remyhonig/elfeed-org
