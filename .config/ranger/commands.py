@@ -113,6 +113,22 @@ class fzf_locate(Command):
             else:
                 self.fm.select_file(fzf_file)
 
+# https://github.com/ranger/ranger/wiki/Commands
+class fzf_directory(Command):
+    """
+    :fzf_directory
+
+    Find a directory using fzf.
+    """
+
+    def execute(self):
+        import subprocess
+        command = "fd --type d --follow --hidden --exclude .git | fzf +m"
+        fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
+        stdout, stderr = fzf.communicate()
+        if fzf.returncode == 0:
+            fzf_file = os.path.abspath(stdout.decode('utf-8').rstrip('\n'))
+            self.fm.cd(fzf_file)
 
 class mkcd(Command):
     """
