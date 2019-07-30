@@ -1,5 +1,7 @@
-set render-loading false
-set show-scrollbars true
-set recolor-reverse-video true
+map 0 zoom 100
+map = zoom in
 set font "Iosevka Slab 9"
-map p search backward
+set recolor-reverse-video true
+set render-loading false
+set selection-clipboard "clipboard"
+set show-scrollbars true
