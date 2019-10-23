@@ -140,7 +140,7 @@
   "Open the current file's directory in ranger."
   (interactive)
   (if default-directory
-      (call-process-shell-command "termite -e ranger" (expand-file-name default-directory) 0 nil)
+      (call-process-shell-command "kitty -e ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
 (bind-key "C-c r" #'ranger-launch-here)
 
@@ -240,8 +240,7 @@
   (if (executable-find "rg")
       (setq  counsel-grep-base-command "rg -S --no-heading --line-number --color never -- %s %s")
     (setq counsel-grep-base-command "grep -nEi '%s' %s"))
-  (setq counsel-find-file-ignore-regexp "\\`\\."
-        counsel-rg-base-command "rg -S -z --hidden --no-heading --line-number --color never %s .")
+  (setq counsel-find-file-ignore-regexp "\\`\\.")
   (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) ""))
 
 ;; swiper
@@ -365,6 +364,12 @@
 (use-package flycheck-inline
   :hook (flycheck-mode . flycheck-inline-mode))
 
+;; flycheck-posframe
+;; https://github.com/alexmurray/flycheck-posframe
+(use-package flycheck-posframe
+  :disabled
+  :hook (flycheck-mode . flycheck-posframe-mode))
+
 ;; recentf
 (use-package recentf
   :ensure nil
@@ -403,7 +408,10 @@
 (use-package org
   :pin org
   :defer t
-  :bind (:map org-mode-map ([M-tab] . company-complete))
+  :bind
+  (:map org-mode-map
+        ([M-tab] . company-complete)
+        ([f6] . org-toggle-latex-fragment))
   :config
   (setq org-log-done t)
   (org-babel-do-load-languages 'org-babel-load-languages '((python . t)))
@@ -417,6 +425,23 @@
                      (user-error t)))))
       (org-map-entries fun))))
 
+;; evil-org
+;; https://github.com/Somelauw/evil-org-mode
+(use-package evil-org
+  :delight
+  :after org
+  :config
+  (require 'evil-org-agenda)
+  (evil-org-agenda-set-keys)
+  :hook
+  (org-mode . evil-org-mode)
+  (evil-org-mode . (lambda () (evil-org-set-key-theme))))
+
+;; org-download
+;; https://github.com/abo-abo/org-download
+(use-package org-download
+  :after org)
+
 ;; ox-reveal
 ;; https://github.com/yjwen/org-reveal
 (use-package ox-reveal
@@ -429,8 +454,8 @@
 (use-package paradox
   :defer t
   :config
-  (setq paradox-github-token t)
-  (setq paradox-execute-asynchronously t))
+  (setq paradox-github-token t
+        paradox-execute-asynchronously t))
 
 ;; undo-tree
 (use-package undo-tree
@@ -581,8 +606,6 @@
   ("C-M-<" . mc/skip-to-previous-like-this)
   ("C-c c" . mc/mark-all-dwim)
   ("M-<down-mouse-1>" . mc/add-cursor-on-click)
-  ("C-c o c" . my/create-fake-cursor-at-point)
-  ("C-c o m" . multiple-cursors-mode)
   :custom-face (mc/cursor-face ((t (:inherit cursor :foreground "black"))))
   :config
   (defun my/create-fake-cursor-at-point ()
@@ -712,7 +735,7 @@
   :bind
   ("C-c t" . terminal-here-launch)
   ("C-c e" . terminal-here-project-launch)
-  :config (setq terminal-here-terminal-command '("termite")))
+  :config (setq terminal-here-terminal-command '("kitty")))
 
 ;; sudo-edit
 ;; https://github.com/nflath/sudo-edit
@@ -798,6 +821,7 @@
 ;; google-this
 ;; https://github.com/Malabarba/emacs-google-this
 (use-package google-this
+  :disabled
   :delight
   :defer 1
   :config (google-this-mode 1))
@@ -891,7 +915,6 @@
   :config
   (setq ledger-reconcile-default-commodity "€"
         ledger-highlight-xact-under-point nil)
-  (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
   (defun my/insert-euro-symbol ()
     "Insert € at point"
     (interactive)
@@ -921,6 +944,7 @@
         evil-want-keybinding nil)
   :config
   (evil-mode 1)
+  (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
   (bind-chord "jj" #'evil-normal-state evil-insert-state-map))
 
 ;; evil-surrond
@@ -990,13 +1014,14 @@
 
 ;; lsp
 
-
 ;; lsp-mode
 ;; https://github.com/emacs-lsp/lsp-mode
 (use-package lsp-mode
   :commands lsp
   :init (setq lsp-prefer-flymake nil)
-  :hook (rust-mode . lsp))
+  :hook
+  (rust-mode . lsp))
+  ;; (python-mode . lsp))
 
 ;; lsp-ui
 ;; https://github.com/emacs-lsp/lsp-ui
@@ -1019,11 +1044,29 @@
 (use-package company-lsp
   :commands company-lsp)
 
-;; lsp-python
-;; https://github.com/emacs-lsp/lsp-python
-(use-package lsp-python
+;; dap-mode
+;; https://github.com/yyoncho/dap-mode
+(use-package dap-mode
   :disabled
-  :hook (python-mode . lsp-python-enable))
+  :after lsp-mode
+  :config
+  (dap-mode t)
+  (dap-ui-mode t))
+
+;; dap-java
+;; https://github.com/yyoncho/dap-mode/
+(use-package dap-java
+  :disabled
+  :ensure nil
+  :after lsp-java)
+
+;; Java
+
+;; lsp-java
+;; https://github.com/emacs-lsp/lsp-java
+(use-package lsp-java
+  :disabled
+  :hook (java-mode . lsp-java-enable))
 
 ;; Rust
 
@@ -1165,6 +1208,7 @@
 ;; anaconda-mode
 ;; https://github.com/proofit404/anaconda-mode
 (use-package anaconda-mode
+  :disabled
   :delight
   :hook
   (python-mode)
@@ -1180,6 +1224,7 @@
 ;; https://github.com/JorisE/yapfify
 ;; Dep yapf
 (use-package yapfify
+  :disabled
   :delight yapf-mode
   :hook (python-mode . yapf-mode))
 
@@ -1187,6 +1232,7 @@
 ;; https://github.com/paetzke/py-isort.el
 ;; Dep python-isort
 (use-package py-isort
+  :disabled
   :hook (before-save . py-isort-before-save))
 
 ;; emacs-traad
@@ -1203,10 +1249,16 @@
 
 ;; C & C++
 
+;; cc-mode
+(use-package cc-mode
+  :defer t
+  :config (setq c-basic-offset 4))
+
 ;; irony-mode
 ;; https://github.com/Sarcasm/irony-mode
 ;; Dep cmake, clang
 (use-package irony
+  :disabled
   :delight
   :mode ("\\.ino\\'" . c++-mode)
   :hook
@@ -1218,22 +1270,26 @@
 ;; irony-eldoc
 ;; https://github.com/ikirill/irony-eldoc
 (use-package irony-eldoc
+  :disabled
   :hook (c-mode c++-mode))
 
 ;; flycheck-irony
 ;; https://github.com/Sarcasm/flycheck-irony/
 (use-package flycheck-irony
+  :disabled
   :hook (flycheck-mode . flycheck-irony-setup))
 
 ;; company-irony
 ;; https://github.com/Sarcasm/company-irony
 (use-package company-irony
+  :disabled
   :defer t
   :config (setq company-backends (delete 'company-semantic company-backends)))
 
 ;; company-irony-c-headers
 ;; https://github.com/hotpxl/company-irony-c-headers
 (use-package company-irony-c-headers
+  :disabled
   :defer t)
 
 ;;; .emacs ends here
