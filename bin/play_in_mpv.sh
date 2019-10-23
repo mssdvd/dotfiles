@@ -1,9 +1,12 @@
 #! /bin/bash
 
-URL="$(xclip -selection primary -o)"
-mpv $URL
+# URL="$(xclip -selection primary -o)"
+# mpv $URL
 
-if [ $? -eq 2 ]; then
+if [ "$XDG_SESSION_TYPE" == "wayland" ]; then
+    URL="$(wl-paste)"
+else
     URL="$(xclip -o)"
-    mpv $URL
 fi
+
+mpv $URL
