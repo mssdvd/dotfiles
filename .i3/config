@@ -268,7 +268,7 @@ bindcode $mod+48 exec evince
 bindcode $mod+Shift+48 exec zathura
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
 bindsym $mod+z exec zeal
-bindsym $mod+q exec emacs -Q -D -r -f full-calc --eval="(progn (setq select-enable-primary t))"
+bindsym $mod+q exec emacs_calc.sh
 bindsym $mod+i exec i3-input
 
 bindcode $mod+59 exec playerctl previous && pkill -SIGRTMIN+2 i3blocks
