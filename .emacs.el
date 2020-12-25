@@ -38,8 +38,9 @@
   (straight-use-package 'use-package))
 
 ;; set default font
-(set-face-attribute 'default nil :family "Iosevka" :foundry "BE5N" :slant 'normal :weight 'semi-bold :height 181 :width 'normal)
-(set-face-attribute 'variable-pitch nil :family "Iosevka Etoile" :foundry "BE5N" :slant 'normal :weight 'semi-bold :height 181 :width 'normal)
+(dolist (attr '(default variable-pitch))
+  (set-face-attribute attr nil :family "Iosevka" :foundry "BE5N"
+  :slant 'normal :weight 'semi-bold :height 181 :width 'normal))
 
 ;; disable scrollbar
 (scroll-bar-mode -1)
