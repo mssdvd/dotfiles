@@ -939,7 +939,7 @@
 ;; https://github.com/hsjunnesson/wolfram.el
 (use-package wolfram
   :config
-  (setq-default wolfram-alpha-app-id "***REMOVED***"
+  (setq-default wolfram-alpha-app-id (auth-source-pass-get 'secret "wolfram_alpha_app_id")
                 wolfram-alpha-magnification-factor 1.5))
 
 ;; define-word
