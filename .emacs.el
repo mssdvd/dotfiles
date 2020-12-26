@@ -763,6 +763,9 @@
   :demand t
   :after magit)
 
+(use-package auth-source
+  :config (auth-source-pass-enable))
+
 ;; gitconfig-mode
 ;; https://github.com/magit/git-modes
 (use-package gitconfig-mode)
