@@ -19,6 +19,7 @@
 ;; bootstrap straight.el
 (eval-and-compile
   (defvar bootstrap-version)
+  (setq straight-vc-git-default-protocol 'ssh)
   (let ((bootstrap-file
          (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
         (bootstrap-version 5))
