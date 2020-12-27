@@ -1,7 +1,15 @@
-map 0 zoom 100
-map = zoom in
-set font "Iosevka Slab 9"
-set recolor-reverse-video true
+set font "Iosevka Bold 15"
 set render-loading false
-set selection-clipboard "clipboard"
-set show-scrollbars true
+# set show-scrollbars true
+set recolor-keephue true
+set statusbar-home-tilde true
+map + zoom 100
+map = zoom in
+map [fullscreen] + zoom 100
+map [fullscreen] = zoom in
+map [ navigate previous
+map ] navigate next
+map [fullscreen] [ navigate previous
+map [fullscreen] ] navigate next
+map [presentation] [ navigate previous
+map [presentation] ] navigate next
