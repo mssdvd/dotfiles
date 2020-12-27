@@ -1132,6 +1132,9 @@
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm)
 
+(use-package shr
+  :config (setq shr-width 75
+                shr-use-fonts nil))
 ;;
 ;; Evil
 ;;
