@@ -1135,6 +1135,9 @@
 (use-package shr
   :config (setq shr-width 75
                 shr-use-fonts nil))
+
+(use-package hnreader)
+
 ;;
 ;; Evil
 ;;
