@@ -764,6 +764,9 @@
   :demand t
   :after magit)
 
+(use-package epg
+  :config (setq epg-pinentry-mode 'loopback))
+
 (use-package auth-source
   :config (auth-source-pass-enable))
 
