@@ -1,0 +1,5 @@
+font=Iosevka Semibold 16
+width=600
+default-timeout=10000
+margin=40
+layer=overlay

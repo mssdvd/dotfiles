@@ -1,0 +1,42 @@
+env:
+  TERM: xterm-256color
+colors:
+  primary:
+    background: '#000000'
+    foreground: '#ffffff'
+  # kitty color scheme
+  normal:
+    black:   '#000000'
+    red:     '#cc0403'
+    green:   '#19cb00'
+    yellow:  '#cecb00'
+    blue:    '#0d73cc'
+    magenta: '#cb1ed1'
+    cyan:    '#0dcdcd'
+    white:   '#dddddd'
+  bright:
+    black:   '#767676'
+    red:     '#f2201f'
+    green:   '#23fd00'
+    yellow:  '#fffd00'
+    blue:    '#1a8fff'
+    magenta: '#fd28ff'
+    cyan:    '#14ffff'
+    white:   '#ffffff'
+draw_bold_text_with_bright_colors: true
+font:
+  normal:
+    family: Iosevka Fixed
+    style: Semibold
+  # bold:
+  #   family: Iosevka Fixed
+  #   style: Heavy
+  italic:
+    family: Iosevka Fixed
+    style: Semibold
+  # bold_italic:
+  #   family: Iosevka Fixed
+  #   style: Heavy Oblique
+  size: 17.0
+key_bindings:
+   - { key: N, mods: Control|Shift, action: SpawnNewInstance }
