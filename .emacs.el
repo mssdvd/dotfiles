@@ -19,7 +19,8 @@
 ;; bootstrap straight.el
 (eval-and-compile
   (defvar bootstrap-version)
-  (setq straight-vc-git-default-protocol 'ssh)
+  (setq straight-fix-flycheck t)
+  ;; (setq straight-vc-git-default-protocol 'ssh)
   (let ((bootstrap-file
          (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
         (bootstrap-version 5))
@@ -167,7 +168,7 @@
 ;;    ("." . browse-url-default-browser)
 ;;    ))
 
-
+(setq enable-recursive-minibuffers t)
 ;;;;
 ;; My functions
 ;;;;
@@ -267,8 +268,7 @@
    :map selectrum-minibuffer-map
          ("C-w" . backward-kill-word))
   :config
-  (setq enable-recursive-minibuffers t
-        selectrum-count-style 'current/matches
+  (setq selectrum-count-style 'current/matches
         selectrum-extend-current-candidate-highlight t
         selectrum-show-indices t)
   (dotimes (i 10)
@@ -310,6 +310,7 @@
   ("M-g l" . consult-line)    ;; "M-s l" is a good alternative
   ("M-g m" . consult-mark)    ;; "M-s m" is a good alternative
   ("M-g k" . consult-global-mark)    ;; "M-s m" is a good alternative
+  ("M-g r" . consult-ripgrep)
   ("M-g i" . consult-imenu)
   ("M-g e" . consult-error)
   ("M-s m" . consult-multi-occur)
@@ -344,25 +345,14 @@
   :demand t
   :after selectrum
   :bind (:map selectrum-minibuffer-map
-              ("C-o" . embark-act)))
-;;   (setq embark-action-indicator
-;;       (defun embark-which-key-setup ()
-;;         (let ((help-char nil)
-;;               (which-key-show-transient-maps t)
-;;               (which-key-replacement-alist
-;;                (cons '(("^[0-9-]\\|kp-[0-9]\\|kp-subtract\\|C-u$" . nil) . ignore)
-;;                      which-key-replacement-alist)))
-;;           (setq-local which-key-show-prefix nil)
-;;           (setq-local which-key-persistent-popup t)
-;;           (which-key--update)))
-;;       embark-become-indicator embark-action-indicator)
-
-;; (add-hook 'embark-pre-action-hook
-;;           (defun embark-which-key-tear-down ()
-;;             (kill-local-variable 'which-key-persistent-popup)
-;;             (kill-local-variable 'which-key-show-prefix)
-;;             (unless which-key-persistent-popup
-;;               (which-key--hide-popup-ignore-command))))
+              ("C-o" . embark-act))
+  :config
+  (setq embark-action-indicator
+      (lambda (map)
+        (which-key--show-keymap "Embark" map nil nil 'no-paging)
+        #'which-key--hide-popup-ignore-command)
+      embark-become-indicator embark-action-indicator)
+  :hook (embark-pre-action . (lambda () (setq selectrum--previous-input-string nil))))
 
 (use-package ctrlf
   :defer 1
@@ -791,9 +781,8 @@
   :hook ((magit-pre-refresh . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
-;; git-timemachine
-;; https://github.com/pidu/git-timemachine
-(use-package git-timemachine)
+(use-package vc
+  :config (setq vc-handled-backends nil))
 
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
@@ -893,7 +882,7 @@
   :bind
   ("C-c t" . terminal-here-launch)
   ;; ("C-c e" . terminal-here-project-launch)
-  :config (setq-default terminal-here-terminal-command '("alacritty")))
+  :config (setq-default terminal-here-terminal-command 'alacritty))
 
 ;; sudo-edit
 ;; https://github.com/nflath/sudo-edit
@@ -1004,6 +993,7 @@
   ("C-h f" . helpful-callable)
   ("C-h v" . helpful-variable)
   ("C-h k" . helpful-key)
+  ("C-h F" . helpful-function)
   (:map emacs-lisp-mode-map ("C-c C-d" . helpful-at-point)))
 
 ;; lang-tool
@@ -1138,6 +1128,8 @@
 
 (use-package hnreader)
 
+(use-package yaml-mode)
+
 ;;
 ;; Evil
 ;;
@@ -1147,13 +1139,13 @@
 (use-package evil
   :demand t
   :init
-  (setq-default evil-want-keybinding nil
+  (setq-default evil-search-module 'evil-search
+                evil-want-keybinding nil
                 evil-undo-system 'undo-tree)
   :config
   (evil-mode 1)
   (setq evil-complete-next-func 'hippie-expand
         evil-want-fine-undo t
-        evil-search-module 'evil-search
         evil-split-window-below t
         evil-vsplit-window-right t)
   (evil-global-set-key 'motion (kbd "K") 'man)
