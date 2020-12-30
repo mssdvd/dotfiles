@@ -77,10 +77,10 @@ class fzf_select(Command):
         import subprocess
         if self.quantifier:
             # match only directories
-            command = "fd --type d --follow --hidden --exclude .git | fzf +m"
+            command = "fd --type d --follow --exclude .git | fzf +m"
         else:
             # match files and directories
-            command = "fd --follow --hidden --exclude .git | fzf +m"
+            command = "fd --follow --exclude .git | fzf +m"
         fzf = self.fm.execute_command(command, stdout=subprocess.PIPE)
         stdout, stderr = fzf.communicate()
         if fzf.returncode == 0:

@@ -1,5 +1,5 @@
 [options]
-font = Iosevka Term Slab 10
+font = Iosevka Fixed Slab Semibold 14
 scrollback_lines = -1
 [colors]
 foreground = #ffffff

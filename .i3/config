@@ -7,7 +7,7 @@ set $mod Mod4
 
 # Font for window titles. Will also be used by the bar unless a different font
 # is used in the bar {} block below.
-font pango:Iosevka Slab Semibold 12
+font pango:Iosevka Semibold 12
 
 # This font is widely installed, provides lots of unicode glyphs, right-to-left
 # text rendering and scalability on retina/hidpi displays (thanks to pango).
@@ -112,7 +112,7 @@ bindsym $mod+Shift+r restart
 # Set shut down, restart and locking features
 set $mode_system System (l)ock, (e)xit, (s)uspend, (Shift+r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-	bindsym l exec --no-startup-id i3lock -c 000000, mode "default"
+	bindsym l exec --no-startup-id i3lock -c 000000 && sleep 1, mode "default"
 	bindsym e exec --no-startup-id i3-msg exit, mode "default"
 	bindsym s exec --no-startup-id systemctl suspend, mode "default"
 	# bindsym h exec --no-startup-id $Locker && systemctl hibernate, mode "default"
@@ -190,7 +190,7 @@ bindcode $mod+21 sticky toggle
 hide_edge_borders vertical
 
 # Don't follow the mouse
-focus_follows_mouse no
+# focus_follows_mouse no
 
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
@@ -210,6 +210,7 @@ for_window [class="Steam"] floating enable, border none
 for_window [title="Android Emulator*"] floating enable
 for_window [class="Peek"] floating enable
 for_window [class="flameshot"] floating enable
+for_window [class="gnome-screenshot"] floating enable
 for_window [class="^(?i)chromium$"] move window to workspace current
 for_window [class="^floatingWindow$"] floating enable
 
@@ -222,15 +223,18 @@ bindsym Shift+XF86MonBrightnessDown exec --no-startup-id light -U 1 && pkill -SI
 
 # Audio bindings
 bindsym XF86AudioRaiseVolume exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
+bindsym $mod+x exec --no-startup-id amixer -q -D pulse sset Master 5%+ && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioLowerVolume exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
+bindsym $mod+z exec --no-startup-id amixer -q -D pulse sset Master 5%- && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMute exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
+bindsym $mod+c exec --no-startup-id amixer -q -D pulse sset Master toggle && pkill -RTMIN+1 i3blocks
 bindsym XF86AudioMicMute exec --no-startup-id amixer -q -D pulse sset Capture toggle
 
 # Playerctl bindings
-bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause
-bindsym XF86AudioStop exec --no-startup-id playerctl stop
-bindsym XF86AudioNext exec --no-startup-id playerctl next
-bindsym XF86AudioPrev exec --no-startup-id playerctl previous
+bindsym XF86AudioPlay exec --no-startup-id playerctl play-pause -p spotify
+bindsym XF86AudioStop exec --no-startup-id playerctl stop -p spotify
+bindsym XF86AudioNext exec --no-startup-id playerctl next -p spotify
+bindsym XF86AudioPrev exec --no-startup-id playerctl previous -p spotify
 
 # Change layout
 bindsym XF86Launch1 exec --no-startup-id (setxkbmap -query | grep -q "layout:\s\+us") && setxkbmap it || setxkbmap us -option compose:ralt && pkill -SIGRTMIN+8 i3blocks
@@ -245,7 +249,7 @@ bindsym --release XF86Tools exec --no-startup-id "sleep 1; xset dpms force off"
 # Turn off redshift
 bindsym XF86Launch2 exec --no-startup-id pkill -USR1 redshift-gtk
 # Screenshot binding
-bindsym Print exec flameshot gui
+bindsym Print exec gnome-screenshot -i
 
 # Launch applications bindings
 bindsym $mod+Tab exec --no-startup-id "rofi -combi-modi drun,window -show combi -modi combi"
@@ -261,22 +265,23 @@ bindcode $mod+51 exec kitty -e ranger
 bindcode $mod+Shift+51 exec kitty -e ranger --cmd=fzf_select
 # bindsym $mod+Bracketright exec emacsclient -c -a ''
 bindcode $mod+35 exec emacsclient -c -a ''
-bindsym $mod+c exec rofi -modi "clipboard:greenclip print" -show clipboard
+bindsym $mod+n exec rofi -modi "clipboard:greenclip print" -show clipboard
 bindsym $mod+p exec passmenu --type
 # bindsym $mod+Apostrophe exec evince
-bindcode $mod+48 exec evince
-bindcode $mod+Shift+48 exec zathura
+bindcode $mod+48 exec zathura
+bindcode $mod+Shift+48 exec evince
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
-bindsym $mod+z exec zeal
 bindsym $mod+q exec emacs_calc.sh
 bindsym $mod+i exec i3-input
+bindcode $mod+47 exec $term -e aerc
 
-bindcode $mod+59 exec playerctl previous && pkill -SIGRTMIN+2 i3blocks
-bindcode $mod+60 exec playerctl next && pkill -SIGRTMIN+2 i3blocks
-bindcode $mod+61 exec playerctl play-pause && pkill -SIGRTMIN+2 i3blocks
+bindcode $mod+59 exec playerctl previous -p spotify && pkill -SIGRTMIN+2 i3blocks
+bindcode $mod+60 exec playerctl next -p spotify && pkill -SIGRTMIN+2 i3blocks
+bindcode $mod+61 exec playerctl play-pause -p spotify && pkill -SIGRTMIN+2 i3blocks
 
 # Autostart applications
 # exec --no-startup-id /usr/lib/geoclue-2.0/demos/agent
+exec --no-startup-id ydotoold
 exec --no-startup-id nm-applet
 exec --no-startup-id lxpolkit
 exec --no-startup-id pamac-tray
@@ -284,8 +289,9 @@ exec --no-startup-id redshift-gtk
 exec --no-startup-id greenclip daemon
 exec --no-startup-id udiskie --no-automount --tray
 exec --no-startup-id unclutter --timeout 10
-exec --no-startup-id syncthing-gtk
+# exec --no-startup-id syncthing-gtk
 exec --no-startup-id libinput-gestures-setup start
-exec --no-startup-id safeeyes
+# exec --no-startup-id safeeyes
 exec --no-startup-id /usr/lib/xfce4/notifyd/xfce4-notifyd
-exec --no-startup-id compton -b
+exec --no-startup-id picom -b
+exec --no-startup-id hsetroot -solid "#000000"

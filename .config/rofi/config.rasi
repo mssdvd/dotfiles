@@ -1,0 +1,6 @@
+configuration {
+	font: "Iosevka Semibold 20";
+	auto-select: true;
+	separator-style: "solid";
+	theme: "solarized_alternate";
+}

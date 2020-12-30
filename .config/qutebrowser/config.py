@@ -31,18 +31,20 @@ c.fonts.web.family.sans_serif = 'Arial'
 
 # Default font size (in pixels) for regular text.
 # Type: Int
-c.fonts.web.size.default = 14
+# c.fonts.web.size.default = 16
+
+c.tabs.background = True
 
 # Bindings for normal mode
 config.bind(',l', 'spawn --userscript qute-pass --password-only')
-config.bind(',n',
-            'config-cycle content.user_stylesheets ~/.solarized-dark.css ""')
 config.bind(',p', 'spawn --userscript qute-pass')
 config.bind(',u', 'spawn --userscript qute-pass --username-only')
 config.bind('<Alt+Left>', 'back')
 config.bind('<Alt+Right>', 'forward')
 config.bind(',M', 'hint links spawn mpv {hint-url}')
 config.bind(',m', 'spawn mpv {url}')
+config.bind(',a', 'open -t https://getpocket.com/edit?url={url}')
+
 
 # Uncomment this to still load settings configured via autoconfig.yml
 config.load_autoconfig()

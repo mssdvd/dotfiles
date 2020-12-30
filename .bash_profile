@@ -3,4 +3,4 @@
 #
 
 [[ -f ~/.bashrc ]] && . ~/.bashrc
-PATH=~/.cargo/bin:$PATH:~/bin
+PATH=~/.local/bin:~/bin:~/.cargo/bin:$PATH
