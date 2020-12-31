@@ -1,0 +1,11 @@
+[Desktop Entry]
+Name=aerc
+GenericName=Email Client
+Comment=A pretty good email client
+Exec=aerc %u
+MimeType=x-scheme-handler/mailto;
+MimeType=message/rfc822;x-scheme-handler/mailto;application/x-xpinstall;
+Icon=emblem-mail
+Terminal=true
+Type=Application
+Categories=Network;Email;
