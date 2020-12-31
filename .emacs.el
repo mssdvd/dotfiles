@@ -42,7 +42,7 @@
 ;; set default font
 (dolist (attr '(default variable-pitch))
   (set-face-attribute attr nil :family "Iosevka" :foundry "BE5N"
-  :slant 'normal :weight 'semi-bold :height 181 :width 'normal))
+                      :slant 'normal :weight 'semi-bold :height 181 :width 'normal))
 
 ;; disable scrollbar
 (scroll-bar-mode -1)
@@ -161,14 +161,9 @@
 ;; Long lines slowdowns inhibitor
 (global-so-long-mode 1)
 
-;; (setq
-;;  browse-url-browser-function
-;;  '(
-;;    ("https://elearning.dei.unipd.it" . browse-url-chromium)
-;;    ("." . browse-url-default-browser)
-;;    ))
-
 (setq enable-recursive-minibuffers t)
+
+(setq-default fill-column 80)
 ;;;;
 ;; My functions
 ;;;;
@@ -268,7 +263,7 @@
   :bind
   (("C-c i" . selectrum-repeat)
    :map selectrum-minibuffer-map
-         ("C-w" . backward-kill-word))
+   ("C-w" . backward-kill-word))
   :config
   (setq selectrum-count-style 'current/matches
         selectrum-extend-current-candidate-highlight t
@@ -331,7 +326,7 @@
   :demand t
   :after consult flycheck
   :bind (:map flycheck-command-map
-        ("!" . consult-flycheck)))
+              ("!" . consult-flycheck)))
 
 (use-package marginalia
   :bind
@@ -350,10 +345,10 @@
               ("C-o" . embark-act))
   :config
   (setq embark-action-indicator
-      (lambda (map)
-        (which-key--show-keymap "Embark" map nil nil 'no-paging)
-        #'which-key--hide-popup-ignore-command)
-      embark-become-indicator embark-action-indicator)
+        (lambda (map)
+          (which-key--show-keymap "Embark" map nil nil 'no-paging)
+          #'which-key--hide-popup-ignore-command)
+        embark-become-indicator embark-action-indicator)
   :hook (embark-pre-action . (lambda () (setq selectrum--previous-input-string nil))))
 
 (use-package ctrlf
@@ -1004,13 +999,13 @@
   :config
   (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"
         langtool-mother-tongue "en-US")
-(eval-after-load 'prog-mode
-  '(progn
-     (unless (featurep 'flyspell) (require 'flyspell))
-     (setq langtool-generic-check-predicate
-           '(lambda (start end)
-              (let* ((f (get-text-property start 'face)))
-                (memq f flyspell-prog-text-faces))))))
+  (eval-after-load 'prog-mode
+    '(progn
+       (unless (featurep 'flyspell) (require 'flyspell))
+       (setq langtool-generic-check-predicate
+             '(lambda (start end)
+                (let* ((f (get-text-property start 'face)))
+                  (memq f flyspell-prog-text-faces))))))
   (eval-after-load 'org-mode
     '(progn
        (setq langtool-generic-check-predicate
@@ -1125,7 +1120,7 @@
 (use-package vterm)
 
 (use-package shr
-  :config (setq shr-width 75
+  :config (setq shr-width 80
                 shr-use-fonts nil))
 
 (use-package hnreader)
