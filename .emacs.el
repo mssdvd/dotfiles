@@ -251,7 +251,9 @@
 ;; dired
 (use-package dired
   :straight nil
-  :config (setq dired-listing-switches "-alh --group-directories-first"))
+  :config
+  (setq dired-listing-switches "-alh --group-directories-first"
+        dired-dwim-target t))
 
 ;; dired-x
 (use-package dired-x
