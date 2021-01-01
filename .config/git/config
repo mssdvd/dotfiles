@@ -1,0 +1,20 @@
+[user]
+	name = Davide Masserut
+	email = dm@mssdvd.com
+[sendemail]
+	smtpserver = smtp.migadu.com
+	smtpuser = dm@mssdvd.com
+	smtpencryption = tls
+	smtpserverport = 587
+[core]
+	editor = emacsclient -c -a ''
+[commit]
+	verbose = true
+[diff]
+	algorithm = histogram
+[grep]
+	lineNumber = true
+[github]
+	user = mssdvd
+[credential]
+	helper = cache --timeout=5400
