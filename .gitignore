@@ -7,3 +7,4 @@
 .config/gtk-3.0/servers
 .mypy_cache
 __pycache__
+bin/eheh.py
