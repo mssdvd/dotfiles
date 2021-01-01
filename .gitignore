@@ -1,3 +1,4 @@
+.config/aerc/accounts.conf
 .config/mpv/watch_later
 .config/systemd/user/*.wants
 .config/ranger/history
