@@ -604,13 +604,13 @@
   :disabled
   :config
   (setq-default
-   org-gcal-client-id "***REMOVED***"
-   org-gcal-client-secret "***REMOVED***"
+   org-gcal-client-id (auth-source-pass-get 'secret "gcal/client_id")
+   org-gcal-client-secret (auth-source-pass-get 'secret "gcal/client_secret")
    org-gcal-file-alist
    '(("d.masserut@gmail.com"
       . "~/org/gcal.org")
-     ("***REMOVED***" . "~/org/gcal.org")
-     ("***REMOVED***" . "~/org/gcal.org")
+     ((auth-source-pass-get 'secret "gcal/lessons_calendar"). "~/org/gcal.org")
+     ((auth-source-pass-get 'secret "gcal/exams_calendar"). "~/org/gcal.org")
      ))
   ;; :hook (org-agenda-mode . org-gcal-sync)
   )
