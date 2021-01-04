@@ -1,0 +1,10 @@
+allow_images=true
+allow_markup=true
+insensitive=true
+key_expand=Tab
+key_up=Control_L-p
+key_forward=Down
+key_down=Control_L-n
+key_backward=Up
+key_submit=Return,Control_L-m
+key_exit=Escape,Control_L-bracketleft,Control_L-g

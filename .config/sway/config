@@ -23,7 +23,7 @@ set $term alacritty
 # Note: it's recommended that you pass the final command to sway
 
 # set $menu  "rofi -combi-modi drun,window -show combi -modi combi"
-set $menu "wofi --show drun,run --allow-images --insensitive"
+set $menu "wofi --show drun,run"
 # set $menu termite --name=launcher -e "bash -c 'compgen -c | sort -u | fzf --no-extended --print-query | tail -n1 | xargs -r swaymsg -t command exec'"
 # for_window [app_id="^launcher$"] floating enable, border none
 
