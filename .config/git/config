@@ -6,6 +6,7 @@
 	smtpuser = dm@mssdvd.com
 	smtpencryption = tls
 	smtpserverport = 587
+	# smtpPass = **PASSWORD**
 [core]
 	editor = emacsclient -c -a ''
 [commit]
@@ -18,3 +19,5 @@
 	user = mssdvd
 [credential]
 	helper = cache --timeout=5400
+[filter "remove-smtpPass"]
+	clean = "sed -e 's/# smtpPass = **PASSWORD**
