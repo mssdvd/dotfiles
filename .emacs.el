@@ -745,8 +745,8 @@
   :config
   (setq-default magit-diff-refine-hunk 'all
                 magit-delete-by-moving-to-trash nil
-                magit-repository-directories '(("~/.dotfiles" . 0))
-                vc-handled-backends (delq 'Git vc-handled-backends)))
+                magit-repository-directories '(("~/.dotfiles" . 0))))
+
 
 (use-package forge
   :demand t
