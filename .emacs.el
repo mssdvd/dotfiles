@@ -1272,6 +1272,10 @@
 
 (use-package dap-mode)
 
+;; Go
+
+(use-package go-mode)
+
 ;; Rust
 
 (use-package rustic
