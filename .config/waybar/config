@@ -80,7 +80,7 @@
     "clock": {
         "tooltip-format": "<big>{:%Y %B}\n<tt>{calendar}</tt></big>",
         "format": "{:%F %a %R}",
-        "format-alt": "{:%F %a %R (%V weeks %j days) (%Z %z)}"
+        "format-alt": "{:%F %a %R (%-V weeks %-j days) (%Z %-z)}"
     },
     "cpu": {
         "format": "{usage}% ",
