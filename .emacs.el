@@ -264,7 +264,11 @@
   :config
   (setq selectrum-count-style 'current/matches
         selectrum-extend-current-candidate-highlight t
-        selectrum-show-indices t)
+        selectrum-show-indices '(lambda (i)
+                                  (progn
+                                    (when (= i 10)
+                                      (setq i 0))
+                                    (format "%d " i))))
   (dotimes (i 10)
     (define-key
       selectrum-minibuffer-map
