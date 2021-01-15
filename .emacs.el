@@ -149,9 +149,6 @@
 ;; show buffer boundaries
 (setq-default indicate-buffer-boundaries 'left)
 
-;; Save position
-(save-place-mode 1)
-
 ;; electric-pair-mode
 (electric-pair-mode 1)
 
@@ -492,6 +489,10 @@
   (setq-default recentf-max-menu-items 25
                 recentf-max-saved-items 250)
   (recentf-mode))
+
+(use-package saveplace
+  :demand t
+  :config (save-place-mode 1))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
