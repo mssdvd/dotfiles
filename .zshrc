@@ -12,6 +12,8 @@ export CLASSPATH=/usr/share/java/junit.jar
 # Default editor
 export EDITOR="emacsclient -t -a ''"
 
+export UNITS_ENGLISH="US"
+
 # alias
 alias open=xdg-open
 alias locate="locate -bi"
