@@ -1128,6 +1128,9 @@
 
 (use-package yaml-mode)
 
+(use-package erc
+  :config (add-to-list 'erc-modules 'notifications))
+
 ;;
 ;; Evil
 ;;
