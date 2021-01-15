@@ -489,9 +489,9 @@
 (use-package recentf
   :defer 1
   :config
-  (recentf-mode)
   (setq-default recentf-max-menu-items 25
-                recentf-max-saved-items 500))
+                recentf-max-saved-items 250)
+  (recentf-mode))
 
 ;; highlight-indent-guides
 ;; https://github.com/DarthFennec/highlight-indent-guides
