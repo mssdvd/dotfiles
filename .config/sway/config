@@ -162,9 +162,9 @@ input "1133:50458:Logitech_USB_Receiver" pointer_accel 1
 
     # bindsym $mod+Bracketleft exec chromium
     # bindcode $mod+34 exec qutebrowser
-    bindcode $mod+34 exec ~/build/firefox/firefox
+    bindcode $mod+34 exec firefox
     # bindsym $mod+Shift+Bracketleft exec chromium --incognito
-    bindcode $mod+Shift+34 exec ~/build/firefox/firefox --private-window
+    bindcode $mod+Shift+34 exec firefox --private-window
     # bindcode $mod+Shift+34 exec qutebrowser ":open --private"
     # bindsym $mod+Backslash exec $term -e ranger
     bindcode $mod+51 exec $term -e ranger
