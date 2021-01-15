@@ -18,7 +18,7 @@ export UNITS_ENGLISH="US"
 alias open=xdg-open
 alias locate="locate -bi"
 alias rn="termite -e ranger . &"
-alias edit="emacsclient -t -a ''"
+alias e="emacsclient -t -a ''"
 
 # look for new exe in path
 zstyle ':completion:*' rehash true
