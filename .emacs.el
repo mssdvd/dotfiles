@@ -1143,6 +1143,9 @@
 ;; https://github.com/emacs-evil/evil
 (use-package evil
   :demand t
+  :bind
+  (:map evil-ex-search-keymap
+        ("C-w" . backward-kill-word))
   :init
   (setq-default evil-search-module 'evil-search
                 evil-want-keybinding nil
