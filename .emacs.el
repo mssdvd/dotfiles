@@ -680,8 +680,10 @@
                 company-show-numbers t
                 company-idle-delay 1.0
                 company-minimum-prefix-length 2
+                company-selection-wrap-around t
                 company-dabbrev-downcase nil)
-  (global-company-mode))
+  (global-company-mode)
+  (company-tng-mode))
 
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
