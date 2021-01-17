@@ -745,9 +745,7 @@
 ;; magit
 ;; https://magit.vc
 (use-package magit
-  :bind ("C-x g" . magit-status)
-  :config
-  (setq-default magit-diff-refine-hunk 'all
+  :config (setq-default magit-diff-refine-hunk 'all
                 magit-delete-by-moving-to-trash nil
                 magit-repository-directories '(("~/.dotfiles" . 0))))
 
