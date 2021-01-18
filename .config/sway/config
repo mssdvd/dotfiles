@@ -143,7 +143,7 @@ input "1133:50458:Logitech_USB_Receiver" pointer_accel 1
     bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle #&& pkill -RTMIN+1 i3blocks
     bindsym --locked $mod+c exec pactl set-sink-mute @DEFAULT_SINK@ toggle #&& pkill -RTMIN+1 i3blocks
     bindsym --locked Shift+XF86AudioMute exec ~/bin/switch_audio_sink.sh
-    bindsym --locked $mod+Shift+c exec ~/bin/switch_audio_sink.sh
+    bindsym --locked $mod+Shift+z exec ~/bin/switch_audio_sink.sh
     bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
     # Playerctl bindings
