@@ -65,6 +65,9 @@ input "type:keyboard" xkb_options "ctrl:swapcaps,compose:ralt"
 
 input "1278:32:PFU_Limited_HHKB-Classic" xkb_options "compose:ralt"
 
+# Leopold FC980M PD
+input "1204:1296:HID_Keyboard_HID_Keyboard" xkb_options "compose:ralt,ctrl:swap_rwin_rctl"
+
 input "1133:49971:Logitech_Gaming_Keyboard_G610" xkb_layout us-english-long-shift
 
 input "1133:50458:Logitech_USB_Receiver" pointer_accel 1
