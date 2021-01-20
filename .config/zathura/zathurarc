@@ -3,6 +3,7 @@ set render-loading false
 # set show-scrollbars true
 set recolor-keephue true
 set statusbar-home-tilde true
+set show-recent 25
 map + zoom 100
 map = zoom in
 map [fullscreen] + zoom 100
