@@ -293,35 +293,47 @@
   :config (company-prescient-mode 1))
 
 (use-package consult
-  :bind
-  ("C-x M-:" . consult-complex-command)
-  ("C-c h" . consult-history)
-  ("C-c x" . consult-mode-command)
-  ("C-x b" . consult-buffer)
-  ("C-x 4 b" . consult-buffer-other-window)
-  ("C-x 5 b" . consult-buffer-other-frame)
-  ("C-x C-r" . consult-recent-file)
-  ("C-x r x" . consult-register)
-  ("C-x r b" . consult-bookmark)
-  ("M-g g" . consult-goto-line)
-  ("M-g o" . consult-outline) ;; "M-s o" is a good alternative
-  ("M-g l" . consult-line)    ;; "M-s l" is a good alternative
-  ("M-g m" . consult-mark)    ;; "M-s m" is a good alternative
-  ("M-g k" . consult-global-mark)    ;; "M-s m" is a good alternative
-  ("M-g r" . consult-ripgrep)
-  ("M-g i" . consult-imenu)
-  ("M-g e" . consult-error)
-  ("M-s m" . consult-multi-occur)
-  ("M-y" . consult-yank-pop)
-  ("<help> a" . consult-apropos)
-  :config
-  (fset 'multi-occur #'consult-multi-occur)
+  :bind (;; C-c bindings (mode-specific-map)
+         ("C-c h" . consult-history)
+         ("C-c x" . consult-mode-command)
+         ("C-c f" . my/consult-fd-find)
+         ("C-c g" . consult-ripgrep)
+         ("C-c l" . consult-locate)
+         ;; C-x bindings (ctl-x-map)
+         ("C-x M-:" . consult-complex-command)
+         ("C-x b" . consult-buffer)
+         ("C-x 4 b" . consult-buffer-other-window)
+         ("C-x 5 b" . consult-buffer-other-frame)
+         ("C-x C-r" . consult-recent-file)
+         ("C-x r x" . consult-register)
+         ("C-x r b" . consult-bookmark)
+         ;; M-g bindings (goto-map)
+         ("M-g g" . consult-goto-line)
+         ("M-g M-g" . consult-goto-line)
+         ("M-g o" . consult-outline)
+         ("M-g m" . consult-mark)
+         ("M-g k" . consult-global-mark)
+         ("M-g i" . consult-project-imenu) ;; Alternative: consult-imenu
+         ("M-g e" . consult-error)
+         ;; M-s bindings (search-map)
+         ("M-s g" . consult-git-grep)      ;; Alternatives: consult-grep, consult-ripgrep
+         ("M-s l" . consult-line)
+         ("M-s m" . consult-multi-occur)
+         ("M-s k" . consult-keep-lines)
+         ("M-s f" . consult-focus-lines)
+         ;; Other bindings
+         ("M-y" . consult-yank-pop)
+         ("<help> a" . consult-apropos))
   :init
-  (consult-preview-mode))
-
-(use-package consult-selectrum
-  :demand t
-  :after consult selectrum)
+  (setq register-preview-delay 0
+        register-preview-function #'consult-register-preview)
+  :config
+  (defun my/consult-fd-find(&optional dir)
+    (interactive "P")
+    (let ((consult-find-command '("fd" "--color=never" "--full-path")))
+      (consult-find dir)))
+  (autoload 'projectile-project-root "projectile")
+  (setq consult-project-root-function #'projectile-project-root))
 
 (use-package consult-flycheck
   :demand t
