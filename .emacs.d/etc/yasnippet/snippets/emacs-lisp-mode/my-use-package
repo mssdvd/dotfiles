@@ -1,0 +1,7 @@
+# -*- mode: snippet -*-
+# contributor: Davide Masserut
+# name: use-package
+# key: up
+# --
+(use-package ${1:package-name}
+  $0)
