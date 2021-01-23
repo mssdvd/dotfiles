@@ -39,25 +39,11 @@
         straight-use-package-by-default t)
   (straight-use-package 'use-package))
 
-;; set default font
-(dolist (attr '(default variable-pitch))
-  (set-face-attribute attr nil :family "Iosevka" :foundry "BE5N"
-                      :slant 'normal :weight 'semi-bold :height 181 :width 'normal))
-
-;; disable scrollbar
-(scroll-bar-mode -1)
-
 ;; enable column number
 (column-number-mode t)
 
 ;; display size of the buffer
 (size-indication-mode t)
-
-;; disable toolbar
-(tool-bar-mode -1)
-
-;; disable menu bar
-(menu-bar-mode -1)
 
 ;; disable startup screen
 (setq-default inhibit-startup-screen t)
