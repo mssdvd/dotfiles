@@ -356,8 +356,12 @@
         (lambda (map)
           (which-key--show-keymap "Embark" map nil nil 'no-paging)
           #'which-key--hide-popup-ignore-command)
-        embark-become-indicator embark-action-indicator)
-  :hook (embark-pre-action . (lambda () (setq selectrum--previous-input-string nil))))
+        embark-become-indicator embark-action-indicator))
+
+(use-package embark-consult
+  :demand t
+  :after embark consult
+  :hook (embark-collect-mode . embark-consult-preview-minor-mode))
 
 (use-package ctrlf
   :defer 1
