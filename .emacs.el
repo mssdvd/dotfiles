@@ -591,7 +591,7 @@
    org-track-ordered-property-with-tag t
    org-use-fast-tag-selection t
    )
-  (push 'org-mouse org-modules)
+  (add-to-list 'org-modules 'org-mouse)
   ;; (push 'org-drill org-modules)
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((emacs-lisp . t)
