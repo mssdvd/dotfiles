@@ -135,9 +135,6 @@
 ;; show buffer boundaries
 (setq-default indicate-buffer-boundaries 'left)
 
-;; electric-pair-mode
-(electric-pair-mode 1)
-
 ;; Show parens mode
 (show-paren-mode)
 
@@ -206,6 +203,18 @@
   (load-theme 'kaolin-dark t))
 
 (use-package solarized-theme)
+
+(use-package elec-pair
+  :defer 1
+  :config
+  (electric-pair-mode 1)
+  :hook
+  (org-mode . (lambda ()
+                (setq-local electric-pair-inhibit-predicate
+                            `(lambda (c)
+                               (if (char-equal c ?<)
+                                   t
+                                 (,electric-pair-inhibit-predicate c)))))))
 
 ;; display-line-numbers
 (use-package display-line-numbers
