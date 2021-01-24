@@ -1159,8 +1159,7 @@
                 evil-undo-system 'undo-tree)
   :config
   (evil-mode 1)
-  (setq evil-complete-next-func 'hippie-expand
-        evil-want-fine-undo t
+  (setq evil-want-fine-undo t
         evil-split-window-below t
         evil-vsplit-window-right t)
   (evil-global-set-key 'motion (kbd "K") 'man)
