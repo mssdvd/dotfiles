@@ -2,8 +2,17 @@
 export RUST_SYSROOT=/home/davide/.rustup/toolchains/stable-x86_64-unknown-linux-gnu
 fpath=($RUST_SYSROOT/share/zsh/site-functions/ $HOME/.zsh/zsh-completions/src $HOME/.zsh/custom-completions/ $fpath)
 # source $HOME/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
+
+# https://github.com/sorin-ionescu/prezto/blob/b01f02aa5c6714430647a4ee854149e9a336270a/modules/completion/init.zsh#L31-L41
 autoload -Uz compinit
-compinit -d ~/.cache/zsh/zcompdump
+_comp_files=($HOME/.zcompdump(Nm-12))
+if (( $#_comp_files )); then
+  compinit -i -C
+else
+  compinit -i
+fi
+unset _comp_files
+
 
 unsetopt nomatch
 
