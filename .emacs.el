@@ -255,7 +255,7 @@
   :bind
   (("C-c i" . selectrum-repeat)
    :map selectrum-minibuffer-map
-   ("C-w" . backward-kill-word))
+   ("C-w" . backward-kill-sexp))
   :config
   (setq selectrum-count-style 'current/matches
         selectrum-extend-current-candidate-highlight t
