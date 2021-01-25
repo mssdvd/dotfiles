@@ -1084,7 +1084,7 @@
   (defun elfeed--play-with-mpv (entry)
     (elfeed-untag entry 'unread)
     (message "Sent to mpv: %s" (elfeed-entry-link entry))
-    (start-process "elfeed-mpv" nil "mpv" "--speed=2.0" "--force-window=yes" "--" (elfeed-entry-link entry)))
+    (start-process "elfeed-mpv" nil "mpv" "--speed=2.0" "--force-window=immediate" "--" (elfeed-entry-link entry)))
 
   (defun elfeed-play-with-mpv ()
     "Play entry link with mpv."
