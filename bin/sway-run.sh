@@ -23,4 +23,4 @@ export XDG_VIDEOS_DIR="$HOME/videos"
 
 eval $(ssh-agent)
 
-exec dbus-run-session systemd-cat --identifier=sway sway $@
+exec systemd-cat --identifier=sway sway $@
