@@ -609,8 +609,14 @@
   :disabled)
 
 (use-package org-pomodoro
+  :bind ("C-c v" . org-pomodoro)
   :config (setq org-pomodoro-length 40
-                org-pomodoro-short-break-length 8))
+                org-pomodoro-short-break-length 8
+                org-pomodoro-keep-killed-pomodoro-time t
+                org-pomodoro-manual-break t))
+
+(use-package alert
+  :config (setq alert-default-style 'libnotify))
 
 ;; org-gcal
 ;; https://github.com/kidd/org-gcal.el/#Installation
