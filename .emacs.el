@@ -764,9 +764,12 @@
 ;; magit
 ;; https://magit.vc
 (use-package magit
-  :config (setq-default magit-diff-refine-hunk t
+  :config
+  (setq-default magit-diff-refine-hunk t
                 magit-delete-by-moving-to-trash nil
-                magit-repository-directories '(("~/.dotfiles" . 0))))
+                magit-repository-directories '(("~/.dotfiles" . 0)
+                                               ("~/org" . 0)
+                                               ("~/uni" . 0))))
 
 
 (use-package forge
