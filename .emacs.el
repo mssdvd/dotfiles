@@ -613,6 +613,7 @@
   :config (setq org-pomodoro-length 40
                 org-pomodoro-short-break-length 8
                 org-pomodoro-keep-killed-pomodoro-time t
+                org-pomodoro-audio-player (executable-find "mpv")
                 org-pomodoro-manual-break t))
 
 (use-package alert
