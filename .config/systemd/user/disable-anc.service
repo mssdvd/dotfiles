@@ -1,0 +1,9 @@
+[Unit]
+Description=Disable Bose ANC on connection
+
+[Service]
+Type=oneshot
+ExecStart=%h/bin/disable-anc.sh
+
+[Install]
+WantedBy=default.target
