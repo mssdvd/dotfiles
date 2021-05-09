@@ -36,8 +36,8 @@
     "custom/updates": {
         "format": "{} ",
         "interval": 1800,
-        "exec": "yay -P -n",
-        "on-click": "yay -P -n",
+        "exec": "checkupdates | wc -l",
+        "on-click": "checkupdates | wc -l",
         "on-click-right": "foot --hold paru; pkill -SIGRTMIN+1 waybar",
         "signal": 1
     },
