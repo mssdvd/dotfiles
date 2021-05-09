@@ -37,7 +37,7 @@
         "interval": 1800,
         "exec": "yay -P -n",
         "on-click": "yay -P -n",
-        "on-click-right": "alacritty --hold -e yay; pkill -SIGRTMIN+1 waybar",
+        "on-click-right": "foot --hold paru; pkill -SIGRTMIN+1 waybar",
         "signal": 1
     },
     "mpd": {

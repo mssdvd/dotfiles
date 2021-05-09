@@ -137,7 +137,7 @@
   "Open the current file's directory in ranger."
   (interactive)
   (if default-directory
-      (call-process-shell-command "alacritty -e ranger" (expand-file-name default-directory) 0 nil)
+      (call-process-shell-command "foot ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
 (bind-key "C-c r" #'ranger-launch-here)
 
@@ -879,7 +879,7 @@
 (use-package terminal-here
   :bind
   ("C-c t" . terminal-here-launch)
-  :config (setq-default terminal-here-terminal-command 'alacritty))
+  :config (setq-default terminal-here-terminal-command 'foot))
 
 ;; sudo-edit
 ;; https://github.com/nflath/sudo-edit
