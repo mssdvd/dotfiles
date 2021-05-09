@@ -1,7 +1,7 @@
-#! /bin/sh
+#!/bin/sh
 
 echo "Checking System updates"
-yay
+paru
 echo "Checking Firmware updates"
 fwupdmgr refresh; fwupdmgr get-updates
 echo "Checking Rust updates"
