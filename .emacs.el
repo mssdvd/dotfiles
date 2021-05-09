@@ -1,20 +1,20 @@
-;;; package --- Summary
+;;; .emacs.el --- Main emacs config file
 ;;; Commentary:
 
 ;;; Code:
-;; (require 'package)
-;; (add-to-list 'package-archives
-;;              '("MELPA" . "https://melpa.org/packages/") t)
-
-;; (when (< emacs-major-version 27)
-;;   (package-initialize))
-
-;; (unless (package-installed-p 'use-package)
-;;   (package-refresh-contents)
-;;   (package-install 'use-package))
 
 (setq-default gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024 4)) ;; 4mb
+
+(setq comp-async-report-warnings-errors nil)
+
+(define-advice straight--build-native-compile
+    (:around (oldfun &rest args) fix-native-comp-test)
+  "Properly disable native compilation on unsupported Emacsen."
+  (when (and (fboundp 'native-comp-available-p)
+             (native-comp-available-p)
+             (fboundp 'native-compile-async))
+    (apply oldfun args)))
 
 ;; bootstrap straight.el
 (eval-and-compile
@@ -36,8 +36,10 @@
   ;; use-package
   ;; https://github.com/jwiegley/use-package
   (setq use-package-always-defer t
+        ;; use-package-compute-statistics t
         straight-use-package-by-default t)
   (straight-use-package 'use-package))
+
 
 ;; enable column number
 (column-number-mode t)
@@ -49,7 +51,7 @@
 (setq-default inhibit-startup-screen t)
 
 ;; change all prompts to y or n
-(fset 'yes-or-no-p 'y-or-n-p)
+(setq use-short-answers t)
 
 ;; revert buffer
 ;; (bind-key "C-x m" #'revert-buffer)
@@ -75,8 +77,6 @@
 
 (setq echo-keystrokes 0.1)
 
-;; C preferences
-
 ;; Save all tempfiles in $TMPDIR/emacs$UID/
 (defconst emacs-tmp-dir (expand-file-name (format "emacs%d" (user-uid)) temporary-file-directory))
 (setq backup-directory-alist
@@ -85,12 +85,6 @@
       `((".*" ,emacs-tmp-dir t)))
 (setq auto-save-list-file-prefix
       emacs-tmp-dir)
-
-;; window title
-(setq frame-title-format
-      '((:eval (if (buffer-modified-p) "** "))
-        (:eval (if (buffer-file-name)
-                   (abbreviate-file-name (buffer-file-name)) "%b"))))
 
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
@@ -104,24 +98,17 @@
 ;; ibuffer is better
 (bind-key "C-x C-b" #'ibuffer)
 
-;; switch to previous buffer
-(bind-key "M-o" #'mode-line-other-buffer)
-
 ;; save buffer
 (bind-key [f5] #'save-buffer)
 
 ;; compile
 (bind-key "C-c m" #'recompile)
-(bind-key "C-S-m m" #'compile)
 
 ;; Pasting with middle-click puts the text where the point is
 (setq mouse-yank-at-point t)
 
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
-
-;; add new line at the end of file
-(setq require-final-newline t)
 
 ;; Delete trailing whitespace before save
 (add-hook 'before-save-hook #'delete-trailing-whitespace)
@@ -132,9 +119,6 @@
 ;; Do not ask to save before compilation
 (setq compilation-ask-about-save nil)
 
-;; show buffer boundaries
-(setq-default indicate-buffer-boundaries 'left)
-
 ;; Show parens mode
 (show-paren-mode)
 
@@ -143,23 +127,11 @@
 
 (setq enable-recursive-minibuffers t)
 
-(setq-default fill-column 80)
+(setq vc-follow-symlinks nil)
+
 ;;;;
 ;; My functions
 ;;;;
-
-(defun switch-highlight-indent-guides-and-whitespace-modes ()
-  "Switch between highlight-indent-guides and whitespace modes."
-  (interactive)
-  (if (get 'switch-highlight-indent-guides-and-whitespace-modes 'state)
-      (progn
-        (whitespace-mode -1)
-        (highlight-indent-guides-mode 1)
-        (put 'switch-highlight-indent-guides-and-whitespace-modes 'state nil))
-    (progn
-      (whitespace-mode 1)
-      (highlight-indent-guides-mode -1)
-      (put 'switch-highlight-indent-guides-and-whitespace-modes 'state t))))
 
 (defun ranger-launch-here ()
   "Open the current file's directory in ranger."
@@ -192,17 +164,37 @@
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight)
 
+(use-package modus-themes
+  :bind ("C-c q" . modus-themes-toggle)
+  :init
+  (setq modus-themes-bold-constructs t
+        modus-themes-slanted-constructs t
+        modus-themes-completions 'opinionated
+        modus-themes-lang-checkers 'intense-foreground
+        modus-themes-paren-match 'intese-bold
+        modus-themes-region 'bg-only
+        modus-themes-org-blocks 'grayscale)
+  (modus-themes-load-themes)
+  :config
+  (defun my-modus-themes-custom-faces ()
+    (set-face-attribute 'elfeed-search-title-face nil
+                                    :foreground (modus-themes-color 'fg-alt)))
+  (with-eval-after-load 'elfeed-search
+    (my-modus-themes-custom-faces))
+  (modus-themes-load-vivendi)
+  :hook (modus-themes-after-load-theme . my-modus-themes-custom-faces))
+
 ;; kaolin
 (use-package kaolin-themes
   :demand t
+  :disabled
   :config
   (setq-default kaolin-themes-italic-comments t
                 kaolin-themes-distinct-company-scrollbar t
                 kaolin-themes-underline-wave t
+                kaolin-themes-comments-style 'contrast
                 kaolin-themes-org-scale-headings nil)
-  (load-theme 'kaolin-dark t))
-
-(use-package solarized-theme)
+  (load-theme 'kaolin-ocean t))
 
 (use-package elec-pair
   :defer 1
@@ -218,18 +210,12 @@
 
 ;; display-line-numbers
 (use-package display-line-numbers
-  :disabled
-  :config
-  (setq-default display-line-numbers-type 'relative)
-  (global-display-line-numbers-mode))
+  :hook ((conf-mode prog-mode) . display-line-numbers-mode))
 
 ;; display-fill-column-indicator
 (use-package display-fill-column-indicator
   :straight nil
-  :hook
-  (prog-mode . display-fill-column-indicator-mode)
-  ;; (org-mode . display-fill-column-indicator-mode)
-  )
+  :hook (prog-mode . display-fill-column-indicator-mode))
 
 ;; diff
 (use-package diff
@@ -239,7 +225,7 @@
 (use-package dired
   :straight nil
   :config
-  (setq dired-listing-switches "-alh --group-directories-first"
+  (setq dired-listing-switches "-alhv --group-directories-first"
         dired-dwim-target t))
 
 ;; dired-x
@@ -248,7 +234,8 @@
   :demand t
   :after dired
   :config (setq dired-guess-shell-alist-user
-                '(("\.pdf$" "zathura"))))
+                '(("\.pdf$" "zathura")
+                  ("\.mp4$" "mpv"))))
 
 (use-package selectrum
   :defer 1
@@ -308,25 +295,29 @@
          ("M-g o" . consult-outline)
          ("M-g m" . consult-mark)
          ("M-g k" . consult-global-mark)
-         ("M-g i" . consult-project-imenu) ;; Alternative: consult-imenu
+         ("M-g i" . consult-imenu)
+         ("M-g I" . consult-project-imenu)
          ("M-g e" . consult-error)
          ;; M-s bindings (search-map)
-         ("M-s g" . consult-git-grep)      ;; Alternatives: consult-grep, consult-ripgrep
-         ("M-s l" . consult-line)
+         ("M-s g" . consult-git-grep)
+         ;; ("M-s l" . consult-line)
          ("M-s m" . consult-multi-occur)
          ("M-s k" . consult-keep-lines)
          ("M-s f" . consult-focus-lines)
+         ("M-s s" . consult-isearch)
          ;; Other bindings
+         ("C-s" . consult-line)
          ("M-y" . consult-yank-pop)
          ("<help> a" . consult-apropos))
   :init
   (setq register-preview-delay 0
         register-preview-function #'consult-register-preview)
   :config
-  (defun my/consult-fd-find(&optional dir)
+  (setq consult-narrow-key "<") ;; (kbd "C-+")
+  (defun my/consult-fd-find(&optional dir initial)
     (interactive "P")
-    (let ((consult-find-command '("fd" "--color=never" "--full-path")))
-      (consult-find dir)))
+    (let ((consult-find-command "fd --color=never --full-path ARG OPTS"))
+      (consult-find dir initial)))
   (autoload 'projectile-project-root "projectile")
   (setq consult-project-root-function #'projectile-project-root))
 
@@ -340,11 +331,7 @@
   :bind
   (:map minibuffer-local-map
         ("C-M-a" . marginalia-cycle))
-  :init (marginalia-mode)
-  :config
-  (advice-add #'marginalia-cycle :after
-              (lambda () (when (bound-and-true-p selectrum-mode)
-                           (selectrum-exhibit)))))
+  :init (marginalia-mode))
 
 (use-package embark
   :demand t
@@ -353,10 +340,12 @@
               ("C-o" . embark-act))
   :config
   (setq embark-action-indicator
-        (lambda (map)
+        (lambda (map _target)
           (which-key--show-keymap "Embark" map nil nil 'no-paging)
           #'which-key--hide-popup-ignore-command)
-        embark-become-indicator embark-action-indicator))
+        embark-become-indicator embark-action-indicator
+        embark-quit-after-action nil))
+
 
 (use-package embark-consult
   :demand t
@@ -365,6 +354,7 @@
 
 (use-package ctrlf
   :defer 1
+  :disabled
   :config
   (setq ctrlf-mode-bindings
         '(("C-s" . ctrlf-forward-fuzzy)
@@ -441,7 +431,8 @@
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep
-  )
+  :bind (:map grep-mode-map
+              ("C-c C-p" . wgrep-change-to-wgrep-mode)))
 
 ;; avy
 ;; https://github.com/abo-abo/avy
@@ -449,7 +440,6 @@
   :bind
   ("C-'" . avy-goto-char-timer)
   ("M-g f" . avy-goto-line)
-  ("M-g w" . avy-goto-word-1)
   ("M-g y" . avy-copy-line))
 
 ;; avy-flycheck
@@ -495,6 +485,7 @@
 ;; flycheck-inline
 ;; https://github.com/flycheck/flycheck-inline
 (use-package flycheck-inline
+  :disabled
   :hook (flycheck-mode . flycheck-inline-mode))
 
 ;; recentf
@@ -502,7 +493,7 @@
   :defer 1
   :config
   (setq-default recentf-max-menu-items 25
-                recentf-max-saved-items 250)
+                recentf-max-saved-items 300)
   (recentf-mode))
 
 (use-package saveplace
@@ -550,6 +541,7 @@
   (delight 'org-inden-mode)
   (setq-default
    org-attach-auto-tag nil
+   org-confirm-babel-evaluate nil
    org-capture-templates `(("b" "Insert new Book" entry
                             (file+headline "~/org/books_movies_series.org" "Books")
                             (file "~/org/template/books_template.org")
@@ -561,9 +553,27 @@
                            ("y" "Add YouTube channel" entry
                             (file+olp "~/.emacs.d/var/elfeed/rmh-elfeed.org"
                                       "Web" "Youtube")
-                            "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Inset channel name}]]"))
+                            "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Inset channel name}]]")
+                           ("s" "New activity log" entry
+                            (file+olp+datetree "~/org/activities.org"
+                                      "Log")
+                            "* %?"
+                            :jump-to-captured t
+                            :empty-lines 0
+                            :tree-type week)
+                           ("S" "New activity log (clock in)" entry
+                            (file+olp+datetree "~/org/activities.org"
+                                      "Log")
+                            "* %?"
+                            :clock-in it
+                            :clock-keep t
+                            :jump-to-captured t
+                            :empty-lines 0
+                            :tree-type week))
    org-catch-invisible-edits 'smart
+   org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
    org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar"
+   org-ellipsis " ..."
    org-enforce-todo-checkbox-dependencies t
    org-enforce-todo-dependencies t
    org-file-apps (append '(("\\.pdf\\'" . "zathura %s")
@@ -576,8 +586,6 @@
    org-image-actual-width (* (default-font-width) fill-column)
    org-indent-indentation-per-level 1
    org-indent-mode-turns-on-hiding-stars nil
-   org-list-demote-modify-bullet '(("+" . "-") ("-" . "+") ("*" . "+"))
-   ;; org-log-done 'time
    org-log-into-drawer t
    org-outline-path-complete-in-steps nil
    org-refile-allow-creating-parent-nodes 'confirm
@@ -587,18 +595,20 @@
    org-show-context-detail (append '((tags-tree . local)) org-show-context-detail)
    org-startup-folded t
    org-startup-with-inline-images t
-   org-todo-keywords '((sequence "TODO(t)" "WIP(w)" "|" "DONE(d)"))
+   org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "|" "DONE(d)" "CANCELED(c)"))
    org-track-ordered-property-with-tag t
    org-use-fast-tag-selection t
    )
   (add-to-list 'org-modules 'org-mouse)
   ;; (push 'org-drill org-modules)
   (org-babel-do-load-languages 'org-babel-load-languages
-                               '((emacs-lisp . t)
+                               '((C . t)
+                                 (emacs-lisp . t)
                                  (ditaa . t)
                                  (python . t)))
   (add-to-list 'org-latex-packages-alist
                '("AUTO" "babel" t ("pdflatex")))
+  ;; (dolist (i org-level-faces) (set-face-attribute i nil :overline t))
   :hook
   (org-mode . auto-fill-mode)
   (org-mode . org-indent-mode))
@@ -609,9 +619,8 @@
   :disabled)
 
 (use-package org-pomodoro
-  :bind ("C-c v" . org-pomodoro)
-  :config (setq org-pomodoro-length 40
-                org-pomodoro-short-break-length 8
+  :bind ("C-c s" . org-pomodoro)
+  :config (setq org-pomodoro-expiry-time 40
                 org-pomodoro-keep-killed-pomodoro-time t
                 org-pomodoro-audio-player (executable-find "mpv")
                 org-pomodoro-manual-break t))
@@ -651,11 +660,7 @@
   :delight
   :demand t
   :after org evil
-  :config
-  (require 'evil-org-agenda)
-  (evil-org-agenda-set-keys)
-  :hook
-  (org-mode . evil-org-mode))
+  :hook (org-mode . evil-org-mode))
 
 ;; org-download
 ;; https://github.com/abo-abo/org-download
@@ -682,24 +687,26 @@
   :init (global-undo-tree-mode)
   :config
   (setq-default undo-tree-enable-undo-in-region t
+                undo-tree-visualizer-diff t
                 undo-tree-visualizer-timestamps t))
 
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
   :delight
-  :demand
+  :demand t
   :bind
   ([remap indent-for-tab-command] . company-indent-or-complete-common)
-  ([M-tab] . company-indent-or-complete-common)
   ("C-c y" . company-yasnippet)
+  (:map company-active-map
+        ([M-tab] . yas-expand)
+        ("C-w" . backward-kill-word)
+        ("C-o" . company-show-location))
   :config
   (setq-default company-tooltip-align-annotations t
                 company-show-numbers t
-                company-idle-delay 1.0
-                company-minimum-prefix-length 2
-                company-selection-wrap-around t
-                company-dabbrev-downcase nil)
+                company-minimum-prefix-length 1
+                company-selection-wrap-around t)
   (global-company-mode)
   (company-tng-mode))
 
@@ -713,13 +720,14 @@
   (setq-default company-quickhelp-use-propertized-text t))
 
 (use-package company-box
+  :disabled
   :delight
+  :config (setq company-box-doc-enable nil)
   :hook (company-mode . company-box-mode))
 
 ;; projectile
 ;; https://github.com/bbatsov/projectile
 (use-package projectile
-  ;; :defer 1
   :bind-keymap ("C-c p" . projectile-command-map)
   :config
   (projectile-mode)
@@ -737,6 +745,7 @@
 ;; company-math
 ;; https://github.com/vspinu/company-math
 (use-package company-math
+  :disabled
   :hook
   (org-mode . (lambda ()
                 (setq-local company-backends
@@ -772,7 +781,6 @@
                                                ("~/org" . 0)
                                                ("~/uni" . 0))))
 
-
 (use-package forge
   :demand t
   :after magit)
@@ -794,24 +802,24 @@
 ;; diff-hl
 ;; https://github.com/dgutov/diff-hl
 (use-package diff-hl
+  :disabled
   :defer 1
   :config
   (global-diff-hl-mode t)
   (diff-hl-flydiff-mode)
+  (diff-hl-dired-mode)
   (diff-hl-margin-mode)
   (setq-default diff-hl-draw-borders nil
                 diff-hl-side 'right)
   :hook ((magit-pre-refresh . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)))
 
-(use-package vc
-  :config (setq vc-handled-backends nil))
-
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
   :delight yas-minor-mode
   :defer 1
+  :bind ([M-tab] . yas-expand)
   :config
   (yas-global-mode 1)
   :hook (org-mode . (lambda () (yas-activate-extra-mode 'latex-mode))))
@@ -860,51 +868,17 @@
 ;; Dep poppler poppler-glibc
 (use-package pdf-tools
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
-  :hook (pdf-view-mode . pdf-tools-enable-minor-modes)
-  :config
-  (bind-key "C-s" #'isearch-forward pdf-view-mode-map)
-
-  ;; workaround for pdf-tools not reopening to last-viewed page of the pdf:
-  ;; https://github.com/politza/pdf-tools/issues/18#issuecomment-269515117
-  (defun brds/pdf-set-last-viewed-bookmark ()
-    (interactive)
-    (when (eq major-mode 'pdf-view-mode)
-      (bookmark-set (brds/pdf-generate-bookmark-name))))
-
-  (defun brds/pdf-jump-last-viewed-bookmark ()
-    (bookmark-set "fake") ; this is new
-    (when
-        (brds/pdf-has-last-viewed-bookmark)
-      (bookmark-jump (brds/pdf-generate-bookmark-name))))
-
-  (defun brds/pdf-has-last-viewed-bookmark ()
-    (assoc
-     (brds/pdf-generate-bookmark-name) bookmark-alist))
-
-  (defun brds/pdf-generate-bookmark-name ()
-    (concat "PDF-LAST-VIEWED: " (buffer-file-name)))
-
-  (defun brds/pdf-set-all-last-viewed-bookmarks ()
-    (dolist (buf (buffer-list))
-      (with-current-buffer buf
-        (brds/pdf-set-last-viewed-bookmark))))
-
-  (add-hook 'kill-buffer-hook #'brds/pdf-set-last-viewed-bookmark)
-  (add-hook 'pdf-view-mode-hook #'brds/pdf-jump-last-viewed-bookmark)
-  (unless noninteractive  ; as `save-place-mode' does
-    (add-hook 'kill-emacs-hook #'brds/pdf-set-all-last-viewed-bookmarks)))
+  :hook (pdf-view-mode . pdf-tools-enable-minor-modes))
 
 ;; realgud
 ;; https://github.com/realgud/realgud
-(use-package realgud
-  :config (setq-default realgud:pdb-command-name "python -m pdb"))
+(use-package realgud)
 
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
   :bind
   ("C-c t" . terminal-here-launch)
-  ;; ("C-c e" . terminal-here-project-launch)
   :config (setq-default terminal-here-terminal-command 'alacritty))
 
 ;; sudo-edit
@@ -1027,15 +1001,13 @@
   :config
   (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"
         langtool-mother-tongue "en-US")
-  (eval-after-load 'prog-mode
-    '(progn
+  (with-eval-after-load 'prog-mode
        (unless (featurep 'flyspell) (require 'flyspell))
        (setq langtool-generic-check-predicate
              '(lambda (start end)
                 (let* ((f (get-text-property start 'face)))
-                  (memq f flyspell-prog-text-faces))))))
-  (eval-after-load 'org-mode
-    '(progn
+                  (memq f flyspell-prog-text-faces)))))
+  (with-eval-after-load 'org-mode
        (setq langtool-generic-check-predicate
              '(lambda (start end)
                 ;; set up for `org-mode'
@@ -1080,7 +1052,7 @@
                       (if b (setq e (re-search-forward end-regexp nil t)))
                       (if (and b e (< start e)) (setq rlt nil)))))
                   ;; (if rlt (message "start=%s end=%s ff=%s" start end ff))
-                  rlt))))))
+                  rlt)))))
 
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
@@ -1145,7 +1117,8 @@
 
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
-(use-package vterm)
+(use-package vterm
+  :bind ("C-c v" . vterm))
 
 (use-package shr
   :config (setq shr-width 80
@@ -1158,6 +1131,11 @@
 (use-package erc
   :config (add-to-list 'erc-modules 'notifications))
 
+(use-package matlab-mode
+  :mode ("\\.m\\'" . matlab-mode)
+  :commands matlab-shell
+  :config (setq matlab-shell-command-switches '("-nodesktop" "-nosplash")))
+
 ;;
 ;; Evil
 ;;
@@ -1165,12 +1143,16 @@
 ;; evil-mode
 ;; https://github.com/emacs-evil/evil
 (use-package evil
-  :demand t
+  :defer 1
   :bind
   (:map evil-ex-search-keymap
         ("C-w" . backward-kill-word))
+  (:map evil-motion-state-map
+        ("C-6" . mode-line-other-buffer)
+        ("K" . man))
   :init
   (setq-default evil-search-module 'evil-search
+                evil-symbol-word-search t
                 evil-want-keybinding nil
                 evil-undo-system 'undo-tree)
   :config
@@ -1178,7 +1160,6 @@
   (setq evil-want-fine-undo t
         evil-split-window-below t
         evil-vsplit-window-right t)
-  (evil-global-set-key 'motion (kbd "K") 'man)
   (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
   (evil-set-initial-state 'ivy-occur-mode 'emacs)
   (evil-set-initial-state 'ivy-occur-grep-mode 'emacs)
@@ -1259,19 +1240,15 @@
 (use-package lsp-mode
   :commands (lsp lsp-deferred)
   :custom
-  (lsp-rust-server  'rust-analyzer)
   (lsp-keymap-prefix "C-c o")
   (lsp-modeline-code-actions-segments '(count icon segments))
   (lsp-enable-semantic-highlighting t)
-  :config
   :hook
+  (c-mode . lsp)
   (c++-mode . lsp)
   (java-mode . lsp)
-  ;; (rust-mode . lsp)
   (lsp-mode . lsp-enable-which-key-integration)
-  (lsp-mode . lsp-modeline-code-actions-mode)
-  (lsp-mode . lsp-headerline-breadcrumb-mode)
-  )
+  (lsp-mode . lsp-modeline-code-actions-mode))
 
 ;; lsp-ui
 ;; https://github.com/emacs-lsp/lsp-ui
@@ -1281,14 +1258,8 @@
   (:map lsp-ui-mode-map
         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
         ([remap xref-find-references] . lsp-ui-peek-find-references))
-  :config
-  (setq lsp-ui-doc-position 'bottom
-        lsp-ui-sideline-show-diagnostics nil)
-  :hook
-  (lsp-ui-doc-mode . (lambda ()
-                       (when lsp-ui-doc-mode
-                         (remove-hook 'post-command-hook
-                                      #'lsp-ui-doc--make-request t)))))
+  :config (setq lsp-ui-doc-position 'bottom
+                lsp-ui-sideline-show-diagnostics t))
 
 ;; lsp-ivy
 ;; https://github.com/emacs-lsp/lsp-ivy
@@ -1324,16 +1295,22 @@
 
 ;; Python
 
-(use-package python
-  :mode ("\\.py\\'" . python-mode)
-  :config
-
-  ;;       python-shell-interpreter-args "-i --simple-prompt"
-  ;;       python-shell-prompt-detect-failure-warning nil)
-  )
+(use-package pyvenv
+  :demand t
+  :after python
+  :hook (python-mode . pyvenv-mode))
 
 (use-package elpy
+  :disabled
   :config (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
   :hook (python-mode . elpy-enable))
 
-;;; .emacs ends here
+(put 'erase-buffer 'disabled nil)
+
+;; (mapc
+;;    (lambda (face)
+;;      (when (eq (face-attribute face :weight) 'normal)
+;;        (set-face-attribute face nil :weight 'semi-bold)))
+;;    (face-list))
+
+;;; .emacs.el ends here

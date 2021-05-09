@@ -1,9 +1,20 @@
-(setq package-enable-at-startup nil)
+;;; early-init.el --- Early Init File
+;;; Commentary:
+;;; Code:
 
-(push '(tool-bar-lines . 0) default-frame-alist)
-(push '(menu-bar-lines . 0) default-frame-alist)
-(push '(vertical-scroll-bars . nil) default-frame-alist)
+(setq package-enable-at-startup nil
+      default-frame-alist '((tool-bar-lines . 0)
+                            (menu-bar-lines . 0)
+                            (vertical-scroll-bars . nil)))
 
-(dolist (attr '(default variable-pitch))
-  (set-face-attribute attr nil :family "Iosevka" :foundry "BE5N"
-                      :slant 'normal :weight 'semi-bold :height 181 :width 'normal))
+(set-face-attribute 'default nil
+                    :family "Iosevka"
+                    :weight 'semi-bold
+                    :height 180)
+(dolist (attr '(variable-pitch fixed-pitch))
+  (set-face-attribute attr nil
+                      :family "Iosevka"
+                      :weight 'semi-bold
+                      :height 1.0))
+
+;;; early-init.el ends here
