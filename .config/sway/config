@@ -1,23 +1,25 @@
-font pango:Iosevka Semibold 12
+set {
+    $mod Mod4
+    $left h
+    $down j
+    $up k
+    $right l
+    $bemenu-options -ni -H 30 --fn "Iosevka Semibold 20" --tf "#4c7899" --tb "#000000" --fb "#000000" --hf "#4c7899" --hb "#000000" --nb "#000000"
+    $menu bemenu-run -p "run" $bemenu-options
+}
 
-set $mod Mod4
-set $left h
-set $down j
-set $up k
-set $right l
-set $term alacritty
-set $menu bemenu-run -ni -H 30 --fn "Iosevka Semibold 20" --tf "#4c7899" --tb "#000000" --fb "#000000" --hf "#4c7899" --hb "#000000" --nb "#000000"
-
-output eDP-1 scale 1 pos 0 0 subpixel rgb
-output * bg "#000000" solid_color
-output "Ancor Communications Inc ASUS MX239 EBLMTJ030694" scale 0.65
+output {
+    eDP-1 scale 1 pos 0 0 subpixel rgb
+    "Ancor Communications Inc ASUS MX239 EBLMTJ030694" scale 0.65
+    * bg "#000000" solid_color
+}
 
 input "type:touchpad" {
     dwt enabled
     tap enabled
     natural_scroll enabled
     middle_emulation enabled
-    pointer_accel 0.6
+    pointer_accel 0.8
 }
 input "type:keyboard" xkb_options "ctrl:swapcaps,compose:ralt"
 input "1278:32:PFU_Limited_HHKB-Classic" xkb_options "compose:ralt"
@@ -25,8 +27,11 @@ input "1278:32:PFU_Limited_HHKB-Classic" xkb_options "compose:ralt"
 input "1204:1296:HID_Keyboard_HID_Keyboard" xkb_options "compose:ralt,ctrl:swap_rwin_rctl"
 input "1133:49971:Logitech_Gaming_Keyboard_G610" xkb_layout us-english-long-shift
 input "1133:50458:Logitech_USB_Receiver" pointer_accel 1
+input "1267:32:Elan_TrackPoint" pointer_accel 0.5
 
 bindsym $mod+Return exec $term
+# bindsym $mod+Shift+Return exec $term --class $term_floating_window
+bindsym $mod+Shift+Return exec $term --app-id=$term_floating_window
 bindsym $mod+Shift+q kill
 bindsym $mod+Tab exec $menu
 floating_modifier $mod normal
@@ -45,7 +50,7 @@ mode "$mode_system" {
 }
 bindsym $mod+Shift+e mode "$mode_system"
 
-set $mode_screenshot Screenshot copy (w)in, (s)creen, (a)rea, save (Shift+w)in, (Shift+s)creen, (Shift+a)rea
+set $mode_screenshot Screenshot copy (w)in, (s)creen, (a)rea, save (Shift+w)in, (Shift+s)creen, (Shift+a)rea, swapp(y)
 mode "$mode_screenshot" {
     bindsym w exec grimshot --notify copy win; mode "default"
     bindsym Shift+w exec grimshot --notify save win; mode "default"
@@ -53,11 +58,18 @@ mode "$mode_screenshot" {
     bindsym Shift+s exec grimshot --notify save screen; mode "default"
     bindsym a exec grimshot --notify copy area; mode "default"
     bindsym Shift+a exec grimshot --notify save area; mode "default"
+    bindsym y exec grim -g "$(slurp)" - | swappy -f -; mode "default"
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 bindsym Print mode "$mode_screenshot"
+
+set $passthrough passthrough mode ($mod+Pause to leave)
+mode "$passthrough" {
+	bindsym $mod+Pause mode default
+}
+bindsym $mod+Pause mode "$passthrough"
 
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym Shift+XF86MonBrightnessUp exec light -A 1
@@ -71,6 +83,7 @@ bindsym $mod+Shift+i exec light -U 1
 bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym --locked $mod+x exec pactl set-sink-volume @DEFAULT_SINK@ +5%
 bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym $mod+Shift+x exec pavucontrol
 bindsym --locked $mod+z exec pactl set-sink-volume @DEFAULT_SINK@ -5%
 bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 bindsym --locked $mod+c exec pactl set-sink-mute @DEFAULT_SINK@ toggle
@@ -99,19 +112,21 @@ bindcode $mod+34 exec firefox
 # bindsym $mod+Shift+Bracketleft exec firefox --private-window
 bindcode $mod+Shift+34 exec firefox --private-window
 # bindsym $mod+Backslash exec $term -e ranger
-bindcode $mod+51 exec $term -e ranger
+bindcode $mod+51 exec $term ranger
 # bindsym $mod+Shift+Backslash exec kitty -e ranger --cmd=fzf_select
-bindcode $mod+Shift+51 exec $term -e ranger --cmd=fzf_select
+bindcode $mod+Shift+51 exec pcmanfm-qt
 # bindsym $mod+Bracketright exec emacsclient -c -a ''
 bindcode $mod+35 exec emacsclient -c -a ''
-bindsym $mod+n exec clipman pick -t rofi
+bindsym $mod+n exec clipman pick -t bemenu --tool-args='$bemenu-options'
+
 # bindsym $mod+p exec passmenu --type
 bindcode $mod+Shift+48 exec evince
 bindcode $mod+48 exec zathura
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
+bindsym $mod+Shift+m exec ~/bin/play_in_mpv.sh --vid=no
 bindsym $mod+q exec emacs_calc.sh
-bindcode $mod+47 exec $term -e aerc
-
+bindcode $mod+47 exec $term aerc
+bindsym $mod+g exec makoctl invoke
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down
 bindsym $mod+$up focus up
@@ -178,21 +193,26 @@ bindcode $mod+21 sticky toggle
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
 
+bindsym $mod+t exec i3_balance_workspace
+bindsym $mod+Shift+t exec i3_balance_workspace --scope focus
+
 mode "resize" {
-    bindsym $left resize shrink width 50px
-    bindsym $down resize grow height 50px
-    bindsym $up resize shrink height 50px
-    bindsym $right resize grow width 50px
+    bindsym {
+        $left resize shrink width 50px
+        $down resize grow height 50px
+        $up resize shrink height 50px
+        $right resize grow width 50px
 
-    bindsym Left resize shrink width 50px
-    bindsym Down resize grow height 50px
-    bindsym Up resize shrink height 50px
-    bindsym Right resize grow width 50px
+        Left resize shrink width 50px
+        Down resize grow height 50px
+        Up resize shrink height 50px
+        Right resize grow width 50px
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym r mode "default"
-    bindsym grave mode "default"
+        Return mode "default"
+        Escape mode "default"
+        r mode "default"
+        grave mode "default"
+     }
 }
 bindsym $mod+r mode "resize"
 
@@ -209,25 +229,34 @@ bar {
 
 hide_edge_borders vertical
 
-seat * hide_cursor 10000
+seat {
+    * hide_cursor 10000
+    * xcursor_theme Adwaita 36
+}
 
-seat * xcursor_theme Adwaita 36
+for_window {
+    [title="(?i)^picture-in-picture"] floating enable, sticky enable
+    [title="Firefox — Sharing Indicator"] floating enable
+    [title="Firefox — Sharing Indicator"] no_focus
+    [app_id="floating_window"] floating enable
+    [class="floating_window"] floating enable
+}
 
-for_window [title="(?i)^picture-in-picture"] floating enable, sticky enable
-for_window [title="Firefox — Sharing Indicator"] floating enable
-for_window [title="Firefox — Sharing Indicator"] no_focus
+exec {
+    mako
+    ydotoold
+    libinput-gestures-setup start
+    # wl-paste -t text --watch clipman store
+    gammastep-indicator
+    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+    nm-applet --indicator
+    blueman-applet
+    swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f; playerctl pause'
+    # autotiling
 
-exec mako
-exec ydotoold
-exec libinput-gestures-setup start
-#exec wl-paste -t text --watch clipman store
-exec gammastep-indicator
-exec /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-exec nm-applet --indicator
-exec blueman-applet
-exec swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f'
-exec autotiling
+    systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
+    hash dbus-update-activation-environment 2>/dev/null && \
+    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
+}
 
-exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY SWAYSOCK
-exec systemd-notify --ready
+include `hostname`
