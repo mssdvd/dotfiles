@@ -19,7 +19,6 @@ window#waybar {
 #workspaces button {
     padding: 0 4px;
     background-color: #222222;
-    color: #888888;
     border: 1px solid #333333;
     transition: none;
 }
@@ -56,9 +55,9 @@ window#waybar {
 #tray,
 #idle_inhibitor,
 #mpd,
-#custom-yay,
+#custom-updates,
 #custom-light,
-#custom-spotify {
+#custom-mediaplayer {
     padding: 0 10px;
     background-color: #285577;
     border: 1px solid #4c7899;

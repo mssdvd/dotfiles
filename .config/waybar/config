@@ -6,7 +6,9 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": [],
-    "modules-right": ["custom/spotify","pulseaudio","network","network#speed", "cpu", "memory", "temperature", "backlight", "battery", "clock", "custom/yay","tray"],
+    "modules-right": ["custom/mediaplayer","pulseaudio","network","network#speed", "cpu", "memory", "temperature", "backlight", "battery", "clock",
+    "custom/updates",
+    "tray"],
     // Modules configuration
     // "sway/workspaces": {
     //     "disable-scroll": true,
@@ -23,16 +25,15 @@
     //         "default": ""
     //     }
     // },
-    "custom/spotify": {
+    "custom/mediaplayer": {
         "format": "{} ",
         "return-type": "json",
         "exec": "python $HOME/.config/waybar/mediaplayer.py 2> /dev/null",
-        "exec-if": "pgrep spotify",
         "on-click": "playerctl previous",
         "on-click-middle": "playerctl play-pause",
         "on-click-right": "playerctl next"
     },
-    "custom/yay": {
+    "custom/updates": {
         "format": "{} ",
         "interval": 1800,
         "exec": "yay -P -n",
