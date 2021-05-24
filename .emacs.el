@@ -184,17 +184,6 @@
   (modus-themes-load-vivendi)
   :hook (modus-themes-after-load-theme . my-modus-themes-custom-faces))
 
-;; kaolin
-(use-package kaolin-themes
-  :demand t
-  :disabled
-  :config
-  (setq-default kaolin-themes-italic-comments t
-                kaolin-themes-distinct-company-scrollbar t
-                kaolin-themes-underline-wave t
-                kaolin-themes-comments-style 'contrast
-                kaolin-themes-org-scale-headings nil)
-  (load-theme 'kaolin-ocean t))
 
 (use-package elec-pair
   :defer 1
