@@ -341,18 +341,6 @@
   :after embark consult
   :hook (embark-collect-mode . embark-consult-preview-minor-mode))
 
-(use-package ctrlf
-  :defer 1
-  :disabled
-  :config
-  (setq ctrlf-mode-bindings
-        '(("C-s" . ctrlf-forward-fuzzy)
-          ("C-r" . ctrlf-backward-fuzzy)
-          ("C-M-s" . ctrlf-forward-fuzzy-regexp)
-          ("C-M-r" . ctrlf-backward-fuzzy-regexp)
-          ("M-s _" . ctrlf-forward-symbol)
-          ("M-s ." . ctrlf-forward-symbol-at-point)))
-  (ctrlf-mode +1))
 
 ;; ivy
 ;; https://github.com/abo-abo/swiper
