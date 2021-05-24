@@ -599,12 +599,6 @@
   (company-quickhelp-mode)
   (setq-default company-quickhelp-use-propertized-text t))
 
-(use-package company-box
-  :disabled
-  :delight
-  :config (setq company-box-doc-enable nil)
-  :hook (company-mode . company-box-mode))
-
 ;; projectile
 ;; https://github.com/bbatsov/projectile
 (use-package projectile
