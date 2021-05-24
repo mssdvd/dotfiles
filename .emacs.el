@@ -527,25 +527,6 @@
 (use-package alert
   :config (setq alert-default-style 'libnotify))
 
-;; org-gcal
-;; https://github.com/kidd/org-gcal.el/#Installation
-(use-package org-gcal
-  :demand t
-  :after org
-  :disabled
-  :config
-  (setq-default
-   org-gcal-client-id (auth-source-pass-get 'secret "gcal/client_id")
-   org-gcal-client-secret (auth-source-pass-get 'secret "gcal/client_secret")
-   org-gcal-file-alist
-   '(("d.masserut@gmail.com"
-      . "~/org/gcal.org")
-     ((auth-source-pass-get 'secret "gcal/lessons_calendar"). "~/org/gcal.org")
-     ((auth-source-pass-get 'secret "gcal/exams_calendar"). "~/org/gcal.org")
-     ))
-  ;; :hook (org-agenda-mode . org-gcal-sync)
-  )
-
 (use-package org-caldav
   :config
   (setq org-caldav-url "https://cdav.migadu.com/calendars/dm@mssdvd.com"
