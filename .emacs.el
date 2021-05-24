@@ -597,6 +597,11 @@
   (company-quickhelp-mode)
   (setq-default company-quickhelp-use-propertized-text t))
 
+(use-package company-box
+  :delight
+  :config (setq company-box-doc-enable nil)
+  :hook (company-mode . company-box-mode))
+
 ;; company-math
 ;; https://github.com/vspinu/company-math
 (use-package company-math
