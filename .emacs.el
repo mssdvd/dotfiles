@@ -516,10 +516,6 @@
   (org-mode . auto-fill-mode)
   (org-mode . org-indent-mode))
 
-;; org-drill
-;; https://gitlab.com/phillord/org-drill
-(use-package org-drill
-  :disabled)
 
 (use-package org-pomodoro
   :bind ("C-c s" . org-pomodoro)
