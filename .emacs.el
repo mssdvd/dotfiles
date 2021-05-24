@@ -414,17 +414,6 @@
   :demand t
   :config (save-place-mode 1))
 
-;; highlight-indent-guides
-;; https://github.com/DarthFennec/highlight-indent-guides
-(use-package highlight-indent-guides
-  :disabled
-  :delight
-  :hook
-  (prog-mode . highlight-indent-guides-mode)
-  :config
-  (setq-default highlight-indent-guides-method 'character
-                highlight-indent-guides-responsive 'top))
-
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
