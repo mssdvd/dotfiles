@@ -307,8 +307,6 @@
     (interactive "P")
     (let ((consult-find-command "fd --color=never --full-path ARG OPTS"))
       (consult-find dir initial)))
-  (autoload 'projectile-project-root "projectile")
-  (setq consult-project-root-function #'projectile-project-root))
 
 (use-package consult-flycheck
   :demand t
@@ -599,23 +597,6 @@
   (company-quickhelp-mode)
   (setq-default company-quickhelp-use-propertized-text t))
 
-;; projectile
-;; https://github.com/bbatsov/projectile
-(use-package projectile
-  :bind-keymap ("C-c p" . projectile-command-map)
-  :config
-  (projectile-mode)
-  (setq-default projectile-enable-caching t
-                projectile-files-cache-expire 2592000
-                projectile-mode-line-function 'my/projectile-default-mode-line)
-  (defun my/projectile-default-mode-line ()
-    "Report project name and type in the modeline."
-    (let ((project-name (projectile-project-name))
-          (project-type (projectile-project-type)))
-      (if (and project-name project-type)
-          (format " [%s:%s]" project-name project-type)
-        " Projectile"))))
-
 ;; company-math
 ;; https://github.com/vspinu/company-math
 (use-package company-math
@@ -626,16 +607,6 @@
                             (append '((company-math-symbols-latex company-latex-commands))
                                     company-backends)
                             company-math-allow-latex-symbols-in-faces t))))
-
-;; ibuffer-projectile
-;; https://github.com/purcell/ibuffer-projectile
-(use-package ibuffer-projectile
-  :demand t
-  :after projectile
-  :hook (ibuffer . (lambda ()
-                     (ibuffer-projectile-set-filter-groups)
-                     (unless (eq ibuffer-sorting-mode 'alphabetic)
-                       (ibuffer-do-sort-by-alphabetic)))))
 
 ;; magit
 ;; https://magit.vc
