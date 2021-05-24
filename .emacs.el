@@ -342,69 +342,6 @@
   :hook (embark-collect-mode . embark-consult-preview-minor-mode))
 
 
-;; ivy
-;; https://github.com/abo-abo/swiper
-(use-package ivy
-  :disabled
-  :delight
-  ;; :defer 1
-  :bind ("C-c i" . ivy-resume)
-  :config
-  (ivy-mode 1)
-  (setq enable-recursive-minibuffers t
-        ivy-count-format "(%d/%d) "
-        ;; ivy-extra-directories nil
-        ivy-use-selectable-prompt t))
-
-;; counsel
-;; https://github.com/abo-abo/swiper
-;; Dep fzf, ripgrep
-(use-package counsel
-  :disabled
-  :delight
-  ;; :defer 1
-  :bind
-  ("C-x b" . counsel-switch-buffer)
-  ;; ("M-x" . counsel-M-x)
-  ("C-c l" . counsel-locate)
-  ("C-x C-r" . counsel-recentf)
-  ("C-c g" . counsel-rg)
-  ("C-c f" . counsel-fzf)
-  ("C-x 8 RET" . counsel-unicode-char)
-  :config
-  (counsel-mode 1)
-  ;; (setq counsel-grep-base-command "grep -E -n -i -e %s %s")
-  (setq counsel-find-file-ignore-regexp "\\`\\.")
-  (setf (alist-get 'counsel-M-x ivy-initial-inputs-alist) "")
-  (setf (alist-get 'org-refile ivy-initial-inputs-alist) ""))
-
-;; swiper
-;; https://github.com/abo-abo/swiper
-;; M-q - swiper-query-replace
-;; C-l - swiper-recenter-top-bottom
-;; C-' - swiper-avy
-;; C-7 - swiper-mc
-;; C-c C-f - swiper-toggle-face-matching
-(use-package swiper
-  :disabled
-  :bind
-  ("C-s" . counsel-grep-or-swiper)
-  ("C-M-s" . swiper-all))
-
-;; ivy-avy
-;; https://github.com/abo-abo/swiper
-(use-package ivy-avy
-  :disabled
-  :demand t
-  :after ivy)
-
-;; ivy-hydra
-;; https://github.com/abo-abo/swiper
-(use-package ivy-hydra
-  :disabled
-  :demand t
-  :after ivy)
-
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep
@@ -729,14 +666,6 @@
                             (append '((company-math-symbols-latex company-latex-commands))
                                     company-backends)
                             company-math-allow-latex-symbols-in-faces t))))
-
-;; counsel-projectile
-;; https://github.com/ericdanan/counsel-projectile
-(use-package counsel-projectile
-  :disabled
-  :demand t
-  :after counsel projectile
-  :config (counsel-projectile-mode))
 
 ;; ibuffer-projectile
 ;; https://github.com/purcell/ibuffer-projectile
@@ -1237,12 +1166,6 @@
         ([remap xref-find-references] . lsp-ui-peek-find-references))
   :config (setq lsp-ui-doc-position 'bottom
                 lsp-ui-sideline-show-diagnostics t))
-
-;; lsp-ivy
-;; https://github.com/emacs-lsp/lsp-ivy
-(use-package lsp-ivy
-  :disabled
-  :commands lsp-ivy-workspace-symbol)
 
 ;; lsp-java
 (use-package lsp-java)
