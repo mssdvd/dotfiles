@@ -1131,11 +1131,6 @@
   :after python
   :hook (python-mode . pyvenv-mode))
 
-(use-package elpy
-  :disabled
-  :config (setq elpy-modules (delq 'elpy-module-flymake elpy-modules))
-  :hook (python-mode . elpy-enable))
-
 (put 'erase-buffer 'disabled nil)
 
 ;; (mapc
