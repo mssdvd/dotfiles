@@ -1030,7 +1030,6 @@
     "r" 'elfeed-search-update--force)
   (evil-define-key '(normal visual) elfeed-search-mode-map "o" 'elfeed-search-browse-url)
   (evil-define-key 'normal elfeed-search-mode-map
-    "c" 'elfeed-search-clear-filter
     "i" 'elfeed-play-with-mpv
     "p" 'pocket-reader-elfeed-search-add-link)
   (evil-define-key 'normal elfeed-show-mode-map
