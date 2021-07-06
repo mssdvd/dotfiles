@@ -528,7 +528,7 @@
   :bind ("C-c s" . org-pomodoro)
   :config (setq org-pomodoro-expiry-time 40
                 org-pomodoro-keep-killed-pomodoro-time t
-                org-pomodoro-audio-player (executable-find "mpv")
+                org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=50")
                 org-pomodoro-manual-break t))
 
 (use-package alert
