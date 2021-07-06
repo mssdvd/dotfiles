@@ -454,7 +454,8 @@
                            ("m" "Next week menu" entry
                             (file+headline "~/org/meals.org"
                                            ,(format-time-string "%Y"))
-                            (file "~/org/template/weekly_meals.org"))
+                            (file "~/org/template/weekly_meals.org")
+                            :jump-to-captured t)
                            ("y" "Add YouTube channel" entry
                             (file+olp "~/.emacs.d/var/elfeed/rmh-elfeed.org"
                                       "Web" "Youtube")
