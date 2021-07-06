@@ -47,6 +47,9 @@
 ;; display size of the buffer
 (size-indication-mode t)
 
+;; disable cursor blinking
+(blink-cursor-mode 0)
+
 ;; disable startup screen
 (setq-default inhibit-startup-screen t)
 
