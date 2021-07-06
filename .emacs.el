@@ -966,7 +966,8 @@
 
 ;; csv-mode
 (use-package csv-mode
-  :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode))
+  :mode ("\\.[Cc][Ss][Vv]\\'" . csv-mode)
+  :custom (csv-separators '("," ";" "	")))
 
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
