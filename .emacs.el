@@ -206,8 +206,7 @@
 
 ;; display-fill-column-indicator
 (use-package display-fill-column-indicator
-  :straight nil
-  :hook (prog-mode . display-fill-column-indicator-mode))
+  :hook ((markdown-mode conf-mode prog-mode) . display-fill-column-indicator-mode))
 
 ;; diff
 (use-package diff
