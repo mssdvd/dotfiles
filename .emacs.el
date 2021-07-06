@@ -574,12 +574,11 @@
   :delight
   :demand t
   :bind
-  ([remap indent-for-tab-command] . company-indent-or-complete-common)
+  (([remap indent-for-tab-command] . company-indent-or-complete-common)
   ("C-c y" . company-yasnippet)
-  (:map company-active-map
-        ([M-tab] . yas-expand)
-        ("C-w" . backward-kill-word)
-        ("C-o" . company-show-location))
+  :map company-active-map
+  ("C-w" . backward-kill-word)
+  ("C-o" . company-show-location))
   :config
   (setq-default company-tooltip-align-annotations t
                 company-show-numbers t
@@ -661,15 +660,16 @@
 (use-package yasnippet
   :delight yas-minor-mode
   :defer 1
-  :bind ([M-tab] . yas-expand)
+  :bind
+  ((:map yas-minor-mode-map
+    ("C-j" . yas-expand)
+    :map yas-keymap
+    ("C-j" . yas-next-field-or-maybe-expand)))
   :config
   (yas-global-mode 1)
-  :hook (org-mode . (lambda () (yas-activate-extra-mode 'latex-mode))))
-;; :hook (org-mode . (lambda ()
-;;                     (setq yas-buffer-local-condition
-;;                           '(if (org-inside-LaTeX-fragment-p)
-;;                                '(require-snippet-condition . always)
-;;                              t)))))
+  (dolist (keymap (list yas-minor-mode-map yas-keymap))
+    (define-key keymap (kbd "TAB") nil)
+    (define-key keymap [(tab)] nil)))
 
 ;; yasnippet-snippets
 ;; https://github.com/AndreaCrotti/yasnippet-snippets
@@ -1024,7 +1024,10 @@
   :after evil
   ;; :custom (evil-collection-company-use-tng nil)
   :config
-  (mapc (lambda (x) (setq evil-collection-mode-list (delq x evil-collection-mode-list))) '(calc))
+  (mapc
+   (lambda (mode) (setq evil-collection-mode-list
+                        (delq mode evil-collection-mode-list)))
+   '(company calc))
   (evil-define-key 'normal elfeed-search-mode-map
     "R" 'elfeed-search-fetch
     "r" 'elfeed-search-update--force)
