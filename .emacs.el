@@ -1,4 +1,4 @@
-;;; .emacs.el --- Main emacs config file
+;;; .emacs.el --- Main emacs config file  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:
