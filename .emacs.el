@@ -1032,6 +1032,7 @@
 ;; evil-collection
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
+  :delight evil-collection-unimpaired-mode
   :demand t
   :after evil
   ;; :custom (evil-collection-company-use-tng nil)
