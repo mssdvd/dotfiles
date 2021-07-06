@@ -442,7 +442,7 @@
     (interactive)
     (setq current-prefix-arg '(16))
     (call-interactively #'org-latex-preview))
-  (delight 'org-inden-mode)
+  (delight 'org-indent-mode)
   (setq-default
    org-attach-auto-tag nil
    org-confirm-babel-evaluate nil
