@@ -479,6 +479,7 @@
    org-catch-invisible-edits 'smart
    org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
    org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar"
+   org-edit-src-content-indentation 0
    org-ellipsis " ..."
    org-enforce-todo-checkbox-dependencies t
    org-enforce-todo-dependencies t
