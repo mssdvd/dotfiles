@@ -217,6 +217,7 @@
   :straight nil
   :config
   (setq dired-listing-switches "-alhv --group-directories-first"
+        dired-do-revert-buffer t
         dired-dwim-target t))
 
 ;; dired-x
