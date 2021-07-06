@@ -510,9 +510,11 @@
   ;; (push 'org-drill org-modules)
   (org-babel-do-load-languages 'org-babel-load-languages
                                '((C . t)
-                                 (emacs-lisp . t)
                                  (ditaa . t)
-                                 (python . t)))
+                                 (emacs-lisp . t)
+                                 (gnuplot . t)
+                                 (python . t)
+                                 (shell . t)))
   (add-to-list 'org-latex-packages-alist
                '("AUTO" "babel" t ("pdflatex")))
   ;; (dolist (i org-level-faces) (set-face-attribute i nil :overline t))
@@ -520,6 +522,7 @@
   (org-mode . auto-fill-mode)
   (org-mode . org-indent-mode))
 
+(use-package gnuplot)
 
 (use-package org-pomodoro
   :bind ("C-c s" . org-pomodoro)
