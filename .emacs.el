@@ -945,7 +945,8 @@
   :bind
   (:map ledger-mode-map ([f6] . (lambda () (interactive)(insert "€"))))
   :config
-  (setq ledger-default-date-format "%Y-%m-%d"
+  (setq ledger-copy-transaction-insert-blank-line-after t
+        ledger-default-date-format "%Y-%m-%d"
         ledger-highlight-xact-under-point nil
         ledger-reconcile-default-commodity "€"))
 
