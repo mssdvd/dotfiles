@@ -5,8 +5,7 @@ set {
     $up k
     $right l
     $term foot
-    $bemenu-options -ni -H 30 --fn "Iosevka Semibold 20" --tf "#4c7899" --tb "#000000" --fb "#000000" --hf "#4c7899" --hb "#000000" --nb "#000000"
-    $menu bemenu-run -p "run" $bemenu-options
+    $menu bemenu-run -p "run"
 }
 
 output {
