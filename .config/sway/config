@@ -208,6 +208,9 @@ mode "resize" {
         Up resize shrink height 50px
         Right resize grow width 50px
 
+        t exec i3_balance_workspace
+        Shift+t exec i3_balance_workspace --scope focus
+
         Return mode "default"
         Escape mode "default"
         r mode "default"
