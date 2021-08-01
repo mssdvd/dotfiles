@@ -1,7 +1,6 @@
 # zsh completions
 export RUST_SYSROOT=/home/davide/.rustup/toolchains/stable-x86_64-unknown-linux-gnu
-fpath=($RUST_SYSROOT/share/zsh/site-functions/ $HOME/.zsh/zsh-completions/src $HOME/.zsh/custom-completions/ $fpath)
-# source $HOME/.zsh/zsh-completion-generator/zsh-completion-generator.plugin.zsh
+fpath=($RUST_SYSROOT/share/zsh/site-functions/ $fpath)
 
 # https://github.com/sorin-ionescu/prezto/blob/b01f02aa5c6714430647a4ee854149e9a336270a/modules/completion/init.zsh#L31-L41
 autoload -Uz compinit
@@ -48,13 +47,13 @@ source $HOME/.zprofile
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
 # auto suggestions
-source $HOME/.zsh/zsh-autosuggestions/zsh-autosuggestions.zsh
+source /usr/share/zsh/plugins/zsh-autosuggestions/zsh-autosuggestions.zsh
 
 # syntax highlight
-source $HOME/.zsh/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
+source /usr/share/zsh/plugins/zsh-syntax-highlighting/zsh-syntax-highlighting.zsh
 
 # history substring search
-source $HOME/.zsh/zsh-history-substring-search/zsh-history-substring-search.zsh
+source /usr/share/zsh/plugins/zsh-history-substring-search/zsh-history-substring-search.zsh
 bindkey -M emacs '^P' history-substring-search-up
 bindkey -M emacs '^N' history-substring-search-down
 
