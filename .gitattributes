@@ -1,1 +1,3 @@
 .config/git/config filter=remove-smtpPass
+.config/msmtp/config filter=remove-msmtp-password
+.mbsyncrc filter=remove-mbsync-Pass
