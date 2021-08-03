@@ -6,16 +6,6 @@
 (setq-default gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024 4)) ;; 4mb
 
-(setq comp-async-report-warnings-errors nil)
-
-(define-advice straight--build-native-compile
-    (:around (oldfun &rest args) fix-native-comp-test)
-  "Properly disable native compilation on unsupported Emacsen."
-  (when (and (fboundp 'native-comp-available-p)
-             (native-comp-available-p)
-             (fboundp 'native-compile-async))
-    (apply oldfun args)))
-
 ;; bootstrap straight.el
 (eval-and-compile
   (defvar bootstrap-version)
