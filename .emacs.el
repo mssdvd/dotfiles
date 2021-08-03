@@ -86,7 +86,7 @@
 (bind-key [f5] #'save-buffer)
 
 ;; compile
-(bind-key "C-c m" #'recompile)
+(bind-key "C-c n" #'recompile)
 
 ;; Pasting with middle-click puts the text where the point is
 (setq mouse-yank-at-point t)
@@ -1079,6 +1079,54 @@
    :map evil-normal-state-map
    ("<kp-add>" . evil-numbers/inc-at-pt)
    ("<kp-subtract>" . evil-numbers/dec-at-pt)))
+
+;;
+;; Mail
+;;
+
+(setq mail-specify-envelope-from t
+      user-mail-address "dm@mssdvd.com")
+
+(use-package message
+  :straight nil
+  :config
+  (setq message-auto-save-directory nil
+        message-kill-buffer-on-exit t
+        message-sendmail-envelope-from 'header
+        message-signature "Davide Masserut"))
+
+(use-package notmuch
+  :straight (:type built-in)
+  :bind
+  ("C-c m" . notmuch)
+  :config
+  (setq-default notmuch-archive-tags '("-inbox" "-unread")
+                notmuch-address-use-company nil
+                notmuch-draft-folder "dm@mssdvd.com/Drafts"
+                notmuch-draft-tags '("+draft" "-inbox")
+                notmuch-fcc-dirs
+                '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
+                  ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread")
+                  ("d.masserut@gmail.com" . "'d.masserut@gmail.com/[Gmail]/Sent Mail' -inbox +gmail +sent -unread"))
+                notmuch-hello-hidden-sections nil
+                notmuch-search-oldest-first nil
+                notmuch-search-result-format
+                '(("date" . "%12s ")
+                  ("count" . "%-7s ")
+                  ("authors" . "%-30s ")
+                  ("subject" . "%s ")
+                  ("tags" . "(%s)"))
+                notmuch-show-indent-messages-width 4)
+  (add-to-list 'notmuch-saved-searches
+               '(:name "last 3 months" :query "date:\"3M\".." :key "m"))
+  (defun mssdvd/sync-email ()
+    "Sync emails and update notmuch index"
+    (interactive)
+    (shell-command "systemctl --user start mbsync.service")))
+
+(use-package sendmail
+  :config (setq send-mail-function 'sendmail-send-it
+                sendmail-program "/usr/bin/msmtp"))
 
 ;;
 ;; Languages configurations

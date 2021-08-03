@@ -125,7 +125,8 @@ bindcode $mod+48 exec zathura
 bindsym $mod+m exec ~/bin/play_in_mpv.sh
 bindsym $mod+Shift+m exec ~/bin/play_in_mpv.sh --vid=no
 bindsym $mod+q exec emacs_calc.sh
-bindcode $mod+47 exec $term aerc
+bindcode $mod+47 exec emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar
+bindcode $mod+Shift+47 exec $term aerc
 bindsym $mod+g exec makoctl invoke
 bindsym $mod+$left focus left
 bindsym $mod+$down focus down

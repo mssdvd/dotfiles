@@ -6,25 +6,29 @@
     // Choose the order of the modules
     "modules-left": ["sway/workspaces", "sway/mode"],
     "modules-center": [],
-    "modules-right": ["custom/mediaplayer","pulseaudio","network","network#speed", "cpu", "memory", "temperature", "backlight", "battery", "clock",
-    "custom/updates",
-    "tray"],
-    // Modules configuration
-    // "sway/workspaces": {
-    //     "disable-scroll": true,
-    //     "all-outputs": true,
-    //     "format": "{name}: {icon}",
-    //     "format-icons": {
-    //         "1": "",
-    //         "2": "",
-    //         "3": "",
-    //         "4": "",
-    //         "5": "",
-    //         "urgent": "",
-    //         "focused": "",
-    //         "default": ""
-    //     }
-    // },
+    "modules-right": [
+        "custom/mediaplayer",
+        "pulseaudio",
+        // network",
+        // "network#speed",
+        "cpu",
+        "memory",
+        "temperature",
+        "backlight",
+        "battery",
+        "clock",
+        "custom/email",
+        "custom/updates",
+        "tray"
+    ],
+    "custom/email": {
+        "format": "{} ",
+        "interval": "once",
+        "exec": "notmuch count tag:unread",
+        "on-click": "systemctl --user start mbsync.service",
+        "on-click-right": "emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar",
+        "signal": 1
+    },
     "custom/mediaplayer": {
         "format": "{} ",
         "return-type": "json",

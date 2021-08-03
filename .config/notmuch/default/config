@@ -1,0 +1,14 @@
+[database]
+
+[user]
+primary_email=dm@mssdvd.com
+other_email=d.masserut@gmail.com;
+other_email=dmasserut@pec.it;
+
+[new]
+tags=new;
+
+[search]
+exclude_tags=deleted;spam;
+
+[maildir]

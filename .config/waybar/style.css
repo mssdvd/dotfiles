@@ -57,7 +57,8 @@ window#waybar {
 #mpd,
 #custom-updates,
 #custom-light,
-#custom-mediaplayer {
+#custom-mediaplayer,
+#custom-email {
     padding: 0 10px;
     background-color: #285577;
     border: 1px solid #4c7899;

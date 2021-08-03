@@ -1,0 +1,8 @@
+#!/bin/sh
+
+notmuch tag --input="${HOME}/.config/notmuch/default/tag"
+
+if [ "$XDG_CURRENT_DESKTOP" == "sway" ]
+then
+    pkill -SIGRTMIN+1 waybar
+fi

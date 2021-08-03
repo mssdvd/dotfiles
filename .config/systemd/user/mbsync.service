@@ -1,0 +1,9 @@
+[Unit]
+Description=Mailbox syncronizationb service
+After=network-online.target
+Wants=network-online.target
+
+[Service]
+Type=oneshot
+ExecStart=/usr/bin/mbsync -Va
+ExecStartPost=/usr/bin/notmuch new

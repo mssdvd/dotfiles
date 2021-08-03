@@ -1,0 +1,30 @@
+defaults
+auth         on
+protocol     smtp
+tls          on
+tls_trust_file /etc/ssl/certs/ca-certificates.crt
+
+account      mssdvd
+host         smtp.migadu.com
+port         465
+from         dm@mssdvd.com
+user         dm@mssdvd.com
+# password **PASSWORD**
+tls_starttls off
+
+account      gmail
+host         smtp.gmail.com
+port         587
+user         d.masserut@gmail.com
+from         d.masserut@gmail.com
+# password **PASSWORD**
+
+account      pec
+host         smtp.pec.aruba.it
+port         465
+from         dmasserut@pec.it
+user         dmasserut@pec.it
+# password **PASSWORD**
+tls_starttls off
+
+account default : mssdvd

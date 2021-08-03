@@ -1,0 +1,17 @@
++mssdvd              tag:new and path:dm@mssdvd.com/**
++gmail               tag:new and path:d.masserut@gmail.com/**
++pec                 tag:new and path:dmasserut@pec.it/**
+
++sent -unread -new   tag:new and (from:dm@mssdvd.com or from:d.masserut@gmail.com or from:dmasserut@pac.it)
+
++spam                tag:new and (folder:d.masserut@gmail.com/[Gmail]/Spam or folder:dm@mssdvd.com/Junk)
+
++draft               tag:new and (folder:dm@mssdvd.com/Drafts or folder:d.masserut@gmail.com/[Gmail]/Drafts or folder:dmasserut@pec.it/Bozze)
+-inbox -unread -new  tag:new and tag:draft
+
++github              tag:new and from:github.com
++list                tag:new and from:notifications@github.com
++sr.ht               tag:new and from:sr.ht
++unipd               tag:new and from:unipd.it
+
++inbox +unread -new  tag:new
