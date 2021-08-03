@@ -211,7 +211,8 @@
   :config
   (setq dired-listing-switches "-alhv --group-directories-first"
         dired-do-revert-buffer t
-        dired-dwim-target t))
+        dired-dwim-target t
+        dired-kill-when-opening-new-dired-buffer t))
 
 ;; dired-x
 (use-package dired-x
