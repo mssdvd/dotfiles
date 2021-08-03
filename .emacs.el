@@ -148,6 +148,15 @@
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight)
 
+;; gcmh
+;; https://gitlab.com/koral/gcmh
+(use-package gcmh
+  :delight
+  :defer nil
+  :config
+  (setq gcmh-idle-delay 'auto)
+  (gcmh-mode 1))
+
 (use-package modus-themes
   :bind ("C-c q" . modus-themes-toggle)
   :init
