@@ -193,6 +193,8 @@
 
 ;; display-line-numbers
 (use-package display-line-numbers
+  :config
+  (setq display-line-numbers-grow-only t)
   :hook ((conf-mode prog-mode) . display-line-numbers-mode))
 
 ;; display-fill-column-indicator
