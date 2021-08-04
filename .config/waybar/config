@@ -89,10 +89,12 @@
     },
     "cpu": {
         "format": "{usage}% ",
-        "tooltip": false
+        "tooltip": false,
+        "on-click": "HTOP_term.sh"
     },
     "memory": {
-        "format": "{}% "
+        "format": "{}% ",
+        "on-click": "HTOP_term.sh"
     },
     "temperature": {
         // "thermal-zone": 2,
