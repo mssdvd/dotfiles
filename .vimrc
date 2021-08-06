@@ -28,7 +28,7 @@ syntax on
 set background=dark
 
 runtime ftplugin/man.vim
-" Options avaible since 7.4.1833
+" Option available since 7.4.1833
 " set keywordprg=:Man
 
 if has("autocmd")
