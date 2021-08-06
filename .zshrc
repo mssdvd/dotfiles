@@ -26,7 +26,24 @@ export UNITS_ENGLISH="US"
 alias open=xdg-open
 alias locate="locate -bi"
 alias rn="termite -e ranger . &"
-alias e="emacsclient -t -a ''"
+
+function e {
+    if [ -z "$@" ]
+    then
+        emacsclient -t -a '' -- .
+    else
+        emacsclient -t -a '' -- "$@"
+    fi
+}
+
+function E {
+    if [ -z "$@" ]
+    then
+        emacsclient -c -a '' -- . &
+    else
+        emacsclient -c -a '' -- "$@" &
+    fi
+}
 
 # look for new exe in path
 zstyle ':completion:*' rehash true
