@@ -6,4 +6,4 @@ else
     URL="$(xclip -o)"
 fi
 
-mpv --speed=2.0 --force-window=immediate $@ -- $URL
+exec mpv --speed=2.0 --force-window=immediate $@ -- $URL
