@@ -400,8 +400,7 @@
 (use-package recentf
   :defer 1
   :config
-  (setq-default recentf-max-menu-items 25
-                recentf-max-saved-items 300)
+  (setq-default recentf-max-saved-items 300)
   (recentf-mode))
 
 (use-package saveplace
