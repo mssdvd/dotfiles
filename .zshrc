@@ -2,20 +2,7 @@
 export RUST_SYSROOT=/home/davide/.rustup/toolchains/stable-x86_64-unknown-linux-gnu
 fpath=($RUST_SYSROOT/share/zsh/site-functions/ $fpath)
 
-# https://github.com/sorin-ionescu/prezto/blob/b01f02aa5c6714430647a4ee854149e9a336270a/modules/completion/init.zsh#L31-L41
-autoload -Uz compinit
-_comp_files=($HOME/.zcompdump(Nm-12))
-if (( $#_comp_files )); then
-  compinit -i -C
-else
-  compinit -i
-fi
-unset _comp_files
-
-
 unsetopt nomatch
-
-export CLASSPATH=/usr/share/java/junit.jar
 
 # Default editor
 export EDITOR="emacsclient -t -a ''"
@@ -25,7 +12,6 @@ export UNITS_ENGLISH="US"
 # alias
 alias open=xdg-open
 alias locate="locate -bi"
-alias rn="termite -e ranger . &"
 
 function e {
     if [ -z "$@" ]
@@ -113,24 +99,10 @@ _fzf_compgen_dir() {
     fd --type d --hidden --follow --exclude ".git" . "$1"
 }
 
-# Completion for kitty
-kitty + complete setup zsh | source /dev/stdin
-
 function yta() {
     mpv --ytdl-format=bestaudio ytdl://ytsearch:"$*"
 }
 
-vterm_printf(){
-    if [ -n "$TMUX" ]; then
-        # Tell tmux to pass the escape sequences through
-        # (Source: http://permalink.gmane.org/gmane.comp.terminal-emulators.tmux.user/1324)
-        printf "\ePtmux;\e\e]%s\007\e\\" "$1"
-    elif [ "${TERM%%-*}" = "screen" ]; then
-        # GNU screen (screen, screen-256color, screen-256color-bce)
-        printf "\eP\e]%s\007\e\\" "$1"
-    else
-        printf "\e]%s\e\\" "$1"
-    fi
 }
 
 # OSC 7
@@ -151,12 +123,6 @@ osc7_cwd() {
 
 autoload -Uz add-zsh-hook
 add-zsh-hook -Uz chpwd osc7_cwd
-
-# export DISPLAY=:1
-# export GDK_BACKEND=wayland
-# export QT_WAYLAND_DISABLE_WINDOWDECORATION=1
-# export _JAVA_AWT_WM_NONREPARENTING=1
-# export QT_QPA_PLATFORMTHEME="qt5ct"
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null; then
     ssh-agent -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
