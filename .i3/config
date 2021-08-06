@@ -265,7 +265,7 @@ bindcode $mod+51 exec kitty -e ranger
 bindcode $mod+Shift+51 exec kitty -e ranger --cmd=fzf_select
 # bindsym $mod+Bracketright exec emacsclient -c -a ''
 bindcode $mod+35 exec emacsclient -c -a ''
-bindsym $mod+n exec rofi -modi "clipboard:greenclip print" -show clipboard
+# bindsym $mod+n exec rofi -modi "clipboard:greenclip print" -show clipboard
 bindsym $mod+p exec passmenu --type
 # bindsym $mod+Apostrophe exec evince
 bindcode $mod+48 exec zathura
@@ -286,7 +286,7 @@ exec --no-startup-id nm-applet
 exec --no-startup-id lxpolkit
 exec --no-startup-id pamac-tray
 exec --no-startup-id redshift-gtk
-exec --no-startup-id greenclip daemon
+# exec --no-startup-id greenclip daemon
 exec --no-startup-id udiskie --no-automount --tray
 exec --no-startup-id unclutter --timeout 10
 # exec --no-startup-id syncthing-gtk
