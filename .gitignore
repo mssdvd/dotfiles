@@ -9,3 +9,4 @@
 __pycache__
 bin/eheh.py
 flycheck*
+.config/gtk-3.0/bookmarks
