@@ -838,7 +838,8 @@
   ("C-h k" . helpful-key)
   ("C-h F" . helpful-function)
   (:map emacs-lisp-mode-map ("C-c C-d" . helpful-at-point))
-  (:map helpful-mode-map ("C-c C-d" . helpful-at-point)))
+  (:map helpful-mode-map ("C-c C-d" . helpful-at-point))
+  (:map lisp-interaction-mode-map ("C-c C-d" . helpful-at-point)))
 
 
 ;; lang-tool
