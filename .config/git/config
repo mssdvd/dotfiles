@@ -1,3 +1,5 @@
+[alias]
+	l = log --graph --oneline
 [user]
 	name = Davide Masserut
 	email = dm@mssdvd.com
