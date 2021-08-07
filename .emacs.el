@@ -967,7 +967,7 @@
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
-  :bind ("C-c v" . vterm))
+  :bind ("C-c v" . vterm-other-window))
 
 (use-package shr
   :config (setq shr-width 80
