@@ -1,6 +1,5 @@
 #!/bin/sh
 
-# Session
 export TERM=foot
 export XDG_SESSION_TYPE=wayland
 export XDG_SESSION_DESKTOP=sway
@@ -23,6 +22,9 @@ export XDG_PICTURES_DIR="$HOME/pictures"
 export XDG_VIDEOS_DIR="$HOME/videos"
 
 eval $(ssh-agent)
+export XDG_CONFIG_HOME="$HOME/.config"
+export XDG_CACHE_HOME="$HOME/.cache"
+export XDG_DATA_HOME="$HOME/.local/share"
 
 
 case $1 in
