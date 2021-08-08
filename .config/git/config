@@ -10,7 +10,7 @@
 	smtpserverport = 587
 	# smtpPass = **PASSWORD**
 [core]
-	editor = emacsclient -nw -a ''
+	editor = emacsclient -t -a ''
 [commit]
 	verbose = true
 [diff]
