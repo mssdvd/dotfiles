@@ -10,6 +10,7 @@
 -inbox -unread -new  tag:new and tag:draft
 
 +github              tag:new and from:github.com
++gitlab              tag:new and from:gitlab.com
 +list                tag:new and from:notifications@github.com
 +sr.ht               tag:new and from:sr.ht
 +unipd               tag:new and from:unipd.it
