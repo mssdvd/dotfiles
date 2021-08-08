@@ -1082,9 +1082,6 @@
 
 (use-package yaml-mode)
 
-(use-package erc
-  :config (add-to-list 'erc-modules 'notifications))
-
 (use-package matlab-mode
   :mode ("\\.m\\'" . matlab-mode)
   :commands matlab-shell
