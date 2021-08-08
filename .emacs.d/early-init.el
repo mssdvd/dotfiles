@@ -8,12 +8,12 @@
                             (vertical-scroll-bars . nil)))
 
 (set-face-attribute 'default nil
-                    :family "Iosevka"
+                    :family "Iosevka Fixed"
                     :weight 'semi-bold
                     :height 180)
 (dolist (attr '(variable-pitch fixed-pitch))
   (set-face-attribute attr nil
-                      :family "Iosevka"
+                      :family "Iosevka Fixed"
                       :weight 'semi-bold
                       :height 1.0))
 
