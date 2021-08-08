@@ -622,7 +622,8 @@
                 magit-repository-directories '(("~/.dotfiles" . 0)
                                                ("~/org" . 0)
                                                ("~/uni" . 0))
-                magit-status-goto-file-position t))
+                magit-status-goto-file-position t)
+  (put 'magit-edit-line-commit 'disabled nil))
 
 (use-package forge
   :demand t
