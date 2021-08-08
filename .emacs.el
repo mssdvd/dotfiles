@@ -808,6 +808,9 @@
   :straight nil
   :config (setq-default comint-prompt-read-only t))
 
+(use-package shell
+  :config (setq shell-has-auto-cd t))
+
 ;; pdf-tools
 ;; https://github.com/politza/pdf-tools
 ;; Dep poppler poppler-glibc
