@@ -331,7 +331,7 @@
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
-         ("C-c f" . my/consult-fd-find)
+         ("C-c f" . consult-find)
          ("C-c g" . consult-ripgrep)
          ("C-c l" . consult-locate)
          ;; C-x bindings (ctl-x-map)
@@ -371,10 +371,6 @@
         xref-show-definitions-function #'consult-xref)
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   :config
-  (defun my/consult-fd-find(&optional dir initial)
-    (interactive "P")
-    (let ((consult-find-command "fd --color=never --full-path ARG OPTS"))
-      (consult-find dir initial)))
   (setq consult-narrow-key "<")
 
   (consult-customize
