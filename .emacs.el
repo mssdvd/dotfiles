@@ -158,21 +158,25 @@
   :bind ("C-c q" . modus-themes-toggle)
   :init
   (setq modus-themes-bold-constructs t
-        modus-themes-slanted-constructs t
         modus-themes-completions 'opinionated
+        modus-themes-headings '((t . (rainbow)))
         modus-themes-lang-checkers 'intense-foreground
-        modus-themes-paren-match 'intese-bold
-        modus-themes-region 'bg-only
-        modus-themes-org-blocks 'grayscale)
+        modus-themes-links '(faint)
+        modus-themes-org-blocks 'gray-background
+        modus-themes-paren-match '(bold intense)
+        modus-themes-region '(bg-only)
+        modus-themes-italic-constructs t)
   (modus-themes-load-themes)
   :config
-  (defun my-modus-themes-custom-faces ()
-    (set-face-attribute 'elfeed-search-title-face nil
-                                    :foreground (modus-themes-color 'fg-alt)))
+  (defun mssdvd/modus-themes-custom-faces ()
+    (when (or (equal custom-enabled-themes '(modus-vivendi))
+              (equal custom-enabled-themes '(modus-operandi)))
+      (set-face-attribute 'elfeed-search-title-face nil
+                          :foreground (modus-themes-color 'fg-alt))))
   (with-eval-after-load 'elfeed-search
-    (my-modus-themes-custom-faces))
-  (modus-themes-load-vivendi)
-  :hook (modus-themes-after-load-theme . my-modus-themes-custom-faces))
+    (mssdvd/modus-themes-custom-faces)
+    (add-hook 'modus-themes-after-load-theme-hook #'mssdvd/modus-themes-custom-faces))
+  (modus-themes-load-vivendi))
 
 
 (use-package elec-pair
