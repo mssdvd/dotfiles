@@ -471,19 +471,12 @@
 
 ;; flycheck
 ;; http://www.flycheck.org
-;; Dep flake8, clang, tidy, csslint
 (use-package flycheck
   :defer 1
   :config
   (setq flycheck-global-modes '(not org-mode)
         flycheck-emacs-lisp-load-path 'inherit)
-  (global-flycheck-mode)
-  :hook (flycheck-mode . (lambda ()
-                           (setq left-fringe-width 16)
-                           (flycheck-refresh-fringes-and-margins))))
-
-(use-package flycheck-rust
-  :hook (flycheck-mode . flycheck-rust-setup))
+  (global-flycheck-mode))
 
 ;; flycheck-pos-tip
 (use-package flycheck-pos-tip
