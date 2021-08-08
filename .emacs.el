@@ -1097,6 +1097,9 @@
            :sasl-password ,(auth-source-pass-get 'secret "libera.chat/mssdvd")))
         circe-reduce-lurker-spam t))
 
+(use-package re-builder
+  :config (setq reb-re-syntax 'string))
+
 ;;
 ;; Evil
 ;;
