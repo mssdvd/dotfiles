@@ -40,7 +40,6 @@ window#waybar {
 #mode {
     padding: 0 10px;
     background-color: #900000;
-    border: 1px solid #2f343a;
 }
 
 #clock,
