@@ -750,17 +750,13 @@
 ;; diff-hl
 ;; https://github.com/dgutov/diff-hl
 (use-package diff-hl
-  :disabled
   :defer 1
   :config
-  (global-diff-hl-mode t)
-  (diff-hl-flydiff-mode)
-  (diff-hl-dired-mode)
-  (diff-hl-margin-mode)
-  (setq-default diff-hl-draw-borders nil
-                diff-hl-side 'right)
+  (global-diff-hl-mode)
+  (setq-default diff-hl-draw-borders nil)
   :hook ((magit-pre-refresh . diff-hl-magit-pre-refresh)
-         (magit-post-refresh . diff-hl-magit-post-refresh)))
+         (magit-post-refresh . diff-hl-magit-post-refresh)
+         (dired-mode . diff-hl-dired-mode)))
 
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
