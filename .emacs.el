@@ -462,7 +462,7 @@
 ;; https://github.com/abo-abo/ace-link
 (use-package ace-link
   :defer 1
-  :config (ace-link-setup-default))
+  :config (ace-link-setup-default (kbd "M-o")))
 
 ;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
