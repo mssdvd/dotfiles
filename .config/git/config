@@ -25,7 +25,7 @@
 [credential]
 	helper = cache --timeout=5400
 [filter "remove-smtpPass"]
-	clean = "sed -e 's/# smtpPass = **PASSWORD**
+	clean = "sed -e 's/\tsmtpPass.*/# smtpPass = **PASSWORD**/'"
 [filter "remove-msmtp-password"]
 	clean = "sed -e 's/password .*/# password **PASSWORD**/'"
 [filter "remove-mbsync-Pass"]
