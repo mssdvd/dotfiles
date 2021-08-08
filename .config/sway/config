@@ -37,10 +37,13 @@ bindsym $mod+Tab exec $menu
 floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
-set $mode_display Toggle display output (e) eDP-1, (d) DP-1
+set $mode_display Toggle display output eDP-1 (e), DP-1 (d) | Rotate output (r), reset rotation (R)
 mode "$mode_display" {
     bindsym e output eDP-1 toggle, mode "default"
     bindsym d output DP-1 toggle, mode "default"
+
+    bindsym r output - transform 90 anticlockwise
+    bindsym Shift+r output - transform 0
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
@@ -48,6 +51,8 @@ mode "$mode_display" {
 bindsym $mod+n mode "$mode_display"
 bindsym XF86Display mode "$mode_display"
 
+bindsym XF86Tools output - transform 90 anticlockwise
+bindsym Shift+XF86Tools output - transform 0
 set $mode_system System (l)ock, (e)xit, (s)uspend, (Shift+r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec swaylock -f && sleep 1, mode "default"
@@ -114,11 +119,6 @@ bindsym XF86Launch1 exec pkill buckle
 
 bindsym XF86Launch2 exec pkill -USR1 gammastep
 bindsym $mod+u exec pkill -USR1 gammastep
-
-bindsym $mod+y output - transform 90 anticlockwise
-bindsym Shift+$mod+y output - transform 0
-bindsym XF86Tools output - transform 90 anticlockwise
-bindsym Shift+XF86Tools output - transform 0
 
 # bindsym $mod+Bracketleft exec firefox
 bindcode $mod+34 exec firefox
