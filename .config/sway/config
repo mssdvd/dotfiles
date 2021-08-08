@@ -37,6 +37,17 @@ bindsym $mod+Tab exec $menu
 floating_modifier $mod normal
 bindsym $mod+Shift+c reload
 
+set $mode_display Toggle display output (e) eDP-1, (d) DP-1
+mode "$mode_display" {
+    bindsym e output eDP-1 toggle, mode "default"
+    bindsym d output DP-1 toggle, mode "default"
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+bindsym $mod+n mode "$mode_display"
+bindsym XF86Display mode "$mode_display"
+
 set $mode_system System (l)ock, (e)xit, (s)uspend, (Shift+r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec swaylock -f && sleep 1, mode "default"
@@ -119,7 +130,6 @@ bindcode $mod+51 exec $term ranger
 bindcode $mod+Shift+51 exec pcmanfm-qt
 # bindsym $mod+Bracketright exec emacsclient -c -a ''
 bindcode $mod+35 exec emacsclient -c -a ''
-bindsym $mod+n exec clipman pick -t bemenu --tool-args='$bemenu-options'
 
 # bindsym $mod+p exec passmenu --type
 bindcode $mod+Shift+48 exec evince
