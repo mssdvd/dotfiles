@@ -677,13 +677,13 @@
   :demand t
   :bind
   (([remap indent-for-tab-command] . company-indent-or-complete-common)
-  ("C-c y" . company-yasnippet)
-  :map company-active-map
-  ("C-w" . backward-kill-word)
-  ("C-o" . company-show-location))
+   ("C-c y" . company-yasnippet)
+   :map company-active-map
+   ("C-w" . backward-kill-word)
+   ("C-o" . company-show-location))
   :config
   (setq-default company-tooltip-align-annotations t
-                company-show-numbers t
+                company-show-quick-access t
                 company-minimum-prefix-length 1
                 company-selection-wrap-around t)
   (global-company-mode)
