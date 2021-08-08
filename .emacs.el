@@ -673,6 +673,7 @@
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
+  :disabled
   :delight
   :demand t
   :bind
@@ -692,6 +693,7 @@
 ;; company-quickhelp
 ;; https://github.com/expez/company-quickhelp
 (use-package company-quickhelp
+  :disabled
   :demand t
   :after company
   :config
@@ -699,6 +701,7 @@
   (setq-default company-quickhelp-use-propertized-text t))
 
 (use-package company-box
+  :disabled
   :delight
   :config (setq company-box-doc-enable nil)
   :hook (company-mode . company-box-mode))
