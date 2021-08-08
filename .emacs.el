@@ -224,6 +224,69 @@
                 '(("\.pdf$" "zathura")
                   ("\.mp4$" "mpv"))))
 
+(use-package vertico
+  :straight (vertico :host github
+                     :repo "minad/vertico"
+                     :files (:defaults "extensions/vertico-directory.el"
+                                       "extensions/vertico-mouse.el"
+                                       "extensions/vertico-quick.el"
+                                       "extensions/vertico-repeat.el"))
+  :init (vertico-mode)
+  :bind
+  ("C-c i" . vertico-repeat)
+  (:map vertico-map
+        ("RET" . vertico-directory-enter)
+        ("DEL" . vertico-directory-delete-char)
+        ("M-DEL" . vertico-directory-delete-word)
+        ("C-w" . vertico-directory-delete-word)
+        ("C-;" . vertico-quick-insert)
+        ("C-'" . vertico-quick-exit))
+  :config
+  (setq vertico-cycle t
+        vertico-quick1 "asdfghjkl;"
+        completion-in-region-function
+        (lambda (&rest args)
+          (apply (if vertico-mode
+                     #'consult-completion-in-region
+                   #'completion--in-region)
+                 args)))
+  (vertico-mouse-mode 1))
+
+(use-package orderless
+  :demand t
+  :config
+  (defun mssdvd/orderless-dispatch (pattern _index _total)
+    (cond
+     ;; Ignore single !
+     ((string= "!" pattern) `(orderless-literal . ""))
+     ;; Without literal
+     ((string-prefix-p "!" pattern) `(orderless-without-literal . ,(substring pattern 1)))
+     ((string-suffix-p "!" pattern) `(orderless-without-literal . ,(substring pattern 0 -1)))
+     ;; Initialism matching
+     ((string-prefix-p "`" pattern) `(orderless-initialism . ,(substring pattern 1)))
+     ((string-suffix-p "`" pattern) `(orderless-initialism . ,(substring pattern 0 -1)))
+     ;; Literal matching
+     ((string-prefix-p "=" pattern) `(orderless-literal . ,(substring pattern 1)))
+     ((string-suffix-p "=" pattern) `(orderless-literal . ,(substring pattern 0 -1)))
+     ;; Flex matching
+     ((string-prefix-p "~" pattern) `(orderless-flex . ,(substring pattern 1)))
+     ((string-suffix-p "~" pattern) `(orderless-flex . ,(substring pattern 0 -1)))
+     ;; Character folding
+     ((string-prefix-p "%" pattern) `(char-fold-to-regexp . ,(substring pattern 1)))
+     ((string-suffix-p "%" pattern) `(char-fold-to-regexp . ,(substring pattern 0 -1)))))
+
+  (setq completion-styles '(orderless)
+        completion-category-defaults nil
+        completion-category-overrides '((file (styles basic partial-completion)))
+        orderless-matching-styles '(orderless-literal
+                                    orderless-regexp
+                                    orderless-initialism)
+        orderless-style-dispatchers '(mssdvd/orderless-dispatch)))
+
+(use-package savehist
+  :init
+  (savehist-mode))
+
 (use-package selectrum
   :disabled
   :defer 1
