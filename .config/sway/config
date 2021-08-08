@@ -104,6 +104,8 @@ bindsym XF86Launch1 exec pkill buckle
 bindsym XF86Launch2 exec pkill -USR1 gammastep
 bindsym $mod+u exec pkill -USR1 gammastep
 
+bindsym $mod+y output - transform 90 anticlockwise
+bindsym Shift+$mod+y output - transform 0
 bindsym XF86Tools output - transform 90 anticlockwise
 bindsym Shift+XF86Tools output - transform 0
 
