@@ -1126,11 +1126,19 @@
         evil-vsplit-window-right t)
   (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
   (evil-set-initial-state 'ivy-occur-mode 'emacs)
-  (evil-set-initial-state 'ivy-occur-grep-mode 'emacs)
-  (advice-add 'evil-yank
-              :around #'(lambda (orig-fn beg end &rest args)
-                          (pulse-momentary-highlight-region beg end)
-                          (apply orig-fn beg end args))))
+  (evil-set-initial-state 'ivy-occur-grep-mode 'emacs))
+
+;; evil-goggles
+;; https://github.com/edkolev/evil-goggles
+(use-package evil-goggles
+  :delight
+  :demand t
+  :after evil
+  :config
+  (setq evil-goggles-async-duration 0.9
+        evil-goggles-blocking-duration 0.1)
+  (evil-goggles-mode)
+  (evil-goggles-use-diff-faces))
 
 ;; evil-surrond
 ;; https://github.com/emacs-evil/evil-surround
