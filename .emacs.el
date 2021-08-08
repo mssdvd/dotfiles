@@ -349,7 +349,7 @@
          ("M-g m" . consult-mark)
          ("M-g k" . consult-global-mark)
          ("M-g i" . consult-imenu)
-         ("M-g I" . consult-project-imenu)
+         ("M-g I" . consult-imenu-project)
          ("M-g e" . consult-error)
          ;; M-s bindings (search-map)
          ("M-s g" . consult-git-grep)
@@ -360,21 +360,45 @@
          ("M-s s" . consult-isearch)
          ;; Other bindings
          ("C-s" . consult-line)
+         ("C-S-s" . consult-line-multi)
          ("M-y" . consult-yank-pop)
          ("<help> a" . consult-apropos))
   :init
   (setq register-preview-delay 0
         register-preview-function #'consult-register-preview)
+  (advice-add #'register-preview :override #'consult-register-window)
+  (setq xref-show-xrefs-function #'consult-xref
+        xref-show-definitions-function #'consult-xref)
+  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   :config
-  (setq consult-narrow-key "<") ;; (kbd "C-+")
   (defun my/consult-fd-find(&optional dir initial)
     (interactive "P")
     (let ((consult-find-command "fd --color=never --full-path ARG OPTS"))
       (consult-find dir initial)))
+  (setq consult-narrow-key "<")
+
+  (consult-customize
+   consult-theme
+   :preview-key '(:debounce 0.2 any)
+   consult-ripgrep consult-git-grep consult-grep consult-bookmark
+   consult-recent-file consult-xref consult--source-file
+   consult--source-project-file consult--source-bookmark
+   :preview-key (kbd "M-."))
+
+  (setq consult-project-root-function
+        (lambda ()
+          (when-let (project (project-current))
+            (car (project-roots project)))))
+
+  (defvar mssdvd/consult-line-map
+    (let ((map (make-sparse-keymap)))
+      (define-key map "\C-s" #'previous-history-element)
+      map))
+  (consult-customize consult-line :keymap mssdvd/consult-line-map))
 
 (use-package consult-flycheck
   :demand t
-  :after consult flycheck
+  :after (consult flycheck)
   :bind (:map flycheck-command-map
               ("!" . consult-flycheck)))
 
