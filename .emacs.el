@@ -422,6 +422,20 @@
   :after (embark consult)
   :hook (embark-collect-mode . embark-consult-preview-minor-mode))
 
+(use-package corfu
+  :straight '(corfu :host github
+                    :repo "minad/corfu")
+  :demand t
+  :bind
+  (:map corfu-map
+        ("TAB" . corfu-next)
+        ([tab] . corfu-next)
+        ("S-TAB" . corfu-previous)
+        ([backtab] . corfu-previous))
+  :config
+  (setq corfu-auto t
+        corfu-cycle t)
+  (corfu-global-mode))
 
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
