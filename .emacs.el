@@ -225,6 +225,7 @@
                   ("\.mp4$" "mpv"))))
 
 (use-package selectrum
+  :disabled
   :defer 1
   :bind
   (("C-c i" . selectrum-repeat)
@@ -247,16 +248,18 @@
   (selectrum-mode 1))
 
 (use-package prescient
+  :disabled
   :demand t
-  :after selectrum
   :config (prescient-persist-mode 1))
 
 (use-package selectrum-prescient
+  :disabled
   :demand t
   :after selectrum prescient
   :config (selectrum-prescient-mode 1))
 
 (use-package company-prescient
+  :disabled
   :demand t
   :after company prescient
   :config (company-prescient-mode 1))
