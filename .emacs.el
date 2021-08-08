@@ -1075,6 +1075,7 @@
 
 (use-package shr
   :config (setq shr-width 80
+                shr-use-colors nil
                 shr-use-fonts nil))
 
 (use-package hnreader)
