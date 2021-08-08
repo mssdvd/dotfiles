@@ -53,9 +53,6 @@
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
 
-;; enable dired-find-alternate-file
-(put 'dired-find-alternate-file 'disabled nil)
-
 ;; enable narrow-to-region
 (put 'narrow-to-region 'disabled nil)
 
@@ -211,7 +208,8 @@
   (setq dired-listing-switches "-alhv --group-directories-first"
         dired-do-revert-buffer t
         dired-dwim-target t
-        dired-kill-when-opening-new-dired-buffer t))
+        dired-kill-when-opening-new-dired-buffer t)
+  (put 'dired-find-alternate-file 'disabled nil))
 
 ;; dired-x
 (use-package dired-x
