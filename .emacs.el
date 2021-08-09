@@ -1114,11 +1114,13 @@
                 evil-want-keybinding nil
                 evil-undo-system 'undo-tree)
   :config
-  (evil-mode 1)
-  (setq evil-want-fine-undo t
+  (setq evil-complete-next-func #'hippie-expand
+        evil-want-fine-undo t
         evil-split-window-below t
         evil-vsplit-window-right t)
-  (evil-set-initial-state 'ledger-reconcile-mode 'emacs))
+  (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
+  (evil-mode 1))
+
 
 ;; evil-goggles
 ;; https://github.com/edkolev/evil-goggles
