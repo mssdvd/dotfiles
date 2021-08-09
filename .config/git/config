@@ -27,6 +27,6 @@
 [filter "remove-smtpPass"]
 	clean = "sed -e 's/\tsmtpPass.*/# smtpPass = **PASSWORD**/'"
 [filter "remove-msmtp-password"]
-	clean = "sed -e 's/$password .*/# password **PASSWORD**/'"
+	clean = "sed -e 's/^password .*/# password **PASSWORD**/'"
 [filter "remove-mbsync-Pass"]
-	clean = "sed -e 's/$Pass .*/# Pass **PASSWORD**/'"
+	clean = "sed -e 's/^Pass .*/# Pass **PASSWORD**/'"
