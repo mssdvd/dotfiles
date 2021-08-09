@@ -716,6 +716,7 @@
 (use-package magit
   :config
   (setq-default magit-diff-refine-hunk 'all
+                magit-diff-refine-ignore-whitespace nil
                 magit-delete-by-moving-to-trash nil
                 magit-repository-directories '(("~/.dotfiles" . 0)
                                                ("~/org" . 0)
