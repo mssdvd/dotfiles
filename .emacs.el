@@ -1016,7 +1016,7 @@
     (message "Sent to mpv: %s" (elfeed-entry-link entry))
     (start-process "elfeed-mpv" nil "mpv" "--speed=2.0" "--force-window=immediate" "--" (elfeed-entry-link entry)))
 
-  (defun elfeed-play-with-mpv ()
+  (defun mssdvd/elfeed-play-with-mpv ()
     "Play entry link with mpv."
     (interactive)
     (if (eq major-mode 'elfeed-show-mode)
@@ -1164,7 +1164,7 @@
   (evil-define-key 'normal elfeed-show-mode-map
     "o" 'elfeed-show-visit
     "r" 'elfeed-show-refresh
-    "i" 'elfeed-play-with-mpv
+    "i" 'mssdvd/elfeed-play-with-mpv
     "p" 'pocket-reader-elfeed-entry-add-link)
   (evil-collection-init))
 
