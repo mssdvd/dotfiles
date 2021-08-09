@@ -1237,7 +1237,13 @@
   (defun mssdvd/sync-email ()
     "Sync emails and update notmuch index"
     (interactive)
-    (shell-command "systemctl --user start mbsync.service")))
+    (shell-command "systemctl --user start mbsync.service"))
+  :hook
+  (notmuch-after-tag . (lambda ()
+                         (when
+                             (or (getenv "XDG_CURRENT_DESKTOP") "sway")
+                           (start-process "update mail indicator"
+                                          nil "pkill" "-SIGRTMIN+1" "waybar")))))
 
 (use-package sendmail
   :config (setq send-mail-function 'sendmail-send-it
