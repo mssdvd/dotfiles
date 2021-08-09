@@ -139,7 +139,8 @@
 (use-package no-littering
   :demand t
   :config
-  (setq-default custom-file (no-littering-expand-etc-file-name "custom.el"))
+  (setq-default auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
+                custom-file (no-littering-expand-etc-file-name "custom.el"))
   (load custom-file 'noerror))
 
 ;; delight
