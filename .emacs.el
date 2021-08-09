@@ -111,23 +111,23 @@
 (setq vc-follow-symlinks nil)
 
 ;;;;
-;; My functions
+;; mssdvd functions
 ;;;;
 
-(defun ranger-launch-here ()
+(defun mssdvd/ranger-launch-here ()
   "Open the current file's directory in ranger."
   (interactive)
   (if default-directory
       (call-process-shell-command "foot ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
-(bind-key "C-c r" #'ranger-launch-here)
+(bind-key "C-c r" #'mssdvd/ranger-launch-here)
 
-(defun yank-primary ()
+(defun mssdvd/yank-primary ()
   "Insert the primary selection at the position."
   (interactive)
   (let ((primary (gui-get-primary-selection)))
     (insert-for-yank primary)))
-(bind-key "S-<insert>" #'yank-primary)
+(bind-key "S-<insert>" #'mssdvd/yank-primary)
 
 ;;;;
 ;; use-package
