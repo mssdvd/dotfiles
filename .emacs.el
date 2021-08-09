@@ -1216,8 +1216,7 @@
   :bind
   ("C-c m" . notmuch)
   :config
-  (setq-default notmuch-archive-tags '("-inbox" "-unread")
-                notmuch-address-use-company nil
+  (setq-default notmuch-address-use-company nil
                 notmuch-draft-folder "dm@mssdvd.com/Drafts"
                 notmuch-draft-tags '("+draft" "-inbox")
                 notmuch-fcc-dirs
