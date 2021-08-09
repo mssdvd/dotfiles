@@ -108,7 +108,6 @@
 
 (setq enable-recursive-minibuffers t)
 
-(setq vc-follow-symlinks nil)
 
 ;;;;
 ;; mssdvd functions
@@ -711,6 +710,9 @@
                             (append '((company-math-symbols-latex company-latex-commands))
                                     company-backends)
                             company-math-allow-latex-symbols-in-faces t))))
+
+(use-package vc
+  :config (setq vc-follow-symlinks t))
 
 ;; magit
 ;; https://magit.vc
