@@ -126,6 +126,7 @@
   "Insert the primary selection at the position."
   (interactive)
   (let ((primary (gui-get-primary-selection)))
+    (push-mark)
     (insert-for-yank primary)))
 (bind-key "S-<insert>" #'mssdvd/yank-primary)
 
