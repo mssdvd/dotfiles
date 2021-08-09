@@ -889,9 +889,7 @@
 
 ;; dumb-jump
 ;; https://github.com/jacktasia/dumb-jump
-(use-package dumb-jump
-  :config
-  (setq-default dumb-jump-selector 'ivy))
+(use-package dumb-jump)
 
 ;; google-translate
 ;; https://github.com/atykhonov/google-translate
@@ -1119,9 +1117,7 @@
   (setq evil-want-fine-undo t
         evil-split-window-below t
         evil-vsplit-window-right t)
-  (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
-  (evil-set-initial-state 'ivy-occur-mode 'emacs)
-  (evil-set-initial-state 'ivy-occur-grep-mode 'emacs))
+  (evil-set-initial-state 'ledger-reconcile-mode 'emacs))
 
 ;; evil-goggles
 ;; https://github.com/edkolev/evil-goggles
