@@ -283,46 +283,6 @@
   :init
   (savehist-mode))
 
-(use-package selectrum
-  :disabled
-  :defer 1
-  :bind
-  (("C-c i" . selectrum-repeat)
-   :map selectrum-minibuffer-map
-   ("C-w" . backward-kill-sexp))
-  :config
-  (setq selectrum-count-style 'current/matches
-        selectrum-extend-current-candidate-highlight t
-        selectrum-show-indices '(lambda (i)
-                                  (progn
-                                    (when (= i 10)
-                                      (setq i 0))
-                                    (format "%d " i))))
-  (dotimes (i 10)
-    (define-key
-      selectrum-minibuffer-map
-      (kbd (format "M-%d" (% (1+ i) 10)))
-      `(lambda () (interactive)
-	     (selectrum-select-current-candidate ,(1+ i)))))
-  (selectrum-mode 1))
-
-(use-package prescient
-  :disabled
-  :demand t
-  :config (prescient-persist-mode 1))
-
-(use-package selectrum-prescient
-  :disabled
-  :demand t
-  :after selectrum prescient
-  :config (selectrum-prescient-mode 1))
-
-(use-package company-prescient
-  :disabled
-  :demand t
-  :after company prescient
-  :config (company-prescient-mode 1))
-
 (use-package consult
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
