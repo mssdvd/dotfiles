@@ -244,13 +244,7 @@
         ("C-'" . vertico-quick-exit))
   :config
   (setq vertico-cycle t
-        vertico-quick1 "asdfghjkl;"
-        completion-in-region-function
-        (lambda (&rest args)
-          (apply (if vertico-mode
-                     #'consult-completion-in-region
-                   #'completion--in-region)
-                 args)))
+        vertico-quick1 "asdfghjkl;")
   (vertico-mouse-mode 1)
   :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
