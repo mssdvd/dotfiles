@@ -10,7 +10,6 @@
 (eval-and-compile
   (defvar bootstrap-version)
   (setq straight-fix-flycheck t)
-  ;; (setq straight-vc-git-default-protocol 'ssh)
   (let ((bootstrap-file
          (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
         (bootstrap-version 5))
@@ -496,25 +495,29 @@
                             (file+headline "~/org/books_movies_series.org" "Books")
                             (file "~/org/template/books_template.org")
                             :empty-lines-after 2)
+
                            ("m" "Next week menu" entry
                             (file+headline "~/org/meals.org"
                                            ,(format-time-string "%Y"))
                             (file "~/org/template/weekly_meals.org")
                             :jump-to-captured t)
+
                            ("y" "Add YouTube channel" entry
                             (file+olp "~/.emacs.d/var/elfeed/rmh-elfeed.org"
                                       "Web" "Youtube")
                             "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Inset channel name}]]")
+
                            ("s" "New activity log" entry
                             (file+olp+datetree "~/org/activities.org"
-                                      "Log")
+                                               "Log")
                             "* %?"
                             :jump-to-captured t
                             :empty-lines 0
                             :tree-type week)
+
                            ("S" "New activity log (clock in)" entry
                             (file+olp+datetree "~/org/activities.org"
-                                      "Log")
+                                               "Log")
                             "* %?"
                             :clock-in it
                             :clock-keep t
@@ -721,9 +724,9 @@
   :defer 1
   :bind
   ((:map yas-minor-mode-map
-    ("C-j" . yas-expand)
-    :map yas-keymap
-    ("C-j" . yas-next-field-or-maybe-expand)))
+         ("C-j" . yas-expand)
+         :map yas-keymap
+         ("C-j" . yas-next-field-or-maybe-expand)))
   :config
   (yas-global-mode 1)
   (dolist (keymap (list yas-minor-mode-map yas-keymap))
@@ -913,7 +916,6 @@
   :bind
   ("C-c e" . elfeed)
   :custom
-  ;; (elfeed-sort-order 'ascending)
   (elfeed-search-title-max-width 100)
   :config
   (setq url-queue-timeout 30)
@@ -1226,10 +1228,5 @@
 
 (put 'erase-buffer 'disabled nil)
 
-;; (mapc
-;;    (lambda (face)
-;;      (when (eq (face-attribute face :weight) 'normal)
-;;        (set-face-attribute face nil :weight 'semi-bold)))
-;;    (face-list))
 
 ;;; .emacs.el ends here
