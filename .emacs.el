@@ -251,7 +251,8 @@
                      #'consult-completion-in-region
                    #'completion--in-region)
                  args)))
-  (vertico-mouse-mode 1))
+  (vertico-mouse-mode 1)
+  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
 
 (use-package orderless
   :demand t
