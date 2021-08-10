@@ -14,29 +14,6 @@ output {
     * bg "#000000" solid_color subpixel rgb
 }
 
-input "type:touchpad" {
-    dwt enabled
-    tap enabled
-    natural_scroll enabled
-    middle_emulation enabled
-    pointer_accel 0.8
-}
-input "type:keyboard" xkb_options "ctrl:swapcaps,compose:ralt"
-input "1278:32:PFU_Limited_HHKB-Classic" xkb_options "compose:ralt"
-# Leopold FC980M PD
-input "1204:1296:HID_Keyboard_HID_Keyboard" xkb_options "compose:ralt,ctrl:swap_rwin_rctl"
-input "1133:49971:Logitech_Gaming_Keyboard_G610" xkb_layout us-english-long-shift
-input "1133:50458:Logitech_USB_Receiver" pointer_accel 1
-input "1267:32:Elan_TrackPoint" pointer_accel 0.5
-
-bindsym $mod+Return exec $term
-# bindsym $mod+Shift+Return exec $term --class $term_floating_window
-bindsym $mod+Shift+Return exec $term --app-id=$term_floating_window
-bindsym $mod+Shift+q kill
-bindsym $mod+Tab exec $menu
-floating_modifier $mod normal
-bindsym $mod+Shift+c reload
-
 set $mode_display Toggle display output eDP-1 (e), DP-1 (d) | Rotate output (r), reset rotation (R)
 mode "$mode_display" {
     bindsym e output eDP-1 toggle, mode "default"
@@ -53,6 +30,36 @@ bindsym XF86Display mode "$mode_display"
 
 bindsym XF86Tools output - transform 90 anticlockwise
 bindsym Shift+XF86Tools output - transform 0
+
+input {
+    "type:touchpad" {
+        dwt enabled
+        tap enabled
+        natural_scroll enabled
+        middle_emulation enabled
+        pointer_accel 0.8
+    }
+    "type:pointer" pointer_accel 1
+    "type:keyboard" xkb_options "ctrl:swapcaps,compose:ralt"
+    "1278:32:PFU_Limited_HHKB-Classic" xkb_options "compose:ralt"
+    # Leopold FC980M PD
+    "1204:1296:HID_Keyboard_HID_Keyboard" {
+        xkb_layout leopold-FC980M
+        # reset xkb_options
+        xkb_options ""
+    }
+    "1133:49971:Logitech_Gaming_Keyboard_G610" xkb_layout us-english-long-shift
+    "1149:32792:Kensington_Expert_Wireless_TB_Mouse" scroll_factor 2
+}
+
+bindsym $mod+Return exec $term
+# bindsym $mod+Shift+Return exec $term --class $term_floating_window
+bindsym $mod+Shift+Return exec $term --app-id=$term_floating_window
+bindsym $mod+Shift+q kill
+bindsym $mod+Tab exec $menu
+floating_modifier $mod normal
+bindsym $mod+Shift+c reload
+
 set $mode_system System (l)ock, (e)xit, (s)uspend, (Shift+r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
     bindsym l exec swaylock -f && sleep 1, mode "default"
