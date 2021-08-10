@@ -698,6 +698,8 @@
 (use-package auth-source
   :config (auth-source-pass-enable))
 
+(use-package password-store)
+
 ;; gitconfig-mode
 ;; https://github.com/magit/git-modes
 (use-package gitconfig-mode)
