@@ -806,6 +806,10 @@
   :straight nil
   :config (setq-default apropos-do-all t))
 
+;; dictionary
+(use-package dictionary
+  :config (setq dictionary-server "dict.org"))
+
 ;; fish-mode
 (use-package fish-mode)
 
