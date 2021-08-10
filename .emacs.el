@@ -155,6 +155,7 @@
   (gcmh-mode 1))
 
 (use-package modus-themes
+  :commands (modus-themes-load-themes)
   :bind ("C-c q" . modus-themes-toggle)
   :init
   (setq modus-themes-bold-constructs t
@@ -208,6 +209,7 @@
 ;; dired
 (use-package dired
   :straight nil
+  :defines dired-do-revert-buffer
   :config
   (setq dired-listing-switches "-alhv --group-directories-first"
         dired-do-revert-buffer t
@@ -286,6 +288,8 @@
   (savehist-mode))
 
 (use-package consult
+  :defines (xref-show-xrefs-function xref-show-definitions-function)
+  :functions (project-roots)
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
@@ -357,6 +361,7 @@
               ("!" . consult-flycheck)))
 
 (use-package marginalia
+  :commands marginalia-mode
   :bind
   (:map minibuffer-local-map
         ("C-M-a" . marginalia-cycle))
@@ -475,6 +480,7 @@
 (use-package auctex)
 
 (use-package org
+  :functions (delight)
   :bind
   ("C-c a" . org-agenda)
   ("C-c c" . org-capture)
@@ -600,6 +606,7 @@
 ;; org-download
 ;; https://github.com/abo-abo/org-download
 (use-package org-download
+  :functions (org-redisplay-inline-images)
   :demand t
   :after org
   :config
@@ -722,6 +729,7 @@
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
+  :functions (yas-minor-mode)
   :delight yas-minor-mode
   :defer 1
   :bind
@@ -993,6 +1001,7 @@
 (use-package yaml-mode)
 
 (use-package matlab-mode
+  :defines (matlab-shell-command-switches)
   :mode ("\\.m\\'" . matlab-mode)
   :commands matlab-shell
   :config (setq matlab-shell-command-switches '("-nodesktop" "-nosplash")))
