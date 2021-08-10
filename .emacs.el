@@ -232,6 +232,9 @@
                                        "extensions/vertico-mouse.el"
                                        "extensions/vertico-quick.el"
                                        "extensions/vertico-repeat.el"))
+  :commands (vertico-mode)
+  :functions (vertico-mouse-mode consult-completion-in-region)
+  :defines (vertico-quick1)
   :init (vertico-mode)
   :bind
   ("C-c i" . vertico-repeat)
