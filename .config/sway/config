@@ -84,6 +84,7 @@ mode "$mode_screenshot" {
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
+    bindsym Print mode "default"
 }
 bindsym Print mode "$mode_screenshot"
 
