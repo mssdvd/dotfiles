@@ -1089,7 +1089,7 @@
     "r" 'elfeed-search-update--force)
   (evil-define-key '(normal visual) elfeed-search-mode-map "o" 'elfeed-search-browse-url)
   (evil-define-key 'normal elfeed-search-mode-map
-    "i" 'elfeed-play-with-mpv
+    "i" 'mssdvd/elfeed-play-with-mpv
     "p" 'pocket-reader-elfeed-search-add-link)
   (evil-define-key 'normal elfeed-show-mode-map
     "o" 'elfeed-show-visit
