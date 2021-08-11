@@ -208,7 +208,8 @@ bindsym $mod+a focus parent
 
 bindsym $mod+d focus child
 
-bindcode $mod+21 floating enable; sticky toggle
+bindsym $mod+Shift+equal floating enable; sticky toggle
+bindsym $mod+equal sticky toggle
 
 bindsym $mod+Shift+minus move scratchpad
 bindsym $mod+minus scratchpad show
