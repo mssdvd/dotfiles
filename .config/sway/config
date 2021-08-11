@@ -9,8 +9,7 @@ set {
 }
 
 output {
-    eDP-1 scale 1 pos 0 0 subpixel rgb
-    "Ancor Communications Inc ASUS MX239 EBLMTJ030694" scale 0.65
+    "Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849"
     * bg "#000000" solid_color subpixel rgb
 }
 
@@ -252,10 +251,7 @@ bar {
 
 hide_edge_borders vertical
 
-seat {
-    * hide_cursor 10000
-    * xcursor_theme Adwaita 36
-}
+seat * hide_cursor 10000
 
 for_window {
     [title="(?i)^picture-in-picture"] floating enable, sticky enable

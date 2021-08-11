@@ -4,3 +4,9 @@ font pango:Iosevka Semibold 12
 bindswitch --reload --locked lid:on output eDP-1 disable
 bindswitch --reload --locked lid:off output eDP-1 enable
 exec_always sway_check_lid_state.sh
+
+seat * xcursor_theme Adwaita 36
+
+output "Ancor Communications Inc ASUS MX239 EBLMTJ030694" position 0 0
+output "Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849" position 1920 0
+output eDP-1 position 5760 0 scale 1
