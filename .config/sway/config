@@ -217,6 +217,8 @@ bindsym $mod+minus scratchpad show
 bindsym $mod+t exec i3_balance_workspace
 bindsym $mod+Shift+t exec i3_balance_workspace --scope focus
 
+bindsym $mod+p exec passmenu
+
 mode "resize" {
     bindsym {
         $left resize shrink width 50px
