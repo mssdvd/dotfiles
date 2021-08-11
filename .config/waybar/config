@@ -41,9 +41,8 @@
         "format": "{} ",
         "interval": 1800,
         "exec": "checkupdates | wc -l",
-        "on-click": "checkupdates | wc -l",
-        "on-click-right": "foot --hold paru; pkill -SIGRTMIN+1 waybar",
-        "signal": 1
+        "on-click-right": "foot --hold paru;pkill -SIGRTMIN+2 waybar",
+        "signal": 2
     },
     "mpd": {
         "format": "{stateIcon} {consumeIcon}{randomIcon}{repeatIcon}{singleIcon}{artist} - {album} - {title} ({elapsedTime:%M:%S}/{totalTime:%M:%S}) ",
