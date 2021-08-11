@@ -1,1 +1,6 @@
 font pango:Iosevka Semibold 12
+
+# Clamshell mode
+bindswitch --reload --locked lid:on output eDP-1 disable
+bindswitch --reload --locked lid:off output eDP-1 enable
+exec_always sway_check_lid_state.sh
