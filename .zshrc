@@ -42,9 +42,6 @@ setopt COMPLETE_ALIASES
 # Disable C-s
 stty -ixon
 
-# source .zprofile
-source $HOME/.zprofile
-
 # command not found
 source /usr/share/doc/pkgfile/command-not-found.zsh
 
