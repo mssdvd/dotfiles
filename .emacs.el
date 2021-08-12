@@ -263,6 +263,10 @@
   :config
   (defun mssdvd/orderless-dispatch (pattern _index _total)
     (cond
+     ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
+     ((string-suffix-p "$" pattern) `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x100000-\x10FFFD]*$")))
+     ;; File extensions
+     ((string-match-p "\\`\\.." pattern) `(orderless-regexp . ,(concat "\\." (substring pattern 1) "[\x100000-\x10FFFD]*$")))
      ;; Ignore single !
      ((string= "!" pattern) `(orderless-literal . ""))
      ;; Without literal
@@ -284,6 +288,7 @@
   (setq completion-styles '(orderless)
         completion-category-defaults nil
         completion-category-overrides '((file (styles basic partial-completion)))
+        orderless-component-separator #'orderless-escapable-split-on-space
         orderless-matching-styles '(orderless-literal
                                     orderless-regexp
                                     orderless-initialism)
