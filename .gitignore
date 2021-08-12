@@ -1,12 +1,1 @@
-.config/aerc/accounts.conf
-.config/mpv/watch_later
-.config/systemd/user/*.wants
-.config/ranger/history
-.config/ranger/bookmarks
-.config/ranger/tagged
-.config/gtk-3.0/servers
-.mypy_cache
-__pycache__
-bin/eheh.py
-flycheck*
-.config/gtk-3.0/bookmarks
+*
