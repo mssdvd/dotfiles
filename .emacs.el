@@ -890,7 +890,8 @@
   ("M-#" . quick-calc)
   ("C-M-#" . full-calc)
   :config
-  (setq calc-group-digits t
+  (setq calc-group-char " "
+        calc-group-digits t
         calc-multiplication-has-precedence nil))
 
 ;; calendar
