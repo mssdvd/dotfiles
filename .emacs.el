@@ -82,7 +82,7 @@
 (bind-key [f5] #'save-buffer)
 
 ;; compile
-(bind-key "C-c n" #'recompile)
+(bind-key "C-c b" #'recompile)
 
 ;; Pasting with middle-click puts the text where the point is
 (setq mouse-yank-at-point t)
