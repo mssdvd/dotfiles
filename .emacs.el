@@ -704,7 +704,8 @@
                                                ("~/org" . 0)
                                                ("~/uni" . 0))
                 magit-status-goto-file-position t)
-  (put 'magit-edit-line-commit 'disabled nil))
+  (put 'magit-edit-line-commit 'disabled nil)
+  (require 'magit-extras))
 
 (use-package forge
   :demand t
