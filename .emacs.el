@@ -849,8 +849,7 @@
 ;; hippie-exp
 (use-package hippie-exp
   :bind
-  ("M-/" . hippie-expand)
-  ("C-M-=" . hippie-expand))
+  ("M-/" . hippie-expand))
 
 ;; man
 (use-package man
