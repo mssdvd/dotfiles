@@ -1159,8 +1159,8 @@
                 notmuch-draft-tags '("+draft" "-inbox")
                 notmuch-fcc-dirs
                 '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
-                  ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread")
-                  ("d.masserut@gmail.com" . "'d.masserut@gmail.com/[Gmail]/Sent Mail' -inbox +gmail +sent -unread"))
+                  ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" -inbox +gmail +sent -unread")
+                  ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread"))
                 notmuch-hello-hidden-sections nil
                 notmuch-search-oldest-first nil
                 notmuch-search-result-format
