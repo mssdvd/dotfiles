@@ -84,9 +84,6 @@
 ;; compile
 (bind-key "C-c b" #'recompile)
 
-;; Pasting with middle-click puts the text where the point is
-(setq mouse-yank-at-point t)
-
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
 
@@ -1029,6 +1026,12 @@
 
 (use-package re-builder
   :config (setq reb-re-syntax 'string))
+
+(use-package mouse
+  :straight nil
+  :config
+  (setq mouse-yank-at-point t)
+  (context-menu-mode))
 
 ;;
 ;; Evil
