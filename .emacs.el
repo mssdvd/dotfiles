@@ -879,6 +879,7 @@
 
 ;; man
 (use-package man
+  :bind ("C-c k" . man)
   :config
   (setq Man-notify-method 'aggressive)
   (set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
