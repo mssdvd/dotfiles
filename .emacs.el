@@ -1,4 +1,4 @@
-;;; .emacs.el --- Main emacs config file  -*- lexical-binding: t; -*-
+;;; .emacs.el --- Main emacs config file  -*- lexical-binding: t; flycheck-check-syntax-automatically: (save mode-enabled); -*-
 ;;; Commentary:
 
 ;;; Code:
