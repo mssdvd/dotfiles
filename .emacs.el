@@ -400,7 +400,7 @@
 (use-package embark-consult
   :demand t
   :after (embark consult)
-  :hook (embark-collect-mode . embark-consult-preview-minor-mode))
+  :hook (embark-collect-mode . consult-preview-minor-mode))
 
 (use-package corfu
   :straight '(corfu :host github
