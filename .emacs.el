@@ -1164,7 +1164,6 @@
                 '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
                   ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" -inbox +gmail +sent -unread")
                   ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread"))
-                notmuch-hello-hidden-sections nil
                 notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
                                          (:name "unread" :query "tag:unread" :sort-order "oldest-first" :key "u")
                                          (:name "flagged" :query "tag:flagged" :key "f")
@@ -1179,6 +1178,7 @@
                   ("authors" . "%-30s ")
                   ("subject" . "%s ")
                   ("tags" . "(%s)"))
+                notmuch-show-all-tags-list t
                 notmuch-show-indent-messages-width 4)
   (defun mssdvd/sync-email ()
     "Sync emails and update notmuch index"
