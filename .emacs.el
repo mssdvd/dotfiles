@@ -914,7 +914,7 @@
 (use-package calc
   :bind
   ("M-#" . quick-calc)
-  ("C-M-#" . full-calc)
+  ("C-M-#" . calc)
   :config
   (setq calc-group-char " "
         calc-group-digits t
