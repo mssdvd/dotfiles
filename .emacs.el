@@ -449,7 +449,7 @@
 ;; https://github.com/magicdirac/avy-flycheck
 (use-package avy-flycheck
   :demand t
-  :after flycheck
+  :after flycheck avy
   :config (avy-flycheck-setup))
 
 ;; ace-link
