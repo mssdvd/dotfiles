@@ -607,6 +607,7 @@
 ;; evil-org
 ;; https://github.com/Somelauw/evil-org-mode
 (use-package evil-org
+  :disabled
   :delight
   :demand t
   :after org evil
@@ -1042,6 +1043,7 @@
 ;; evil-mode
 ;; https://github.com/emacs-evil/evil
 (use-package evil
+  :disabled
   :defer 1
   :bind
   (:map evil-ex-search-keymap
@@ -1066,6 +1068,7 @@
 ;; evil-goggles
 ;; https://github.com/edkolev/evil-goggles
 (use-package evil-goggles
+  :disabled
   :delight
   :demand t
   :after evil
@@ -1078,6 +1081,7 @@
 ;; evil-surrond
 ;; https://github.com/emacs-evil/evil-surround
 (use-package evil-surround
+  :disabled
   :demand t
   :after evil
   :config (global-evil-surround-mode 1))
@@ -1085,10 +1089,10 @@
 ;; evil-collection
 ;; https://github.com/emacs-evil/evil-collection
 (use-package evil-collection
+  :disabled
   :delight evil-collection-unimpaired-mode
   :demand t
   :after evil
-  ;; :custom (evil-collection-company-use-tng nil)
   :config
   (mapc
    (lambda (mode) (setq evil-collection-mode-list
@@ -1111,6 +1115,7 @@
 ;; evil-lion
 ;; https://github.com/edkolev/evil-lion
 (use-package evil-lion
+  :disabled
   :demand t
   :after evil
   :config (evil-lion-mode))
@@ -1126,12 +1131,18 @@
 ;; evil-nerd-commenter
 ;; https://github.com/redguardtoo/evil-nerd-commenter
 (use-package evil-nerd-commenter
+  :disabled
+  :demand t
+  :after evil
   :bind ("M-;" . evilnc-comment-or-uncomment-lines)
   :config (evilnc-default-hotkeys nil t))
 
 ;; evil-numbers
 ;; https://github.com/cofi/evil-numbers
 (use-package evil-numbers
+  :disabled
+  :demand t
+  :after evil
   :bind
   (("C-c +" . evil-numbers/inc-at-pt)
    ("C-c -" . evil-numbers/dec-at-pt)
