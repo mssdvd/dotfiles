@@ -40,7 +40,7 @@
 (blink-cursor-mode 0)
 
 ;; disable startup screen
-(setq-default inhibit-startup-screen t)
+(setq inhibit-startup-screen t)
 
 ;; change all prompts to y or n
 (setq use-short-answers t)
@@ -134,8 +134,8 @@
 (use-package no-littering
   :demand t
   :config
-  (setq-default auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
-                custom-file (no-littering-expand-etc-file-name "custom.el"))
+  (setq auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
+        custom-file (no-littering-expand-etc-file-name "custom.el"))
   (load custom-file 'noerror))
 
 ;; delight
@@ -201,7 +201,7 @@
 
 ;; diff
 (use-package diff
-  :config (setq-default diff-font-lock-prettify t))
+  :config (setq diff-font-lock-prettify t))
 
 ;; dired
 (use-package dired
@@ -465,7 +465,7 @@
 (use-package recentf
   :defer 1
   :config
-  (setq-default recentf-max-saved-items 300)
+  (setq recentf-max-saved-items 300)
   (recentf-mode))
 
 (use-package saveplace
@@ -501,73 +501,72 @@
     (setq current-prefix-arg '(16))
     (call-interactively #'org-latex-preview))
   (delight 'org-indent-mode)
-  (setq-default
-   org-attach-auto-tag nil
-   org-babel-results-keyword "results"
-   org-confirm-babel-evaluate nil
-   org-capture-templates `(("b" "Insert new Book" entry
-                            (file+headline "~/org/books_movies_series.org" "Books")
-                            (file "~/org/template/books_template.org")
-                            :empty-lines-after 2)
+  (setq org-attach-auto-tag nil
+        org-babel-results-keyword "results"
+        org-confirm-babel-evaluate nil
+        org-capture-templates `(("b" "Insert new Book" entry
+                                 (file+headline "~/org/books_movies_series.org" "Books")
+                                 (file "~/org/template/books_template.org")
+                                 :empty-lines-after 2)
 
-                           ("m" "Next week menu" entry
-                            (file+headline "~/org/meals.org"
-                                           ,(format-time-string "%Y"))
-                            (file "~/org/template/weekly_meals.org")
-                            :jump-to-captured t)
+                                ("m" "Next week menu" entry
+                                 (file+headline "~/org/meals.org"
+                                                ,(format-time-string "%Y"))
+                                 (file "~/org/template/weekly_meals.org")
+                                 :jump-to-captured t)
 
-                           ("y" "Add YouTube channel" entry
-                            (file+olp "~/.emacs.d/var/elfeed/rmh-elfeed.org"
-                                      "Web" "Youtube")
-                            "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Inset channel name}]]")
+                                ("y" "Add YouTube channel" entry
+                                 (file+olp "~/.emacs.d/var/elfeed/rmh-elfeed.org"
+                                           "Web" "Youtube")
+                                 "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Inset channel name}]]")
 
-                           ("s" "New activity log" entry
-                            (file+olp+datetree "~/org/activities.org"
-                                               "Log")
-                            "* %?"
-                            :jump-to-captured t
-                            :empty-lines 0
-                            :tree-type week)
+                                ("s" "New activity log" entry
+                                 (file+olp+datetree "~/org/activities.org"
+                                                    "Log")
+                                 "* %?"
+                                 :jump-to-captured t
+                                 :empty-lines 0
+                                 :tree-type week)
 
-                           ("S" "New activity log (clock in)" entry
-                            (file+olp+datetree "~/org/activities.org"
-                                               "Log")
-                            "* %?"
-                            :clock-in it
-                            :clock-keep t
-                            :jump-to-captured t
-                            :empty-lines 0
-                            :tree-type week))
-   org-catch-invisible-edits 'smart
-   org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
-   org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar"
-   org-edit-src-content-indentation 0
-   org-ellipsis " ..."
-   org-enforce-todo-checkbox-dependencies t
-   org-enforce-todo-dependencies t
-   org-file-apps (append '(("\\.pdf\\'" . "zathura %s")
-                           ("\\.mp4\\'" . "mpv %s")
-                           ("\\.webm\\'" . "mpv %s")
-                           ("\\.odt\\'" . "libreoffice %s"))
-                         org-file-apps)
-   org-format-latex-options (plist-put org-format-latex-options :scale 2.5)
-   org-html-validation-link nil
-   org-image-actual-width (* (default-font-width) fill-column)
-   org-indent-indentation-per-level 1
-   org-indent-mode-turns-on-hiding-stars nil
-   org-log-into-drawer t
-   org-outline-path-complete-in-steps nil
-   org-refile-allow-creating-parent-nodes 'confirm
-   org-refile-targets '((org-agenda-files :maxlevel . 4))
-   org-refile-use-outline-path 'file
-   org-return-follows-link t
-   org-show-context-detail (append '((tags-tree . local)) org-show-context-detail)
-   org-startup-folded t
-   org-startup-with-inline-images t
-   org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "REDO(r)" "|" "DONE(d)" "CANCELED(c)"))
-   org-track-ordered-property-with-tag t
-   org-use-fast-tag-selection t
-   )
+                                ("S" "New activity log (clock in)" entry
+                                 (file+olp+datetree "~/org/activities.org"
+                                                    "Log")
+                                 "* %?"
+                                 :clock-in it
+                                 :clock-keep t
+                                 :jump-to-captured t
+                                 :empty-lines 0
+                                 :tree-type week))
+        org-catch-invisible-edits 'smart
+        org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
+        org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar"
+        org-edit-src-content-indentation 0
+        org-ellipsis " ..."
+        org-enforce-todo-checkbox-dependencies t
+        org-enforce-todo-dependencies t
+        org-file-apps (append '(("\\.pdf\\'" . "zathura %s")
+                                ("\\.mp4\\'" . "mpv %s")
+                                ("\\.webm\\'" . "mpv %s")
+                                ("\\.odt\\'" . "libreoffice %s"))
+                              org-file-apps)
+        org-format-latex-options (plist-put org-format-latex-options :scale 2.5)
+        org-html-validation-link nil
+        org-image-actual-width (* (default-font-width) fill-column)
+        org-indent-indentation-per-level 1
+        org-indent-mode-turns-on-hiding-stars nil
+        org-log-into-drawer t
+        org-outline-path-complete-in-steps nil
+        org-refile-allow-creating-parent-nodes 'confirm
+        org-refile-targets '((org-agenda-files :maxlevel . 4))
+        org-refile-use-outline-path 'file
+        org-return-follows-link t
+        org-show-context-detail (append '((tags-tree . local)) org-show-context-detail)
+        org-startup-folded t
+        org-startup-with-inline-images t
+        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "REDO(r)" "|" "DONE(d)" "CANCELED(c)"))
+        org-track-ordered-property-with-tag t
+        org-use-fast-tag-selection t
+        )
   (add-to-list 'org-modules 'org-mouse)
   ;; (push 'org-drill org-modules)
   (org-babel-do-load-languages 'org-babel-load-languages
@@ -627,8 +626,8 @@
 ;; https://github.com/yjwen/org-reveal
 (use-package ox-reveal
   :config
-  (setq-default org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/"
-                org-reveal-title-slide nil))
+  (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/"
+        org-reveal-title-slide nil))
 
 ;; undo-tree
 (use-package undo-tree
@@ -636,9 +635,9 @@
   :commands (global-undo-tree-mode)
   :init (global-undo-tree-mode)
   :config
-  (setq-default undo-tree-enable-undo-in-region t
-                undo-tree-visualizer-diff t
-                undo-tree-visualizer-timestamps t))
+  (setq undo-tree-enable-undo-in-region t
+        undo-tree-visualizer-diff t
+        undo-tree-visualizer-timestamps t))
 
 ;; company
 ;; https://company-mode.github.io/
@@ -653,10 +652,11 @@
    ("C-w" . backward-kill-word)
    ("C-o" . company-show-location))
   :config
-  (setq-default company-tooltip-align-annotations t
-                company-show-quick-access t
-                company-minimum-prefix-length 1
-                company-selection-wrap-around t)
+  (setq company-dabbrev-downcase nil
+        company-tooltip-align-annotations t
+        company-show-quick-access t
+        company-minimum-prefix-length 1
+        company-selection-wrap-around t)
   (global-company-mode)
   (company-tng-mode))
 
@@ -668,7 +668,7 @@
   :after company
   :config
   (company-quickhelp-mode)
-  (setq-default company-quickhelp-use-propertized-text t))
+  (setq company-quickhelp-use-propertized-text t))
 
 (use-package company-box
   :disabled
@@ -694,12 +694,12 @@
 ;; https://magit.vc
 (use-package magit
   :config
-  (setq-default magit-diff-refine-hunk 'all
-                magit-diff-refine-ignore-whitespace nil
-                magit-delete-by-moving-to-trash nil
-                magit-repository-directories '(("~/org" . 0)
-                                               ("~/uni" . 0))
-                magit-status-goto-file-position t)
+  (setq magit-diff-refine-hunk 'all
+        magit-diff-refine-ignore-whitespace nil
+        magit-delete-by-moving-to-trash nil
+        magit-repository-directories '(("~/org" . 0)
+                                       ("~/uni" . 0))
+        magit-status-goto-file-position t)
   (put 'magit-edit-line-commit 'disabled nil)
   (require 'magit-extras))
 
@@ -729,7 +729,7 @@
   :defer 1
   :config
   (global-diff-hl-mode)
-  (setq-default diff-hl-draw-borders nil)
+  (setq diff-hl-draw-borders nil)
   :hook ((magit-pre-refresh . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode . diff-hl-dired-mode)))
@@ -783,7 +783,7 @@
 ;; comint-mode
 (use-package comint
   :straight nil
-  :config (setq-default comint-prompt-read-only t))
+  :config (setq comint-prompt-read-only t))
 
 (use-package shell
   :config (setq shell-has-auto-cd t))
@@ -804,7 +804,7 @@
 (use-package terminal-here
   :bind
   ("C-c t" . terminal-here-launch)
-  :config (setq-default terminal-here-terminal-command 'foot))
+  :config (setq terminal-here-terminal-command 'foot))
 
 ;; sudo-edit
 ;; https://github.com/nflath/sudo-edit
@@ -822,7 +822,7 @@
 ;; apropos
 (use-package apropos
   :straight nil
-  :config (setq-default apropos-do-all t))
+  :config (setq apropos-do-all t))
 
 ;; dictionary
 (use-package dictionary
@@ -834,13 +834,13 @@
 ;; ediff
 (use-package ediff
   :config
-  (setq-default ediff-window-setup-function 'ediff-setup-windows-plain
-                ediff-split-window-function 'split-window-horizontally))
+  (setq ediff-window-setup-function 'ediff-setup-windows-plain
+        ediff-split-window-function 'split-window-horizontally))
 
 ;; gdb-mi
 (use-package gdb-mi
-  :config (setq-default gdb-many-windows t
-                        gdb-show-main t))
+  :config (setq gdb-many-windows t
+                gdb-show-main t))
 
 ;; hippie-exp
 (use-package hippie-exp
@@ -858,8 +858,8 @@
 ;; https://github.com/hsjunnesson/wolfram.el
 (use-package wolfram
   :config
-  (setq-default wolfram-alpha-app-id (auth-source-pass-get 'secret "wolfram_alpha_app_id")
-                wolfram-alpha-magnification-factor 1.5))
+  (setq wolfram-alpha-app-id (auth-source-pass-get 'secret "wolfram_alpha_app_id")
+        wolfram-alpha-magnification-factor 1.5))
 
 ;; define-word
 ;; https://github.com/abo-abo/define-word
@@ -893,24 +893,24 @@
 ;; calendar
 (use-package calendar
   :config
-  (setq-default calendar-week-start-day 1
-                holiday-general-holidays
-                '((holiday-fixed 1 1 "Capodanno")
-                  (holiday-fixed 5 1 "1 Maggio")
-                  (holiday-fixed 4 25 "Liberazione")
-                  (holiday-fixed 6 2 "Festa Repubblica"))
-                holiday-christian-holidays
-                '((holiday-fixed 12 8 "Immacolata Concezione")
-                  (holiday-fixed 12 25 "Natale")
-                  (holiday-fixed 12 26 "Santo Stefano")
-                  (holiday-fixed 1 6 "Epifania")
-                  (holiday-easter-etc -52 "Giovedì grasso")
-                  (holiday-easter-etc -47 "Martedì grasso")
-                  (holiday-easter-etc  -2 "Venerdì Santo")
-                  (holiday-easter-etc   0 "Pasqua")
-                  (holiday-easter-etc  +1 "Lunedì Pasqua")
-                  (holiday-fixed 8 15 "Assunzione di Maria")
-                  (holiday-fixed 11 1 "Ognissanti"))))
+  (setq calendar-week-start-day 1
+        holiday-general-holidays
+        '((holiday-fixed 1 1 "Capodanno")
+          (holiday-fixed 5 1 "1 Maggio")
+          (holiday-fixed 4 25 "Liberazione")
+          (holiday-fixed 6 2 "Festa Repubblica"))
+        holiday-christian-holidays
+        '((holiday-fixed 12 8 "Immacolata Concezione")
+          (holiday-fixed 12 25 "Natale")
+          (holiday-fixed 12 26 "Santo Stefano")
+          (holiday-fixed 1 6 "Epifania")
+          (holiday-easter-etc -52 "Giovedì grasso")
+          (holiday-easter-etc -47 "Martedì grasso")
+          (holiday-easter-etc  -2 "Venerdì Santo")
+          (holiday-easter-etc   0 "Pasqua")
+          (holiday-easter-etc  +1 "Lunedì Pasqua")
+          (holiday-fixed 8 15 "Assunzione di Maria")
+          (holiday-fixed 11 1 "Ognissanti"))))
 
 ;; helpful
 ;; https://github.com/wilfred/helpful
@@ -1048,10 +1048,10 @@
         ("C-6" . mode-line-other-buffer)
         ("K" . man))
   :init
-  (setq-default evil-search-module 'evil-search
-                evil-symbol-word-search t
-                evil-want-keybinding nil
-                evil-undo-system 'undo-tree)
+  (setq evil-search-module 'evil-search
+        evil-symbol-word-search t
+        evil-want-keybinding nil
+        evil-undo-system 'undo-tree)
   :config
   (setq evil-complete-next-func #'hippie-expand
         evil-want-fine-undo t
@@ -1157,29 +1157,29 @@
   :bind
   ("C-c m" . notmuch)
   :config
-  (setq-default notmuch-address-use-company nil
-                notmuch-draft-folder "dm@mssdvd.com/Drafts"
-                notmuch-draft-tags '("+draft" "-inbox")
-                notmuch-fcc-dirs
-                '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
-                  ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" -inbox +gmail +sent -unread")
-                  ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread"))
-                notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
-                                         (:name "unread" :query "tag:unread" :sort-order "oldest-first" :key "u")
-                                         (:name "flagged" :query "tag:flagged" :key "f")
-                                         (:name "sent" :query "tag:sent" :key "t")
-                                         (:name "drafts" :query "tag:draft" :key "d")
-                                         (:name "last 3 months" :query "date:\"3M\".." :key "m")
-                                         (:name "all mail" :query "*" :key "a"))
-                notmuch-search-oldest-first nil
-                notmuch-search-result-format
-                '(("date" . "%12s ")
-                  ("count" . "%-7s ")
-                  ("authors" . "%-30s ")
-                  ("subject" . "%s ")
-                  ("tags" . "(%s)"))
-                notmuch-show-all-tags-list t
-                notmuch-show-indent-messages-width 4)
+  (setq notmuch-address-use-company nil
+        notmuch-draft-folder "dm@mssdvd.com/Drafts"
+        notmuch-draft-tags '("+draft" "-inbox")
+        notmuch-fcc-dirs
+        '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
+          ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" -inbox +gmail +sent -unread")
+          ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread"))
+        notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
+                                 (:name "unread" :query "tag:unread" :sort-order "oldest-first" :key "u")
+                                 (:name "flagged" :query "tag:flagged" :key "f")
+                                 (:name "sent" :query "tag:sent" :key "t")
+                                 (:name "drafts" :query "tag:draft" :key "d")
+                                 (:name "last 3 months" :query "date:\"3M\".." :key "m")
+                                 (:name "all mail" :query "*" :key "a"))
+        notmuch-search-oldest-first nil
+        notmuch-search-result-format '(("date" . "%12s ")
+                                       ("count" . "%-7s ")
+                                       ("authors" . "%-30s ")
+                                       ("subject" . "%s ")
+                                       ("tags" . "(%s)"))
+        notmuch-show-all-tags-list t
+        notmuch-show-indent-messages-width 4)
+
   (defun mssdvd/sync-email ()
     "Sync emails and update notmuch index"
     (interactive)
