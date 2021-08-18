@@ -412,7 +412,8 @@
 ;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep
   :bind (:map grep-mode-map
-              ("C-c C-p" . wgrep-change-to-wgrep-mode)))
+              ("C-c C-p" . wgrep-change-to-wgrep-mode))
+  :config (setq wgrep-auto-save-buffer t))
 
 ;; avy
 ;; https://github.com/abo-abo/avy
