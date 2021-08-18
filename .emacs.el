@@ -72,8 +72,8 @@
 ;; disable this fucking keybind
 (global-unset-key (kbd "C-x C-z"))
 
-;; disable zap-to-char
-(global-unset-key (kbd "M-z"))
+;; replace zap-to-char with zap-up-to-char
+(bind-key "M-z" #'zap-up-to-char)
 
 ;; ibuffer is better
 (bind-key "C-x C-b" #'ibuffer)
