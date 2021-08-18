@@ -78,6 +78,9 @@
 ;; ibuffer is better
 (bind-key "C-x C-b" #'ibuffer)
 
+;; switch to previous buffer
+(bind-key "M-[" #'mode-line-other-buffer)
+
 ;; save buffer
 (bind-key [f5] #'save-buffer)
 
