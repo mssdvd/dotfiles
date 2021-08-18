@@ -1165,6 +1165,13 @@
                   ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" -inbox +gmail +sent -unread")
                   ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread"))
                 notmuch-hello-hidden-sections nil
+                notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
+                                         (:name "unread" :query "tag:unread" :sort-order "oldest-first" :key "u")
+                                         (:name "flagged" :query "tag:flagged" :key "f")
+                                         (:name "sent" :query "tag:sent" :key "t")
+                                         (:name "drafts" :query "tag:draft" :key "d")
+                                         (:name "last 3 months" :query "date:\"3M\".." :key "m")
+                                         (:name "all mail" :query "*" :key "a"))
                 notmuch-search-oldest-first nil
                 notmuch-search-result-format
                 '(("date" . "%12s ")
@@ -1173,8 +1180,6 @@
                   ("subject" . "%s ")
                   ("tags" . "(%s)"))
                 notmuch-show-indent-messages-width 4)
-  (add-to-list 'notmuch-saved-searches
-               '(:name "last 3 months" :query "date:\"3M\".." :key "m"))
   (defun mssdvd/sync-email ()
     "Sync emails and update notmuch index"
     (interactive)
