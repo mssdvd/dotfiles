@@ -2,6 +2,7 @@
 
 notmuch tag --input="${HOME}/.config/notmuch/default/tag"
 
+# update mail indicator
 if [ "$XDG_CURRENT_DESKTOP" == "sway" ]
 then
     pkill -SIGRTMIN+1 waybar
