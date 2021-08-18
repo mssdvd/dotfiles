@@ -11,7 +11,7 @@
 
 +github              tag:new and from:github.com
 +gitlab              tag:new and from:gitlab.com
-+list                tag:new and from:notifications@github.com
++list                tag:new and (from:notifications@github.com or from:bugzilla)
 +sr.ht               tag:new and from:sr.ht
 +unipd               tag:new and from:unipd.it
 
