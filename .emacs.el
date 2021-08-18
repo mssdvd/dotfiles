@@ -323,16 +323,22 @@
          ("M-g e" . consult-error)
          ;; M-s bindings (search-map)
          ("M-s g" . consult-git-grep)
-         ;; ("M-s l" . consult-line)
+         ("M-s l" . consult-line)
          ("M-s m" . consult-multi-occur)
          ("M-s k" . consult-keep-lines)
          ("M-s f" . consult-focus-lines)
          ("M-s s" . consult-isearch)
          ;; Other bindings
-         ("C-s" . consult-line)
-         ("C-S-s" . consult-line-multi)
+         ("C-c s" . consult-line)
          ("M-y" . consult-yank-pop)
-         ("<help> a" . consult-apropos))
+         ("<help> a" . consult-apropos)
+         ;; Isearch integration
+         ("M-s e" . consult-isearch)
+         :map isearch-mode-map
+         ("M-e" . consult-isearch)
+         ("M-s e" . consult-isearch)
+         ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi))
   :init
   (setq register-preview-delay 0
         register-preview-function #'consult-register-preview)
@@ -407,6 +413,18 @@
   (setq corfu-auto t
         corfu-cycle t)
   (corfu-global-mode))
+
+(use-package isearch
+  :straight nil
+  :config
+  (setq isearch-allow-scroll 'unlimited
+        isearch-lax-whitespace t
+        isearch-lazy-count t
+        isearch-repeat-on-direction-change t
+        isearch-wrap-pause 'no
+        lazy-count-prefix-format nil
+        lazy-count-suffix-format " (%s/%s)"
+        search-whitespace-regexp ".*?"))
 
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
@@ -588,7 +606,7 @@
 (use-package gnuplot)
 
 (use-package org-pomodoro
-  :bind ("C-c s" . org-pomodoro)
+  :bind ("C-c o" . org-pomodoro)
   :config (setq org-pomodoro-expiry-time 40
                 org-pomodoro-keep-killed-pomodoro-time t
                 org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=50")
