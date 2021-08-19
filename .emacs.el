@@ -3,7 +3,6 @@
 
 ;;; Code:
 
-(setq-default gc-cons-threshold 100000000)
 (setq read-process-output-max (* 1024 1024 4)) ;; 4mb
 
 ;; bootstrap straight.el

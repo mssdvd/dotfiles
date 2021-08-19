@@ -2,6 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
+(setq gc-cons-threshold #x40000000)
+
 (setq package-enable-at-startup nil
       default-frame-alist '((tool-bar-lines . 0)
                             (menu-bar-lines . 0)
