@@ -1063,6 +1063,9 @@
   (setq mouse-yank-at-point t)
   (context-menu-mode))
 
+(use-package repeat
+  :config (repeat-mode))
+
 ;;
 ;; Evil
 ;;
