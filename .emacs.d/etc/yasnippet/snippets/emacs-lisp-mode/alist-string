@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: alist (key is a string)
+# key: asss
+# --
+("${1:key}" . ${2:value})
