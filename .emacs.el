@@ -1214,7 +1214,6 @@
                                  (:name "drafts" :query "tag:draft" :key "d")
                                  (:name "last 3 months" :query "date:\"3M\".." :key "m")
                                  (:name "all mail" :query "*" :key "a"))
-        notmuch-search-oldest-first nil
         notmuch-search-result-format '(("date" . "%12s ")
                                        ("count" . "%-7s ")
                                        ("authors" . "%-30s ")
@@ -1222,6 +1221,7 @@
                                        ("tags" . "(%s)"))
         notmuch-show-all-tags-list t
         notmuch-show-indent-messages-width 4)
+  (setq-default notmuch-search-oldest-first nil)
 
   (defun mssdvd/sync-email ()
     "Sync emails and update notmuch index"
