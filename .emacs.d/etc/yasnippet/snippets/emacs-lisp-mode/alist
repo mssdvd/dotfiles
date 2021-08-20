@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
-# name: association
+# name: alist
 # key: ass
 # --
 (${1:key} . ${2:value})
