@@ -1064,6 +1064,7 @@
   (context-menu-mode))
 
 (use-package repeat
+  :demand t
   :config (repeat-mode))
 
 ;;
