@@ -228,10 +228,7 @@
 (use-package vertico
   :straight (vertico :host github
                      :repo "minad/vertico"
-                     :files (:defaults "extensions/vertico-directory.el"
-                                       "extensions/vertico-mouse.el"
-                                       "extensions/vertico-quick.el"
-                                       "extensions/vertico-repeat.el"))
+                     :files (:defaults "extensions/*"))
   :commands (vertico-mode)
   :functions (vertico-mouse-mode consult-completion-in-region)
   :defines (vertico-quick1)
