@@ -239,7 +239,7 @@
         ("RET" . vertico-directory-enter)
         ("DEL" . vertico-directory-delete-char)
         ("M-DEL" . vertico-directory-delete-word)
-        ("C-w" . vertico-directory-delete-word)
+        ("C-<backspace>" . vertico-directory-delete-word)
         ("C-;" . vertico-quick-insert)
         ("C-'" . vertico-quick-exit))
   :config
