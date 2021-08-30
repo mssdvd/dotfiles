@@ -302,7 +302,6 @@
          ("C-c x" . consult-mode-command)
          ("C-c f" . consult-find)
          ("C-c g" . consult-ripgrep)
-         ("C-c l" . consult-locate)
          ;; C-x bindings (ctl-x-map)
          ("C-x M-:" . consult-complex-command)
          ("C-x b" . consult-buffer)
@@ -517,6 +516,7 @@
   :bind
   ("C-c a" . org-agenda)
   ("C-c c" . org-capture)
+  ("C-c l" . org-store-link)
   (:map org-mode-map
         ("C-'" . avy-goto-char-timer)
         ([f6] . org-latex-preview-with-argument))
