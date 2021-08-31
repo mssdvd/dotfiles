@@ -157,8 +157,7 @@
   :commands (modus-themes-load-themes)
   :bind ("C-c q" . modus-themes-toggle)
   :init
-  (setq modus-themes-bold-constructs t
-        modus-themes-completions 'opinionated
+  (setq modus-themes-completions 'opinionated
         modus-themes-headings '((t . (rainbow)))
         modus-themes-lang-checkers 'intense-foreground
         modus-themes-links '(faint)

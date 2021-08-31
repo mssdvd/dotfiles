@@ -13,13 +13,11 @@
               (_ 98))))
   (set-face-attribute 'default nil
                       :family "Iosevka Fixed"
-                      :weight 'semi-bold
                       :height size))
 
 (dolist (attr '(variable-pitch fixed-pitch))
   (set-face-attribute attr nil
                       :family "Iosevka Fixed"
-                      :weight 'semi-bold
                       :height 1.0))
 
 ;;; early-init.el ends here
