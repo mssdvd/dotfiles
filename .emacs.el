@@ -108,24 +108,24 @@
 
 
 ;;;;
-;; mssdvd functions
+;; Custom functions (prefixed with ~)
 ;;;;
 
-(defun mssdvd/ranger-launch-here ()
+(defun ~ranger-launch-here ()
   "Open the current file's directory in ranger."
   (interactive)
   (if default-directory
       (call-process-shell-command "foot ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
-(bind-key "C-c r" #'mssdvd/ranger-launch-here)
+(bind-key "C-c r" #'~ranger-launch-here)
 
-(defun mssdvd/yank-primary ()
+(defun ~yank-primary ()
   "Insert the primary selection at the position."
   (interactive)
   (let ((primary (gui-get-primary-selection)))
     (push-mark)
     (insert-for-yank primary)))
-(bind-key "S-<insert>" #'mssdvd/yank-primary)
+(bind-key "S-<insert>" #'~yank-primary)
 
 ;;;;
 ;; use-package
@@ -168,14 +168,14 @@
         modus-themes-italic-constructs t)
   (modus-themes-load-themes)
   :config
-  (defun mssdvd/modus-themes-custom-faces ()
+  (defun ~modus-themes-custom-faces ()
     (when (or (equal custom-enabled-themes '(modus-vivendi))
               (equal custom-enabled-themes '(modus-operandi)))
       (set-face-attribute 'elfeed-search-title-face nil
                           :foreground (modus-themes-color 'fg-alt))))
   (with-eval-after-load 'elfeed-search
-    (mssdvd/modus-themes-custom-faces)
-    (add-hook 'modus-themes-after-load-theme-hook #'mssdvd/modus-themes-custom-faces))
+    (~modus-themes-custom-faces)
+    (add-hook 'modus-themes-after-load-theme-hook #'~modus-themes-custom-faces))
   (modus-themes-load-vivendi))
 
 
@@ -257,7 +257,7 @@
 (use-package orderless
   :demand t
   :config
-  (defun mssdvd/orderless-dispatch (pattern _index _total)
+  (defun ~orderless-dispatch (pattern _index _total)
     (cond
      ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
      ((string-suffix-p "$" pattern) `(orderless-regexp . ,(concat (substring pattern 0 -1) "[\x100000-\x10FFFD]*$")))
@@ -288,7 +288,7 @@
         orderless-matching-styles '(orderless-literal
                                     orderless-regexp
                                     orderless-initialism)
-        orderless-style-dispatchers '(mssdvd/orderless-dispatch)))
+        orderless-style-dispatchers '(~orderless-dispatch)))
 
 (use-package savehist
   :init
@@ -361,11 +361,11 @@
           (when-let (project (project-current))
             (car (project-roots project)))))
 
-  (defvar mssdvd/consult-line-map
+  (defvar ~consult-line-map
     (let ((map (make-sparse-keymap)))
       (define-key map "\C-s" #'previous-history-element)
       map))
-  (consult-customize consult-line :keymap mssdvd/consult-line-map))
+  (consult-customize consult-line :keymap ~consult-line-map))
 
 (use-package consult-flycheck
   :demand t
@@ -520,9 +520,9 @@
   ("C-c l" . org-store-link)
   (:map org-mode-map
         ("C-'" . avy-goto-char-timer)
-        ([f6] . org-latex-preview-with-argument))
+        ([f6] . ~org-latex-preview-with-argument))
   :config
-  (defun org-latex-preview-with-argument ()
+  (defun ~org-latex-preview-with-argument ()
     (interactive)
     (setq current-prefix-arg '(16))
     (call-interactively #'org-latex-preview))
@@ -969,20 +969,19 @@
   (elfeed-search-title-max-width 100)
   :config
   (setq url-queue-timeout 30)
-                                        ; https://www.reddit.com/r/emacs/comments/7usz5q/youtube_subscriptions_using_elfeed_mpv_no_browser/dtpqra5/
-  (defun elfeed--play-with-mpv (entry)
+  (defun ~elfeed--play-with-mpv (entry)
     (elfeed-untag entry 'unread)
     (message "Sent to mpv: %s" (elfeed-entry-link entry))
     (start-process "elfeed-mpv" nil "mpv" "--speed=2.0" "--force-window=immediate" "--" (elfeed-entry-link entry)))
 
-  (defun mssdvd/elfeed-play-with-mpv ()
+  (defun ~elfeed-play-with-mpv ()
     "Play entry link with mpv."
     (interactive)
     (if (eq major-mode 'elfeed-show-mode)
-        (elfeed--play-with-mpv elfeed-show-entry)
+        (~elfeed--play-with-mpv elfeed-show-entry)
       (progn
         (cl-loop for entry in (elfeed-search-selected)
-                 do (elfeed--play-with-mpv entry))
+                 do (~elfeed--play-with-mpv entry))
         (mapc #'elfeed-search-update-entry (elfeed-search-selected))
         (forward-line)))))
 
@@ -1128,17 +1127,17 @@
                         (delq mode evil-collection-mode-list)))
    '(company calc))
   (evil-define-key 'normal elfeed-search-mode-map
-    "R" 'elfeed-search-fetch
-    "r" 'elfeed-search-update--force)
+                   "R" 'elfeed-search-fetch
+                   "r" 'elfeed-search-update--force)
   (evil-define-key '(normal visual) elfeed-search-mode-map "o" 'elfeed-search-browse-url)
   (evil-define-key 'normal elfeed-search-mode-map
-    "i" 'mssdvd/elfeed-play-with-mpv
-    "p" 'pocket-reader-elfeed-search-add-link)
+                   "i" '~elfeed-play-with-mpv
+                   "p" 'pocket-reader-elfeed-search-add-link)
   (evil-define-key 'normal elfeed-show-mode-map
-    "o" 'elfeed-show-visit
-    "r" 'elfeed-show-refresh
-    "i" 'mssdvd/elfeed-play-with-mpv
-    "p" 'pocket-reader-elfeed-entry-add-link)
+                   "o" 'elfeed-show-visit
+                   "r" 'elfeed-show-refresh
+                   "i" '~elfeed-play-with-mpv
+                   "p" 'pocket-reader-elfeed-entry-add-link)
   (evil-collection-init))
 
 ;; evil-lion
@@ -1222,7 +1221,7 @@
         notmuch-show-indent-messages-width 4)
   (setq-default notmuch-search-oldest-first nil)
 
-  (defun mssdvd/sync-email ()
+  (defun ~sync-email ()
     "Sync emails and update notmuch index"
     (interactive)
     (shell-command "systemctl --user start mbsync.service"))
