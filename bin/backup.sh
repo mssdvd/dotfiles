@@ -21,7 +21,7 @@ borg create                         \
     --exclude-caches                \
     --exclude '/home/*/.cache/*'    \
                                     \
-    ::'{hostname}-{now}'            \
+    ::{hostname}-{now}              \
     /etc                            \
     /home                           \
 
@@ -37,7 +37,7 @@ info "Pruning repository"
 borg prune                          \
     --list                          \
     --stats                         \
-    --prefix '{hostname}-'          \
+    --prefix {hostname}-            \
     --show-rc                       \
     --keep-daily    7               \
     --keep-weekly   4               \
