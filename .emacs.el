@@ -322,6 +322,7 @@
          ;; M-s bindings (search-map)
          ("M-s g" . consult-git-grep)
          ("M-s l" . consult-line)
+         ("M-s L" . consult-line-multi)
          ("M-s m" . consult-multi-occur)
          ("M-s k" . consult-keep-lines)
          ("M-s f" . consult-focus-lines)
