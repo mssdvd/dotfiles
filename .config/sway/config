@@ -276,6 +276,7 @@ exec {
     blueman-applet
     swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f; playerctl pause'
     exec_always pkill kanshi; exec kanshi
+    poweralertd
 
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 }
