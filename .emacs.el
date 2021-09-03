@@ -414,6 +414,7 @@ Intended as :after advice for `delete-file'."
   :hook (embark-collect-mode . embark-consult-preview-minor-mode))
 
 (use-package corfu
+  :disabled
   :straight '(corfu :host github
                     :repo "minad/corfu")
   :demand t
@@ -684,7 +685,6 @@ Intended as :after advice for `delete-file'."
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
-  :disabled
   :delight
   :demand t
   :bind
@@ -714,7 +714,8 @@ Intended as :after advice for `delete-file'."
   (setq company-quickhelp-use-propertized-text t))
 
 (use-package company-box
-  :disabled
+  :demand t
+  :after company
   :delight
   :config (setq company-box-doc-enable nil)
   :hook (company-mode . company-box-mode))
