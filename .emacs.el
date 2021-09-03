@@ -921,10 +921,6 @@ Intended as :after advice for `delete-file'."
 ;; https://github.com/jacktasia/dumb-jump
 (use-package dumb-jump)
 
-;; google-translate
-;; https://github.com/atykhonov/google-translate
-(use-package google-translate)
-
 ;; calc
 (use-package calc
   :bind
