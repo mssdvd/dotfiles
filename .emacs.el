@@ -679,6 +679,7 @@
    ("C-o" . company-show-location))
   :config
   (setq company-dabbrev-downcase nil
+        company-dabbrev-ignore-case t
         company-tooltip-align-annotations t
         company-show-quick-access t
         company-minimum-prefix-length 1
