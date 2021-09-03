@@ -44,9 +44,6 @@
 ;; change all prompts to y or n
 (setq use-short-answers t)
 
-;; revert buffer
-;; (bind-key "C-x m" #'revert-buffer)
-
 ;; enable up/down case
 (put 'upcase-region 'disabled nil)
 (put 'downcase-region 'disabled nil)
