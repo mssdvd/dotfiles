@@ -431,6 +431,8 @@ Intended as :after advice for `delete-file'."
 
 (use-package isearch
   :straight nil
+  :bind (:map isearch-mode-map
+              ([remap isearch-delete-char] . ~isearch-delete-something))
   :config
   (setq isearch-allow-scroll 'unlimited
         isearch-lax-whitespace t
@@ -439,7 +441,22 @@ Intended as :after advice for `delete-file'."
         isearch-wrap-pause 'no
         lazy-count-prefix-format nil
         lazy-count-suffix-format " (%s/%s)"
-        search-whitespace-regexp ".*?"))
+        search-whitespace-regexp ".*?")
+  (defun ~isearch-delete-something ()
+    "Delete non-matching text or the last character."
+    (interactive)
+    (if (= 0 (length isearch-string))
+        (ding)
+      (setq isearch-string
+            (substring isearch-string
+                       0
+                       (or (isearch-fail-pos) (1- (length isearch-string)))))
+      (setq isearch-message
+            (mapconcat #'isearch-text-char-description isearch-string "")))
+    (if isearch-other-end (goto-char isearch-other-end))
+    (isearch-search)
+    (isearch-push-state)
+    (isearch-update)))
 
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
