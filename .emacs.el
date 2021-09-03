@@ -1195,8 +1195,12 @@
 
 (use-package notmuch
   :straight (:type built-in)
+  :commands notmuch-search
   :bind
   ("C-c m" . notmuch)
+  ("C-c M" . (lambda ()
+               (interactive)
+               (notmuch-search "tag:unread" t)))
   :config
   (setq notmuch-address-use-company nil
         notmuch-draft-folder "dm@mssdvd.com/Drafts"
