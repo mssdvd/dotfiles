@@ -334,7 +334,6 @@ Intended as :after advice for `delete-file'."
          ("M-g k" . consult-global-mark)
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-project)
-         ("M-g e" . consult-error)
          ;; M-s bindings (search-map)
          ("M-s g" . consult-git-grep)
          ("M-s l" . consult-line)
