@@ -715,7 +715,6 @@ Intended as :after advice for `delete-file'."
         company-dabbrev-ignore-case t
         company-tooltip-align-annotations t
         company-show-quick-access t
-        company-minimum-prefix-length 1
         company-selection-wrap-around t)
   (global-company-mode)
   (company-tng-mode))
