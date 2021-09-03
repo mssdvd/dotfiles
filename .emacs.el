@@ -661,15 +661,6 @@ Intended as :after advice for `delete-file'."
         org-caldav-calendar-id "home"
         org-icalendar-timezone "Europe/Rome"))
 
-;; evil-org
-;; https://github.com/Somelauw/evil-org-mode
-(use-package evil-org
-  :disabled
-  :delight
-  :demand t
-  :after org evil
-  :hook (org-mode . evil-org-mode))
-
 ;; org-download
 ;; https://github.com/abo-abo/org-download
 (use-package org-download
@@ -708,7 +699,6 @@ Intended as :after advice for `delete-file'."
   (([remap indent-for-tab-command] . company-indent-or-complete-common)
    ("C-c y" . company-yasnippet)
    :map company-active-map
-   ("C-w" . backward-kill-word)
    ("C-o" . company-show-location))
   :config
   (setq company-dabbrev-downcase nil
@@ -994,6 +984,12 @@ Intended as :after advice for `delete-file'."
 (use-package elfeed
   :bind
   ("C-c e" . elfeed)
+  (:map elfeed-search-mode-map
+        ("i" . ~elfeed-play-with-mpv)
+        ("o" . 'pocket-reader-elfeed-search-add-link))
+  (:map elfeed-show-mode-map
+        ("i" . ~elfeed-play-with-mpv)
+        ("o" . 'pocket-reader-elfeed-search-add-link))
   :custom
   (elfeed-search-title-max-width 100)
   :config
@@ -1092,120 +1088,6 @@ Intended as :after advice for `delete-file'."
 (use-package repeat
   :demand t
   :config (repeat-mode))
-
-;;
-;; Evil
-;;
-
-;; evil-mode
-;; https://github.com/emacs-evil/evil
-(use-package evil
-  :disabled
-  :defer 1
-  :bind
-  (:map evil-ex-search-keymap
-        ("C-w" . backward-kill-word))
-  (:map evil-motion-state-map
-        ("C-6" . mode-line-other-buffer)
-        ("K" . man))
-  :init
-  (setq evil-search-module 'evil-search
-        evil-symbol-word-search t
-        evil-want-keybinding nil
-        evil-undo-system 'undo-tree)
-  :config
-  (setq evil-complete-next-func #'hippie-expand
-        evil-want-fine-undo t
-        evil-split-window-below t
-        evil-vsplit-window-right t)
-  (evil-set-initial-state 'ledger-reconcile-mode 'emacs)
-  (evil-mode 1))
-
-
-;; evil-goggles
-;; https://github.com/edkolev/evil-goggles
-(use-package evil-goggles
-  :disabled
-  :delight
-  :demand t
-  :after evil
-  :config
-  (setq evil-goggles-async-duration 0.9
-        evil-goggles-blocking-duration 0.1)
-  (evil-goggles-mode)
-  (evil-goggles-use-diff-faces))
-
-;; evil-surrond
-;; https://github.com/emacs-evil/evil-surround
-(use-package evil-surround
-  :disabled
-  :demand t
-  :after evil
-  :config (global-evil-surround-mode 1))
-
-;; evil-collection
-;; https://github.com/emacs-evil/evil-collection
-(use-package evil-collection
-  :disabled
-  :delight evil-collection-unimpaired-mode
-  :demand t
-  :after evil
-  :config
-  (mapc
-   (lambda (mode) (setq evil-collection-mode-list
-                        (delq mode evil-collection-mode-list)))
-   '(company calc))
-  (evil-define-key 'normal elfeed-search-mode-map
-                   "R" 'elfeed-search-fetch
-                   "r" 'elfeed-search-update--force)
-  (evil-define-key '(normal visual) elfeed-search-mode-map "o" 'elfeed-search-browse-url)
-  (evil-define-key 'normal elfeed-search-mode-map
-                   "i" '~elfeed-play-with-mpv
-                   "p" 'pocket-reader-elfeed-search-add-link)
-  (evil-define-key 'normal elfeed-show-mode-map
-                   "o" 'elfeed-show-visit
-                   "r" 'elfeed-show-refresh
-                   "i" '~elfeed-play-with-mpv
-                   "p" 'pocket-reader-elfeed-entry-add-link)
-  (evil-collection-init))
-
-;; evil-lion
-;; https://github.com/edkolev/evil-lion
-(use-package evil-lion
-  :disabled
-  :demand t
-  :after evil
-  :config (evil-lion-mode))
-
-;; evil-matchit
-;; https://github.com/redguardtoo/evil-matchit
-(use-package evil-matchit
-  :disabled
-  :demand t
-  :after evil
-  :config (global-evil-matchit-mode 1))
-
-;; evil-nerd-commenter
-;; https://github.com/redguardtoo/evil-nerd-commenter
-(use-package evil-nerd-commenter
-  :disabled
-  :demand t
-  :after evil
-  :bind ("M-;" . evilnc-comment-or-uncomment-lines)
-  :config (evilnc-default-hotkeys nil t))
-
-;; evil-numbers
-;; https://github.com/cofi/evil-numbers
-(use-package evil-numbers
-  :disabled
-  :demand t
-  :after evil
-  :bind
-  (("C-c +" . evil-numbers/inc-at-pt)
-   ("C-c -" . evil-numbers/dec-at-pt)
-   :map evil-normal-state-map
-   ("<kp-add>" . evil-numbers/inc-at-pt)
-   ("<kp-subtract>" . evil-numbers/dec-at-pt)))
 
 ;;
 ;; Mail
