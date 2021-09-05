@@ -1088,6 +1088,11 @@ Intended as :after advice for `delete-file'."
   :demand t
   :config (repeat-mode))
 
+(use-package follow
+  :bind (:map follow-mode-map
+              ([remap scroll-up-command] . follow-scroll-up)
+              ([remap scroll-down-command] . follow-scroll-down)))
+
 ;;
 ;; Mail
 ;;
