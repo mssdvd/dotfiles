@@ -488,7 +488,8 @@ Intended as :after advice for `delete-file'."
 ;; https://github.com/abo-abo/ace-window
 (use-package ace-window
   :bind ("M-o" . ace-window)
-  :config (setq aw-background nil))
+  :config (setq aw-background nil
+                aw-scope 'frame))
 
 ;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
