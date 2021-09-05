@@ -341,6 +341,7 @@ Intended as :after advice for `delete-file'."
          ("M-s s" . consult-isearch)
          ;; Other bindings
          ("C-c s" . consult-line)
+         ("C-c S" . consult-line-multi)
          ("M-y" . consult-yank-pop)
          ("<help> a" . consult-apropos)
          ;; Isearch integration
