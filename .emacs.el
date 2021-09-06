@@ -1167,7 +1167,7 @@ Intended as :after advice for `delete-file'."
   :commands (lsp lsp-deferred)
   :custom
   (lsp-keymap-prefix "C-c o")
-  (lsp-modeline-code-actions-segments '(count icon segments))
+  (lsp-modeline-code-actions-segments '(count icon name))
   (lsp-enable-semantic-highlighting t)
   :hook
   (c-mode . lsp)
