@@ -1172,7 +1172,8 @@ Intended as :after advice for `delete-file'."
   :hook
   (c-mode . lsp)
   (c++-mode . lsp)
-  (java-mode . lsp)
+  (java-mode . lsp-deferred)
+  (go-mode . lsp-deferred)
   (lsp-mode . lsp-enable-which-key-integration)
   (lsp-mode . lsp-modeline-code-actions-mode))
 
