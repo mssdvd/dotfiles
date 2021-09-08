@@ -705,6 +705,13 @@ Intended as :after advice for `delete-file'."
         company-tooltip-align-annotations t
         company-show-quick-access t
         company-selection-wrap-around t)
+
+  ;; Do not use orderless for company
+  (define-advice company-capf
+      (:around (orig-fun &rest args) set-completion-styles)
+    (let ((completion-styles '(basic partial-completion)))
+      (apply orig-fun args)))
+
   (global-company-mode)
   (company-tng-mode))
 
