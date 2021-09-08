@@ -812,10 +812,6 @@ Intended as :after advice for `delete-file'."
 ;; https://github.com/AndreaCrotti/yasnippet-snippets
 (use-package yasnippet-snippets)
 
-;; auto-yasnippet
-;; https://github.com/abo-abo/auto-yasnippet
-(use-package auto-yasnippet)
-
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
