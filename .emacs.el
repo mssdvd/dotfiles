@@ -1093,6 +1093,9 @@ Intended as :after advice for `delete-file'."
               ([remap scroll-up-command] . follow-scroll-up)
               ([remap scroll-down-command] . follow-scroll-down)))
 
+(use-package bookmark
+  :config (setq bookmark-save-flag 1))
+
 ;;
 ;; Mail
 ;;
