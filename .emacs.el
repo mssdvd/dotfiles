@@ -704,7 +704,8 @@ Intended as :after advice for `delete-file'."
         company-dabbrev-ignore-case t
         company-tooltip-align-annotations t
         company-show-quick-access t
-        company-selection-wrap-around t)
+        company-selection-wrap-around t
+        company-transformers '(company-sort-prefer-same-case-prefix))
 
   ;; Do not use orderless for company
   (define-advice company-capf
