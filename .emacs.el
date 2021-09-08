@@ -1164,7 +1164,7 @@ Intended as :after advice for `delete-file'."
 ;; lsp-mode
 ;; https://github.com/emacs-lsp/lsp-mode
 (use-package lsp-mode
-  :commands (lsp lsp-deferred)
+  :commands (lsp lsp-deferred lsp-format-buffer lsp-organize-imports)
   :custom
   (lsp-keymap-prefix "C-c o")
   (lsp-modeline-code-actions-segments '(count icon name))
@@ -1172,8 +1172,10 @@ Intended as :after advice for `delete-file'."
   :hook
   (c-mode . lsp)
   (c++-mode . lsp)
-  (java-mode . lsp-deferred)
-  (go-mode . lsp-deferred)
+  ((go-mode java-mode) . lsp-deferred)
+  ((go-mode java-mode) . (lambda ()
+                           (add-hook 'before-save-hook #'lsp-format-buffer t t)
+                           (add-hook 'before-save-hook #'lsp-organize-imports t t)))
   (lsp-mode . lsp-enable-which-key-integration)
   (lsp-mode . lsp-modeline-code-actions-mode))
 
