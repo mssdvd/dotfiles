@@ -848,6 +848,7 @@ Intended as :after advice for `delete-file'."
 ;; Dep poppler poppler-glibc
 (use-package pdf-tools
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
+  :config (setq pdf-annot-activate-created-annotations t)
   :hook (pdf-view-mode . pdf-tools-enable-minor-modes))
 
 ;; realgud
