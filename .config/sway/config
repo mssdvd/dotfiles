@@ -280,6 +280,6 @@ exec {
     dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 }
 
-exec_always pkill kanshi; exec kanshi
+exec_always "pkill kanshi; kanshi"
 
 include `hostname`
