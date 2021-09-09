@@ -301,7 +301,9 @@ Intended as :after advice for `delete-file'."
         orderless-matching-styles '(orderless-literal
                                     orderless-regexp
                                     orderless-initialism)
-        orderless-style-dispatchers '(~orderless-dispatch)))
+        orderless-style-dispatchers '(~orderless-dispatch)
+        read-file-name-completion-ignore-case t))
+
 
 (use-package savehist
   :init
