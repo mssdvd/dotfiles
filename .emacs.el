@@ -706,6 +706,7 @@ Intended as :after advice for `delete-file'."
         company-dabbrev-ignore-case t
         company-tooltip-align-annotations t
         company-show-quick-access t
+        company-search-regexp-function #'company-search-words-in-any-order-regexp
         company-selection-wrap-around t
         company-transformers '(company-sort-prefer-same-case-prefix))
 
