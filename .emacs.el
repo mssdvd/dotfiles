@@ -95,9 +95,6 @@
 ;; Do not ask to save before compilation
 (setq compilation-ask-about-save nil)
 
-;; Show parens mode
-(show-paren-mode)
-
 ;; Long lines slowdowns inhibitor
 (global-so-long-mode 1)
 
@@ -1103,6 +1100,10 @@ Intended as :after advice for `delete-file'."
 
 (use-package bookmark
   :config (setq bookmark-save-flag 1))
+
+(use-package paren
+  :defer 1
+  :config (show-paren-mode))
 
 ;;
 ;; Mail
