@@ -1122,12 +1122,13 @@ Intended as :after advice for `delete-file'."
 
 (use-package notmuch
   :straight (:type built-in)
-  :commands notmuch-search
+  :commands (notmuch notmuch-search)
   :bind
-  ("C-c m" . notmuch)
-  ("C-c M" . (lambda ()
+  ("C-c m" . (lambda ()
                (interactive)
-               (notmuch-search "tag:unread" t)))
+               (if (string= (shell-command-to-string "notmuch count tag:unread") "0\n")
+                   (notmuch)
+                 (notmuch-search "tag:unread" t))))
   :config
   (setq notmuch-address-use-company nil
         notmuch-draft-folder "dm@mssdvd.com/Drafts"
