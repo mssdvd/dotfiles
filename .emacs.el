@@ -1260,7 +1260,9 @@ Intended as :after advice for `delete-file'."
 
 ;; Go
 
-(use-package go-mode)
+(use-package go-mode
+  :bind (:map go-mode-map
+              ("C-c C-d" . godoc-at-point)))
 
 ;; Rust
 
