@@ -678,6 +678,55 @@ Intended as :after advice for `delete-file'."
   (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/"
         org-reveal-title-slide nil))
 
+;; org-roam
+(use-package org-roam
+  :bind (("C-c n l" . org-roam-buffer-toggle)
+         ("C-c n k" . org-roam-buffer-display-dedicated)
+         ("C-c n f" . org-roam-node-find)
+         ("C-c n g" . org-roam-graph)
+         ("C-c n r" . org-roam-ref-add)
+         ("C-c n t" . org-roam-tag-add)
+         ("C-c n i" . org-roam-node-insert)
+         ("C-c n c" . org-roam-capture))
+  :bind-keymap ("C-c n d" . org-roam-dailies-map)
+  :init
+  (setq org-roam-v2-ack t)
+  :config
+  (setq org-roam-capture-templates
+        '(("d" "default" plain "%?"
+           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+title: ${title}\n#+date: %U\n#+startup: latexpreview\n")
+           :unnarrowed t)
+
+          ("b" "book notes" plain
+           "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+title: ${title}\n#+date: %U\n")
+           :unnarrowed t))
+
+        org-roam-capture-ref-templates
+        '(("r" "ref" plain "%?"
+           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                              "#+title: ${title}\n#+date: %U\n")
+           :unnarrowed t))
+
+        org-roam-completion-everywhere t)
+  (org-roam-db-autosync-mode)
+  (require 'org-roam-protocol))
+
+;; org-roam-ui
+(use-package org-roam-ui
+  :straight
+  (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
+  :after org-roam
+  :bind ("C-c n u" . orui-open)
+  :config
+  (setq org-roam-ui-sync-theme t
+        org-roam-ui-follow t
+        org-roam-ui-update-on-save t
+        org-roam-ui-open-on-start t))
+
+
 ;; undo-tree
 (use-package undo-tree
   :delight
