@@ -1148,8 +1148,7 @@ Intended as :after advice for `delete-file'."
                                        ("authors" . "%-30s ")
                                        ("subject" . "%s ")
                                        ("tags" . "(%s)"))
-        notmuch-show-all-tags-list t
-        notmuch-show-indent-messages-width 4)
+        notmuch-show-all-tags-list t)
   (setq-default notmuch-search-oldest-first nil)
 
   (defun ~sync-email ()
