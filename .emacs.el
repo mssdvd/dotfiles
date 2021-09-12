@@ -1130,8 +1130,7 @@ Intended as :after advice for `delete-file'."
                    (notmuch)
                  (notmuch-search "tag:unread" t))))
   :config
-  (setq notmuch-address-use-company nil
-        notmuch-draft-folder "dm@mssdvd.com/Drafts"
+  (setq notmuch-draft-folder "dm@mssdvd.com/Drafts"
         notmuch-draft-tags '("+draft" "-inbox")
         notmuch-fcc-dirs
         '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
