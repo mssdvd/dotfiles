@@ -6,6 +6,7 @@ set {
     $right l
     $term foot
     $menu bemenu-run -p "run"
+    $wlsunset_toggle "if pgrep wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -T 4500 -t 2500 -l 45.9 -L 12.6; fi"
 }
 
 output {
@@ -120,7 +121,6 @@ bindcode --locked $mod+59 exec playerctl previous
 
 bindsym XF86Launch1 exec pkill buckle
 
-set $wlsunset_toggle "if pgrep wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -T 4500 -t 2500 -l 45.9 -L 12.6; fi"
 bindsym XF86Launch2 exec $wlsunset_toggle
 bindsym $mod+u exec $wlsunset_toggle
 
@@ -266,7 +266,7 @@ exec {
     mako
     ydotoold
     libinput-gestures-setup start
-    wlsunset -T 4500 -t 2500 -l 45.9 -L 12.6
+    $wlsunset_toggle
     /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
     nm-applet --indicator
     blueman-applet
