@@ -1,253 +1,268 @@
 set {
-    $mod Mod4
-    $left h
-    $down j
-    $up k
-    $right l
-    $term foot
-    $menu bemenu-run -p "run"
-    $wlsunset_toggle "if pgrep wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -T 4500 -t 2500 -l 45.9 -L 12.6; fi"
+	$mod Mod4
+	$term foot
+	$menu bemenu-run -p "run"
+	$wlsunset_toggle "if pgrep wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -T 4500 -t 2500 -l 45.9 -L 12.6; fi"
 }
 
 output {
-    "Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849"
-    * bg "#000000" solid_color subpixel rgb
+	"Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849"
+	* bg "#000000" solid_color subpixel rgb
 }
+
+input {
+	"type:touchpad" {
+		dwt enabled
+		tap enabled
+		natural_scroll enabled
+		middle_emulation enabled
+		pointer_accel 0.8
+	}
+	"type:pointer" pointer_accel 1
+	"type:keyboard" xkb_options "ctrl:swapcaps,compose:ralt"
+	"1278:32:PFU_Limited_HHKB-Classic" xkb_options "compose:ralt"
+	# Leopold FC980M PD
+	"1204:1296:HID_Keyboard_HID_Keyboard"  xkb_options "compose:ralt"
+	"1133:49971:Logitech_Gaming_Keyboard_G610" xkb_layout us-english-long-shift
+	"1149:32792:Kensington_Expert_Wireless_TB_Mouse" scroll_factor 2
+}
+
+# modes
 
 set $mode_display Toggle display output eDP-1 (e), DP-1 (d) | Rotate output (r), reset rotation (R)
 mode "$mode_display" {
-    bindsym e output eDP-1 toggle, mode "default"
-    bindsym d output DP-1 toggle, mode "default"
+	bindsym --to-code {
+		e output eDP-1 toggle, mode "default"
+		d output DP-1 toggle, mode "default"
 
-    bindsym r output - transform 90 anticlockwise
-    bindsym Shift+r output - transform 0
+		r output - transform 90 anticlockwise
+		Shift+r output - transform 0
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+		Return mode "default"
+		Escape mode "default"
+	}
 }
-bindsym $mod+n mode "$mode_display"
-bindsym XF86Display mode "$mode_display"
-
-bindsym XF86Tools output - transform 90 anticlockwise
-bindsym Shift+XF86Tools output - transform 0
-
-input {
-    "type:touchpad" {
-        dwt enabled
-        tap enabled
-        natural_scroll enabled
-        middle_emulation enabled
-        pointer_accel 0.8
-    }
-    "type:pointer" pointer_accel 1
-    "type:keyboard" xkb_options "ctrl:swapcaps,compose:ralt"
-    "1278:32:PFU_Limited_HHKB-Classic" xkb_options "compose:ralt"
-    # Leopold FC980M PD
-    "1204:1296:HID_Keyboard_HID_Keyboard"  xkb_options "compose:ralt"
-    "1133:49971:Logitech_Gaming_Keyboard_G610" xkb_layout us-english-long-shift
-    "1149:32792:Kensington_Expert_Wireless_TB_Mouse" scroll_factor 2
-}
-
-bindsym $mod+Return exec $term
-# bindsym $mod+Shift+Return exec $term --class $term_floating_window
-bindsym $mod+Shift+Return exec $term --app-id=$term_floating_window
-bindsym $mod+Shift+q kill
-bindsym $mod+Tab exec $menu
-floating_modifier $mod normal
-bindsym $mod+Shift+c reload
 
 set $mode_system System (l)ock, (e)xit, (s)uspend, (Shift+r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-    bindsym l exec swaylock -f && sleep 1, mode "default"
-    bindsym e exec emacsclient -e '(save-buffers-kill-emacs 1)', exit, mode "default"
-    bindsym s exec systemctl suspend, mode "default"
-    bindsym Shift+r exec "emacsclient -e '(save-buffers-kill-emacs 1)'; systemctl reboot", mode "default"
-    bindsym Shift+s exec "emacsclient -e '(save-buffers-kill-emacs 1)'; systemctl poweroff -i", mode "default"
+	bindsym --to-code {
+		l exec swaylock -f && sleep 1, mode "default"
+		e exec emacsclient -e '(save-buffers-kill-emacs 1)', exit, mode "default"
+		s exec systemctl suspend, mode "default"
+		Shift+r exec "emacsclient -e '(save-buffers-kill-emacs 1)'; systemctl reboot", mode "default"
+		Shift+s exec "emacsclient -e '(save-buffers-kill-emacs 1)'; systemctl poweroff -i", mode "default"
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
+		Return mode "default"
+		Escape mode "default"
+	}
 }
-bindsym $mod+Shift+e mode "$mode_system"
 
 set $mode_screenshot Screenshot copy (w)in, (s)creen, (a)rea, save (Shift+w)in, (Shift+s)creen, (Shift+a)rea, swapp(y)
 mode "$mode_screenshot" {
-    bindsym w exec grimshot --notify copy win; mode "default"
-    bindsym Shift+w exec grimshot --notify save win; mode "default"
-    bindsym s exec grimshot --notify copy screen; mode "default"
-    bindsym Shift+s exec grimshot --notify save screen; mode "default"
-    bindsym a exec grimshot --notify copy area; mode "default"
-    bindsym Shift+a exec grimshot --notify save area; mode "default"
-    bindsym y exec grim -g "$(slurp)" - | swappy -f -; mode "default"
+	bindsym --to-code {
+		w exec grimshot --notify copy win; mode "default"
+		Shift+w exec grimshot --notify save win; mode "default"
+		s exec grimshot --notify copy screen; mode "default"
+		Shift+s exec grimshot --notify save screen; mode "default"
+		a exec grimshot --notify copy area; mode "default"
+		Shift+a exec grimshot --notify save area; mode "default"
+		y exec grim -g "$(slurp)" - | swappy -f -; mode "default"
 
-    bindsym Return mode "default"
-    bindsym Escape mode "default"
-    bindsym Print mode "default"
+		Return mode "default"
+		Escape mode "default"
+		Print mode "default"
+	}
 }
-bindsym Print mode "$mode_screenshot"
 
 set $passthrough passthrough mode ($mod+Pause to leave)
 mode "$passthrough" {
-	bindsym $mod+Pause mode default
+	bindsym --to-code $mod+Pause mode default
 }
-bindsym $mod+Pause mode "$passthrough"
-
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym Shift+XF86MonBrightnessUp exec light -A 1
-bindsym $mod+o exec light -A 5
-bindsym $mod+Shift+o exec light -A 1
-bindsym XF86MonBrightnessDown exec light -U 5
-bindsym Shift+XF86MonBrightnessDown exec light -U 1
-bindsym $mod+i exec light -U 5
-bindsym $mod+Shift+i exec light -U 1
-
-bindsym --locked XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym --locked $mod+x exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym --locked XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym $mod+Shift+x exec pavucontrol
-bindsym --locked $mod+z exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym --locked XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym --locked $mod+c exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym --locked Shift+XF86AudioMute exec ~/bin/switch_audio_sink.sh
-bindsym --locked $mod+Shift+z exec ~/bin/switch_audio_sink.sh
-bindsym --locked XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
-
-bindsym --locked XF86AudioPlay exec playerctl play-pause
-bindcode --locked $mod+61 exec playerctl play-pause
-bindsym --locked XF86AudioStop exec playerctl stop
-bindsym --locked XF86AudioNext exec playerctl next
-bindcode --locked $mod+60 exec playerctl next
-bindsym --locked XF86AudioPrev exec playerctl previous
-bindcode --locked $mod+59 exec playerctl previous
-
-bindsym XF86Launch1 exec pkill buckle
-
-bindsym XF86Launch2 exec $wlsunset_toggle
-bindsym $mod+u exec $wlsunset_toggle
-
-# bindsym $mod+Bracketleft exec firefox
-bindcode $mod+34 exec firefox
-# bindsym $mod+Shift+Bracketleft exec firefox --private-window
-bindcode $mod+Shift+34 exec firefox --private-window
-# bindsym $mod+Backslash exec $term -e ranger
-bindcode $mod+51 exec $term ranger
-# bindsym $mod+Shift+Backslash exec kitty -e ranger --cmd=fzf_select
-bindcode $mod+Shift+51 exec pcmanfm-qt
-# bindsym $mod+Bracketright exec emacsclient -c -a ''
-bindcode $mod+35 exec emacsclient -c -a ''
-
-# bindsym $mod+p exec passmenu --type
-bindcode $mod+Shift+48 exec evince
-bindcode $mod+48 exec zathura
-bindsym $mod+m exec ~/bin/play_in_mpv.sh
-bindsym $mod+Shift+m exec ~/bin/play_in_mpv.sh --vid=no
-bindsym $mod+q exec emacs_calc.sh
-bindcode $mod+47 exec emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar
-bindcode $mod+Shift+47 exec $term aerc
-bindsym $mod+g exec makoctl invoke
-bindsym $mod+$left focus left
-bindsym $mod+$down focus down
-bindsym $mod+$up focus up
-bindsym $mod+$right focus right
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
-
-bindsym $mod+Shift+$left move left 50px
-bindsym $mod+Shift+$down move down 50px
-bindsym $mod+Shift+$up move up 50px
-bindsym $mod+Shift+$right move right 50px
-bindsym $mod+Shift+Left move left 50px
-bindsym $mod+Shift+Down move down 50px
-bindsym $mod+Shift+Up move up 50px
-bindsym $mod+Shift+Right move right 50px
-
-bindsym $mod+1 workspace number 1
-bindsym $mod+2 workspace number 2
-bindsym $mod+3 workspace number 3
-bindsym $mod+4 workspace number 4
-bindsym $mod+5 workspace number 5
-bindsym $mod+6 workspace number 6
-bindsym $mod+7 workspace number 7
-bindsym $mod+8 workspace number 8
-bindsym $mod+9 workspace number 9
-bindsym $mod+0 workspace number 10
-
-bindsym $mod+Shift+1 move container to workspace number 1
-bindsym $mod+Shift+2 move container to workspace number 2
-bindsym $mod+Shift+3 move container to workspace number 3
-bindsym $mod+Shift+4 move container to workspace number 4
-bindsym $mod+Shift+5 move container to workspace number 5
-bindsym $mod+Shift+6 move container to workspace number 6
-bindsym $mod+Shift+7 move container to workspace number 7
-bindsym $mod+Shift+8 move container to workspace number 8
-bindsym $mod+Shift+9 move container to workspace number 9
-bindsym $mod+Shift+0 move container to workspace number 10
-
-workspace_auto_back_and_forth yes
-
-bindcode $mod+49 workspace back_and_forth
-
-bindsym $mod+b splith
-bindsym $mod+v splitv
-
-bindsym $mod+s layout stacking
-bindsym $mod+w layout tabbed
-bindsym $mod+e layout toggle split
-
-bindsym $mod+f fullscreen
-
-bindsym $mod+Shift+space floating toggle
-
-bindsym $mod+space focus mode_toggle
-
-bindsym $mod+a focus parent
-
-bindsym $mod+d focus child
-
-bindsym $mod+Shift+equal floating enable; sticky toggle
-bindsym $mod+equal sticky toggle
-
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
-
-bindsym $mod+t exec i3_balance_workspace
-bindsym $mod+Shift+t exec i3_balance_workspace --scope focus
-
-bindsym $mod+p exec passmenu
 
 mode "resize" {
-    bindsym {
-        $left resize shrink width 50px
-        $down resize grow height 50px
-        $up resize shrink height 50px
-        $right resize grow width 50px
+	bindsym {
+		h resize shrink width 50px
+		j resize grow height 50px
+		k resize shrink height 50px
+		l resize grow width 50px
 
-        Left resize shrink width 50px
-        Down resize grow height 50px
-        Up resize shrink height 50px
-        Right resize grow width 50px
+		Left resize shrink width 50px
+		Down resize grow height 50px
+		Up resize shrink height 50px
+		Right resize grow width 50px
 
-        t exec i3_balance_workspace
-        Shift+t exec i3_balance_workspace --scope focus
+		t exec i3_balance_workspace
+		Shift+t exec i3_balance_workspace --scope focus
 
-        Return mode "default"
-        Escape mode "default"
-        r mode "default"
-        grave mode "default"
-     }
+		Return mode "default"
+		Escape mode "default"
+		r mode "default"
+		grave mode "default"
+	 }
 }
-bindsym $mod+r mode "resize"
+
+
+# bindsym
+
+bindsym --to-code {
+	$mod+n mode "$mode_display"
+	XF86Display mode "$mode_display"
+	$mod+Shift+e mode "$mode_system"
+	Print mode "$mode_screenshot"
+	$mod+Pause mode "$passthrough"
+	$mod+r mode "resize"
+
+	XF86Tools output - transform 90 anticlockwise
+	Shift+XF86Tools output - transform 0
+
+	$mod+Return exec $term
+	# $mod+Shift+Return exec $term --class $term_floating_window
+	$mod+Shift+Return exec $term --app-id=$term_floating_window
+	$mod+Shift+q kill
+	$mod+Tab exec $menu
+
+	$mod+Shift+c reload
+
+	XF86MonBrightnessUp exec light -A 5
+	Shift+XF86MonBrightnessUp exec light -A 1
+	$mod+o exec light -A 5
+	$mod+Shift+o exec light -A 1
+	XF86MonBrightnessDown exec light -U 5
+	Shift+XF86MonBrightnessDown exec light -U 1
+	$mod+i exec light -U 5
+	$mod+Shift+i exec light -U 1
+
+	$mod+Shift+x exec pavucontrol
+
+	--locked {
+		XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+		$mod+x exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+		XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+		$mod+z exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+		XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+		$mod+c exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+		Shift+XF86AudioMute exec ~/bin/switch_audio_sink.sh
+		$mod+Shift+z exec ~/bin/switch_audio_sink.sh
+		XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
+
+		XF86AudioPlay exec playerctl play-pause
+		$mod+Slash exec playerctl play-pause
+		XF86AudioStop exec playerctl stop
+		XF86AudioNext exec playerctl next
+		$mod+Period exec playerctl next
+		XF86AudioPrev exec playerctl previous
+		$mod+Comma exec playerctl previous
+	}
+
+
+	XF86Launch1 exec pkill buckle
+
+	XF86Launch2 exec $wlsunset_toggle
+	$mod+u exec $wlsunset_toggle
+
+	$mod+Bracketleft exec firefox
+	$mod+Shift+Bracketleft exec firefox --private-window
+	$mod+Backslash exec $term ranger
+	$mod+Shift+Backslash exec pcmanfm-qt
+	$mod+Bracketright exec emacsclient -c -a ''
+
+	# $mod+p exec passmenu --type
+	$mod+Shift+apostrophe exec evince
+	$mod+apostrophe exec zathura
+	$mod+m exec ~/bin/play_in_mpv.sh
+	$mod+Shift+m exec ~/bin/play_in_mpv.sh --vid=no
+	$mod+q exec emacs_calc.sh
+	$mod+Semicolon exec emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar
+	$mod+Shift+Semicolon exec $term aerc
+	$mod+g exec makoctl invoke
+
+	$mod+h focus left
+	$mod+j focus down
+	$mod+k focus up
+	$mod+l focus right
+	$mod+Left focus left
+	$mod+Down focus down
+	$mod+Up focus up
+	$mod+Right focus right
+
+	$mod+Shift+h move left 50px
+	$mod+Shift+j move down 50px
+	$mod+Shift+k move up 50px
+	$mod+Shift+l move right 50px
+	$mod+Shift+Left move left 50px
+	$mod+Shift+Down move down 50px
+	$mod+Shift+Up move up 50px
+	$mod+Shift+Right move right 50px
+
+	# focus workspace
+	$mod+1 workspace number 1
+	$mod+2 workspace number 2
+	$mod+3 workspace number 3
+	$mod+4 workspace number 4
+	$mod+5 workspace number 5
+	$mod+6 workspace number 6
+	$mod+7 workspace number 7
+	$mod+8 workspace number 8
+	$mod+9 workspace number 9
+	$mod+0 workspace number 10
+
+	# move focused container to workspace
+	$mod+Shift+1 move container to workspace number 1
+	$mod+Shift+2 move container to workspace number 2
+	$mod+Shift+3 move container to workspace number 3
+	$mod+Shift+4 move container to workspace number 4
+	$mod+Shift+5 move container to workspace number 5
+	$mod+Shift+6 move container to workspace number 6
+	$mod+Shift+7 move container to workspace number 7
+	$mod+Shift+8 move container to workspace number 8
+	$mod+Shift+9 move container to workspace number 9
+	$mod+Shift+0 move container to workspace number 10
+
+	$mod+grave workspace back_and_forth
+
+	$mod+b splith
+	$mod+v splitv
+
+	$mod+s layout stacking
+	$mod+w layout tabbed
+	$mod+e layout toggle split
+
+	$mod+f fullscreen
+
+	$mod+Shift+space floating toggle
+
+	$mod+space focus mode_toggle
+
+	$mod+a focus parent
+
+	$mod+d focus child
+
+	$mod+Shift+equal floating enable; sticky toggle
+	$mod+equal sticky toggle
+
+	$mod+Shift+minus move scratchpad
+	$mod+minus scratchpad show
+
+	$mod+t exec i3_balance_workspace
+	$mod+Shift+t exec i3_balance_workspace --scope focus
+
+	$mod+p exec passmenu
+
+}
+
+
+floating_modifier $mod normal
+workspace_auto_back_and_forth yes
 
 
 bar {
-    position bottom
+	position bottom
 
-    swaybar_command waybar
-    colors {
-        statusline #ffffff
-        background #000000
-    }
+	swaybar_command waybar
+	colors {
+		statusline #ffffff
+		background #000000
+	}
 }
 
 hide_edge_borders vertical
@@ -255,25 +270,25 @@ hide_edge_borders vertical
 seat * hide_cursor 10000
 
 for_window {
-    [title="(?i)^picture-in-picture"] floating enable, sticky enable
-    [title="Firefox — Sharing Indicator"] floating enable
-    [title="Firefox — Sharing Indicator"] no_focus
-    [app_id="floating_window"] floating enable
-    [class="floating_window"] floating enable
+	[title="(?i)^picture-in-picture"] floating enable, sticky enable
+	[title="Firefox — Sharing Indicator"] floating enable
+	[title="Firefox — Sharing Indicator"] no_focus
+	[app_id="floating_window"] floating enable
+	[class="floating_window"] floating enable
 }
 
 exec {
-    mako
-    ydotoold
-    libinput-gestures-setup start
-    $wlsunset_toggle
-    /usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
-    nm-applet --indicator
-    blueman-applet
-    swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f; playerctl pause'
-    poweralertd
+	mako
+	ydotoold
+	libinput-gestures-setup start
+	$wlsunset_toggle
+	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
+	nm-applet --indicator
+	blueman-applet
+	swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f; playerctl pause'
+	poweralertd
 
-    dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
+	dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 }
 
 exec_always "pkill kanshi; kanshi"
