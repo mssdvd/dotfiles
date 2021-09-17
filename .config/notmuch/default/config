@@ -1,5 +1,3 @@
-[database]
-
 [user]
 primary_email=dm@mssdvd.com
 other_email=d.masserut@gmail.com;dmasserut@pec.it;
@@ -9,5 +7,3 @@ tags=new;
 
 [search]
 exclude_tags=deleted;spam;
-
-[maildir]
