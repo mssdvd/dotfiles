@@ -1159,6 +1159,7 @@ Intended as :after advice for `delete-file'."
 ;;
 
 (setq mail-specify-envelope-from t
+      mail-user-agent 'notmuch-user-agent
       user-mail-address "dm@mssdvd.com")
 
 (use-package message
