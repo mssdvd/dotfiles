@@ -98,6 +98,9 @@
 ;; Long lines slowdowns inhibitor
 (global-so-long-mode 1)
 
+;; Save existing clipboard text into kill ring before replacing it
+(setq save-interprogram-paste-before-kill t)
+
 (setq enable-recursive-minibuffers t)
 
 
