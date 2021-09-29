@@ -180,17 +180,7 @@ Intended as :after advice for `delete-file'."
         modus-themes-region '(bg-only)
         modus-themes-italic-constructs t)
   (modus-themes-load-themes)
-  :config
-  (defun ~modus-themes-custom-faces ()
-    (when (or (equal custom-enabled-themes '(modus-vivendi))
-              (equal custom-enabled-themes '(modus-operandi)))
-      (set-face-attribute 'elfeed-search-title-face nil
-                          :foreground (modus-themes-color 'fg-alt))))
-  (with-eval-after-load 'elfeed-search
-    (~modus-themes-custom-faces)
-    (add-hook 'modus-themes-after-load-theme-hook #'~modus-themes-custom-faces))
-  (modus-themes-load-vivendi))
-
+  :config (modus-themes-load-vivendi))
 
 (use-package elec-pair
   :defer 1
