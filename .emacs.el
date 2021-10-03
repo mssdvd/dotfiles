@@ -182,6 +182,16 @@ Intended as :after advice for `delete-file'."
   (modus-themes-load-themes)
   :config (modus-themes-load-vivendi))
 
+(use-package simple
+  :straight nil
+  :bind
+  ([remap count-words-region] . count-words)
+  ([remap just-one-space] . cycle-spacing)
+  ([remap upcase-word] . upcase-dwim)
+  ([remap downcase-word] . downcase-dwim)
+  ([remap capitalize-word] . capitalize-dwim)
+  ([remap count-words-region] . count-words))
+
 (use-package elec-pair
   :defer 1
   :config
