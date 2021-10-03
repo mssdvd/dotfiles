@@ -575,7 +575,7 @@ Intended as :after advice for `delete-file'."
                                 ("y" "Add YouTube channel" entry
                                  (file+olp "~/.emacs.d/var/elfeed/rmh-elfeed.org"
                                            "Web" "Youtube")
-                                 "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Inset channel name}]]")
+                                 "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Insert channel name}]]")
 
                                 ("s" "New activity log" entry
                                  (file+olp+datetree "~/org/activities.org"
