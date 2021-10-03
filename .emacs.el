@@ -29,12 +29,6 @@
   (straight-use-package 'use-package))
 
 
-;; enable column number
-(column-number-mode t)
-
-;; display size of the buffer
-(size-indication-mode t)
-
 ;; disable cursor blinking
 (blink-cursor-mode 0)
 
@@ -43,10 +37,6 @@
 
 ;; change all prompts to y or n
 (setq use-short-answers t)
-
-;; enable up/down case
-(put 'upcase-region 'disabled nil)
-(put 'downcase-region 'disabled nil)
 
 ;; enable narrow-to-region
 (put 'narrow-to-region 'disabled nil)
@@ -86,9 +76,6 @@
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
 
-;; Delete trailing whitespace before save
-(add-hook 'before-save-hook #'delete-trailing-whitespace)
-
 ;; Prefer newer files
 (setq load-prefer-newer t)
 
@@ -98,8 +85,6 @@
 ;; Long lines slowdowns inhibitor
 (global-so-long-mode 1)
 
-;; Save existing clipboard text into kill ring before replacing it
-(setq save-interprogram-paste-before-kill t)
 
 (setq enable-recursive-minibuffers t)
 
@@ -190,7 +175,19 @@ Intended as :after advice for `delete-file'."
   ([remap upcase-word] . upcase-dwim)
   ([remap downcase-word] . downcase-dwim)
   ([remap capitalize-word] . capitalize-dwim)
-  ([remap count-words-region] . count-words))
+  ([remap count-words-region] . count-words)
+  :config
+  (setq
+   ;; Save existing clipboard text into kill ring before replacing it
+   save-interprogram-paste-before-kill t
+   ;; Hide commands in M-x which do not work in the current mode
+   read-extended-command-predicate #'command-completion-default-include-p)
+
+  ;; enable column number
+  (column-number-mode 1)
+  ;; display size of the buffer
+  (size-indication-mode 1)
+  :hook (before-save . delete-trailing-whitespace))
 
 (use-package elec-pair
   :defer 1
