@@ -270,9 +270,8 @@ hide_edge_borders vertical
 seat * hide_cursor 10000
 
 for_window {
-	[title="(?i)^picture-in-picture"] floating enable, sticky enable
-	[title="Firefox — Sharing Indicator"] floating enable
-	[title="Firefox — Sharing Indicator"] no_focus
+	[app_id="firefox" title="(?i)^picture-in-picture"] floating enable, sticky enable
+	[app_id="firefox" title="Firefox — Sharing Indicator"] floating enable, kill
 	[app_id="floating_window"] floating enable
 	[class="floating_window"] floating enable
 }
