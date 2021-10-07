@@ -395,7 +395,7 @@ Intended as :after advice for `delete-file'."
 (use-package embark
   :demand t
   :bind
-  ("C-," . embark-act)
+  ("C-." . embark-act)
   ("C-h B" . embark-bindings)
   :init
   (setq prefix-help-command #'embark-prefix-help-command)
