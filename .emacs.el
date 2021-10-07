@@ -408,7 +408,7 @@ Intended as :after advice for `delete-file'."
 (use-package embark-consult
   :demand t
   :after (embark consult)
-  :hook (embark-collect-mode . embark-consult-preview-minor-mode))
+  :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package corfu
   :disabled
