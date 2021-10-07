@@ -398,12 +398,7 @@ Intended as :after advice for `delete-file'."
   ("C-." . embark-act)
   ("C-h B" . embark-bindings)
   :init
-  (setq prefix-help-command #'embark-prefix-help-command)
-  :config
-  (add-to-list 'display-buffer-alist
-               '("\\`\\*Embark Collect \\(Live\\|Completions\\)\\*"
-                 nil
-                 (window-parameters (mode-line-format . none)))))
+  (setq prefix-help-command #'embark-prefix-help-command))
 
 (use-package embark-consult
   :demand t
