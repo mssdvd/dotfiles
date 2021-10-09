@@ -55,7 +55,8 @@
 ;; support PKGBUILD
 (add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
 
-;; disable this fucking keybind
+;; remove suspend-frame binding
+(global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-z"))
 
 ;; replace zap-to-char with zap-up-to-char
