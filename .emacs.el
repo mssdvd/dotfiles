@@ -190,6 +190,10 @@ Intended as :after advice for `delete-file'."
   (size-indication-mode 1)
   :hook (before-save . delete-trailing-whitespace))
 
+(use-package window
+  :straight nil
+  :config (setq scroll-preserve-screen-position t))
+
 (use-package elec-pair
   :defer 1
   :config
