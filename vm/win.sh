@@ -32,4 +32,8 @@ qemu-system-x86_64 \
     -drive driver=qcow2,file="$VM_DIR"/win11.qcow2,if=virtio,aio=native,cache.direct=on,l2-cache-size=8M \
     "$@"
 
-exec spicy --title Windows --uri="spice+unix:///tmp/vm_spice.socket"
+# TODO: switch to remote-viewer when a new release of virt-viewer is
+#       released.  Currently remote-viewer doesn't support keyboard
+#       grab inhibition.
+spicy --title Windows --uri="spice+unix:///tmp/vm_spice.socket"
+#       grab inhibition.  Consider using -display spice-app option.
