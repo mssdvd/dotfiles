@@ -1,4 +1,4 @@
-#!/bin/bash
+#!/bin/sh
 
 VM_DIR="$HOME/vm"
 
