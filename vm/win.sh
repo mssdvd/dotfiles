@@ -1,6 +1,6 @@
 #!/bin/sh
 
-VM_DIR="$HOME/vm"
+VM_DIR=$HOME/vm
 SPICE_SOCKET=/tmp/win_spice.socket
 MONITOR_SOCKET=/tmp/win_monitor.socket
 
