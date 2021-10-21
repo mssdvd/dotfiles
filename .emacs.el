@@ -86,6 +86,9 @@
 ;; Long lines slowdowns inhibitor
 (global-so-long-mode 1)
 
+;; Disable bell
+(setq ring-bell-function 'ignore)
+
 
 (setq enable-recursive-minibuffers t)
 
