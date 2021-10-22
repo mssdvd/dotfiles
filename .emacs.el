@@ -360,7 +360,7 @@ Intended as :after advice for `delete-file'."
          ("M-s L" . consult-line-multi))
   :init
   (setq register-preview-delay 0
-        register-preview-function #'consult-register-preview)
+        register-preview-function #'consult-register-format)
   (advice-add #'register-preview :override #'consult-register-window)
   (setq xref-show-xrefs-function #'consult-xref
         xref-show-definitions-function #'consult-xref)
