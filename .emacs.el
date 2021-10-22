@@ -537,6 +537,14 @@ Intended as :after advice for `delete-file'."
 (use-package rainbow-delimiters
   :hook (prog-mode . rainbow-delimiters-mode))
 
+;; highlight-parentheses
+;; https://sr.ht/~tsdh/highlight-parentheses.el/
+(use-package highlight-parentheses
+  :delight
+  :hook
+  (prog-mode . highlight-parentheses-mode)
+  (minibuffer-setup . highlight-parentheses-minibuffer-setup))
+
 ;; rainbow-mode
 ;; https://elpa.gnu.org/packages/rainbow-mode.html
 (use-package rainbow-mode
