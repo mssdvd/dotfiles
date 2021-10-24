@@ -835,11 +835,7 @@ Intended as :after advice for `delete-file'."
 
 ;; gitconfig-mode
 ;; https://github.com/magit/git-modes
-(use-package gitconfig-mode)
-
-;; gitignore-mode
-;; https://github.com/magit/git-modes
-(use-package gitignore-mode)
+(use-package git-modes)
 
 ;; diff-hl
 ;; https://github.com/dgutov/diff-hl
