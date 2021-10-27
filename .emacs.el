@@ -345,17 +345,17 @@ Intended as :after advice for `delete-file'."
          ("M-s m" . consult-multi-occur)
          ("M-s k" . consult-keep-lines)
          ("M-s f" . consult-focus-lines)
-         ("M-s s" . consult-isearch)
+         ("M-s s" . consult-isearch-history)
          ;; Other bindings
          ("C-c s" . consult-line)
          ("C-c S" . consult-line-multi)
          ("M-y" . consult-yank-pop)
          ("<help> a" . consult-apropos)
          ;; Isearch integration
-         ("M-s e" . consult-isearch)
+         ("M-s e" . consult-isearch-history)
          :map isearch-mode-map
-         ("M-e" . consult-isearch)
-         ("M-s e" . consult-isearch)
+         ("M-e" . consult-isearch-history)
+         ("M-s e" . consult-isearch-history)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi))
   :init
