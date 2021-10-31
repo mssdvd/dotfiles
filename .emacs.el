@@ -904,6 +904,10 @@ Intended as :after advice for `delete-file'."
 (use-package pdf-tools
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :config (setq pdf-annot-activate-created-annotations t)
+  :bind
+  (:map pdf-view-mode-map
+        ("]" . pdf-view-scroll-up-or-next-page)
+        ("[" . pdf-view-scroll-down-or-previous-page))
   :hook (pdf-view-mode . pdf-tools-enable-minor-modes))
 
 ;; realgud
