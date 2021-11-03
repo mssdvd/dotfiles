@@ -270,7 +270,9 @@ Intended as :after advice for `delete-file'."
                    #'completion--in-region)
                  args)))
   (vertico-mouse-mode 1)
-  :hook (rfn-eshadow-update-overlay . vertico-directory-tidy))
+  :hook
+  (rfn-eshadow-update-overlay . vertico-directory-tidy)
+  (minibuffer-setup . vertico-repeat-save))
 
 (use-package orderless
   :demand t
