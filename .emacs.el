@@ -1165,8 +1165,8 @@ Intended as :after advice for `delete-file'."
   :config (setq bookmark-save-flag 1))
 
 (use-package paren
+  :config (setq show-paren-context-when-offscreen t))
   :defer 1
-  :config (show-paren-mode))
 
 ;;
 ;; Mail
