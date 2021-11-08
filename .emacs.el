@@ -632,6 +632,7 @@ Intended as :after advice for `delete-file'."
         org-refile-use-outline-path 'file
         org-return-follows-link t
         org-show-context-detail (append '((tags-tree . local)) org-show-context-detail)
+        org-use-speed-commands t
         org-startup-folded t
         org-startup-with-inline-images t
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "REDO(r)" "|" "DONE(d)" "CANCELED(c)"))
