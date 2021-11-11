@@ -161,7 +161,6 @@ Intended as :after advice for `delete-file'."
   :bind ("C-c q" . modus-themes-toggle)
   :init
   (setq modus-themes-completions 'opinionated
-        modus-themes-headings '((t . (rainbow)))
         modus-themes-lang-checkers 'intense-foreground
         modus-themes-links '(faint)
         modus-themes-org-blocks 'gray-background
