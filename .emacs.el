@@ -1173,7 +1173,6 @@ Intended as :after advice for `delete-file'."
 ;;
 
 (setq mail-specify-envelope-from t
-      mail-user-agent 'notmuch-user-agent
       user-mail-address "dm@mssdvd.com")
 
 (use-package message
@@ -1194,7 +1193,8 @@ Intended as :after advice for `delete-file'."
                    (notmuch)
                  (notmuch-search "tag:unread" t))))
   :config
-  (setq notmuch-draft-folder "dm@mssdvd.com/Drafts"
+  (setq mail-user-agent 'notmuch-user-agent
+        notmuch-draft-folder "dm@mssdvd.com/Drafts"
         notmuch-draft-tags '("+draft" "-inbox")
         notmuch-fcc-dirs
         '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
