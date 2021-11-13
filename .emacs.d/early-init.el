@@ -4,10 +4,13 @@
 
 (setq gc-cons-threshold #x40000000)
 
-(setq package-enable-at-startup nil
-      default-frame-alist '((tool-bar-lines . 0)
-                            (menu-bar-lines . 0)
-                            (vertical-scroll-bars . nil)))
+(setq package-enable-at-startup nil)
+
+(menu-bar-mode -1)
+(tool-bar-mode -1)
+(scroll-bar-mode -1)
+(horizontal-scroll-bar-mode -1)
+
 (let ((size (pcase (system-name)
               ("T480s" 181)
               (_ 98))))
