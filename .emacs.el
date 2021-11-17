@@ -28,6 +28,11 @@
         straight-use-package-by-default t)
   (straight-use-package 'use-package))
 
+(setq native-comp-compiler-options
+      `("-O2" "-mtune=native"
+        ,(concat "-march="
+                 (string-trim-right
+                  (shell-command-to-string "cat -v /sys/devices/cpu/caps/pmu_name")))))
 
 ;; disable cursor blinking
 (blink-cursor-mode 0)
