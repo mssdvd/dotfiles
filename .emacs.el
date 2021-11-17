@@ -538,7 +538,8 @@ Intended as :after advice for `delete-file'."
 
 (use-package saveplace
   :demand t
-  :config (save-place-mode 1))
+  :config (save-place-mode 1)
+  :custom (save-place-limit 800))
 
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
