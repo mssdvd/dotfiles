@@ -267,6 +267,7 @@ Intended as :after advice for `delete-file'."
   :config
   (setq vertico-cycle t
         vertico-quick1 "asdfghjkl;"
+        vertico-scroll-margin (/ vertico-count 2)
         completion-in-region-function
         (lambda (&rest args)
           (apply (if vertico-mode
