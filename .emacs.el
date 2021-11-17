@@ -541,6 +541,12 @@ Intended as :after advice for `delete-file'."
   :config (save-place-mode 1)
   :custom (save-place-limit 800))
 
+;; saveplace-pdf-view
+;; https://github.com/nicolaisingh/saveplace-pdf-view
+(use-package saveplace-pdf-view
+  :demand t
+  :after saveplace)
+
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
