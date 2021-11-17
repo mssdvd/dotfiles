@@ -1,5 +1,7 @@
 set fish_greeting
 
+fish_add_path $HOME/{.local/bin, bin, .cargo/bin, go/bin}
+
 set -gx EDITOR emacsclient -t -a ''
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null
