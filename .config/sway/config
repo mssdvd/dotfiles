@@ -154,9 +154,6 @@ bindsym --to-code {
 		$mod+Comma exec playerctl previous
 	}
 
-
-	XF86Launch1 exec pkill buckle
-
 	XF86Launch2 exec $wlsunset_toggle
 	$mod+u exec $wlsunset_toggle
 
