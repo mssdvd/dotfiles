@@ -513,6 +513,7 @@ Intended as :after advice for `delete-file'."
   :defer 1
   :config
   (setq flycheck-global-modes '(not org-mode)
+        flycheck-mode-line-prefix "FC"
         flycheck-emacs-lisp-load-path 'inherit)
   (global-flycheck-mode))
 
