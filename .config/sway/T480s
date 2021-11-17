@@ -7,6 +7,8 @@ exec_always sway_check_lid_state.sh
 
 seat * xcursor_theme Adwaita 36
 
+input "1267:32:Elan_TrackPoint" pointer_accel 0.5
+
 output "Ancor Communications Inc ASUS MX239 EBLMTJ030694" position 0 0
 output "Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849" position 1920 0
 output eDP-1 position 5760 0 scale 1
