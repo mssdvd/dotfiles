@@ -398,7 +398,7 @@ Intended as :after advice for `delete-file'."
   :commands marginalia-mode
   :bind
   (:map minibuffer-local-map
-        ("C-M-a" . marginalia-cycle))
+        ("M-A" . marginalia-cycle))
   :init (marginalia-mode))
 
 (use-package embark
