@@ -247,6 +247,9 @@ Intended as :after advice for `delete-file'."
                 '(("\.pdf$" "zathura")
                   ("\.mp4$" "mpv"))))
 
+(use-package wdired
+  :custom (wdired-allow-to-change-permissions t))
+
 (use-package vertico
   :straight
   (:host github :repo "minad/vertico" :files (:defaults "extensions/*"))
