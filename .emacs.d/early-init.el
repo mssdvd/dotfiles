@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq gc-cons-threshold #x40000000)
+(setq gc-cons-threshold most-positive-fixnum)
 
 (setq package-enable-at-startup nil)
 
