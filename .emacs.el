@@ -248,9 +248,8 @@ Intended as :after advice for `delete-file'."
                   ("\.mp4$" "mpv"))))
 
 (use-package vertico
-  :straight (vertico :host github
-                     :repo "minad/vertico"
-                     :files (:defaults "extensions/*"))
+  :straight
+  (:host github :repo "minad/vertico" :files (:defaults "extensions/*"))
   :commands (vertico-mode)
   :functions (vertico-mouse-mode consult-completion-in-region)
   :defines (vertico-quick1)
@@ -423,8 +422,7 @@ Intended as :after advice for `delete-file'."
 
 (use-package corfu
   :disabled
-  :straight '(corfu :host github
-                    :repo "minad/corfu")
+  :straight (:host github :repo "minad/corfu")
   :demand t
   :bind
   (:map corfu-map
