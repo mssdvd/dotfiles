@@ -16,10 +16,10 @@ level=$(ddcutil getvcp 10 -t | cut -d' ' -f4)
 
 case "$1" in
     -A)
-        level=$($level + "$2")
+        level=$((level + "$2"))
         ;;
     -U)
-        level=$($level - "$2")
+        level=$((level - "$2"))
         ;;
     -S)
         level=$(printf "%.0f\n" "$2")
