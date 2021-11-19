@@ -176,6 +176,9 @@ Intended as :after advice for `delete-file'."
   :straight nil
   :custom (custom-unlispify-tag-names nil))
 
+(use-package time
+  :custom (display-time-24hr-format t))
+
 (use-package simple
   :straight nil
   :bind
