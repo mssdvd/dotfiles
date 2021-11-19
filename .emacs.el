@@ -172,6 +172,10 @@ Intended as :after advice for `delete-file'."
   (modus-themes-load-themes)
   :config (modus-themes-load-vivendi))
 
+(use-package cus-edit
+  :straight nil
+  :custom (custom-unlispify-tag-names nil))
+
 (use-package simple
   :straight nil
   :bind
