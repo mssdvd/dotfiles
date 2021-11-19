@@ -76,9 +76,6 @@
 ;; save buffer
 (bind-key [f5] #'save-buffer)
 
-;; compile
-(bind-key "C-c b" #'recompile)
-
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
 
@@ -1181,6 +1178,9 @@ Intended as :after advice for `delete-file'."
 
 (use-package paren
   :config (setq show-paren-context-when-offscreen t))
+
+(use-package compile
+  :bind ("C-c b". recompile))
   :defer 1
 
 ;;
