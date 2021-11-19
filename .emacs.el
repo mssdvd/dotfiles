@@ -179,6 +179,14 @@ Intended as :after advice for `delete-file'."
 (use-package time
   :custom (display-time-24hr-format t))
 
+(use-package tree-sitter
+  :delight
+  :defer 1
+  :config (global-tree-sitter-mode)
+  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
+
+(use-package tree-sitter-langs)
+
 (use-package simple
   :straight nil
   :bind
