@@ -782,7 +782,7 @@ Intended as :after advice for `delete-file'."
 ;; https://company-mode.github.io/
 (use-package company
   :delight
-  :demand t
+  :defer 1
   :bind
   (([remap indent-for-tab-command] . company-indent-or-complete-common)
    ("C-c y" . company-yasnippet)
