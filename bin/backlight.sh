@@ -12,21 +12,27 @@ then exit 1
 fi
 
 
-level=$(ddcutil getvcp 10 -t | cut -d' ' -f4)
-
-case "$1" in
-    -A)
-        level=$((level + "$2"))
-        ;;
-    -U)
-        level=$((level - "$2"))
+case $1 in
+    -A | -U | "")
+        level=$(ddcutil getvcp 10 -t | cut -d' ' -f4)
+        case $1 in
+            -A)
+                level=$((level + "$2"))
+                ;;
+            -U)
+                level=$((level - "$2"))
+                ;;
+            "")
+                echo "$level"
+                exit
+                ;;
+        esac
         ;;
     -S)
         level=$(printf "%.0f\n" "$2")
         ;;
     *)
-        ddcutil getvcp 10 -t | cut -d' ' -f4
-        exit 0
+        exit 1
         ;;
 esac
 
