@@ -25,6 +25,7 @@
   ;; https://github.com/jwiegley/use-package
   (setq use-package-always-defer t
         ;; use-package-compute-statistics t
+        use-package-enable-imenu-support t
         straight-use-package-by-default t)
   (straight-use-package 'use-package))
 
