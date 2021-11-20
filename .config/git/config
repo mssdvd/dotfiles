@@ -14,8 +14,6 @@
 	editor = emacsclient -t -a ''
 [commit]
 	verbose = true
-[diff]
-	algorithm = histogram
 [grep]
 	lineNumber = true
 [color "grep"]
