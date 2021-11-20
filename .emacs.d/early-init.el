@@ -2,9 +2,15 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq gc-cons-threshold most-positive-fixnum)
+(setq package-enable-at-startup nil
+      ;; Increase gc thresholds during startup
+      gc-cons-threshold most-positive-fixnum
+      gc-cons-percentage 0.6)
 
-(setq package-enable-at-startup nil)
+;; Reset gc thresholds
+(add-hook 'emacs-startup-hook (lambda ()
+                                (setq gc-cons-threshold 800000
+                                      gc-cons-percentage 0.1)))
 
 (menu-bar-mode -1)
 (tool-bar-mode -1)

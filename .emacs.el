@@ -152,6 +152,7 @@ Intended as :after advice for `delete-file'."
 ;; gcmh
 ;; https://gitlab.com/koral/gcmh
 (use-package gcmh
+  :disabled
   :delight
   :defer nil
   :config
