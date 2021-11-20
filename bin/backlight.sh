@@ -11,9 +11,11 @@ if [ $? -ne 1 ]
 then exit 1
 fi
 
-
 case $1 in
-    -A | -U | "")
+    -S)
+        level=$(printf "%.0f\n" "$2")
+        ;;
+    *)
         level=$(ddcutil getvcp 10 -t | cut -d' ' -f4)
         case $1 in
             -A)
@@ -22,17 +24,11 @@ case $1 in
             -U)
                 level=$((level - "$2"))
                 ;;
-            "")
+            *)
                 echo "$level"
                 exit
                 ;;
         esac
-        ;;
-    -S)
-        level=$(printf "%.0f\n" "$2")
-        ;;
-    *)
-        exit 1
         ;;
 esac
 
