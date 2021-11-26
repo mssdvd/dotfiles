@@ -231,7 +231,7 @@ Intended as :after advice for `delete-file'."
 (use-package display-line-numbers
   :config
   (setq display-line-numbers-grow-only t)
-  :hook ((conf-mode prog-mode) . display-line-numbers-mode))
+  :hook ((conf-mode nxml-mode prog-mode) . display-line-numbers-mode))
 
 ;; display-fill-column-indicator
 (use-package display-fill-column-indicator
