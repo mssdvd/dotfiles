@@ -235,7 +235,7 @@ Intended as :after advice for `delete-file'."
 
 ;; display-fill-column-indicator
 (use-package display-fill-column-indicator
-  :hook ((markdown-mode conf-mode prog-mode) . display-fill-column-indicator-mode))
+  :hook ((conf-mode markdown-mode prog-mode) . display-fill-column-indicator-mode))
 
 ;; diff
 (use-package diff
