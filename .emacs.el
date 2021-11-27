@@ -1148,8 +1148,7 @@ Intended as :after advice for `delete-file'."
   :bind ("C-c v" . vterm-other-window))
 
 (use-package shr
-  :config (setq shr-width 80
-                shr-use-colors nil
+  :config (setq shr-use-colors nil
                 shr-use-fonts nil))
 
 (use-package hnreader)
