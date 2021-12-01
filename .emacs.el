@@ -1219,8 +1219,7 @@ Intended as :after advice for `delete-file'."
   :config
   (setq message-auto-save-directory nil
         message-kill-buffer-on-exit t
-        message-sendmail-envelope-from 'header
-        message-signature "Davide Masserut"))
+        message-sendmail-envelope-from 'header))
 
 (use-package notmuch
   :straight (:type built-in)
