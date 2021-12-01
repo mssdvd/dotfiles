@@ -656,7 +656,6 @@ Intended as :after advice for `delete-file'."
                               org-file-apps)
         org-format-latex-options (plist-put org-format-latex-options :scale 2.5)
         org-html-validation-link nil
-        org-image-actual-width (* (default-font-width) fill-column)
         org-indent-indentation-per-level 1
         org-indent-mode-turns-on-hiding-stars nil
         org-log-into-drawer t
