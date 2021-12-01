@@ -1259,10 +1259,9 @@ Intended as :after advice for `delete-file'."
     (shell-command "systemctl --user start mbsync.service"))
   :hook
   (notmuch-after-tag . (lambda ()
-                         (when
-                             (or (getenv "XDG_CURRENT_DESKTOP") "sway")
-                           (start-process "update mail indicator"
-                                          nil "pkill" "-SIGRTMIN+1" "waybar")))))
+                         (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
+                           (start-process "update mail indicator" nil
+                                          "pkill" "-SIGRTMIN+1" "waybar")))))
 
 (use-package sendmail
   :config (setq send-mail-function 'sendmail-send-it
