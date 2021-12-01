@@ -1256,7 +1256,8 @@ Intended as :after advice for `delete-file'."
   (defun ~sync-email ()
     "Sync emails and update notmuch index"
     (interactive)
-    (shell-command "systemctl --user start mbsync.service"))
+    (start-process "sync emails and update notmuch index" nil
+                   "systemctl" "--user" "start" "mbsync.service"))
   :hook
   (notmuch-after-tag . (lambda ()
                          (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
