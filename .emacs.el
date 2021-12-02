@@ -1277,6 +1277,8 @@ Intended as :after advice for `delete-file'."
 ;; https://github.com/emacs-lsp/lsp-mode
 (use-package lsp-mode
   :commands (lsp lsp-deferred lsp-format-buffer lsp-organize-imports)
+  :bind (:map lsp-mode-map
+              ("C-c C-d" . lsp-describe-thing-at-point))
   :custom
   (lsp-keymap-prefix "C-c o")
   (lsp-modeline-code-actions-segments '(count icon name))
