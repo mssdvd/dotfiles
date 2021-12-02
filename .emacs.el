@@ -922,11 +922,14 @@ Intended as :after advice for `delete-file'."
 ;; Dep poppler poppler-glibc
 (use-package pdf-tools
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
-  :config (setq pdf-annot-activate-created-annotations t)
   :bind
   (:map pdf-view-mode-map
         ("]" . pdf-view-scroll-up-or-next-page)
         ("[" . pdf-view-scroll-down-or-previous-page))
+  :custom
+  (pdf-annot-activate-created-annotations t)
+  (pdf-outline-display-labels t)
+  (pdf-view-display-size 'fit-page)
   :hook (pdf-view-mode . pdf-tools-enable-minor-modes))
 
 ;; realgud
