@@ -482,9 +482,7 @@ Intended as :after advice for `delete-file'."
 ;; https://github.com/abo-abo/avy
 (use-package avy
   :bind
-  ("C-'" . avy-goto-char-timer)
-  ("M-g f" . avy-goto-line)
-  ("M-g y" . avy-copy-line))
+  ("C-'" . avy-goto-char-timer))
 
 ;; avy-flycheck
 ;; https://github.com/magicdirac/avy-flycheck
