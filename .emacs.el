@@ -1253,6 +1253,10 @@ Intended as :after advice for `delete-file'."
                            (start-process "update mail indicator" nil
                                           "pkill" "-SIGRTMIN+1" "waybar")))))
 
+;; Links to Notmuch buffers from Org documents
+;; https://git.sr.ht/~tarsius/ol-notmuch
+(use-package ol-notmuch)
+
 (use-package sendmail
   :config (setq send-mail-function 'sendmail-send-it
                 sendmail-program "/usr/bin/msmtp"))
