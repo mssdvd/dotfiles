@@ -1187,6 +1187,10 @@ Intended as :after advice for `delete-file'."
 
 (use-package eww
   :custom (eww-auto-rename-buffer 'title))
+
+(use-package project
+  :custom (project-kill-buffers-display-buffer-list t))
+
   :defer 1
 
 ;;
