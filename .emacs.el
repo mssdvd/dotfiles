@@ -481,8 +481,9 @@ Intended as :after advice for `delete-file'."
 ;; avy
 ;; https://github.com/abo-abo/avy
 (use-package avy
-  :bind
-  ("C-'" . avy-goto-char-timer))
+  :commands (avy-setup-default)
+  :bind ("C-'" . avy-goto-char-timer)
+  :config (avy-setup-default))
 
 ;; avy-flycheck
 ;; https://github.com/magicdirac/avy-flycheck
