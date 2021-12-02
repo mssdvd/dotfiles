@@ -461,7 +461,8 @@ Intended as :after advice for `delete-file'."
 (use-package isearch
   :straight nil
   :config
-  (setq isearch-allow-scroll 'unlimited
+  (setq isearch-allow-motion t
+        isearch-allow-scroll 'unlimited
         isearch-lax-whitespace t
         isearch-lazy-count t
         isearch-repeat-on-direction-change t
