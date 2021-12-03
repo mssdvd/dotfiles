@@ -586,8 +586,8 @@ Intended as :after advice for `delete-file'."
   :config
   (defun ~org-latex-preview-with-argument ()
     (interactive)
-    (setq current-prefix-arg '(16))
-    (call-interactively #'org-latex-preview))
+    (let ((current-prefix-arg '(16)))
+          (call-interactively #'org-latex-preview)))
   (delight 'org-indent-mode)
   (setq org-attach-auto-tag nil
         org-babel-results-keyword "results"
