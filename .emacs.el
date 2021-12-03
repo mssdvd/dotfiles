@@ -932,10 +932,6 @@ Intended as :after advice for `delete-file'."
   (pdf-view-display-size 'fit-page)
   :hook (pdf-view-mode . pdf-tools-enable-minor-modes))
 
-;; realgud
-;; https://github.com/realgud/realgud
-(use-package realgud)
-
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
