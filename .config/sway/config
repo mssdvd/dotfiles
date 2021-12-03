@@ -19,6 +19,7 @@ input {
 		pointer_accel 0.8
 	}
 	"type:pointer" pointer_accel 1
+	"type:keyboard" repeat_rate 50
 	"type:keyboard" xkb_options "ctrl:swapcaps,compose:ralt"
 	"1278:32:PFU_Limited_HHKB-Classic" xkb_options "compose:ralt"
 	# Leopold FC980M PD
