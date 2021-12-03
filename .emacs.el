@@ -1214,6 +1214,7 @@ Intended as :after advice for `delete-file'."
   :straight (:type built-in)
   :commands (notmuch notmuch-search)
   :bind
+  ("C-x m" . notmuch-mua-new-mail)
   ("C-c m" . (lambda ()
                (interactive)
                (if (string= (shell-command-to-string "notmuch count tag:unread") "0\n")
