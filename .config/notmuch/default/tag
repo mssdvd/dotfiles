@@ -9,7 +9,6 @@
 +draft               tag:new and (folder:dm@mssdvd.com/Drafts or folder:d.masserut@gmail.com/[Gmail]/Drafts or folder:dmasserut@pec.it/Bozze)
 -inbox -unread -new  tag:new and tag:draft
 
-+oss                 tag:new and (from:bugzilla or from:github.com or from:gitlab.com or from:gnu.org or from:sr.ht)
 +unipd               tag:new and from:unipd.it
 
 +inbox +unread -new  tag:new
