@@ -1137,8 +1137,6 @@ Intended as :after advice for `delete-file'."
   :config (setq shr-use-colors nil
                 shr-use-fonts nil))
 
-(use-package hnreader)
-
 (use-package yaml-mode)
 
 (use-package matlab-mode
