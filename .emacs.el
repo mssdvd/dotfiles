@@ -639,8 +639,6 @@ Intended as :after advice for `delete-file'."
                               org-file-apps)
         org-format-latex-options (plist-put org-format-latex-options :scale 2.5)
         org-html-validation-link nil
-        org-indent-indentation-per-level 1
-        org-indent-mode-turns-on-hiding-stars nil
         org-log-into-drawer t
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm
@@ -668,8 +666,15 @@ Intended as :after advice for `delete-file'."
                '("AUTO" "babel" t ("pdflatex")))
   ;; (dolist (i org-level-faces) (set-face-attribute i nil :overline t))
   :hook
-  (org-mode . auto-fill-mode)
-  (org-mode . org-indent-mode))
+  (org-mode . auto-fill-mode))
+
+(use-package org-indent
+  :straight nil
+  :delight
+  :custom
+  (org-indent-indentation-per-level 1)
+  (org-indent-mode-turns-on-hiding-stars nil)
+  :hook (org-mode . org-indent-mode))
 
 (use-package gnuplot)
 
