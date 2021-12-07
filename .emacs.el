@@ -232,8 +232,8 @@ Intended as :after advice for `delete-file'."
   :hook ((conf-mode markdown-mode prog-mode) . display-fill-column-indicator-mode))
 
 ;; diff
-(use-package diff
-  :config (setq diff-font-lock-prettify t))
+(use-package diff-mode
+  :custom (diff-font-lock-prettify t))
 
 ;; dired
 (use-package dired
