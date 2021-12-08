@@ -1296,9 +1296,7 @@ Intended as :after advice for `delete-file'."
   :bind
   (:map lsp-ui-mode-map
         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
-        ([remap xref-find-references] . lsp-ui-peek-find-references))
-  :config (setq lsp-ui-doc-position 'bottom
-                lsp-ui-sideline-show-diagnostics t))
+        ([remap xref-find-references] . lsp-ui-peek-find-references)))
 
 ;; lsp-java
 (use-package lsp-java)
