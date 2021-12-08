@@ -1196,6 +1196,11 @@ Intended as :after advice for `delete-file'."
   :custom (project-kill-buffers-display-buffer-list t))
 
   :defer 1
+(use-package treemacs)
+
+(use-package treemacs-magit
+  :demand t
+  :after (treemacs magit))
 
 ;;
 ;; Mail
@@ -1297,6 +1302,11 @@ Intended as :after advice for `delete-file'."
   (:map lsp-ui-mode-map
         ([remap xref-find-definitions] . lsp-ui-peek-find-definitions)
         ([remap xref-find-references] . lsp-ui-peek-find-references)))
+
+(use-package lsp-treemacs
+  :demand t
+  :after lsp
+  :custom (lsp-treemacs-sync-mode t))
 
 ;; lsp-java
 (use-package lsp-java)
