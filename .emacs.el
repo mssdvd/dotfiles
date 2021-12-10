@@ -1070,12 +1070,16 @@ Intended as :after advice for `delete-file'."
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
 (use-package elfeed
+  :defines elfeed-show-entry
+  :functions (elfeed-search-selected elfeed-search-update-entry)
   :bind
   ("C-c e" . elfeed)
   (:map elfeed-search-mode-map
+        ("e" . ~elfeed-open-with-eww)
         ("i" . ~elfeed-play-with-mpv)
         ("o" . 'pocket-reader-elfeed-search-add-link))
   (:map elfeed-show-mode-map
+        ("e" . ~elfeed-open-with-eww)
         ("i" . ~elfeed-play-with-mpv)
         ("o" . 'pocket-reader-elfeed-search-add-link))
   :custom
@@ -1096,8 +1100,18 @@ Intended as :after advice for `delete-file'."
         (cl-loop for entry in (elfeed-search-selected)
                  do (~elfeed--play-with-mpv entry))
         (mapc #'elfeed-search-update-entry (elfeed-search-selected))
-        (forward-line)))))
+        (forward-line))))
 
+  (defun ~elfeed-open-with-eww ()
+    "Open elfeed entry in eww with `eww-readable'"
+    (interactive)
+    (let ((entry (if (eq major-mode 'elfeed-show-mode)
+                     elfeed-show-entry
+                   (elfeed-search-selected :single))))
+      (elfeed-untag entry 'unread)
+      (elfeed-search-update-entry entry)
+      (eww (elfeed-entry-link entry))
+      (add-hook 'eww-after-render-hook 'eww-readable nil t))))
 
 ;; elfeed-org
 ;; https://github.com/remyhonig/elfeed-org
