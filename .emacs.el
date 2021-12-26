@@ -1232,7 +1232,7 @@ Intended as :after advice for `delete-file'."
 
 (use-package notmuch
   :straight (:type built-in)
-  :commands (notmuch notmuch-search)
+  :commands (notmuch notmuch-search ~sync-email)
   :bind
   ("C-x m" . notmuch-mua-new-mail)
   ("C-c m" . (lambda ()
