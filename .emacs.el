@@ -223,9 +223,9 @@ Intended as :after advice for `delete-file'."
 
 ;; display-line-numbers
 (use-package display-line-numbers
-  :config
-  (setq display-line-numbers-grow-only t)
-  :hook ((conf-mode nxml-mode prog-mode) . display-line-numbers-mode))
+  :config (setq display-line-numbers-grow-only t)
+  :hook
+  ((conf-mode nxml-mode prog-mode yaml-mode) . display-line-numbers-mode))
 
 ;; display-fill-column-indicator
 (use-package display-fill-column-indicator
