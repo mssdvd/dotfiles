@@ -1209,7 +1209,10 @@ Intended as :after advice for `delete-file'."
 (use-package project
   :custom (project-kill-buffers-display-buffer-list t))
 
+(use-package winner
   :defer 1
+  :config (winner-mode))
+
 (use-package treemacs)
 
 (use-package treemacs-magit
