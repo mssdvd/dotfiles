@@ -1213,6 +1213,9 @@ Intended as :after advice for `delete-file'."
   :defer 1
   :config (winner-mode))
 
+(use-package tab-bar
+  :config (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar))
+
 (use-package treemacs)
 
 (use-package treemacs-magit
