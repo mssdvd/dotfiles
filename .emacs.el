@@ -763,16 +763,6 @@ Intended as :after advice for `delete-file'."
         org-roam-ui-open-on-start t))
 
 
-;; undo-tree
-(use-package undo-tree
-  :delight
-  :commands (global-undo-tree-mode)
-  :init (global-undo-tree-mode)
-  :config
-  (setq undo-tree-enable-undo-in-region t
-        undo-tree-visualizer-diff t
-        undo-tree-visualizer-timestamps t))
-
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
