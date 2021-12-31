@@ -68,9 +68,6 @@
 ;; switch to previous buffer
 (bind-key "M-]" #'mode-line-other-buffer)
 
-;; save buffer
-(bind-key [f5] #'save-buffer)
-
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
 
