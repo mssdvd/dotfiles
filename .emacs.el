@@ -1206,6 +1206,14 @@ Intended as :after advice for `delete-file'."
   :config (add-to-list 'tab-bar-format #'tab-bar-format-menu-bar))
 
 (use-package treemacs)
+(use-package telega
+  :ensure
+  :custom
+  (telega-completing-read-function 'completing-read)
+  :hook
+  (telega-load . telega-notifications-mode)
+  (telega-load . telega-appindicator-mode))
+
 
 (use-package treemacs-magit
   :demand t
