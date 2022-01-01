@@ -319,14 +319,13 @@ Intended as :after advice for `delete-file'."
       `(orderless-regexp . ,(concat "\\." (substring pattern 1) "[\x100000-\x10FFFD]*$")))
      ;; Ignore single !
      ((string= "!" pattern) `(orderless-literal . ""))
-
      ;; Prefix and suffix
      ((if-let (x (assq (aref pattern 0) ~orderless-dispatch-alist))
           (cons (cdr x) (substring pattern 1))
         (when-let (x (assq (aref pattern (1- (length pattern))) ~orderless-dispatch-alist))
           (cons (cdr x) (substring pattern 0 -1)))))))
 
-  (setq completion-styles '(orderless)
+  (setq completion-styles '(orderless basic)
         completion-category-defaults nil
         completion-category-overrides '((file (styles basic partial-completion)))
         orderless-component-separator #'orderless-escapable-split-on-space
