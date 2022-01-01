@@ -60,13 +60,13 @@
 (global-unset-key (kbd "C-x C-z"))
 
 ;; replace zap-to-char with zap-up-to-char
-(bind-key "M-z" #'zap-up-to-char)
+(keymap-global-set "M-z" #'zap-up-to-char)
 
 ;; ibuffer is better
-(bind-key "C-x C-b" #'ibuffer)
+(keymap-global-set "C-x C-b" #'ibuffer)
 
 ;; switch to previous buffer
-(bind-key "M-]" #'mode-line-other-buffer)
+(keymap-global-set "M-]" #'mode-line-other-buffer)
 
 ;; uniquify
 (setq uniquify-buffer-name-style 'forward)
@@ -97,7 +97,7 @@
   (if default-directory
       (call-process-shell-command "foot ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
-(bind-key "C-c r" #'~ranger-launch-here)
+(keymap-global-set "C-c r" #'~ranger-launch-here)
 
 (defun ~yank-primary ()
   "Insert the primary selection at the position."
@@ -105,7 +105,7 @@
   (let ((primary (gui-get-primary-selection)))
     (push-mark)
     (insert-for-yank primary)))
-(bind-key "S-<insert>" #'~yank-primary)
+(keymap-global-set "S-<insert>" #'~yank-primary)
 
 (defun ~rename-buffer-renamed-file (file newname &optional _ok-if-already-exists)
   "Rename buffer visiting FILE to NEWNAME.
