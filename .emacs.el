@@ -519,12 +519,6 @@ Intended as :after advice for `delete-file'."
         flycheck-emacs-lisp-load-path 'inherit)
   (global-flycheck-mode))
 
-;; flycheck-pos-tip
-(use-package flycheck-pos-tip
-  :demand t
-  :after flycheck
-  :config (flycheck-pos-tip-mode))
-
 ;; flycheck-inline
 ;; https://github.com/flycheck/flycheck-inline
 (use-package flycheck-inline
