@@ -199,8 +199,7 @@ Intended as :after advice for `delete-file'."
   ;; enable column number
   (column-number-mode 1)
   ;; display size of the buffer
-  (size-indication-mode 1)
-  :hook (before-save . delete-trailing-whitespace))
+  (size-indication-mode 1))
 
 (use-package window
   :straight nil
