@@ -513,6 +513,10 @@ Intended as :after advice for `delete-file'."
 ;; http://www.flycheck.org
 (use-package flycheck
   :defer 1
+  :bind
+  (:map flycheck-mode-map
+        ("M-n" . flycheck-next-error)
+        ("M-p" . flycheck-previous-error))
   :config
   (setq flycheck-global-modes '(not org-mode)
         flycheck-mode-line-prefix "FC"
