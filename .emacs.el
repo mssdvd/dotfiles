@@ -1212,6 +1212,9 @@ Intended as :after advice for `delete-file'."
   (telega-load . telega-notifications-mode)
   (telega-load . telega-appindicator-mode))
 
+(use-package tmm
+  :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
+
 
 (use-package treemacs-magit
   :demand t
