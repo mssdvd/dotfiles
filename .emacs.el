@@ -102,7 +102,7 @@
   "Open the current file's directory in ranger."
   (interactive)
   (if default-directory
-      (call-process-shell-command "foot ranger" (expand-file-name default-directory) 0 nil)
+      (call-process-shell-command "foot -e ranger" (expand-file-name default-directory) 0 nil)
     (error "No `default-directory' to open")))
 (keymap-global-set "C-c r" #'~ranger-launch-here)
 
