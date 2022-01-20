@@ -91,6 +91,13 @@
 ;; Custom functions (prefixed with ~)
 ;;;;
 
+(defun ~check-emacs-updates ()
+  "Check for Emacs master and packages updates."
+  (interactive)
+  (list-packages)
+  (magit-status "~/src/emacs-git/emacs-git/")
+  (magit-fetch-from-upstream "origin" "master"))
+
 (defun ~ranger-launch-here ()
   "Open the current file's directory in ranger."
   (interactive)
