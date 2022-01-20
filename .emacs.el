@@ -383,6 +383,8 @@ Intended as :after advice for `delete-file'."
          :map isearch-mode-map
          ("M-e" . consult-isearch-history)
          ("M-s e" . consult-isearch-history)
+         ("C-c s" . consult-line)
+         ("C-c S" . consult-line-multi)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi))
   :init
