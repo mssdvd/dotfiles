@@ -1218,8 +1218,9 @@ Intended as :after advice for `delete-file'."
   :custom
   (telega-completing-read-function 'completing-read)
   :hook
-  (telega-load . telega-notifications-mode)
-  (telega-load . telega-appindicator-mode))
+  (telega-load . telega-appindicator-mode)
+  (telega-load . telega-mode-line-mode)
+  (telega-load . telega-notifications-mode))
 
 (use-package tmm
   :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
