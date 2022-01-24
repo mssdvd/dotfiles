@@ -16,9 +16,6 @@
 	verbose = true
 [grep]
 	lineNumber = true
-[color "grep"]
-	filename = magenta
-	linenumber = green
 [github]
 	user = mssdvd
 [credential]
