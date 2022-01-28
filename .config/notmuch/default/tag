@@ -4,9 +4,9 @@
 
 +sent -unread -new   tag:new and (from:dm@mssdvd.com or from:d.masserut@gmail.com or from:dmasserut@pac.it)
 
-+spam                tag:new and (folder:d.masserut@gmail.com/[Gmail]/Spam or folder:dm@mssdvd.com/Junk)
++spam                tag:new and folder:/Spam|Junk/
 
-+draft               tag:new and (folder:dm@mssdvd.com/Drafts or folder:d.masserut@gmail.com/[Gmail]/Drafts or folder:dmasserut@pec.it/Bozze)
++draft               tag:new and folder:/Drafts|Bozze/
 -inbox -unread -new  tag:new and tag:draft
 
 +unipd               tag:new and from:unipd.it
