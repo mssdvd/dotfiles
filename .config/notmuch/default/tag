@@ -11,4 +11,6 @@
 
 +unipd               tag:new and from:unipd.it
 
-+inbox +unread -new  tag:new
++inbox               tag:new and folder:/INBOX/
+
++unread -new         tag:new
