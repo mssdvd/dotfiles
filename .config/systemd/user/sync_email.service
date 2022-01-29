@@ -1,5 +1,5 @@
 [Unit]
-Description=Mailbox syncronizationb service
+Description=Mailbox syncronization service
 After=network-online.target
 Wants=network-online.target
 

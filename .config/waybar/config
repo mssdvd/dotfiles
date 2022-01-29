@@ -25,7 +25,7 @@
         "format": "{} ",
         "interval": "once",
         "exec": "notmuch count tag:unread",
-        "on-click": "systemctl --user start mbsync.service",
+        "on-click": "systemctl --user start sync_email.service",
         "on-click-right": "emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar",
         "signal": 1
     },

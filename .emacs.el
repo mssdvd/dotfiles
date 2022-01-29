@@ -1281,7 +1281,7 @@ Intended as :after advice for `delete-file'."
     "Sync emails and update notmuch index"
     (interactive)
     (start-process "sync emails and update notmuch index" nil
-                   "systemctl" "--user" "start" "mbsync.service"))
+                   "systemctl" "--user" "start" "sync_email.service"))
   :hook
   (notmuch-after-tag . (lambda ()
                          (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
