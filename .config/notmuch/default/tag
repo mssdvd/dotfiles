@@ -2,7 +2,7 @@
 +gmail               tag:new and path:d.masserut@gmail.com/**
 +pec                 tag:new and path:dmasserut@pec.it/**
 
-+sent -unread -new   tag:new and (from:dm@mssdvd.com or from:d.masserut@gmail.com or from:dmasserut@pac.it)
++sent -new           tag:new and folder:/Sent|Inviata/
 
 +spam                tag:new and folder:/Spam|Junk/
 
