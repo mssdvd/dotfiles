@@ -1,15 +1,13 @@
-+mssdvd              tag:new and path:dm@mssdvd.com/**
-+gmail               tag:new and path:d.masserut@gmail.com/**
-+pec                 tag:new and path:dmasserut@pec.it/**
++mssdvd       tag:new and path:dm@mssdvd.com/**
++gmail        tag:new and path:d.masserut@gmail.com/**
++pec          tag:new and path:dmasserut@pec.it/**
 
-+sent -new           tag:new and folder:/Sent|Inviata/
-
-+spam                tag:new and folder:/Spam|Junk/
-
-+draft -new          tag:new and folder:/Drafts|Bozze/
-
-+unipd               tag:new and from:unipd.it
-
-+inbox               tag:new and folder:/INBOX/
-
-+unread -new         tag:new
++inbox        tag:new and folder:/INBOX/
+            
++spam         tag:new and folder:/Spam|Junk/
++unipd        tag:new and from:unipd.it
+            
++sent -new    tag:new and folder:/Sent|Inviata/
++draft -new   tag:new and folder:/Drafts|Bozze/
+            
++unread -new  tag:new
