@@ -1257,7 +1257,6 @@ Intended as :after advice for `delete-file'."
   :config
   (setq mail-user-agent 'notmuch-user-agent
         notmuch-draft-folder "dm@mssdvd.com/Drafts"
-        notmuch-draft-tags '("+draft" "-inbox")
         notmuch-fcc-dirs
         '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
           ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" -inbox +gmail +sent -unread")

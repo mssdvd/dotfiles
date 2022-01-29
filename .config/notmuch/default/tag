@@ -6,8 +6,7 @@
 
 +spam                tag:new and folder:/Spam|Junk/
 
-+draft               tag:new and folder:/Drafts|Bozze/
--inbox -unread -new  tag:new and tag:draft
++draft -new          tag:new and folder:/Drafts|Bozze/
 
 +unipd               tag:new and from:unipd.it
 
