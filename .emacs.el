@@ -1273,7 +1273,8 @@ Intended as :after advice for `delete-file'."
                                        ("authors" . "%-30s ")
                                        ("subject" . "%s ")
                                        ("tags" . "(%s)"))
-        notmuch-show-all-tags-list t)
+        notmuch-show-all-tags-list t
+        notmuch-show-part-button-default-action 'notmuch-show-view-part)
   (setq-default notmuch-search-oldest-first nil)
 
   (defun ~sync-email ()
