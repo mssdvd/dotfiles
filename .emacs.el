@@ -1258,9 +1258,9 @@ Intended as :after advice for `delete-file'."
   (setq mail-user-agent 'notmuch-user-agent
         notmuch-draft-folder "dm@mssdvd.com/Drafts"
         notmuch-fcc-dirs
-        '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
-          ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" -inbox +gmail +sent -unread")
-          ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread"))
+        '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent +mssdvd +sent")
+          ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" +gmail +sent")
+          ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata +pec +sent"))
         notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
                                  (:name "unread" :query "tag:unread" :sort-order oldest-first :key "u")
                                  (:name "flagged" :query "tag:flagged" :key "f")
