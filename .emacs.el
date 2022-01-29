@@ -1261,7 +1261,7 @@ Intended as :after advice for `delete-file'."
         '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent -inbox +mssdvd +sent -unread")
           ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" -inbox +gmail +sent -unread")
           ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata -inbox +pec +sent -unread"))
-        notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :sort-order oldest-first :key "i")
+        notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
                                  (:name "unread" :query "tag:unread" :sort-order oldest-first :key "u")
                                  (:name "flagged" :query "tag:flagged" :key "f")
                                  (:name "sent" :query "tag:sent" :key "t")
