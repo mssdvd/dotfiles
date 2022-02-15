@@ -347,7 +347,6 @@ Intended as :after advice for `delete-file'."
 
 (use-package consult
   :defines (xref-show-xrefs-function xref-show-definitions-function)
-  :functions (project-roots)
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
@@ -411,11 +410,6 @@ Intended as :after advice for `delete-file'."
    consult-recent-file consult-xref consult--source-recent-file
    consult--source-project-recent-file consult--source-bookmark
    :preview-key (kbd "M-."))
-
-  (setq consult-project-root-function
-        (lambda ()
-          (when-let (project (project-current))
-            (car (project-roots project)))))
 
   (defvar ~consult-line-map
     (let ((map (make-sparse-keymap)))
