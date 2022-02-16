@@ -5,11 +5,7 @@
 	name = Davide Masserut
 	email = dm@mssdvd.com
 [sendemail]
-	smtpserver = smtp.migadu.com
-	smtpuser = dm@mssdvd.com
-	smtpencryption = tls
-	smtpserverport = 587
-	# smtpPass = **PASSWORD**
+	smtpserver = /usr/bin/msmtp
 [core]
 	editor = emacsclient -t -a ''
 [commit]
