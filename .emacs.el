@@ -142,7 +142,7 @@ Intended as :after advice for `delete-file'."
   :config
   (setq auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
         custom-file (no-littering-expand-etc-file-name "custom.el"))
-  (load custom-file 'noerror))
+  (load custom-file 'noerror 'nomessage))
 
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
