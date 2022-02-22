@@ -161,14 +161,15 @@ Intended as :after advice for `delete-file'."
 (use-package modus-themes
   :commands (modus-themes-load-themes)
   :bind ("C-c q" . modus-themes-toggle)
+  :custom
+  (modus-themes-completions 'opinionated)
+  (modus-themes-lang-checkers 'intense-foreground)
+  (modus-themes-links '(faint))
+  (modus-themes-org-blocks 'gray-background)
+  (modus-themes-paren-match '(bold intense))
+  (modus-themes-region '(bg-only))
+  (modus-themes-italic-constructs t)
   :init
-  (setq modus-themes-completions 'opinionated
-        modus-themes-lang-checkers 'intense-foreground
-        modus-themes-links '(faint)
-        modus-themes-org-blocks 'gray-background
-        modus-themes-paren-match '(bold intense)
-        modus-themes-region '(bg-only)
-        modus-themes-italic-constructs t)
   (modus-themes-load-themes)
   :config (modus-themes-load-vivendi))
 
