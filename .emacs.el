@@ -162,8 +162,6 @@ Intended as :after advice for `delete-file'."
   :commands (modus-themes-load-themes)
   :bind ("C-c q" . modus-themes-toggle)
   :custom
-  (modus-themes-completions 'opinionated)
-  (modus-themes-lang-checkers 'intense-foreground)
   (modus-themes-links '(faint))
   (modus-themes-org-blocks 'gray-background)
   (modus-themes-paren-match '(bold intense))
