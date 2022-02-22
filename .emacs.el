@@ -500,13 +500,6 @@ Intended as :after advice for `delete-file'."
   :defer 1
   :config (ace-link-setup-default))
 
-;; ace-window
-;; https://github.com/abo-abo/ace-window
-(use-package ace-window
-  :bind ("M-o" . ace-window)
-  :config (setq aw-background nil
-                aw-scope 'frame))
-
 ;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
 (use-package expand-region
