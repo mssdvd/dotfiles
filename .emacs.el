@@ -1178,7 +1178,7 @@ Intended as :after advice for `delete-file'."
   :config (setq bookmark-save-flag 1))
 
 (use-package paren
-  :config (setq show-paren-context-when-offscreen t))
+  :config (setq show-paren-context-when-offscreen 'child-frame))
 
 (use-package compile
   :bind ("C-c b". recompile))
