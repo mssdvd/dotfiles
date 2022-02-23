@@ -1,9 +1,9 @@
 [Desktop Entry]
 Name=Telega
-Comment=GNU Emacs telegram client (unofficial)
+Comment=GNU Emacs telegram client
 Exec=emacsclient -c -a '' -e "(progn (require 'telega) (telega))"
 Icon=telegram
 Terminal=false
 Type=Application
-Categories=Chat;Network;InstantMessaging;Qt;
-Keywords=tg;chat;im;messaging;messenger;sms;tdesktop;
+Categories=Chat;Network;InstantMessaging;
+Keywords=tg;chat;im;messaging;messenger;tdesktop;
