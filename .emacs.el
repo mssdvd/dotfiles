@@ -1212,6 +1212,9 @@ Intended as :after advice for `delete-file'."
 (use-package tmm
   :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
 
+(use-package olivetti
+  :ensure)
+
 
 (use-package treemacs-magit
   :demand t
