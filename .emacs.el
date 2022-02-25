@@ -5,29 +5,14 @@
 
 (setq read-process-output-max (* 1024 1024 4)) ;; 4mb
 
-;; bootstrap straight.el
-(eval-and-compile
-  (defvar bootstrap-version)
-  (setq straight-fix-flycheck t)
-  (let ((bootstrap-file
-         (expand-file-name "straight/repos/straight.el/bootstrap.el" user-emacs-directory))
-        (bootstrap-version 5))
-    (unless (file-exists-p bootstrap-file)
-      (with-current-buffer
-          (url-retrieve-synchronously
-           "https://raw.githubusercontent.com/raxod502/straight.el/develop/install.el"
-           'silent 'inhibit-cookies)
-        (goto-char (point-max))
-        (eval-print-last-sexp)))
-    (load bootstrap-file nil 'nomessage))
+(require 'package)
+(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(unless (package-installed-p 'use-package)
+  (package-refresh-contents)
+  (package-install 'use-package))
 
-  ;; use-package
-  ;; https://github.com/jwiegley/use-package
-  (setq use-package-always-defer t
-        ;; use-package-compute-statistics t
-        use-package-enable-imenu-support t
-        straight-use-package-by-default t)
-  (straight-use-package 'use-package))
+(defvar use-package-always-defer t)
+(defvar use-package-enable-imenu-support t)
 
 ;; disable cursor blinking
 (blink-cursor-mode 0)
@@ -138,7 +123,9 @@ Intended as :after advice for `delete-file'."
 ;; no-littering
 ;; https://github.com/emacscollective/no-littering
 (use-package no-littering
-  :demand t
+  :ensure
+  :demand
+  :functions (no-littering-expand-etc-file-name no-littering-expand-var-file-name)
   :config
   (setq auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
         custom-file (no-littering-expand-etc-file-name "custom.el"))
@@ -146,7 +133,8 @@ Intended as :after advice for `delete-file'."
 
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
-(use-package delight)
+(use-package delight
+  :ensure)
 
 ;; gcmh
 ;; https://gitlab.com/koral/gcmh
@@ -159,7 +147,9 @@ Intended as :after advice for `delete-file'."
   (gcmh-mode 1))
 
 (use-package modus-themes
+  :ensure
   :commands (modus-themes-load-themes)
+  :functions (modus-themes-load-vivendi)
   :bind ("C-c q" . modus-themes-toggle)
   :custom
   (modus-themes-completions '((matches . (background))))
@@ -170,25 +160,27 @@ Intended as :after advice for `delete-file'."
   (modus-themes-italic-constructs t)
   :init
   (modus-themes-load-themes)
-  :config (modus-themes-load-vivendi))
+  :config
+  (modus-themes-load-vivendi))
 
 (use-package cus-edit
-  :straight nil
   :custom (custom-unlispify-tag-names nil))
 
 (use-package time
   :custom (display-time-24hr-format t))
 
 (use-package tree-sitter
+  :ensure
   :delight
   :defer 1
+  :functions (global-tree-sitter-mode)
   :config (global-tree-sitter-mode)
   :hook (tree-sitter-after-on . tree-sitter-hl-mode))
 
-(use-package tree-sitter-langs)
+(use-package tree-sitter-langs
+  :ensure)
 
 (use-package simple
-  :straight nil
   :bind
   ([remap count-words-region] . count-words)
   ([remap just-one-space] . cycle-spacing)
@@ -209,7 +201,6 @@ Intended as :after advice for `delete-file'."
   (size-indication-mode 1))
 
 (use-package window
-  :straight nil
   :config (setq scroll-preserve-screen-position t))
 
 (use-package elec-pair
@@ -240,8 +231,6 @@ Intended as :after advice for `delete-file'."
 
 ;; dired
 (use-package dired
-  :straight nil
-  :defines dired-do-revert-buffer
   :config
   (setq dired-listing-switches "-alhv --group-directories-first"
         dired-do-revert-buffer t
@@ -251,8 +240,7 @@ Intended as :after advice for `delete-file'."
 
 ;; dired-x
 (use-package dired-x
-  :straight nil
-  :demand t
+  :demand
   :after dired
   :config (setq dired-guess-shell-alist-user
                 '(("\.pdf$" "zathura")
@@ -262,8 +250,8 @@ Intended as :after advice for `delete-file'."
   :custom (wdired-allow-to-change-permissions t))
 
 (use-package vertico
-  :straight
-  (:host github :repo "minad/vertico" :files (:defaults "extensions/*"))
+  :ensure
+  :demand
   :commands (vertico-mode)
   :functions (vertico-mouse-mode consult-completion-in-region)
   :defines (vertico-quick1)
@@ -293,8 +281,9 @@ Intended as :after advice for `delete-file'."
   (minibuffer-setup . vertico-repeat-save))
 
 (use-package orderless
+  :ensure
+  :demand
   :functions (orderless-matching-styles orderless-all-completions orderless-try-completion)
-  :demand t
   :config
   (defvar ~orderless-dispatch-alist
     '((?% . char-fold-to-regexp)
@@ -346,6 +335,7 @@ Intended as :after advice for `delete-file'."
   (savehist-mode))
 
 (use-package consult
+  :ensure t
   :defines (xref-show-xrefs-function xref-show-definitions-function)
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
@@ -418,12 +408,14 @@ Intended as :after advice for `delete-file'."
   (consult-customize consult-line :keymap ~consult-line-map))
 
 (use-package consult-flycheck
-  :demand t
+  :ensure
   :after (consult flycheck)
   :bind (:map flycheck-command-map
               ("!" . consult-flycheck)))
 
 (use-package marginalia
+  :ensure
+  :demand
   :commands marginalia-mode
   :bind
   (:map minibuffer-local-map
@@ -431,8 +423,9 @@ Intended as :after advice for `delete-file'."
   :init (marginalia-mode))
 
 (use-package embark
-  :demand t
-  :commands embark-prefix-help-command
+  :ensure
+  :defer 1
+  ;; :commands embark-prefix-help-command
   :bind
   ("C-." . embark-act)
   ("C-h B" . embark-bindings)
@@ -440,27 +433,26 @@ Intended as :after advice for `delete-file'."
   (setq prefix-help-command #'embark-prefix-help-command))
 
 (use-package embark-consult
-  :demand t
+  :ensure
+  :demand
   :after (embark consult)
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package corfu
-  :disabled
-  :straight (:host github :repo "minad/corfu")
-  :demand t
   :bind
   (:map corfu-map
         ("TAB" . corfu-next)
         ([tab] . corfu-next)
         ("S-TAB" . corfu-previous)
         ([backtab] . corfu-previous))
+  :demand
+  :ensure
   :config
   (setq corfu-auto t
         corfu-cycle t)
   (corfu-global-mode))
 
 (use-package isearch
-  :straight nil
   :config
   (setq isearch-allow-motion t
         isearch-allow-scroll 'unlimited
@@ -476,6 +468,7 @@ Intended as :after advice for `delete-file'."
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep
+  :ensure
   :bind (:map grep-mode-map
               ("e" . wgrep-change-to-wgrep-mode)
               ("C-c C-c" . wgrep-finish-edit))
@@ -484,6 +477,7 @@ Intended as :after advice for `delete-file'."
 ;; avy
 ;; https://github.com/abo-abo/avy
 (use-package avy
+  :ensure
   :commands (avy-setup-default)
   :bind ("C-'" . avy-goto-char-timer)
   :config (avy-setup-default))
@@ -498,17 +492,22 @@ Intended as :after advice for `delete-file'."
 ;; ace-link
 ;; https://github.com/abo-abo/ace-link
 (use-package ace-link
+  :ensure
+  :commands (ace-link-setup-default)
   :defer 1
   :config (ace-link-setup-default))
 
 ;; expand-region.el
 ;; https://github.com/magnars/expand-region.el
 (use-package expand-region
+  :ensure
   :bind ("C-=" . er/expand-region))
 
 ;; flycheck
 ;; http://www.flycheck.org
 (use-package flycheck
+  :ensure
+  :functions (global-flycheck-mode)
   :defer 1
   :bind
   (:map flycheck-mode-map
@@ -523,6 +522,7 @@ Intended as :after advice for `delete-file'."
 ;; flycheck-inline
 ;; https://github.com/flycheck/flycheck-inline
 (use-package flycheck-inline
+  :ensure
   :disabled
   :hook (flycheck-mode . flycheck-inline-mode))
 
@@ -541,17 +541,20 @@ Intended as :after advice for `delete-file'."
 ;; saveplace-pdf-view
 ;; https://github.com/nicolaisingh/saveplace-pdf-view
 (use-package saveplace-pdf-view
-  :demand t
+  :ensure
+  :demand
   :after saveplace)
 
 ;; rainbow-delimiters
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
+  :ensure
   :hook (prog-mode . rainbow-delimiters-mode))
 
 ;; highlight-parentheses
 ;; https://sr.ht/~tsdh/highlight-parentheses.el/
 (use-package highlight-parentheses
+  :ensure
   :delight
   :hook
   (prog-mode . highlight-parentheses-mode)
@@ -560,14 +563,19 @@ Intended as :after advice for `delete-file'."
 ;; rainbow-mode
 ;; https://elpa.gnu.org/packages/rainbow-mode.html
 (use-package rainbow-mode
+  :ensure
   :delight
   :hook (prog-mode sgml-mode))
 
-(use-package cdlatex)
+(use-package cdlatex
+  :ensure)
 
-(use-package auctex)
+(use-package auctex
+  :ensure)
 
 (use-package org
+  :ensure
+  :pin gnu
   :functions (delight)
   :bind
   ("C-c a" . org-agenda)
@@ -662,23 +670,25 @@ Intended as :after advice for `delete-file'."
   (org-mode . auto-fill-mode))
 
 (use-package org-indent
-  :straight nil
   :delight
   :custom
   (org-indent-indentation-per-level 1)
   (org-indent-mode-turns-on-hiding-stars nil)
   :hook (org-mode . org-indent-mode))
 
-(use-package gnuplot)
+(use-package gnuplot
+  :ensure)
 
 (use-package org-pomodoro
   :bind ("C-c o" . org-pomodoro)
+  :ensure
   :config (setq org-pomodoro-expiry-time 40
                 org-pomodoro-keep-killed-pomodoro-time t
                 org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=50")
                 org-pomodoro-manual-break t))
 
 (use-package alert
+  :ensure
   :config (setq alert-default-style 'libnotify))
 
 (use-package org-caldav
@@ -691,8 +701,8 @@ Intended as :after advice for `delete-file'."
 ;; org-download
 ;; https://github.com/abo-abo/org-download
 (use-package org-download
+  :ensure
   :functions (org-redisplay-inline-images)
-  :demand t
   :after org
   :config
   (setq  org-download-screenshot-method "grim -g \"$(slurp)\" %s"
@@ -703,12 +713,14 @@ Intended as :after advice for `delete-file'."
 ;; ox-reveal
 ;; https://github.com/yjwen/org-reveal
 (use-package ox-reveal
+  :ensure
   :config
   (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/"
         org-reveal-title-slide nil))
 
 ;; org-roam
 (use-package org-roam
+  :ensure
   :bind (("C-c n l" . org-roam-buffer-toggle)
          ("C-c n k" . org-roam-buffer-display-dedicated)
          ("C-c n f" . org-roam-node-find)
@@ -745,10 +757,8 @@ Intended as :after advice for `delete-file'."
 
 ;; org-roam-ui
 (use-package org-roam-ui
-  :straight
-  (:host github :repo "org-roam/org-roam-ui" :branch "main" :files ("*.el" "out"))
-  :after org-roam
-  :bind ("C-c n u" . orui-open)
+  :ensure
+  :bind ("C-c n u" . org-roam-ui-mode)
   :config
   (setq org-roam-ui-sync-theme t
         org-roam-ui-follow t
@@ -818,6 +828,7 @@ Intended as :after advice for `delete-file'."
 ;; magit
 ;; https://magit.vc
 (use-package magit
+  :ensure
   :config
   (setq magit-diff-refine-hunk 'all
         magit-diff-refine-ignore-whitespace nil
@@ -829,7 +840,7 @@ Intended as :after advice for `delete-file'."
   (require 'magit-extras))
 
 (use-package forge
-  :demand t
+  :ensure
   :after magit)
 
 (use-package epg
@@ -838,15 +849,18 @@ Intended as :after advice for `delete-file'."
 (use-package auth-source
   :config (auth-source-pass-enable))
 
-(use-package password-store)
+(use-package password-store
+  :ensure)
 
 ;; gitconfig-mode
 ;; https://github.com/magit/git-modes
-(use-package git-modes)
+(use-package git-modes
+  :ensure)
 
 ;; diff-hl
 ;; https://github.com/dgutov/diff-hl
 (use-package diff-hl
+  :ensure
   :defer 1
   :config
   (global-diff-hl-mode)
@@ -858,32 +872,37 @@ Intended as :after advice for `delete-file'."
 ;; yasnippet
 ;; https://github.com/joaotavora/yasnippet
 (use-package yasnippet
+  :ensure
   :functions (yas-minor-mode)
   :delight yas-minor-mode
   :defer 1
-  :bind
-  ((:map yas-minor-mode-map
-         ("C-j" . yas-expand)
-         :map yas-keymap
-         ("C-j" . yas-next-field-or-maybe-expand)))
+  ;; :bind
+  ;; ((:map yas-minor-mode-map
+  ;;        ("C-j" . yas-expand)
+  ;;        :map yas-keymap
+  ;;        ("C-j" . yas-next-field-or-maybe-expand)))
   :config
   (yas-global-mode 1)
-  (dolist (keymap (list yas-minor-mode-map yas-keymap))
-    (define-key keymap (kbd "TAB") nil)
-    (define-key keymap [(tab)] nil)))
+  ;; TODO: I don't think there is any benefit in disabling tab entirelly
+  ;; (dolist (keymap (list yas-minor-mode-map yas-keymap))
+  ;;   (define-key keymap (kbd "TAB") nil)
+  ;;   (define-key keymap [(tab)] nil))
+  )
 
 ;; yasnippet-snippets
 ;; https://github.com/AndreaCrotti/yasnippet-snippets
-(use-package yasnippet-snippets)
+(use-package yasnippet-snippets
+    :ensure)
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
 (use-package which-key
+  :ensure
   :delight
   :defer 1
-  :bind (:map help-map
-              ("C-h" . which-key-C-h-dispatch))
-  :config (which-key-mode))
+  :config
+  (setq which-key-max-description-length nil)
+  (which-key-mode))
 
 ;; autorevert
 (use-package autorevert
@@ -899,7 +918,6 @@ Intended as :after advice for `delete-file'."
 
 ;; comint-mode
 (use-package comint
-  :straight nil
   :config (setq comint-prompt-read-only t))
 
 (use-package shell
@@ -909,6 +927,7 @@ Intended as :after advice for `delete-file'."
 ;; https://github.com/politza/pdf-tools
 ;; Dep poppler poppler-glibc
 (use-package pdf-tools
+  :ensure
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :bind
   (:map pdf-view-mode-map
@@ -923,13 +942,15 @@ Intended as :after advice for `delete-file'."
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
+  :ensure
   :bind
   ("C-c t" . terminal-here-launch)
   :config (setq terminal-here-terminal-command 'foot))
 
 ;; sudo-edit
 ;; https://github.com/nflath/sudo-edit
-(use-package sudo-edit)
+(use-package sudo-edit
+  :ensure)
 
 ;; ispell
 (use-package ispell
@@ -942,7 +963,6 @@ Intended as :after advice for `delete-file'."
 
 ;; apropos
 (use-package apropos
-  :straight nil
   :config (setq apropos-do-all t))
 
 ;; dictionary
@@ -950,7 +970,8 @@ Intended as :after advice for `delete-file'."
   :config (setq dictionary-server "dict.org"))
 
 ;; fish-mode
-(use-package fish-mode)
+(use-package fish-mode
+  :ensure)
 
 ;; ediff
 (use-package ediff
@@ -979,13 +1000,15 @@ Intended as :after advice for `delete-file'."
 ;; Wolfram.el
 ;; https://github.com/hsjunnesson/wolfram.el
 (use-package wolfram
+  :ensure
   :config
   (setq wolfram-alpha-app-id (auth-source-pass-get 'secret "wolfram_alpha_app_id")
         wolfram-alpha-magnification-factor 1.5))
 
 ;; define-word
 ;; https://github.com/abo-abo/define-word
-(use-package define-word)
+(use-package define-word
+    :ensure)
 
 ;; systemd
 ;; https://github.com/holomorph/systemd-mode
@@ -1033,6 +1056,7 @@ Intended as :after advice for `delete-file'."
 ;; helpful
 ;; https://github.com/wilfred/helpful
 (use-package helpful
+  :ensure
   :bind
   ("C-h f" . helpful-callable)
   ("C-h v" . helpful-variable)
@@ -1046,6 +1070,7 @@ Intended as :after advice for `delete-file'."
 ;; lang-tool
 ;; https://github.com/mhayashi1120/Emacs-langtool
 (use-package langtool
+    :ensure
   :config
   (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"
         langtool-mother-tongue "en-US"))
@@ -1053,7 +1078,9 @@ Intended as :after advice for `delete-file'."
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
 (use-package elfeed
-  :defines elfeed-show-entry
+  :load-path "~/src/elfeed"
+  :ensure
+  :defines (elfeed-show-entry)
   :functions (elfeed-search-selected elfeed-search-update-entry)
   :bind
   ("C-c e" . elfeed)
@@ -1099,18 +1126,22 @@ Intended as :after advice for `delete-file'."
 ;; elfeed-org
 ;; https://github.com/remyhonig/elfeed-org
 (use-package elfeed-org
-  :demand t
+  :ensure
+  :demand
   :after elfeed
   :config (elfeed-org))
 
 ;; pocket-reader
 ;; https://github.com/alphapapa/pocket-reader.el
 (use-package pocket-reader
+  :ensure
+  :load-path "~/src/pocket-reader"
   :commands (pocket-lib-add-urls))
 
 ;; ledger-mode
 ;; https://github.com/ledger/ledger-mode
 (use-package ledger-mode
+  :ensure
   :mode ("\\.ldg\\'" . ledger-mode)
   :bind
   (:map ledger-mode-map ([f6] . (lambda () (interactive)(insert "€"))))
@@ -1123,31 +1154,37 @@ Intended as :after advice for `delete-file'."
 ;; flycheck-ledger
 ;; https://github.com/purcell/flycheck-ledger
 (use-package flycheck-ledger
-  :demand t
+  :ensure
+  :demand
   :after flycheck)
 
 ;; csv-mode
 (use-package csv-mode
+  :ensure
   :custom (csv-separators '("," ";" "	")))
 
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
+  :ensure
   :bind ("C-c v" . vterm-other-window))
 
 (use-package shr
   :config (setq shr-use-colors nil
                 shr-use-fonts nil))
 
-(use-package yaml-mode)
+(use-package yaml-mode
+  :ensure)
 
 (use-package matlab-mode
+  :ensure
   :defines (matlab-shell-command-switches)
   :mode ("\\.m\\'" . matlab-mode)
   :commands matlab-shell
   :config (setq matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
 (use-package circe
+  :ensure
   :config
   (setq circe-network-options
         `(("Libera Chat"
@@ -1161,13 +1198,12 @@ Intended as :after advice for `delete-file'."
   :config (setq reb-re-syntax 'string))
 
 (use-package mouse
-  :straight nil
   :config
   (setq mouse-yank-at-point t)
   (context-menu-mode))
 
 (use-package repeat
-  :demand t
+  :demand
   :config (repeat-mode))
 
 (use-package follow
@@ -1216,8 +1252,11 @@ Intended as :after advice for `delete-file'."
   :ensure)
 
 
+(use-package treemacs
+    :ensure)
+
 (use-package treemacs-magit
-  :demand t
+  :ensure
   :after (treemacs magit))
 
 ;;
@@ -1228,14 +1267,13 @@ Intended as :after advice for `delete-file'."
       user-mail-address "dm@mssdvd.com")
 
 (use-package message
-  :straight nil
   :config
   (setq message-auto-save-directory nil
         message-kill-buffer-on-exit t
         message-sendmail-envelope-from 'header))
 
 (use-package notmuch
-  :straight (:type built-in)
+  :ensure
   :commands (notmuch notmuch-search ~sync-email)
   :bind
   ("C-x m" . notmuch-mua-new-mail)
@@ -1280,7 +1318,8 @@ Intended as :after advice for `delete-file'."
 
 ;; Links to Notmuch buffers from Org documents
 ;; https://git.sr.ht/~tarsius/ol-notmuch
-(use-package ol-notmuch)
+(use-package ol-notmuch
+  :ensure)
 
 (use-package sendmail
   :config (setq send-mail-function 'sendmail-send-it
@@ -1295,6 +1334,7 @@ Intended as :after advice for `delete-file'."
 ;; lsp-mode
 ;; https://github.com/emacs-lsp/lsp-mode
 (use-package lsp-mode
+  :ensure
   :commands (lsp lsp-deferred lsp-format-buffer lsp-organize-imports)
   :bind (:map lsp-mode-map
               ("C-c C-d" . lsp-describe-thing-at-point))
@@ -1315,6 +1355,7 @@ Intended as :after advice for `delete-file'."
 ;; lsp-ui
 ;; https://github.com/emacs-lsp/lsp-ui
 (use-package lsp-ui
+  :ensure
   :commands lsp-ui-mode
   :bind
   (:map lsp-ui-mode-map
@@ -1322,7 +1363,8 @@ Intended as :after advice for `delete-file'."
         ([remap xref-find-references] . lsp-ui-peek-find-references)))
 
 (use-package lsp-treemacs
-  :demand t
+  :ensure
+  :demand
   :after lsp
   :custom (lsp-treemacs-sync-mode t))
 
@@ -1337,12 +1379,12 @@ Intended as :after advice for `delete-file'."
 ;; Go
 
 (use-package go-mode
-  :bind (:map go-mode-map
-              ("C-c C-d" . godoc-at-point)))
+  :ensure)
 
 ;; Rust
 
 (use-package rustic
+  :ensure
   :config (setq rustic-lsp-format t))
 
 
@@ -1362,6 +1404,5 @@ Intended as :after advice for `delete-file'."
   :hook (python-mode . pyvenv-mode))
 
 (put 'erase-buffer 'disabled nil)
-
 
 ;;; .emacs.el ends here
