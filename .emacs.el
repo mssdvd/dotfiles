@@ -676,8 +676,8 @@ Intended as :after advice for `delete-file'."
   :ensure)
 
 (use-package org-pomodoro
-  :bind ("C-c o" . org-pomodoro)
   :ensure
+  :bind ("C-c p" . org-pomodoro)
   :config (setq org-pomodoro-expiry-time 40
                 org-pomodoro-keep-killed-pomodoro-time t
                 org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=50")
