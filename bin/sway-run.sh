@@ -27,11 +27,4 @@ export XDG_DATA_HOME="$HOME/.local/share"
 
 # eval "$(ssh-agent)"
 
-case $1 in
-	debug)
-		exec ~/src/sway/build/sway/sway -d 2> ~/sway.log
-		;;
-	*)
-		exec systemd-cat --identifier=sway sway
-		;;
-esac
+exec systemd-cat --identifier=sway sway
