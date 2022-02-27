@@ -201,6 +201,7 @@ Intended as :after advice for `delete-file'."
   (size-indication-mode 1))
 
 (use-package window
+  :bind ("M-o" . other-window)
   :config (setq scroll-preserve-screen-position t))
 
 (use-package elec-pair
