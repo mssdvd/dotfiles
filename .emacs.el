@@ -766,6 +766,7 @@ Intended as :after advice for `delete-file'."
 ;; company
 ;; https://company-mode.github.io/
 (use-package company
+  :disabled
   :delight
   :defer 1
   :bind
@@ -782,30 +783,29 @@ Intended as :after advice for `delete-file'."
         company-selection-wrap-around t
         company-transformers '(company-sort-prefer-same-case-prefix))
 
-  ;; Do not use orderless for company
+  ;; Disable orderless for company
   (define-advice company-capf
       (:around (orig-fun &rest args) set-completion-styles)
-    (let ((completion-styles '(basic partial-completion)))
+    (let ((completion-styles '(basic partial-completion initials)))
       (apply orig-fun args)))
 
   (global-company-mode)
-  (company-tng-mode))
+  ;; (company-tng-mode)
+  )
 
 ;; company-quickhelp
-;; https://github.com/expez/company-quickhelp
+;; https://github.com/company-mode/company-quickhelp
 (use-package company-quickhelp
   :disabled
-  :demand t
   :after company
   :config
   (company-quickhelp-mode)
   (setq company-quickhelp-use-propertized-text t))
 
 (use-package company-box
-  :demand t
+  :disabled
   :after company
   :delight
-  :config (setq company-box-doc-enable nil)
   :hook (company-mode . company-box-mode))
 
 ;; company-math
