@@ -688,6 +688,7 @@ Intended as :after advice for `delete-file'."
   :config (setq alert-default-style 'libnotify))
 
 (use-package org-caldav
+  :disabled
   :config
   (setq org-caldav-url "https://cdav.migadu.com/calendars/dm@mssdvd.com"
         org-caldav-inbox "~/org/calendar.org"
