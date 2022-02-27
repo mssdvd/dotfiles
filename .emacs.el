@@ -440,17 +440,12 @@ Intended as :after advice for `delete-file'."
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package corfu
-  :bind
-  (:map corfu-map
-        ("TAB" . corfu-next)
-        ([tab] . corfu-next)
-        ("S-TAB" . corfu-previous)
-        ([backtab] . corfu-previous))
   :demand
   :ensure
+  :custom
+  (corfu-auto t)
+  (corfu-cycle t)
   :config
-  (setq corfu-auto t
-        corfu-cycle t)
   (corfu-global-mode))
 
 (use-package isearch
