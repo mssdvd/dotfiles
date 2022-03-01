@@ -989,8 +989,7 @@ Intended as :after advice for `delete-file'."
 ;; man
 (use-package man
   :bind ("C-c k" . man)
-  :config
-  (setq Man-notify-method 'aggressive))
+  :custom (Man-notify-method 'pushy))
 
 ;; Wolfram.el
 ;; https://github.com/hsjunnesson/wolfram.el
