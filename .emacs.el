@@ -990,9 +990,7 @@ Intended as :after advice for `delete-file'."
 (use-package man
   :bind ("C-c k" . man)
   :config
-  (setq Man-notify-method 'aggressive)
-  (set-face-attribute 'Man-overstrike nil :inherit font-lock-type-face :bold t)
-  (set-face-attribute 'Man-underline nil :inherit font-lock-keyword-face :underline t))
+  (setq Man-notify-method 'aggressive))
 
 ;; Wolfram.el
 ;; https://github.com/hsjunnesson/wolfram.el
