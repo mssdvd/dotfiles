@@ -1090,11 +1090,13 @@ Intended as :after advice for `delete-file'."
   (elfeed-search-title-max-width 100)
   :config
   (setq url-queue-timeout 30)
+  
   (defun ~elfeed--play-with-mpv (entry)
     (elfeed-untag entry 'unread)
     (message "Sent to mpv: %s" (elfeed-entry-link entry))
     (start-process "elfeed-mpv" nil
                    "mpv"
+                   "--pause"
                    "--speed=2.0"
                    "--force-window=immediate"
                    "--demuxer-max-bytes=2GiB"
