@@ -564,7 +564,8 @@ Intended as :after advice for `delete-file'."
   :hook (prog-mode sgml-mode))
 
 (use-package cdlatex
-  :ensure)
+  :ensure
+  :custom (cdlatex-math-modify-alist '((?B "\\mathbb" nil t nil nil))))
 
 (use-package auctex
   :ensure)
