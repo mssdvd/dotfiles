@@ -635,7 +635,7 @@ Intended as :after advice for `delete-file'."
                                 ("\\.webm\\'" . "mpv %s")
                                 ("\\.odt\\'" . "libreoffice %s"))
                               org-file-apps)
-        org-format-latex-options (plist-put org-format-latex-options :scale 2.5)
+        org-format-latex-options (plist-put org-format-latex-options :scale 2.0)
         org-html-validation-link nil
         org-log-into-drawer t
         org-outline-path-complete-in-steps nil
