@@ -1094,15 +1094,17 @@ Intended as :after advice for `delete-file'."
   
   (defun ~elfeed--play-with-mpv (entry)
     (elfeed-untag entry 'unread)
-    (message "Sent to mpv: %s" (elfeed-entry-link entry))
-    (start-process "elfeed-mpv" nil
-                   "mpv"
-                   "--pause"
-                   "--speed=2.0"
-                   "--force-window=immediate"
-                   "--demuxer-max-bytes=2GiB"
-                   "--"
-                   (elfeed-entry-link entry)))
+    (let ((link (or (caar (elfeed-entry-enclosures entry))
+                    (elfeed-entry-link entry))))
+      (message "Sent to mpv: %s" link)
+      (start-process "elfeed-mpv" nil
+                     "mpv"
+                     "--pause"
+                     "--speed=2.0"
+                     "--force-window=immediate"
+                     "--demuxer-max-bytes=2GiB"
+                     "--"
+                     link)))
 
   (defun ~elfeed-play-with-mpv ()
     "Play entry link with mpv."
