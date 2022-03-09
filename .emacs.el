@@ -1256,6 +1256,9 @@ Intended as :after advice for `delete-file'."
 (use-package olivetti
   :ensure)
 
+(use-package osm
+  :ensure)
+
 
 (use-package treemacs
     :ensure)
