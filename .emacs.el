@@ -1350,6 +1350,7 @@ Intended as :after advice for `delete-file'."
   (lsp-keymap-prefix "C-c o")
   (lsp-modeline-code-actions-segments '(count icon name))
   (lsp-enable-semantic-highlighting t)
+  (lsp-keep-workspace-alive nil)
   :hook
   (c-mode . lsp)
   (c++-mode . lsp)
