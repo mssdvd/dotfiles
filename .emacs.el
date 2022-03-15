@@ -1125,8 +1125,7 @@ Intended as :after advice for `delete-file'."
                    (elfeed-search-selected :single))))
       (elfeed-untag entry 'unread)
       (elfeed-search-update-entry entry)
-      (eww (elfeed-entry-link entry))
-      (add-hook 'eww-after-render-hook 'eww-readable nil t))))
+      (eww (elfeed-entry-link entry)))))
 
 ;; elfeed-org
 ;; https://github.com/remyhonig/elfeed-org
