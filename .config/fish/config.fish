@@ -12,3 +12,7 @@ end
 if ! set -q SSH_AUTH_SOCK
     source "$XDG_RUNTIME_DIR/ssh-agent.env" >/dev/null
 end
+
+if status is-login; and test -z "$DISPLAY"; and test $(tty) = "/dev/tty1"
+    exec sway-run.sh
+end
