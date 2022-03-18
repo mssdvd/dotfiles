@@ -1256,7 +1256,8 @@ Intended as :after advice for `delete-file'."
   :ensure)
 
 (use-package osm
-  :ensure)
+  :ensure
+  :custom (osm-copyright nil))
 
 (use-package dired-hist
   :load-path "~/src/dired-hist"
