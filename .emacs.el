@@ -7,6 +7,7 @@
 
 (require 'package)
 (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
+(add-to-list 'package-archives '("melpa-stable" . "https://stable.melpa.org/packages/") t)
 (unless (package-installed-p 'use-package)
   (package-refresh-contents)
   (package-install 'use-package))
@@ -1242,6 +1243,7 @@ Intended as :after advice for `delete-file'."
 (use-package treemacs)
 (use-package telega
   :ensure
+  :pin melpa-stable
   :custom
   (telega-completing-read-function 'completing-read)
   :hook
