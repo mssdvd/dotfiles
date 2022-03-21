@@ -1293,6 +1293,7 @@ Intended as :after advice for `delete-file'."
 
 (use-package notmuch
   :ensure
+  :pin melpa-stable
   :commands (notmuch notmuch-search ~sync-email)
   :bind
   ("C-x m" . notmuch-mua-new-mail)
