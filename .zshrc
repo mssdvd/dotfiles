@@ -15,7 +15,7 @@ alias locate="locate -bi"
 function rg {
     if [ -t 1 ]; then
         command rg --pretty "$@" \
-            | less --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
+            |& less --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
     else
         command rg "$@"
     fi
