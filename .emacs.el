@@ -84,14 +84,6 @@
   (magit-status "~/src/emacs-git/emacs-git/")
   (magit-fetch-from-upstream "origin" "master"))
 
-(defun ~ranger-launch-here ()
-  "Open the current file's directory in ranger."
-  (interactive)
-  (if default-directory
-      (call-process-shell-command "foot -e ranger" (expand-file-name default-directory) 0 nil)
-    (error "No `default-directory' to open")))
-(keymap-global-set "C-c r" #'~ranger-launch-here)
-
 (defun ~yank-primary ()
   "Insert the primary selection at the position."
   (interactive)
