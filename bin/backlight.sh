@@ -6,8 +6,7 @@ if [ "$output" = "eDP-1" ]
 then exec /bin/light "$@"
 fi
 
-pgrep ddcutil
-if [ $? -ne 1 ]
+if pgrep ddcutil
 then exit 1
 fi
 
