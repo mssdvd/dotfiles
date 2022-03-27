@@ -837,7 +837,8 @@ Intended as :after advice for `delete-file'."
 (use-package epg
   :config (setq epg-pinentry-mode 'loopback))
 
-(use-package auth-source
+(use-package auth-source-pass
+  :defer 1
   :config (auth-source-pass-enable))
 
 (use-package password-store
