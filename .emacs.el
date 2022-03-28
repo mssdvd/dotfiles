@@ -165,7 +165,7 @@ Intended as :after advice for `delete-file'."
 (use-package tree-sitter
   :ensure
   :delight
-  :defer 1
+  :defer 2
   :functions (global-tree-sitter-mode)
   :config (global-tree-sitter-mode)
   :hook (tree-sitter-after-on . tree-sitter-hl-mode))
@@ -523,7 +523,7 @@ Intended as :after advice for `delete-file'."
   (recentf-mode))
 
 (use-package saveplace
-  :demand t
+  :defer 1
   :config (save-place-mode 1)
   :custom (save-place-limit 800))
 
@@ -1192,7 +1192,7 @@ Intended as :after advice for `delete-file'."
   (context-menu-mode))
 
 (use-package repeat
-  :demand
+  :defer 1
   :config (repeat-mode))
 
 (use-package follow
