@@ -1006,10 +1006,6 @@ Intended as :after advice for `delete-file'."
   ("\\.service\\'" . systemd-mode)
   ("\\.timer\\'" . systemd-mode))
 
-;; dumb-jump
-;; https://github.com/jacktasia/dumb-jump
-(use-package dumb-jump)
-
 ;; calc
 (use-package calc
   :bind
