@@ -121,10 +121,10 @@ Intended as :after advice for `delete-file'."
 (use-package no-littering
   :ensure
   :demand
-  :functions (no-littering-expand-etc-file-name no-littering-expand-var-file-name)
+  :custom
+  (auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
+  (custom-file (no-littering-expand-etc-file-name "custom.el"))
   :config
-  (setq auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t))
-        custom-file (no-littering-expand-etc-file-name "custom.el"))
   (load custom-file 'noerror 'nomessage))
 
 ;; delight
@@ -138,8 +138,9 @@ Intended as :after advice for `delete-file'."
   :disabled
   :delight
   :defer nil
+  :custom
+  (gcmh-idle-delay 'auto)
   :config
-  (setq gcmh-idle-delay 'auto)
   (gcmh-mode 1))
 
 (use-package modus-themes
@@ -316,20 +317,19 @@ Intended as :after advice for `delete-file'."
           (cons (cdr x) (substring pattern 1))
         (when-let (x (assq (aref pattern (1- (length pattern))) ~orderless-dispatch-alist))
           (cons (cdr x) (substring pattern 0 -1)))))))
-
-  (setq completion-styles '(orderless basic)
-        completion-category-defaults nil
-        completion-category-overrides '((file (styles basic partial-completion)))
-        orderless-component-separator #'orderless-escapable-split-on-space
-        orderless-matching-styles '(orderless-literal
-                                    orderless-regexp
-                                    orderless-initialism)
-        orderless-style-dispatchers '(~orderless-dispatch)
-        read-file-name-completion-ignore-case t))
+  :custom
+  (completion-styles '(orderless basic))
+  (completion-category-defaults nil)
+  (completion-category-overrides '((file (styles basic partial-completion))))
+  (orderless-component-separator #'orderless-escapable-split-on-space)
+  (orderless-matching-styles '(orderless-literal
+                               orderless-regexp
+                               orderless-initialism))
+  (orderless-style-dispatchers '(~orderless-dispatch))
+  (read-file-name-completion-ignore-case t))
 
 (use-package savehist
-  :init
-  (savehist-mode))
+  :init (savehist-mode))
 
 (use-package consult
   :ensure t
@@ -381,11 +381,8 @@ Intended as :after advice for `delete-file'."
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi))
   :init
-  (setq register-preview-delay 0
-        register-preview-function #'consult-register-format)
   (advice-add #'register-preview :override #'consult-register-window)
-  (setq xref-show-xrefs-function #'consult-xref
-        xref-show-definitions-function #'consult-xref)
+  ;; Enchance completion-read-multiple
   (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   :config
   (setq consult-narrow-key "<")
@@ -402,7 +399,12 @@ Intended as :after advice for `delete-file'."
     (let ((map (make-sparse-keymap)))
       (define-key map "\C-s" #'previous-history-element)
       map))
-  (consult-customize consult-line :keymap ~consult-line-map))
+  (consult-customize consult-line :keymap ~consult-line-map)
+  :custom
+  (xref-show-xrefs-function #'consult-xref)
+  (xref-show-definitions-function #'consult-xref)
+  (register-preview-delay 0.5)
+  (register-preview-function #'consult-register-format))
 
 (use-package consult-flycheck
   :ensure
@@ -724,28 +726,25 @@ Intended as :after advice for `delete-file'."
          ("C-c n i" . org-roam-node-insert)
          ("C-c n c" . org-roam-capture))
   :bind-keymap ("C-c n d" . org-roam-dailies-map)
-  :init
-  (setq org-roam-v2-ack t)
+  :custom (org-roam-v2-ack t)
+  :custom
+  (org-roam-capture-templates
+   '(("d" "default" plain "%?"
+      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n#+date: %U\n#+startup: latexpreview\n")
+      :unnarrowed t)
+     ("b" "book notes" plain
+      "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
+      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n#+date: %U\n")
+      :unnarrowed t)))
+  (org-roam-capture-ref-templates
+   '(("r" "ref" plain "%?"
+      :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
+                         "#+title: ${title}\n#+date: %U\n")
+      :unnarrowed t)))
+  (org-roam-completion-everywhere t)
   :config
-  (setq org-roam-capture-templates
-        '(("d" "default" plain "%?"
-           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                              "#+title: ${title}\n#+date: %U\n#+startup: latexpreview\n")
-           :unnarrowed t)
-
-          ("b" "book notes" plain
-           "\n* Source\n\nAuthor: %^{Author}\nTitle: ${title}\nYear: %^{Year}\n\n* Summary\n\n%?"
-           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                              "#+title: ${title}\n#+date: %U\n")
-           :unnarrowed t))
-
-        org-roam-capture-ref-templates
-        '(("r" "ref" plain "%?"
-           :target (file+head "%<%Y%m%d%H%M%S>-${slug}.org"
-                              "#+title: ${title}\n#+date: %U\n")
-           :unnarrowed t))
-
-        org-roam-completion-everywhere t)
   (org-roam-db-autosync-mode)
   (require 'org-roam-protocol))
 
@@ -857,9 +856,10 @@ Intended as :after advice for `delete-file'."
 (use-package diff-hl
   :ensure
   :defer 1
+  :custom
+  (diff-hl-draw-borders nil)
   :config
   (global-diff-hl-mode)
-  (setq diff-hl-draw-borders nil)
   :hook ((magit-pre-refresh . diff-hl-magit-pre-refresh)
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode . diff-hl-dired-mode)))
@@ -895,8 +895,9 @@ Intended as :after advice for `delete-file'."
   :ensure
   :delight
   :defer 1
+  :custom
+  (which-key-max-description-length nil)
   :config
-  (setq which-key-max-description-length nil)
   (which-key-mode))
 
 ;; autorevert
@@ -965,9 +966,9 @@ Intended as :after advice for `delete-file'."
 
 ;; ediff
 (use-package ediff
-  :config
-  (setq ediff-window-setup-function #'ediff-setup-windows-plain
-        ediff-split-window-function #'split-window-horizontally))
+  :custom
+  (ediff-window-setup-function #'ediff-setup-windows-plain)
+  (ediff-split-window-function #'split-window-horizontally))
 
 ;; gdb-mi
 (use-package gdb-mi
@@ -1331,8 +1332,9 @@ Intended as :after advice for `delete-file'."
   :ensure)
 
 (use-package sendmail
-  :config (setq send-mail-function #'sendmail-send-it
-                sendmail-program "/usr/bin/msmtp"))
+  :custom
+  (send-mail-function #'sendmail-send-it)
+  (sendmail-program "/usr/bin/msmtp"))
 
 ;;
 ;; Languages configurations
