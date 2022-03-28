@@ -1286,31 +1286,33 @@ Intended as :after advice for `delete-file'."
                (if (string= (shell-command-to-string "notmuch count tag:unread") "0\n")
                    (notmuch)
                  (notmuch-search "tag:unread" t))))
+  :custom
+  (mail-user-agent 'notmuch-user-agent)
+  (notmuch-draft-folder "dm@mssdvd.com/Drafts")
+  (notmuch-fcc-dirs
+   '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent +mssdvd +sent")
+     ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" +gmail +sent")
+     ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata +pec +sent")))
+  (notmuch-hello-recent-searches-max 15)
+  (notmuch-saved-searches
+   '((:name "inbox" :query "tag:inbox" :key "i")
+     (:name "unread" :query "tag:unread" :sort-order oldest-first :key "u")
+     (:name "flagged" :query "tag:flagged" :key "f")
+     (:name "sent" :query "tag:sent" :key "t")
+     (:name "drafts" :query "tag:draft" :key "d")
+     (:name "last 3 months" :query "date:\"3M\".." :key "m")
+     (:name "all mail" :query "*" :key "a")))
+  (notmuch-search-oldest-first nil)
+  (notmuch-search-result-format '(("date" . "%12s ")
+                                  ("count" . "%-7s ")
+                                  ("authors" . "%-30s ")
+                                  ("subject" . "%s ")
+                                  ("tags" . "(%s)")))
+  (notmuch-show-all-tags-list t)
+  (notmuch-show-part-button-default-action 'notmuch-show-view-part)
   :config
-  (setq mail-user-agent 'notmuch-user-agent
-        notmuch-draft-folder "dm@mssdvd.com/Drafts"
-        notmuch-fcc-dirs
-        '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent +mssdvd +sent")
-          ("d.masserut@gmail.com" . "\"d.masserut@gmail.com/[Gmail]/Sent Mail\" +gmail +sent")
-          ("dmasserut@pec.it" . "dmasserut@pec.it/Inviata +pec +sent"))
-        notmuch-saved-searches '((:name "inbox" :query "tag:inbox" :key "i")
-                                 (:name "unread" :query "tag:unread" :sort-order oldest-first :key "u")
-                                 (:name "flagged" :query "tag:flagged" :key "f")
-                                 (:name "sent" :query "tag:sent" :key "t")
-                                 (:name "drafts" :query "tag:draft" :key "d")
-                                 (:name "last 3 months" :query "date:\"3M\".." :key "m")
-                                 (:name "all mail" :query "*" :key "a"))
-        notmuch-search-result-format '(("date" . "%12s ")
-                                       ("count" . "%-7s ")
-                                       ("authors" . "%-30s ")
-                                       ("subject" . "%s ")
-                                       ("tags" . "(%s)"))
-        notmuch-show-all-tags-list t
-        notmuch-show-part-button-default-action 'notmuch-show-view-part)
-  (setq-default notmuch-search-oldest-first nil)
-
   (defun ~sync-email ()
-    "Sync emails and update notmuch index"
+    "Sync emails and update notmuch index."
     (interactive)
     (start-process "sync emails and update notmuch index" nil
                    "systemctl" "--user" "start" "sync_email.service"))
