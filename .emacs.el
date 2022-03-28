@@ -946,12 +946,7 @@ Intended as :after advice for `delete-file'."
 
 ;; ispell
 (use-package ispell
-  :config
-  (setq ispell-program-name "hunspell")
-  ;; (ispell-set-spellchecker-params)
-  ;; (ispell-hunspell-add-multi-dic "it_IT,en_US")
-  ;; (setq ispell-dictionary "en_US")
-  )
+  :custom (ispell-dictionary "en_US"))
 
 ;; apropos
 (use-package apropos
