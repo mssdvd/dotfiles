@@ -560,8 +560,8 @@ Intended as :after advice for `delete-file'."
   :ensure
   :custom (cdlatex-math-modify-alist '((?B "\\mathbb" nil t nil nil))))
 
-(use-package auctex
-  :ensure)
+(use-package tex
+  :ensure auctex)
 
 (use-package org
   :ensure
