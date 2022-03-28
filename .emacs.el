@@ -963,8 +963,8 @@ Intended as :after advice for `delete-file'."
 ;; ediff
 (use-package ediff
   :config
-  (setq ediff-window-setup-function 'ediff-setup-windows-plain
-        ediff-split-window-function 'split-window-horizontally))
+  (setq ediff-window-setup-function #'ediff-setup-windows-plain
+        ediff-split-window-function #'split-window-horizontally))
 
 ;; gdb-mi
 (use-package gdb-mi
@@ -1229,7 +1229,7 @@ Intended as :after advice for `delete-file'."
   :ensure
   :pin melpa-stable
   :custom
-  (telega-completing-read-function 'completing-read)
+  (telega-completing-read-function #'completing-read)
   :hook
   (telega-load . telega-appindicator-mode)
   (telega-load . telega-mode-line-mode)
@@ -1309,7 +1309,7 @@ Intended as :after advice for `delete-file'."
                                   ("subject" . "%s ")
                                   ("tags" . "(%s)")))
   (notmuch-show-all-tags-list t)
-  (notmuch-show-part-button-default-action 'notmuch-show-view-part)
+  (notmuch-show-part-button-default-action #'notmuch-show-view-part)
   :config
   (defun ~sync-email ()
     "Sync emails and update notmuch index."
@@ -1328,7 +1328,7 @@ Intended as :after advice for `delete-file'."
   :ensure)
 
 (use-package sendmail
-  :config (setq send-mail-function 'sendmail-send-it
+  :config (setq send-mail-function #'sendmail-send-it
                 sendmail-program "/usr/bin/msmtp"))
 
 ;;
