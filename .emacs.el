@@ -15,6 +15,9 @@
 (defvar use-package-always-defer t)
 (defvar use-package-enable-imenu-support t)
 
+(eval-when-compile
+  (require 'use-package))
+
 ;; disable cursor blinking
 (blink-cursor-mode 0)
 
