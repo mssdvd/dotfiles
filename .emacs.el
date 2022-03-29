@@ -1350,19 +1350,27 @@ Intended as :after advice for `delete-file'."
   :bind (:map lsp-mode-map
               ("C-c C-d" . lsp-describe-thing-at-point))
   :custom
+  (lsp-completion-provider :none)
   (lsp-keymap-prefix "C-c o")
   (lsp-modeline-code-actions-segments '(count icon name))
-  (lsp-enable-semantic-highlighting t)
+  (lsp-semantic-tokens-enable t)
+  (lsp-signature-render-documentation nil)
+  (lsp-go-hover-kind "FullDocumentation")
+  (lsp-go-use-gofumpt t)
   (lsp-keep-workspace-alive nil)
   :hook
-  (c-mode . lsp)
-  (c++-mode . lsp)
   ((go-mode java-mode) . lsp-deferred)
-  ((go-mode java-mode) . (lambda ()
-                           (add-hook 'before-save-hook #'lsp-format-buffer t t)
-                           (add-hook 'before-save-hook #'lsp-organize-imports t t)))
+  (lsp-mode . (lambda ()
+                (add-hook 'before-save-hook #'lsp-format-buffer t t)
+                (add-hook 'before-save-hook #'lsp-organize-imports t t)))
   (lsp-mode . lsp-enable-which-key-integration)
-  (lsp-mode . lsp-modeline-code-actions-mode))
+  (lsp-mode . lsp-modeline-code-actions-mode)
+  (lsp-completion-mode . (lambda ()
+                           (setf (alist-get 'styles (alist-get 'lsp-capf completion-category-defaults))
+                                 '(orderless))
+                           (setq-local completion-at-point-functions
+                                       (list
+                                        (cape-capf-buster #'lsp-completion-at-point))))))
 
 ;; lsp-ui
 ;; https://github.com/emacs-lsp/lsp-ui
