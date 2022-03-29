@@ -253,7 +253,6 @@ Intended as :after advice for `delete-file'."
   :commands (vertico-mode)
   :functions (vertico-mouse-mode consult-completion-in-region)
   :defines (vertico-quick1)
-  :init (vertico-mode)
   :bind
   ("C-c i" . vertico-repeat)
   (:map vertico-map
@@ -263,16 +262,18 @@ Intended as :after advice for `delete-file'."
         ("C-<backspace>" . vertico-directory-delete-word)
         ("C-;" . vertico-quick-insert)
         ("C-'" . vertico-quick-exit))
+  :custom
+  (vertico-cycle t)
+  (vertico-quick1 "asdfghjkl;")
+  (vertico-scroll-margin (/ vertico-count 2))
+  (completion-in-region-function
+   (lambda (&rest args)
+     (apply (if vertico-mode
+                #'consult-completion-in-region
+              #'completion--in-region)
+            args)))
   :config
-  (setq vertico-cycle t
-        vertico-quick1 "asdfghjkl;"
-        vertico-scroll-margin (/ vertico-count 2)
-        completion-in-region-function
-        (lambda (&rest args)
-          (apply (if vertico-mode
-                     #'consult-completion-in-region
-                   #'completion--in-region)
-                 args)))
+  (vertico-mode)
   (vertico-mouse-mode 1)
   :hook
   (rfn-eshadow-update-overlay . vertico-directory-tidy)
@@ -413,7 +414,7 @@ Intended as :after advice for `delete-file'."
   :bind
   (:map minibuffer-local-map
         ("M-A" . marginalia-cycle))
-  :init (marginalia-mode))
+  :config (marginalia-mode))
 
 (use-package embark
   :ensure
