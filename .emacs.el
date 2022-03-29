@@ -1141,16 +1141,6 @@ Intended as :after advice for `delete-file'."
   :commands matlab-shell
   :config (setq matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
-(use-package circe
-  :ensure
-  :config
-  (setq circe-network-options
-        `(("Libera Chat"
-           :tls t
-           :nick "mssdvd"
-           :sasl-username "mssdvd"
-           :sasl-password ,(auth-source-pass-get 'secret "libera.chat/mssdvd")))
-        circe-reduce-lurker-spam t))
 
 (use-package re-builder
   :config (setq reb-re-syntax 'string))
