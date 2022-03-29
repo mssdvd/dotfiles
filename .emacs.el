@@ -822,13 +822,13 @@ Intended as :after advice for `delete-file'."
 ;; https://magit.vc
 (use-package magit
   :ensure
+  :custom
+  (magit-diff-refine-hunk 'all)
+  (magit-delete-by-moving-to-trash nil)
+  (magit-repository-directories '(("~/org" . 0)
+                                  ("~/uni" . 0)))
+  (magit-status-goto-file-position t)
   :config
-  (setq magit-diff-refine-hunk 'all
-        magit-diff-refine-ignore-whitespace nil
-        magit-delete-by-moving-to-trash nil
-        magit-repository-directories '(("~/org" . 0)
-                                       ("~/uni" . 0))
-        magit-status-goto-file-position t)
   (put 'magit-edit-line-commit 'disabled nil)
   (require 'magit-extras))
 
