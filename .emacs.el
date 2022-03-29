@@ -1401,12 +1401,7 @@ Intended as :after advice for `delete-file'."
 
 
 ;; C/C++
-
-(use-package ccls
-  :demand t
-  :after lsp
   :config
-  (setq-default ccls-executable "ccls"))
 
 ;; Python
 
