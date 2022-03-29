@@ -1122,6 +1122,8 @@ Intended as :after advice for `delete-file'."
         ledger-highlight-xact-under-point nil
         ledger-reconcile-default-commodity "€"))
 
+(use-package ledger-flymake
+  :hook (ledger-mode . ledger-flymake-enable))
 
 ;; csv-mode
 (use-package csv-mode
