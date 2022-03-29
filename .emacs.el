@@ -1314,11 +1314,13 @@ Intended as :after advice for `delete-file'."
 ;; Languages configurations
 ;;
 
-;; lsp
-
+(use-package eglot
   :ensure
   :custom
+  (eglot-autoshutdown t)
+  (eglot-extend-to-xref t)
   :hook
+  ((go-mode go-dot-mod-mode) . eglot-ensure))
 
 ;; Go
 
@@ -1329,8 +1331,9 @@ Intended as :after advice for `delete-file'."
 
 (use-package rustic
   :ensure
-  :config (setq rustic-lsp-format t))
-
+  :custom
+  (rustic-lsp-client 'eglot)
+  (rustic-lsp-format t))
 
 ;; C/C++
 (use-package cc-vars
