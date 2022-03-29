@@ -1,4 +1,4 @@
-;;; .emacs.el --- Main emacs config file  -*- lexical-binding: t; flycheck-check-syntax-automatically: (save mode-enabled); -*-
+;;; .emacs.el --- Main emacs config file  -*- lexical-binding: t; -*-
 ;;; Commentary:
 
 ;;; Code:
@@ -406,12 +406,6 @@ Intended as :after advice for `delete-file'."
   (register-preview-delay 0.5)
   (register-preview-function #'consult-register-format))
 
-(use-package consult-flycheck
-  :ensure
-  :after (consult flycheck)
-  :bind (:map flycheck-command-map
-              ("!" . consult-flycheck)))
-
 (use-package marginalia
   :ensure
   :demand
@@ -476,13 +470,6 @@ Intended as :after advice for `delete-file'."
   :bind ("C-'" . avy-goto-char-timer)
   :config (avy-setup-default))
 
-;; avy-flycheck
-;; https://github.com/magicdirac/avy-flycheck
-(use-package avy-flycheck
-  :demand t
-  :after flycheck avy
-  :config (avy-flycheck-setup))
-
 ;; ace-link
 ;; https://github.com/abo-abo/ace-link
 (use-package ace-link
@@ -497,28 +484,8 @@ Intended as :after advice for `delete-file'."
   :ensure
   :bind ("C-=" . er/expand-region))
 
-;; flycheck
-;; http://www.flycheck.org
-(use-package flycheck
-  :ensure
-  :functions (global-flycheck-mode)
-  :defer 1
-  :bind
-  (:map flycheck-mode-map
-        ("M-n" . flycheck-next-error)
-        ("M-p" . flycheck-previous-error))
-  :config
-  (setq flycheck-global-modes '(not org-mode)
-        flycheck-mode-line-prefix "FC"
-        flycheck-emacs-lisp-load-path 'inherit)
-  (global-flycheck-mode))
 
-;; flycheck-inline
-;; https://github.com/flycheck/flycheck-inline
-(use-package flycheck-inline
   :ensure
-  :disabled
-  :hook (flycheck-mode . flycheck-inline-mode))
 
 ;; recentf
 (use-package recentf
@@ -1144,12 +1111,6 @@ Intended as :after advice for `delete-file'."
         ledger-highlight-xact-under-point nil
         ledger-reconcile-default-commodity "€"))
 
-;; flycheck-ledger
-;; https://github.com/purcell/flycheck-ledger
-(use-package flycheck-ledger
-  :ensure
-  :demand
-  :after flycheck)
 
 ;; csv-mode
 (use-package csv-mode
