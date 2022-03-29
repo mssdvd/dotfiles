@@ -1401,7 +1401,11 @@ Intended as :after advice for `delete-file'."
 
 
 ;; C/C++
-  :config
+(use-package cc-vars
+  :custom
+  (c-default-style '((java-mode . "java")
+                     (awk-mode . "awk")
+                     (other . "linux"))))
 
 ;; Python
 
