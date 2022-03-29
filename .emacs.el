@@ -484,6 +484,15 @@ Intended as :after advice for `delete-file'."
   :ensure
   :bind ("C-=" . er/expand-region))
 
+(use-package elisp-mode
+  :custom (elisp-flymake-byte-compile-load-path (cons "./" load-path)))
+
+(use-package flymake
+  :bind
+  (:map flymake-mode-map
+        ("M-n" . flymake-goto-next-error)
+        ("M-p" . flymake-goto-prev-error))
+  :hook (prog-mode . flymake-mode))
 
   :ensure
 
