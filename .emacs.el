@@ -1386,7 +1386,6 @@ Intended as :after advice for `delete-file'."
 ;; lsp-pyright
 (use-package lsp-pyright)
 
-(use-package dap-mode)
 
 ;; Go
 
