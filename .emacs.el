@@ -1380,12 +1380,8 @@ Intended as :after advice for `delete-file'."
   :after lsp
   :custom (lsp-treemacs-sync-mode t))
 
-;; lsp-java
-(use-package lsp-java)
-
 ;; lsp-pyright
 (use-package lsp-pyright)
-
 
 ;; Go
 
