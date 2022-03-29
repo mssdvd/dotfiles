@@ -494,7 +494,9 @@ Intended as :after advice for `delete-file'."
         ("M-p" . flymake-goto-prev-error))
   :hook (prog-mode . flymake-mode))
 
+(use-package flymake-shellcheck
   :ensure
+  :hook (sh-mode . flymake-shellcheck-load))
 
 ;; recentf
 (use-package recentf
