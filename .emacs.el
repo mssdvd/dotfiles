@@ -132,17 +132,6 @@ Intended as :after advice for `delete-file'."
 (use-package delight
   :ensure)
 
-;; gcmh
-;; https://gitlab.com/koral/gcmh
-(use-package gcmh
-  :disabled
-  :delight
-  :defer nil
-  :custom
-  (gcmh-idle-delay 'auto)
-  :config
-  (gcmh-mode 1))
-
 (use-package modus-themes
   :ensure
   :commands (modus-themes-load-themes)
