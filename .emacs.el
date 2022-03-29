@@ -641,7 +641,8 @@ Intended as :after advice for `delete-file'."
                '("AUTO" "babel" t ("pdflatex")))
   ;; (dolist (i org-level-faces) (set-face-attribute i nil :overline t))
   :hook
-  (org-mode . auto-fill-mode))
+  (org-mode . auto-fill-mode)
+  (org-mode . turn-on-org-cdlatex))
 
 (use-package org-indent
   :delight
