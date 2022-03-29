@@ -1405,10 +1405,6 @@ Intended as :after advice for `delete-file'."
 
 ;; Python
 
-(use-package pyvenv
-  :demand t
-  :after python
-  :hook (python-mode . pyvenv-mode))
 
 (put 'erase-buffer 'disabled nil)
 
