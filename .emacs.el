@@ -1146,7 +1146,7 @@ Intended as :after advice for `delete-file'."
   (erc-fill-column 120)
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 15)
-  (erc-lurker-hide-list '("JOIN" "PART" "QUIT"))
+  (erc-hide-list '("JOIN" "PART" "QUIT"))
   (erc-nick "mssdvd")
   (erc-prompt-for-password nil)
   (erc-track-showcount t)
