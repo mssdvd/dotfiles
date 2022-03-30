@@ -1157,6 +1157,9 @@ Intended as :after advice for `delete-file'."
     (add-to-list 'erc-modules service))
   (erc-update-modules))
 
+(use-package erc-hl-nicks
+  :ensure)
+
 (use-package re-builder
   :config (setq reb-re-syntax 'string))
 
