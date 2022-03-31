@@ -879,7 +879,9 @@ Intended as :after advice for `delete-file'."
 
 ;; eldoc-mode
 (use-package eldoc
-  :delight)
+  :delight
+  :custom
+  (eldoc-echo-area-use-multiline-p nil))
 
 ;; comint-mode
 (use-package comint
