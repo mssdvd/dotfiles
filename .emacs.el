@@ -1320,6 +1320,9 @@ Intended as :after advice for `delete-file'."
   :custom
   (eglot-autoshutdown t)
   (eglot-extend-to-xref t)
+  :config
+  (setq-default eglot-workspace-configuration
+                '((:gopls . (:linkTarget "godocs.io"))))
   :hook
   ((go-mode go-dot-mod-mode) . eglot-ensure))
 
