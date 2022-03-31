@@ -1143,7 +1143,6 @@ Intended as :after advice for `delete-file'."
 
 (use-package erc
   :custom
-  (erc-fill-column 120)
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 15)
   (erc-hide-list '("JOIN" "PART" "QUIT"))
