@@ -1155,7 +1155,7 @@ Intended as :after advice for `delete-file'."
   (erc-use-auth-source-for-nickserv-password t)
   (erc-user-full-name "Davide Masserut")
   :config
-  (dolist (service '(keep-place notifications services))
+  (dolist (service '(keep-place notifications scrolltobottom services))
     (add-to-list 'erc-modules service))
   (erc-update-modules))
 
