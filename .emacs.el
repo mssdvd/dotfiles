@@ -1144,6 +1144,7 @@ Intended as :after advice for `delete-file'."
   :config (setq matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
 (use-package erc
+  :commands (~mssdvd/erc-libera)
   :custom
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 15)
@@ -1159,7 +1160,15 @@ Intended as :after advice for `delete-file'."
   (erc-track-showcount t)
   (erc-use-auth-source-for-nickserv-password t)
   (erc-user-full-name "Davide Masserut")
+  (erc-email-userid (concat erc-nick "/liberachat" "@" (system-name)))
   :config
+  (defun ~mssdvd/erc-libera ()
+    "Connect to Libera Chat through the sr.ht bouncer."
+    (interactive)
+    (erc-tls :server "chat.sr.ht"
+             :nick "mssdvd"
+             :port erc-default-port-tls
+             :password (auth-source-pass-get 'secret "sr.ht/chat"))))
 
 (use-package erc-hl-nicks
   :ensure)
