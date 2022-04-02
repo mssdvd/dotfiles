@@ -1151,6 +1151,7 @@ Intended as :after advice for `delete-file'."
   (erc-join-buffer 'bury)
   (erc-nick "mssdvd")
   (erc-prompt-for-password nil)
+  (erc-rename-buffers t)
   (erc-track-showcount t)
   (erc-use-auth-source-for-nickserv-password t)
   (erc-user-full-name "Davide Masserut")
