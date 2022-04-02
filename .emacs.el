@@ -1149,6 +1149,10 @@ Intended as :after advice for `delete-file'."
   (erc-fill-static-center 15)
   (erc-hide-list '("JOIN" "PART" "QUIT"))
   (erc-join-buffer 'bury)
+  (erc-modules '(autoaway notifications pcomplete services
+                          netsplit fill button match track completion
+                          readonly networks ring autojoin noncommands
+                          irccontrols move-to-prompt stamp menu list))
   (erc-nick "mssdvd")
   (erc-prompt-for-password nil)
   (erc-rename-buffers t)
@@ -1156,9 +1160,6 @@ Intended as :after advice for `delete-file'."
   (erc-use-auth-source-for-nickserv-password t)
   (erc-user-full-name "Davide Masserut")
   :config
-  (dolist (service '(autoaway notifications services))
-    (add-to-list 'erc-modules service))
-  (erc-update-modules))
 
 (use-package erc-hl-nicks
   :ensure)
