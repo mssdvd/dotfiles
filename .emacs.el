@@ -921,7 +921,9 @@ Intended as :after advice for `delete-file'."
 
 ;; ispell
 (use-package ispell
-  :custom (ispell-dictionary "en_US"))
+  :custom
+  (ispell-dictionary "en_US")
+  (ispell-complete-word-dict (expand-file-name "~/.words_us-it")))
 
 ;; apropos
 (use-package apropos
