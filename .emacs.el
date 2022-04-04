@@ -1245,6 +1245,8 @@ Intended as :after advice for `delete-file'."
               ("l" . dired-hist-go-back)
               ("r" . dired-hist-go-forward))
   :config (dired-hist-mode 1))
+(use-package hexl
+  :hook (hexl-mode . read-only-mode))
 
 
 (use-package treemacs
