@@ -527,7 +527,7 @@ Intended as :after advice for `delete-file'."
 (use-package rainbow-mode
   :ensure
   :delight
-  :hook (conf-mode sgml-mode))
+  :hook (conf-mode css-mode sgml-mode))
 
 (use-package cdlatex
   :ensure
