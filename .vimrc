@@ -3,10 +3,6 @@ set mouse=a
 set number
 set wildmenu
 
-set ruler
-set cc=80
-highlight ColorColumn ctermbg=darkgrey guibg=lightgrey
-
 set ignorecase
 set smartcase
 set hlsearch
