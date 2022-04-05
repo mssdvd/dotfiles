@@ -174,6 +174,8 @@ Intended as :after advice for `delete-file'."
   ([remap downcase-word] . downcase-dwim)
   ([remap capitalize-word] . capitalize-dwim)
   ([remap count-words-region] . count-words)
+  :custom
+  (next-error-message-highlight t)
   :config
   (setq
    ;; Save existing clipboard text into kill ring before replacing it
