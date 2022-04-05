@@ -1248,6 +1248,10 @@ Intended as :after advice for `delete-file'."
 (use-package hexl
   :hook (hexl-mode . read-only-mode))
 
+(use-package pixel-scroll
+  :defer 1
+  :config (pixel-scroll-precision-mode 1))
+
 
 (use-package treemacs
     :ensure)
