@@ -987,10 +987,11 @@ Intended as :after advice for `delete-file'."
   :bind
   ("M-#" . quick-calc)
   ("C-M-#" . calc)
-  :config
-  (setq calc-group-char " "
-        calc-group-digits t
-        calc-multiplication-has-precedence nil))
+  :custom
+  (calc-group-char " ")
+  (calc-group-digits t)
+  (calc-make-windows-dedicated t)
+  (calc-multiplication-has-precedence nil))
 
 ;; calendar
 (use-package calendar
