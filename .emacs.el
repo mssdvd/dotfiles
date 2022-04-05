@@ -1218,6 +1218,9 @@ Intended as :after advice for `delete-file'."
   :defer 1
   :config (winner-mode))
 
+(use-package tab-bar
+  :custom (tab-bar-show 1))
+
 (use-package treemacs)
 (use-package telega
   :ensure
