@@ -72,6 +72,8 @@
 ;; Disable bell
 (setq ring-bell-function 'ignore)
 
+;; Make mode-line more compact
+(setq mode-line-compact t)
 
 (setq enable-recursive-minibuffers t)
 
