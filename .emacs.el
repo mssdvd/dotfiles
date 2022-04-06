@@ -222,11 +222,12 @@ Intended as :after advice for `delete-file'."
 
 ;; dired
 (use-package dired
+  :custom
+  (dired-auto-revert-buffer t)
+  (dired-dwim-target t)
+  (dired-listing-switches "-alhv --group-directories-first")
+  (dired-kill-when-opening-new-dired-buffer t)
   :config
-  (setq dired-listing-switches "-alhv --group-directories-first"
-        dired-do-revert-buffer t
-        dired-dwim-target t
-        dired-kill-when-opening-new-dired-buffer t)
   (put 'dired-find-alternate-file 'disabled nil))
 
 ;; dired-x
