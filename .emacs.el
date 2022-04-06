@@ -1179,7 +1179,11 @@ Intended as :after advice for `delete-file'."
              :password (auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
 
 (use-package erc-hl-nicks
-  :ensure)
+  :ensure
+  :config
+  ;; https://github.com/leathekd/erc-hl-nicks/issues/12
+  (add-to-list 'erc-hl-nicks-skip-faces "erc-current-nick-face"))
+
 
 (use-package re-builder
   :config (setq reb-re-syntax 'string))
