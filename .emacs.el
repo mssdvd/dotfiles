@@ -1176,7 +1176,7 @@ Intended as :after advice for `delete-file'."
     (erc-tls :server "chat.sr.ht"
              :nick "mssdvd"
              :port erc-default-port-tls
-             :password (auth-source-pass-get 'secret "sr.ht/chat"))))
+             :password (auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
 
 (use-package erc-hl-nicks
   :ensure)
