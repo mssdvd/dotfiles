@@ -22,3 +22,5 @@
 	clean = "sed -e 's/^password .*/# password **PASSWORD**/'"
 [filter "remove-mbsync-Pass"]
 	clean = "sed -e 's/^Pass .*/# Pass **PASSWORD**/'"
+[pull]
+	rebase = true
