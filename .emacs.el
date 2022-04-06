@@ -1184,6 +1184,26 @@ Intended as :after advice for `delete-file'."
   ;; https://github.com/leathekd/erc-hl-nicks/issues/12
   (add-to-list 'erc-hl-nicks-skip-faces "erc-current-nick-face"))
 
+(use-package rcirc
+  :custom
+  (rcirc-default-full-name "Davide Masserut")
+  (rcirc-default-nick "mssdvd")
+  (rcirc-default-part-reason "")
+  (rcirc-default-quit-reason "")
+  (rcirc-default-user-name rcirc-default-nick)
+  (rcirc-fill-column
+   (lambda () (max fill-column (/ (window-text-width) 2))))
+  (rcirc-kill-channel-buffers t)
+  (rcirc-reconnect-delay 30)
+  (rcirc-server-alist `(("chat.sr.ht"
+                         :port 6697
+                         :encryption tls
+                         :user-name ,(concat  "mssdvd/liberachat@" (system-name))
+                         :password ,(auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
+  (rcirc-timeout-seconds most-positive-fixnum)
+  :hook
+  (rcirc-mode . rcirc-track-minor-mode)
+  (rcirc-mode . rcirc-omit-mode))
 
 (use-package re-builder
   :config (setq reb-re-syntax 'string))
