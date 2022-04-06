@@ -46,10 +46,10 @@ set $mode_system System (l)ock, (e)xit, (s)uspend, (Shift+r)eboot, (Shift+s)hutd
 mode "$mode_system" {
 	bindsym --to-code {
 		l exec swaylock -f && sleep 1, mode "default"
-		e exec emacsclient -e '(save-buffers-kill-emacs 1)', exit, mode "default"
+		e exec emacsclient -e '(let ((confirm-kill-processes nil))(save-buffers-kill-emacs 1))', exit, mode "default"
 		s exec systemctl suspend, mode "default"
-		Shift+r exec "emacsclient -e '(save-buffers-kill-emacs 1)'; systemctl reboot", mode "default"
-		Shift+s exec "emacsclient -e '(save-buffers-kill-emacs 1)'; systemctl poweroff -i", mode "default"
+		Shift+r exec "emacsclient -e '(let ((confirm-kill-processes nil))(save-buffers-kill-emacs 1))'; systemctl reboot", mode "default"
+		Shift+s exec "emacsclient -e '(let ((confirm-kill-processes nil))(save-buffers-kill-emacs 1))'; systemctl poweroff -i", mode "default"
 
 		Return mode "default"
 		Escape mode "default"
