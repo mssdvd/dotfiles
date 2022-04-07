@@ -1194,6 +1194,7 @@ Intended as :after advice for `delete-file'."
   (rcirc-fill-column
    (lambda () (max fill-column (/ (window-text-width) 2))))
   (rcirc-kill-channel-buffers t)
+  (rcirc-prompt "%t> ")
   (rcirc-reconnect-delay 30)
   (rcirc-server-alist `(("chat.sr.ht"
                          :port 6697
