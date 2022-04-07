@@ -1199,10 +1199,8 @@ Intended as :after advice for `delete-file'."
   (rcirc-server-alist `(("chat.sr.ht"
                          :port 6697
                          :encryption tls
-                         :user-name ,(concat  "mssdvd/liberachat@" (system-name))
+                         :user-name ,(concat "mssdvd/liberachat@" (system-name))
                          :password ,(auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
-  :config
-  (setq rcirc-timeout-seconds most-positive-fixnum)
   :hook
   (rcirc-mode . rcirc-track-minor-mode)
   (rcirc-mode . rcirc-omit-mode))
