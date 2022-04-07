@@ -1405,6 +1405,11 @@ Intended as :after advice for `delete-file'."
                               ("^E999" . :error)
                               ("^[EW][0-9]+" . :note))))
 
+;; Lua
+
+(use-package lua-mode
+  :ensure)
+
 (put 'erase-buffer 'disabled nil)
 
 ;;; .emacs.el ends here
