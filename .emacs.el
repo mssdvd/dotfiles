@@ -1191,6 +1191,7 @@ Intended as :after advice for `delete-file'."
   (rcirc-default-part-reason "")
   (rcirc-default-quit-reason "")
   (rcirc-default-user-name rcirc-default-nick)
+  (rcirc-display-server-buffer nil)
   (rcirc-fill-column
    (lambda () (max fill-column (/ (window-text-width) 2))))
   (rcirc-kill-channel-buffers t)
