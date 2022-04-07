@@ -1200,7 +1200,8 @@ Intended as :after advice for `delete-file'."
                          :encryption tls
                          :user-name ,(concat  "mssdvd/liberachat@" (system-name))
                          :password ,(auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
-  (rcirc-timeout-seconds most-positive-fixnum)
+  :config
+  (setq rcirc-timeout-seconds most-positive-fixnum)
   :hook
   (rcirc-mode . rcirc-track-minor-mode)
   (rcirc-mode . rcirc-omit-mode))
