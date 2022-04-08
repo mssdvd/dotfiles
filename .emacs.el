@@ -1198,11 +1198,16 @@ Intended as :after advice for `delete-file'."
   (rcirc-omit-unless-requested '("NAMES"))
   (rcirc-prompt "%t> ")
   (rcirc-reconnect-delay 30)
-  (rcirc-server-alist `(("chat.sr.ht"
-                         :port 6697
-                         :encryption tls
-                         :user-name ,(concat "mssdvd/liberachat@" (system-name))
-                         :password ,(auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
+  (rcirc-server-alist
+   `(("chat.sr.ht"
+      :port 6697
+      :encryption tls
+      :user-name ,(concat "mssdvd/liberachat@" (system-name))
+      :password ,(let ((pass))
+                   (while
+                       (not
+                        (setq pass (auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
+                   pass))))
   :hook
   (rcirc-mode . rcirc-track-minor-mode)
   (rcirc-mode . rcirc-omit-mode))
