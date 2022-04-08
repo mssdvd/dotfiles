@@ -1210,6 +1210,7 @@ Intended as :after advice for `delete-file'."
       :encryption tls
       :user-name ,(concat "mssdvd/liberachat@" (system-name))
       :password ,(+pass-get-keep-asking "chat.sr.ht/mssdvd"))))
+  (rcirc-track-ignore-server-buffer-flag t)
   :hook
   (rcirc-mode . rcirc-track-minor-mode)
   (rcirc-mode . rcirc-omit-mode))
