@@ -97,6 +97,12 @@
     (insert-for-yank primary)))
 (keymap-global-set "S-<insert>" #'+yank-primary)
 
+(defun +pass-get-keep-asking (entry)
+  "Return ENTRY secret or keep asking until the provided password is correct."
+  (let ((pass))
+    (while (not (setq pass (auth-source-pass-get 'secret entry))))
+    pass))
+
 (defun +rename-buffer-renamed-file (file newname &optional _ok-if-already-exists)
   "Rename buffer visiting FILE to NEWNAME.
 Intended as :after advice for `rename-file'."
@@ -1203,11 +1209,7 @@ Intended as :after advice for `delete-file'."
       :port 6697
       :encryption tls
       :user-name ,(concat "mssdvd/liberachat@" (system-name))
-      :password ,(let ((pass))
-                   (while
-                       (not
-                        (setq pass (auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
-                   pass))))
+      :password ,(+pass-get-keep-asking "chat.sr.ht/mssdvd"))))
   :hook
   (rcirc-mode . rcirc-track-minor-mode)
   (rcirc-mode . rcirc-omit-mode))
