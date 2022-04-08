@@ -79,40 +79,40 @@
 
 
 ;;;;
-;; Custom functions (prefixed with ~)
+;; Custom functions (prefixed with +)
 ;;;;
 
-(defun ~check-emacs-updates ()
-  "Check for Emacs master and packages updates."
+(defun +check-emacs-updates ()
+ "Update Emacs master and packages."
   (interactive)
   (list-packages)
   (magit-status "~/src/emacs-git/emacs-git/")
   (magit-fetch-from-upstream "origin" "master"))
 
-(defun ~yank-primary ()
+(defun +yank-primary ()
   "Insert the primary selection at the position."
   (interactive)
   (let ((primary (gui-get-primary-selection)))
     (push-mark)
     (insert-for-yank primary)))
-(keymap-global-set "S-<insert>" #'~yank-primary)
+(keymap-global-set "S-<insert>" #'+yank-primary)
 
-(defun ~rename-buffer-renamed-file (file newname &optional _ok-if-already-exists)
+(defun +rename-buffer-renamed-file (file newname &optional _ok-if-already-exists)
   "Rename buffer visiting FILE to NEWNAME.
 Intended as :after advice for `rename-file'."
   (when (called-interactively-p 'any)
     (when-let ((buffer (get-file-buffer file)))
       (with-current-buffer buffer
         (set-visited-file-name newname nil t)))))
-(advice-add 'rename-file :after '~rename-buffer-renamed-file)
+(advice-add 'rename-file :after '+rename-buffer-renamed-file)
 
-(defun ~kill-buffer-deleted-file (file &optional _trash)
+(defun +kill-buffer-deleted-file (file &optional _trash)
   "Kill buffer visiting FILE.
 Intended as :after advice for `delete-file'."
   (when (called-interactively-p 'any)
     (when-let ((buffer (get-file-buffer file)))
       (kill-buffer buffer))))
-(advice-add 'delete-file :after '~kill-buffer-deleted-file)
+(advice-add 'delete-file :after '+kill-buffer-deleted-file)
 
 ;;;;
 ;; use-package
@@ -278,8 +278,8 @@ Intended as :after advice for `delete-file'."
   :demand
   :functions (orderless-matching-styles orderless-all-completions orderless-try-completion)
   :config
-  (defvar ~orderless-dispatch-alist
     '((?% . char-fold-to-regexp)
+  (defvar +orderless-dispatch-alist
       (?! . orderless-without-literal)
       (?`. orderless-initialism)
       (?= . orderless-literal)
@@ -292,7 +292,7 @@ Intended as :after advice for `delete-file'."
   ;; * !without-literal without-literal!
   ;; * .ext (file extension)
   ;; * regexp$ (regexp matching at end)
-  (defun ~orderless-dispatch (pattern _index _total)
+  (defun +orderless-dispatch (pattern _index _total)
     (cond
      ;; Ensure that $ works with Consult commands, which add disambiguation suffixes
      ((string-suffix-p "$" pattern)
@@ -308,9 +308,9 @@ Intended as :after advice for `delete-file'."
      ;; Ignore single !
      ((string= "!" pattern) `(orderless-literal . ""))
      ;; Prefix and suffix
-     ((if-let (x (assq (aref pattern 0) ~orderless-dispatch-alist))
+     ((if-let (x (assq (aref pattern 0) +orderless-dispatch-alist))
           (cons (cdr x) (substring pattern 1))
-        (when-let (x (assq (aref pattern (1- (length pattern))) ~orderless-dispatch-alist))
+        (when-let (x (assq (aref pattern (1- (length pattern))) +orderless-dispatch-alist))
           (cons (cdr x) (substring pattern 0 -1)))))))
   :custom
   (completion-styles '(orderless basic))
@@ -320,7 +320,7 @@ Intended as :after advice for `delete-file'."
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
                                orderless-initialism))
-  (orderless-style-dispatchers '(~orderless-dispatch))
+  (orderless-style-dispatchers '(+orderless-dispatch))
   (read-file-name-completion-ignore-case t))
 
 (use-package savehist
@@ -390,11 +390,11 @@ Intended as :after advice for `delete-file'."
    consult--source-project-recent-file consult--source-bookmark
    :preview-key (kbd "M-."))
 
-  (defvar ~consult-line-map
+  (defvar +consult-line-map
     (let ((map (make-sparse-keymap)))
       (define-key map "\C-s" #'previous-history-element)
       map))
-  (consult-customize consult-line :keymap ~consult-line-map)
+  (consult-customize consult-line :keymap +consult-line-map)
   :custom
   (xref-show-xrefs-function #'consult-xref)
   (xref-show-definitions-function #'consult-xref)
@@ -551,12 +551,12 @@ Intended as :after advice for `delete-file'."
   ("C-c l" . org-store-link)
   (:map org-mode-map
         ("C-'" . avy-goto-char-timer)
-        ([f6] . ~org-latex-preview-with-argument))
+        ([f6] . +org-latex-preview-with-argument))
   :config
-  (defun ~org-latex-preview-with-argument ()
+  (defun +org-latex-preview-with-argument ()
     (interactive)
     (let ((current-prefix-arg '(16)))
-          (call-interactively #'org-latex-preview)))
+      (call-interactively #'org-latex-preview)))
   (delight 'org-indent-mode)
   (setq org-attach-auto-tag nil
         org-babel-results-keyword "results"
@@ -1048,19 +1048,19 @@ Intended as :after advice for `delete-file'."
   :bind
   ("C-c e" . elfeed)
   (:map elfeed-search-mode-map
-        ("e" . ~elfeed-open-with-eww)
-        ("i" . ~elfeed-play-with-mpv)
-        ("o" . 'pocket-reader-elfeed-search-add-link))
+        ("e" . +elfeed-open-with-eww)
+        ("i" . +elfeed-play-with-mpv)
+        ("t" . pocket-reader-elfeed-search-add-link))
   (:map elfeed-show-mode-map
-        ("e" . ~elfeed-open-with-eww)
-        ("i" . ~elfeed-play-with-mpv)
-        ("o" . 'pocket-reader-elfeed-search-add-link))
+        ("e" . +elfeed-open-with-eww)
+        ("i" . +elfeed-play-with-mpv)
+        ("t" . pocket-reader-elfeed-search-add-link))
   :custom
   (elfeed-search-title-max-width 100)
   :config
   (setq url-queue-timeout 30)
   
-  (defun ~elfeed--play-with-mpv (entry)
+  (defun +elfeed--play-with-mpv (entry)
     (elfeed-untag entry 'unread)
     (let ((link (or (caar (elfeed-entry-enclosures entry))
                     (elfeed-entry-link entry))))
@@ -1074,18 +1074,18 @@ Intended as :after advice for `delete-file'."
                      "--"
                      link)))
 
-  (defun ~elfeed-play-with-mpv ()
+  (defun +elfeed-play-with-mpv ()
     "Play entry link with mpv."
     (interactive)
     (if (eq major-mode 'elfeed-show-mode)
-        (~elfeed--play-with-mpv elfeed-show-entry)
+        (+elfeed--play-with-mpv elfeed-show-entry)
       (progn
         (cl-loop for entry in (elfeed-search-selected)
-                 do (~elfeed--play-with-mpv entry))
+                 do (+elfeed--play-with-mpv entry))
         (mapc #'elfeed-search-update-entry (elfeed-search-selected))
         (forward-line))))
 
-  (defun ~elfeed-open-with-eww ()
+  (defun +elfeed-open-with-eww ()
     "Open elfeed entry in eww with `eww-readable'"
     (interactive)
     (let ((entry (if (eq major-mode 'elfeed-show-mode)
@@ -1152,7 +1152,7 @@ Intended as :after advice for `delete-file'."
   :config (setq matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
 (use-package erc
-  :commands (~mssdvd/erc-libera)
+  :commands (+erc-libera)
   :custom
   (erc-fill-function 'erc-fill-static)
   (erc-fill-static-center 15)
@@ -1170,7 +1170,7 @@ Intended as :after advice for `delete-file'."
   (erc-user-full-name "Davide Masserut")
   (erc-email-userid (concat erc-nick "/liberachat" "@" (system-name)))
   :config
-  (defun ~mssdvd/erc-libera ()
+  (defun +erc-libera ()
     "Connect to Libera Chat through the sr.ht bouncer."
     (interactive)
     (erc-tls :server "chat.sr.ht"
@@ -1313,7 +1313,7 @@ Intended as :after advice for `delete-file'."
 (use-package notmuch
   :ensure
   :pin melpa-stable
-  :commands (notmuch notmuch-search ~sync-email)
+  :commands (notmuch notmuch-search +sync-email)
   :bind
   ("C-x m" . notmuch-mua-new-mail)
   ("C-c m" . (lambda ()
@@ -1346,7 +1346,7 @@ Intended as :after advice for `delete-file'."
   (notmuch-show-all-tags-list t)
   (notmuch-show-part-button-default-action #'notmuch-show-view-part)
   :config
-  (defun ~sync-email ()
+  (defun +sync-email ()
     "Sync emails and update notmuch index."
     (interactive)
     (start-process "sync emails and update notmuch index" nil
