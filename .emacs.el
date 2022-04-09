@@ -112,13 +112,6 @@ Intended as :after advice for `rename-file'."
         (set-visited-file-name newname nil t)))))
 (advice-add 'rename-file :after '+rename-buffer-renamed-file)
 
-(defun +kill-buffer-deleted-file (file &optional _trash)
-  "Kill buffer visiting FILE.
-Intended as :after advice for `delete-file'."
-  (when (called-interactively-p 'any)
-    (when-let ((buffer (get-file-buffer file)))
-      (kill-buffer buffer))))
-(advice-add 'delete-file :after '+kill-buffer-deleted-file)
 
 ;;;;
 ;; use-package
