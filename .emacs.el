@@ -1192,7 +1192,6 @@ Intended as :after advice for `delete-file'."
 
 (use-package rcirc
   :custom
-  (rcirc-default-full-name "Davide Masserut")
   (rcirc-default-nick "mssdvd")
   (rcirc-default-part-reason "")
   (rcirc-default-quit-reason "")
