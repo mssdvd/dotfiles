@@ -15,8 +15,8 @@ tls_starttls off
 account      gmail
 host         smtp.gmail.com
 port         587
-user         d.masserut@gmail.com
 from         d.masserut@gmail.com
+user         d.masserut@gmail.com
 # password **PASSWORD**
 
 account      pec
