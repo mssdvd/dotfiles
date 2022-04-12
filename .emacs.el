@@ -327,7 +327,6 @@ Intended as :after advice for `rename-file'."
 
 (use-package consult
   :ensure t
-  :defines (xref-show-xrefs-function xref-show-definitions-function)
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
@@ -385,7 +384,7 @@ Intended as :after advice for `rename-file'."
    consult-theme
    :preview-key '(:debounce 0.2 any)
    consult-ripgrep consult-git-grep consult-grep consult-bookmark
-   consult-recent-file consult-xref consult--source-recent-file
+   consult-recent-file consult--source-recent-file
    consult--source-project-recent-file consult--source-bookmark
    :preview-key (kbd "M-."))
 
@@ -395,8 +394,6 @@ Intended as :after advice for `rename-file'."
       map))
   (consult-customize consult-line :keymap +consult-line-map)
   :custom
-  (xref-show-xrefs-function #'consult-xref)
-  (xref-show-definitions-function #'consult-xref)
   (register-preview-delay 0.5)
   (register-preview-function #'consult-register-format))
 
