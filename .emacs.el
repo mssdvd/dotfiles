@@ -240,6 +240,15 @@ Intended as :after advice for `rename-file'."
 (use-package wdired
   :custom (wdired-allow-to-change-permissions t))
 
+(use-package dired-hist
+  :load-path "~/src/dired-hist"
+  :demand
+  :after dired
+  :bind (:map dired-mode-map
+              ("l" . dired-hist-go-back)
+              ("r" . dired-hist-go-forward))
+  :config (dired-hist-mode 1))
+
 (use-package vertico
   :ensure
   :demand
@@ -1254,14 +1263,6 @@ Intended as :after advice for `rename-file'."
   :ensure
   :custom (osm-copyright nil))
 
-(use-package dired-hist
-  :load-path "~/src/dired-hist"
-  :demand
-  :after dired
-  :bind (:map dired-mode-map
-              ("l" . dired-hist-go-back)
-              ("r" . dired-hist-go-forward))
-  :config (dired-hist-mode 1))
 (use-package hexl
   :hook (hexl-mode . read-only-mode))
 
