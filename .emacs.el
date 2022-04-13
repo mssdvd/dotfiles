@@ -1070,7 +1070,7 @@ Intended as :after advice for `rename-file'."
         (cl-loop for entry in (elfeed-search-selected)
                  do (+elfeed--play-with-mpv entry))
         (mapc #'elfeed-search-update-entry (elfeed-search-selected))
-        (forward-line))))
+        (unless elfeed-search-remain-on-entry (forward-line)))))
 
   (defun +elfeed-open-with-eww ()
     "Open elfeed entry in eww with `eww-readable'"
@@ -1080,6 +1080,7 @@ Intended as :after advice for `rename-file'."
                    (elfeed-search-selected :single))))
       (elfeed-untag entry 'unread)
       (elfeed-search-update-entry entry)
+      (unless elfeed-search-remain-on-entry (forward-line))
       (eww (elfeed-entry-link entry)))))
 
 ;; elfeed-org
