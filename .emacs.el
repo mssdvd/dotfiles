@@ -1229,10 +1229,6 @@ Intended as :after advice for `rename-file'."
 (use-package project
   :custom (project-kill-buffers-display-buffer-list t))
 
-(use-package winner
-  :defer 1
-  :config (winner-mode))
-
 (use-package tab-bar
   :custom (tab-bar-show 1))
 
