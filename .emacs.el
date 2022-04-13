@@ -514,15 +514,6 @@ Intended as :after advice for `rename-file'."
   :ensure
   :hook (prog-mode . rainbow-delimiters-mode))
 
-;; highlight-parentheses
-;; https://sr.ht/~tsdh/highlight-parentheses.el/
-(use-package highlight-parentheses
-  :ensure
-  :delight
-  :hook
-  (prog-mode . highlight-parentheses-mode)
-  (minibuffer-setup . highlight-parentheses-minibuffer-setup))
-
 ;; rainbow-mode
 ;; https://elpa.gnu.org/packages/rainbow-mode.html
 (use-package rainbow-mode
