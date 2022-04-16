@@ -1270,6 +1270,11 @@ Intended as :after advice for `rename-file'."
   :defer 1
   :config (pixel-scroll-precision-mode 1))
 
+(use-package vundo
+  :ensure
+  :bind ("C-c u" . vundo)
+  :custom (vundo-compact-display t))
+
 
 (use-package treemacs
     :ensure)
