@@ -1198,7 +1198,7 @@ Intended as :after advice for `rename-file'."
    `(("chat.sr.ht"
       :port 6697
       :encryption tls
-      :user-name ,(concat "mssdvd/liberachat@" (system-name))
+      :user-name ,(concat "mssdvd/liberachat@" (system-name) "-rcirc")
       :password ,(+pass-get-keep-asking "chat.sr.ht/mssdvd"))))
   (rcirc-track-ignore-server-buffer-flag t)
   :hook
