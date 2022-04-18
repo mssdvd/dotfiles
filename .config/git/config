@@ -24,3 +24,5 @@
 	clean = "sed -e 's/^Pass .*/# Pass **PASSWORD**/'"
 [pull]
 	rebase = true
+[merge]
+	conflictstyle = zdiff3
