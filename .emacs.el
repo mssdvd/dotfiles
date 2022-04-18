@@ -1148,39 +1148,6 @@ Intended as :after advice for `rename-file'."
   :commands matlab-shell
   :config (setq matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
-(use-package erc
-  :commands (+erc-libera)
-  :custom
-  (erc-fill-function 'erc-fill-static)
-  (erc-fill-static-center 15)
-  (erc-hide-list '("JOIN" "PART" "QUIT"))
-  (erc-join-buffer 'bury)
-  (erc-modules '(autoaway notifications pcomplete services
-                          netsplit fill button match track completion
-                          readonly networks ring autojoin noncommands
-                          irccontrols move-to-prompt stamp menu list))
-  (erc-nick "mssdvd")
-  (erc-prompt-for-password nil)
-  (erc-rename-buffers t)
-  (erc-track-showcount t)
-  (erc-use-auth-source-for-nickserv-password t)
-  (erc-user-full-name "Davide Masserut")
-  (erc-email-userid (concat erc-nick "/liberachat" "@" (system-name)))
-  :config
-  (defun +erc-libera ()
-    "Connect to Libera Chat through the sr.ht bouncer."
-    (interactive)
-    (erc-tls :server "chat.sr.ht"
-             :nick "mssdvd"
-             :port erc-default-port-tls
-             :password (auth-source-pass-get 'secret "chat.sr.ht/mssdvd"))))
-
-(use-package erc-hl-nicks
-  :ensure
-  :config
-  ;; https://github.com/leathekd/erc-hl-nicks/issues/12
-  (add-to-list 'erc-hl-nicks-skip-faces "erc-current-nick-face"))
-
 (use-package rcirc
   :custom
   (rcirc-default-nick "mssdvd")
