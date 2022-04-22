@@ -20,7 +20,7 @@ user         d.masserut@gmail.com
 # password **PASSWORD**
 
 account      pec
-host         smtp.pec.aruba.it
+host         smtps.pec.aruba.it
 port         465
 from         dmasserut@pec.it
 user         dmasserut@pec.it
