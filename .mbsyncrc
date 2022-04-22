@@ -6,7 +6,7 @@ SSLType IMAPS
 
 MaildirStore dm@mssdvd.com-local
 Path ~/mail/dm@mssdvd.com/
-Inbox ~/mail/dm@mssdvd.com/INBOX/
+Inbox ~/mail/dm@mssdvd.com/INBOX
 SubFolders Verbatim
 
 IMAPStore dm@mssdvd.com-remote
@@ -29,7 +29,7 @@ SSLType IMAPS
 
 MaildirStore d.masserut@gmail.com-local
 Path ~/mail/d.masserut@gmail.com/
-Inbox ~/mail/d.masserut@gmail.com/INBOX/
+Inbox ~/mail/d.masserut@gmail.com/INBOX
 SubFolders Verbatim
 
 IMAPStore d.masserut@gmail.com-remote
@@ -52,7 +52,7 @@ SSLType IMAPS
 
 MaildirStore dmasserut@pec.it-local
 Path ~/mail/dmasserut@pec.it/
-Inbox ~/mail/dmasserut@pec.it/INBOX/
+Inbox ~/mail/dmasserut@pec.it/INBOX
 SubFolders Verbatim
 
 IMAPStore dmasserut@pec.it-remote
