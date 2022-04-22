@@ -1135,8 +1135,9 @@ Intended as :after advice for `rename-file'."
   :bind ("C-c v" . vterm-other-window))
 
 (use-package shr
-  :config (setq shr-use-colors nil
-                shr-use-fonts nil))
+  :custom
+  (shr-use-colors nil)
+  (shr-use-fonts nil))
 
 (use-package yaml-mode
   :ensure)
