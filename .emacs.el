@@ -1282,7 +1282,91 @@ Intended as :after advice for `rename-file'."
         message-kill-buffer-on-exit t
         message-sendmail-envelope-from 'header))
 
+(use-package mu4e
+  :defer 2
+  :bind
+  ("C-c m" . mu4e)
+  (:map mu4e-view-mode-map
+        ("o" . ace-link-mu4e))
+  :custom
+  (mail-user-agent 'mu4e-user-agent)
+  (mm-discouraged-alternatives '("text/html" "text/richtext"))
+  (mu4e-bookmarks
+   '((:name "Unread messages" :query "flag:unread AND NOT flag:trashed" :key ?u)
+     (:name "Today's messages" :query "date:today..now" :key ?t)
+     (:name "Last 7 days" :query "date:7d..now" :key ?w)
+     (:name "All Inboxes" :query "maildir:/INBOX/" :hide-unread t :key ?i)
+     (:name "Sent" :query "maildir:/Sent/ OR maildir:/Inviata/" :key ?s)
+     (:name "Flagged" :query "flag:flagged" :key ?f)))
+  (mu4e-change-filenames-when-moving t)
+  (mu4e-completing-read-function #'completing-read)
+  (mu4e-compose-context-policy nil)
+  ;; (mu4e-confirm-quit nil)
+  (mu4e-context-policy 'pick-first)
+  (mu4e-get-mail-command "mbsync -a")
+  (mu4e-headers-fields
+   '((:human-date . 12)
+     (:flags . 6)
+     (:mailing-list . 10)
+     (:from . 22)
+     (:thread-subject)))
+  (mu4e-headers-include-related nil)
+  (mu4e-update-interval 120)
+  ;; (mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum)
+  (mu4e-view-show-images t)
+  :config
+  (setq mu4e-contexts
+        `(,(make-mu4e-context
+            :name "mssdvd"
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-prefix-p "/dm@mssdvd.com" (mu4e-message-field msg :maildir))))
+            :vars '((user-mail-address . "dm@mssdvd.com")
+                    (mu4e-drafts-folder . "/dm@mssdvd.com/Drafts")
+                    (mu4e-refile-folder . "/dm@mssdvd.com/Archive")
+                    (mu4e-sent-folder . "/dm@mssdvd.com/Sent")
+                    (mu4e-trash-folder . "/dm@mssdvd.com/Trash")))
+          ,(make-mu4e-context
+            :name "gmail"
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-prefix-p "/d.masserut@gmail.com" (mu4e-message-field msg :maildir))))
+            :vars '((user-mail-address . "d.masserut@gmail.com")
+                    (mu4e-sent-messages-behavior . delete)
+                    (mu4e-drafts-folder . "/d.masserut@gmail.com/[Gmail]/Drafts")
+                    (mu4e-refile-folder . "/d.masserut@gmail.com/[Gmail]/All Mail")
+                    (mu4e-sent-folder . "/d.masserut@gmail.com/[Gmail]/Sent Mail")
+                    (mu4e-trash-folder . "/d.masserut@gmail.com/[Gmail]/Bin")))
+          ,(make-mu4e-context
+            :name "pec"
+            :match-func
+            (lambda (msg)
+              (when msg
+                (string-prefix-p "/dmasserut@pec.it" (mu4e-message-field msg :maildir))))
+            :vars '((user-mail-address . "dmasserut@pec.it")
+                    (mu4e-drafts-folder . "/dmasserut@pec.it/Bozze")
+                    (mu4e-refile-folder . "/dmasserut@pec.it/Archiviata")
+                    (mu4e-sent-folder . "/dmasserut@pec.it/Inviata")
+                    (mu4e-trash-folder . "/dmasserut@pec.it/Cestino")))))
+  (mu4e t)
+  :hook
+  (mu4e-index-updated . (lambda ()
+                          (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
+                            (start-process "update mail indicator" nil
+                                           "pkill" "-SIGRTMIN+1" "waybar")))))
+
+(use-package mu4e-alert
+  :demand
+  :after mu4e
+  :ensure
+  :config
+  (mu4e-alert-enable-notifications)
+  (mu4e-alert-enable-mode-line-display))
+
 (use-package notmuch
+  :disabled
   :ensure
   :pin melpa-stable
   :commands (notmuch notmuch-search +sync-email)
@@ -1332,6 +1416,7 @@ Intended as :after advice for `rename-file'."
 ;; Links to Notmuch buffers from Org documents
 ;; https://git.sr.ht/~tarsius/ol-notmuch
 (use-package ol-notmuch
+  :disabled
   :ensure)
 
 (use-package sendmail
