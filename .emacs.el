@@ -438,7 +438,15 @@ Intended as :after advice for `rename-file'."
   (corfu-auto t)
   (corfu-cycle t)
   :config
-  (corfu-global-mode))
+  (global-corfu-mode))
+
+(use-package corfu-history
+  :demand
+  :after corfu
+  :config
+  (add-to-list 'savehist-additional-variables 'corfu-history)
+  (corfu-history-mode 1))
+
 
 (use-package isearch
   :config
