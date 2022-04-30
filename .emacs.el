@@ -1313,8 +1313,6 @@ Intended as :after advice for `rename-file'."
      (:thread-subject)))
   (mu4e-headers-include-related nil)
   (mu4e-update-interval 120)
-  ;; (mu4e-view-html-plaintext-ratio-heuristic most-positive-fixnum)
-  (mu4e-view-show-images t)
   :config
   (setq mu4e-contexts
         `(,(make-mu4e-context
