@@ -1291,7 +1291,9 @@ Intended as :after advice for `rename-file'."
   :bind
   ("C-c m" . mu4e)
   (:map mu4e-view-mode-map
-        ("o" . ace-link-mu4e))
+        ("o" . ace-link-mu4e)
+        ("S-SPC" . +mu4e-view-scroll-down-or-prev)
+        ("<backspace>" . +mu4e-view-scroll-down-or-prev))
   :custom
   (mail-user-agent 'mu4e-user-agent)
   (mm-discouraged-alternatives '("text/html" "text/richtext"))
@@ -1318,6 +1320,18 @@ Intended as :after advice for `rename-file'."
   (mu4e-headers-include-related nil)
   (mu4e-update-interval 120)
   :config
+
+  (defun +mu4e-view-scroll-down-or-prev ()
+  "Scroll-down the current message.
+If `mu4e-view-scroll-to-next' is non-nil, and we can't scroll-down
+anymore, go the previous message."
+  (interactive)
+  (condition-case nil
+      (scroll-down)
+    (error
+     (when mu4e-view-scroll-to-next
+       (mu4e-view-headers-prev)))))
+
   (setq mu4e-contexts
         `(,(make-mu4e-context
             :name "mssdvd"
@@ -1353,6 +1367,7 @@ Intended as :after advice for `rename-file'."
                     (mu4e-refile-folder . "/dmasserut@pec.it/Archiviata")
                     (mu4e-sent-folder . "/dmasserut@pec.it/Inviata")
                     (mu4e-trash-folder . "/dmasserut@pec.it/Cestino")))))
+
   (mu4e t)
   :hook
   (mu4e-index-updated . (lambda ()
