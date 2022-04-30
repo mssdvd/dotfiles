@@ -1282,6 +1282,10 @@ Intended as :after advice for `rename-file'."
         message-kill-buffer-on-exit t
         message-sendmail-envelope-from 'header))
 
+(use-package gnus
+  :custom
+  (gnus-article-date-headers '(combined-local-lapsed)))
+
 (use-package mu4e
   :defer 2
   :bind
