@@ -1304,6 +1304,7 @@ Intended as :after advice for `rename-file'."
   ;; (mu4e-confirm-quit nil)
   (mu4e-context-policy 'pick-first)
   (mu4e-get-mail-command "mbsync -a")
+  (mu4e-headers-auto-update nil)
   (mu4e-headers-fields
    '((:human-date . 12)
      (:flags . 6)
