@@ -26,3 +26,5 @@
 	rebase = true
 [merge]
 	conflictstyle = zdiff3
+[log]
+	date = default-local
