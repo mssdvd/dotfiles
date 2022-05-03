@@ -1233,6 +1233,12 @@ Intended as :after advice for `rename-file'."
   :bind ("C-c u" . vundo)
   :custom (vundo-compact-display t))
 
+(use-package undo-hl
+  :defer 1
+  :delight
+  :load-path "~/src/undo-hl"
+  :hook ((prog-mode text-mode) . undo-hl-mode))
+
 
 (use-package treemacs
   :ensure
