@@ -1261,7 +1261,9 @@ Intended as :after advice for `rename-file'."
 
 
 (use-package treemacs
-    :ensure)
+  :ensure
+  :config
+  (treemacs-project-follow-mode 1))
 
 (use-package treemacs-magit
   :ensure
