@@ -384,8 +384,6 @@ Intended as :after advice for `rename-file'."
          ("M-s L" . consult-line-multi))
   :init
   (advice-add #'register-preview :override #'consult-register-window)
-  ;; Enchance completion-read-multiple
-  (advice-add #'completing-read-multiple :override #'consult-completing-read-multiple)
   :config
   (setq consult-narrow-key "<")
 
