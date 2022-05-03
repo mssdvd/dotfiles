@@ -775,32 +775,6 @@ Intended as :after advice for `rename-file'."
   ;; (company-tng-mode)
   )
 
-;; company-quickhelp
-;; https://github.com/company-mode/company-quickhelp
-(use-package company-quickhelp
-  :disabled
-  :after company
-  :config
-  (company-quickhelp-mode)
-  (setq company-quickhelp-use-propertized-text t))
-
-(use-package company-box
-  :disabled
-  :after company
-  :delight
-  :hook (company-mode . company-box-mode))
-
-;; company-math
-;; https://github.com/vspinu/company-math
-(use-package company-math
-  :disabled
-  :hook
-  (org-mode . (lambda ()
-                (setq-local company-backends
-                            (append '((company-math-symbols-latex company-latex-commands))
-                                    company-backends)
-                            company-math-allow-latex-symbols-in-faces t))))
-
 (use-package vc
   :config (setq vc-follow-symlinks t))
 
