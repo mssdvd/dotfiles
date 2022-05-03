@@ -1267,6 +1267,7 @@ Intended as :after advice for `rename-file'."
 
 (use-package treemacs-magit
   :ensure
+  :demand
   :after (treemacs magit))
 
 ;;
