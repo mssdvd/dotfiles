@@ -24,8 +24,8 @@
     "custom/email": {
         "format": "{} ",
         "interval": "once",
-        "exec": "notmuch count tag:unread",
-        "on-click": "systemctl --user start sync_email.service",
+        "exec": "mu find flag:unread | wc -l",
+        "on-click": "mu find flag:unread | wc -l",
         "on-click-right": "emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar",
         "signal": 1
     },
