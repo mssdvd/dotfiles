@@ -76,6 +76,8 @@
 (setq mode-line-compact t)
 
 (setq enable-recursive-minibuffers t)
+;; Do not restore windows state after closing the minibuffer
+(setq read-minibuffer-restore-windows nil)
 
 
 ;;;;
