@@ -516,6 +516,7 @@ Intended as :after advice for `rename-file'."
   (:map flymake-mode-map
         ("M-n" . flymake-goto-next-error)
         ("M-p" . flymake-goto-prev-error))
+  :custom (flymake-mode-line-lighter "FM")
   :hook (prog-mode . flymake-mode))
 
 (use-package flymake-shellcheck
