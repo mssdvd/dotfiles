@@ -191,7 +191,9 @@ Intended as :after advice for `rename-file'."
 
 (use-package window
   :bind ("M-o" . other-window)
-  :config (setq scroll-preserve-screen-position t))
+  :custom
+  (scroll-preserve-screen-position t)
+  (window-resize-pixelwise t))
 
 (use-package elec-pair
   :defer 1
