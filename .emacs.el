@@ -552,7 +552,7 @@ Intended as :after advice for `rename-file'."
 (use-package rainbow-mode
   :ensure
   :delight
-  :hook (conf-mode css-mode sgml-mode))
+  :hook (conf-mode css-mode prog-mode sgml-mode))
 
 (use-package cdlatex
   :ensure
