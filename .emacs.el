@@ -214,7 +214,7 @@ Intended as :after advice for `rename-file'."
 
 ;; display-line-numbers
 (use-package display-line-numbers
-  :config (setq display-line-numbers-grow-only t)
+  :custom (display-line-numbers-grow-only t)
   :hook
   ((conf-mode nxml-mode prog-mode yaml-mode) . display-line-numbers-mode))
 
@@ -240,9 +240,9 @@ Intended as :after advice for `rename-file'."
 (use-package dired-x
   :demand
   :after dired
-  :config (setq dired-guess-shell-alist-user
-                '(("\.pdf$" "zathura")
-                  ("\.mp4$" "mpv"))))
+  :custom (dired-guess-shell-alist-user
+           '(("\.pdf$" "zathura")
+             ("\.mp4$" "mpv"))))
 
 (use-package wdired
   :custom (wdired-allow-to-change-permissions t))
@@ -484,7 +484,7 @@ Intended as :after advice for `rename-file'."
   :bind (:map grep-mode-map
               ("e" . wgrep-change-to-wgrep-mode)
               ("C-c C-c" . wgrep-finish-edit))
-  :config (setq wgrep-auto-save-buffer t))
+  :custom (wgrep-auto-save-buffer t))
 
 ;; avy
 ;; https://github.com/abo-abo/avy
@@ -672,14 +672,15 @@ Intended as :after advice for `rename-file'."
 (use-package org-pomodoro
   :ensure
   :bind ("C-c p" . org-pomodoro)
-  :config (setq org-pomodoro-expiry-time 40
-                org-pomodoro-keep-killed-pomodoro-time t
-                org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=50")
-                org-pomodoro-manual-break t))
+  :custom
+  (org-pomodoro-expiry-time 40)
+  (org-pomodoro-keep-killed-pomodoro-time t)
+  (org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=50"))
+  (org-pomodoro-manual-break t))
 
 (use-package alert
   :ensure
-  :config (setq alert-default-style 'libnotify))
+  :custom (alert-default-style 'libnotify))
 
 (use-package org-caldav
   :disabled
@@ -765,14 +766,14 @@ Intended as :after advice for `rename-file'."
    ("C-c y" . company-yasnippet)
    :map company-active-map
    ("C-o" . company-show-location))
-  :config
-  (setq company-dabbrev-downcase nil
-        company-dabbrev-ignore-case t
-        company-tooltip-align-annotations t
-        company-show-quick-access t
-        company-search-regexp-function #'company-search-words-in-any-order-regexp
-        company-selection-wrap-around t
-        company-transformers '(company-sort-prefer-same-case-prefix))
+  :custom
+  (company-dabbrev-downcase nil)
+  (company-dabbrev-ignore-case t)
+  (company-tooltip-align-annotations t)
+  (company-show-quick-access t)
+  (company-search-regexp-function #'company-search-words-in-any-order-regexp)
+  (company-selection-wrap-around t)
+  (company-transformers '(company-sort-prefer-same-case-prefix))
 
   ;; Disable orderless for company
   (define-advice company-capf
@@ -785,7 +786,7 @@ Intended as :after advice for `rename-file'."
   )
 
 (use-package vc
-  :config (setq vc-follow-symlinks t))
+  :custom (vc-follow-symlinks t))
 
 ;; magit
 ;; https://magit.vc
@@ -806,7 +807,7 @@ Intended as :after advice for `rename-file'."
   :after magit)
 
 (use-package epg
-  :config (setq epg-pinentry-mode 'loopback))
+  :custom (epg-pinentry-mode 'loopback))
 
 (use-package auth-source-pass
   :defer 1
@@ -885,10 +886,11 @@ Intended as :after advice for `rename-file'."
 
 ;; comint-mode
 (use-package comint
-  :config (setq comint-prompt-read-only t))
+  :custom
+  (comint-prompt-read-only t))
 
 (use-package shell
-  :config (setq shell-has-auto-cd t))
+  :custom (shell-has-auto-cd t))
 
 ;; pdf-tools
 ;; https://github.com/politza/pdf-tools
@@ -912,7 +914,7 @@ Intended as :after advice for `rename-file'."
   :ensure
   :bind
   ("C-c t" . terminal-here-launch)
-  :config (setq terminal-here-terminal-command 'foot))
+  :custom (terminal-here-terminal-command 'foot))
 
 ;; sudo-edit
 ;; https://github.com/nflath/sudo-edit
@@ -927,11 +929,11 @@ Intended as :after advice for `rename-file'."
 
 ;; apropos
 (use-package apropos
-  :config (setq apropos-do-all t))
+  :custom (apropos-do-all t))
 
 ;; dictionary
 (use-package dictionary
-  :config (setq dictionary-server "dict.org"))
+  :custom (dictionary-server "dict.org"))
 
 ;; fish-mode
 (use-package fish-mode
@@ -945,8 +947,9 @@ Intended as :after advice for `rename-file'."
 
 ;; gdb-mi
 (use-package gdb-mi
-  :config (setq gdb-many-windows t
-                gdb-show-main t))
+  :custom
+  (gdb-many-windows t)
+  (gdb-show-main t))
 
 ;; hippie-exp
 (use-package hippie-exp
@@ -1146,7 +1149,7 @@ Intended as :after advice for `rename-file'."
   :defines (matlab-shell-command-switches)
   :mode ("\\.m\\'" . matlab-mode)
   :commands matlab-shell
-  :config (setq matlab-shell-command-switches '("-nodesktop" "-nosplash")))
+  :custom (matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
 (use-package rcirc
   :custom
@@ -1174,7 +1177,7 @@ Intended as :after advice for `rename-file'."
   (rcirc-mode . read-only-mode))
 
 (use-package re-builder
-  :config (setq reb-re-syntax 'string))
+  :custom (reb-re-syntax 'string))
 
 (use-package mouse
   :config
@@ -1191,10 +1194,10 @@ Intended as :after advice for `rename-file'."
               ([remap scroll-down-command] . follow-scroll-down)))
 
 (use-package bookmark
-  :config (setq bookmark-save-flag 1))
+  :custom (bookmark-save-flag 1))
 
 (use-package paren
-  :config (setq show-paren-context-when-offscreen 'child-frame))
+  :custom (show-paren-context-when-offscreen 'child-frame))
 
 (use-package compile
   :bind ("C-c b". recompile))
