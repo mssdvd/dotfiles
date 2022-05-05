@@ -1161,7 +1161,8 @@ Intended as :after advice for `rename-file'."
   (rcirc-track-ignore-server-buffer-flag t)
   :hook
   (rcirc-mode . rcirc-track-minor-mode)
-  (rcirc-mode . rcirc-omit-mode))
+  (rcirc-mode . rcirc-omit-mode)
+  (rcirc-mode . read-only-mode))
 
 (use-package re-builder
   :config (setq reb-re-syntax 'string))
