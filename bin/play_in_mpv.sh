@@ -6,4 +6,4 @@ else
     URL="$(xclip -o)"
 fi
 
-exec mpv --speed=2.0 --force-window=immediate "$@" -- "$URL"
+exec mpv --speed=2.0 --force-window=immediate --demuxer-max-bytes=3GiB "$@" -- "$URL"
