@@ -9,7 +9,7 @@ host         smtp.migadu.com
 port         465
 from         dm@mssdvd.com
 user         dm@mssdvd.com
-# password **PASSWORD**
+passwordeval pass migadu.com/dm@mssdvd.com
 tls_starttls off
 
 account      gmail
@@ -17,14 +17,14 @@ host         smtp.gmail.com
 port         587
 from         d.masserut@gmail.com
 user         d.masserut@gmail.com
-# password **PASSWORD**
+passwordeval pass google.com/d.masserut@gmail.com_mail_pass
 
 account      pec
 host         smtps.pec.aruba.it
 port         465
 from         dmasserut@pec.it
 user         dmasserut@pec.it
-# password **PASSWORD**
+passwordeval pass aruba.it/dmasserut@pec.it
 tls_starttls off
 
 account default : mssdvd

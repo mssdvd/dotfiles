@@ -1,2 +1,1 @@
-.config/msmtp/config filter=remove-msmtp-password
 .mbsyncrc filter=remove-mbsync-Pass
