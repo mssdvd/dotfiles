@@ -332,6 +332,7 @@ Intended as :after advice for `rename-file'."
   (completion-styles '(orderless basic))
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles basic partial-completion))))
+  (completion-ignore-case t)
   (orderless-component-separator #'orderless-escapable-split-on-space)
   (orderless-matching-styles '(orderless-literal
                                orderless-regexp
