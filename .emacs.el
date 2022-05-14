@@ -1129,7 +1129,8 @@ Intended as :after advice for `rename-file'."
 ;; csv-mode
 (use-package csv-mode
   :ensure
-  :custom (csv-separators '("," ";" "	")))
+  :custom (csv-separators '("," ";" "	"))
+  :hook (csv-mode . csv-guess-set-separator))
 
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
