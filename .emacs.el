@@ -175,11 +175,9 @@ Intended as :after advice for `rename-file'."
 (use-package simple
   :bind
   ([remap count-words-region] . count-words)
-  ([remap just-one-space] . cycle-spacing)
   ([remap upcase-word] . upcase-dwim)
   ([remap downcase-word] . downcase-dwim)
   ([remap capitalize-word] . capitalize-dwim)
-  ([remap count-words-region] . count-words)
   :custom
   (next-error-message-highlight t)
   :config
