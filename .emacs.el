@@ -847,6 +847,7 @@ Intended as :after advice for `rename-file'."
   ;;        ("C-j" . yas-next-field-or-maybe-expand)))
   :config
   (yas-global-mode 1)
+  (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
   ;; TODO: I don't think there is any benefit in disabling tab entirelly
   ;; (dolist (keymap (list yas-minor-mode-map yas-keymap))
   ;;   (define-key keymap (kbd "TAB") nil)
