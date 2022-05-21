@@ -956,6 +956,13 @@ Intended as :after advice for `rename-file'."
   :bind
   ("M-/" . hippie-expand))
 
+;; abbrev
+(use-package abbrev
+  :delight
+  :hook
+  (prog-mode . abbrev-mode)
+  (text-mode . abbrev-mode))
+
 ;; man
 (use-package man
   :bind ("C-c k" . man)
