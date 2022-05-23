@@ -2,7 +2,7 @@ set {
 	$mod Mod4
 	$term foot
 	$menu j4-dmenu-desktop --dmenu='bemenu -p "run"' --term=$term --display-binary --no-generic
-	$wlsunset_toggle "if pgrep wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -t 2500 -l 45.9 -L 12.6; fi"
+	$wlsunset_toggle "if pidof wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -t 2500 -l 45.9 -L 12.6; fi"
 }
 
 output {
