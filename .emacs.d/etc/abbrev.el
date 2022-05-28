@@ -3653,7 +3653,6 @@
     ("sysmatically" "systematically" nil :count 1)
     ("sytem" "system" nil :count 1)
     ("sytle" "style" nil :count 1)
-    ("t" "doesn't" nil :count 1)
     ("tabacco" "tobacco" nil :count 1)
     ("tahn" "than" nil :count 1)
     ("taht" "that" nil :count 1)
