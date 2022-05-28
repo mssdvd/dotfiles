@@ -1455,7 +1455,8 @@ anymore, go the previous message."
   (eglot-extend-to-xref t)
   :config
   (setq-default eglot-workspace-configuration
-                '((:gopls . (:linkTarget "godocs.io"))))
+                '((:gopls . ((linkTarget . "godocs.io")
+                             (gofumpt . t)))))
   :hook
   ((go-mode go-dot-mod-mode) . eglot-ensure))
 
