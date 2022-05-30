@@ -7,6 +7,7 @@ exec_always sway_check_lid_state.sh
 
 seat * xcursor_theme Adwaita 36
 
+input "1:1:AT_Translated_Set_2_keyboard" xkb_options "compose:ralt"
 input "1267:32:Elan_TrackPoint" pointer_accel 0.5
 
 output "Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849" position 0 0
