@@ -1169,7 +1169,7 @@ Intended as :after advice for `rename-file'."
   (rcirc-fill-column
    (lambda () (max fill-column (/ (window-text-width) 2))))
   (rcirc-kill-channel-buffers t)
-  (rcirc-omit-unless-requested '("NAMES"))
+  (rcirc-omit-unless-requested '("NAMES" "TOPIC"))
   (rcirc-prompt "%t> ")
   (rcirc-reconnect-delay 30)
   (rcirc-server-alist
