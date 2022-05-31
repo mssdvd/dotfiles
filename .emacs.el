@@ -1178,6 +1178,7 @@ Intended as :after advice for `rename-file'."
       :encryption tls
       :user-name ,(concat "mssdvd/liberachat@" (system-name) "-rcirc")
       :password ,(+pass-get-keep-asking "chat.sr.ht/mssdvd"))))
+  (rcirc-time-format "%d-%m %H:%M ")
   (rcirc-track-ignore-server-buffer-flag t)
   :hook
   (rcirc-mode . rcirc-track-minor-mode)
