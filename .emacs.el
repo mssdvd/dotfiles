@@ -892,6 +892,9 @@ Intended as :after advice for `rename-file'."
 (use-package shell
   :custom (shell-has-auto-cd t))
 
+(use-package sh-script
+  :custom (sh-shell-file "/bin/sh"))
+
 ;; pdf-tools
 ;; https://github.com/politza/pdf-tools
 ;; Dep poppler poppler-glibc
