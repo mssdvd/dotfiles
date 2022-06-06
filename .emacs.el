@@ -889,6 +889,9 @@ Intended as :after advice for `rename-file'."
   :custom
   (comint-prompt-read-only t))
 
+(use-package ansi-color
+  :hook (compilation-filter . ansi-color-compilation-filter))
+
 (use-package shell
   :custom (shell-has-auto-cd t))
 
