@@ -76,11 +76,6 @@
 (setq mode-line-compact t)
 
 (setq enable-recursive-minibuffers t)
-;; Do not restore windows state after closing the minibuffer
-(setq read-minibuffer-restore-windows nil)
-
-;; Resize mini-windows to fit the text displayed in them
-(setq resize-mini-windows t)
 
 
 ;;;;
@@ -272,7 +267,6 @@ Intended as :after advice for `rename-file'."
   :custom
   (vertico-cycle t)
   (vertico-quick1 "asdfghjkl;")
-  (vertico-resize 'grow-only)
   (vertico-scroll-margin (/ vertico-count 2))
   (completion-in-region-function
    (lambda (&rest args)
