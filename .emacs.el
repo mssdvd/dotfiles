@@ -91,7 +91,7 @@
  "Update Emacs master and packages."
   (interactive)
   (list-packages)
-  (magit-status "~/src/emacs-git/emacs-git/")
+  (magit-status "~/src/emacs-mssdvd-git/emacs-master/")
   (magit-fetch-from-upstream "origin" "master"))
 
 (defun +yank-primary ()
