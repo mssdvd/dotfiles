@@ -1035,13 +1035,6 @@ Intended as :after advice for `rename-file'."
   (:map lisp-interaction-mode-map ("C-c C-d" . helpful-at-point)))
 
 
-;; lang-tool
-;; https://github.com/mhayashi1120/Emacs-langtool
-(use-package langtool
-    :ensure
-  :config
-  (setq langtool-java-classpath "/usr/share/languagetool:/usr/share/java/languagetool/*"
-        langtool-mother-tongue "en-US"))
 
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
