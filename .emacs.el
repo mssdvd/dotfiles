@@ -861,6 +861,7 @@ Intended as :after advice for `rename-file'."
   :defer 1
   :custom
   (which-key-max-description-length nil)
+  (which-key-allow-imprecise-window-fit nil)
   :config
   (which-key-mode))
 
