@@ -9,7 +9,7 @@
 
 ;; Reset gc thresholds
 (add-hook 'emacs-startup-hook (lambda ()
-                                (setq gc-cons-threshold 800000
+                                (setq gc-cons-threshold 1600000
                                       gc-cons-percentage 0.1)))
 
 (menu-bar-mode -1)
