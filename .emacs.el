@@ -665,7 +665,7 @@ Intended as :after advice for `rename-file'."
 
 (use-package org-pomodoro
   :ensure
-  :bind ("C-c p" . org-pomodoro)
+  :bind ("C-c r" . org-pomodoro)
   :custom
   (org-pomodoro-expiry-time 40)
   (org-pomodoro-keep-killed-pomodoro-time t)
