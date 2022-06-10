@@ -1067,7 +1067,6 @@ Intended as :after advice for `rename-file'."
       (start-process "elfeed-mpv" nil
                      "mpv"
                      "--pause"
-                     "--speed=2.0"
                      "--force-window=immediate"
                      "--demuxer-max-bytes=3GiB"
                      "--"
