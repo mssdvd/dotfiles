@@ -435,9 +435,10 @@ Intended as :after advice for `rename-file'."
   :ensure
   :custom
   (corfu-auto t)
+  (corfu-auto-delay 0.5)
   (corfu-cycle t)
   :config
-  (global-corfu-mode))
+  (global-corfu-mode 1))
 
 (use-package corfu-history
   :demand
