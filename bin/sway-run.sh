@@ -12,7 +12,7 @@ export ELM_ENGINE=wayland_egl
 export SDL_VIDEODRIVER=wayland
 export _JAVA_AWT_WM_NONREPARENTING=1
 export NO_AT_BRIDGE=1
-export BEMENU_OPTS='-ni -H 30 --fn "Iosevka Semibold 20" --tf "#4c7899" --tb "#000000" --fb "#000000" --hf "#4c7899" --hb "#000000" --nb "#000000"'
+export BEMENU_OPTS='-ni -H 30 --fn "Iosevka 20" --tf "#4c7899" --tb "#000000" --fb "#000000" --hf "#4c7899" --hb "#000000" --nb "#000000"'
 
 export XDG_DESKTOP_DIR="$HOME"
 export XDG_DOWNLOAD_DIR="$HOME/downloads"

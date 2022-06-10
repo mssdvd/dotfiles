@@ -1,5 +1,4 @@
-# zathura doesn't like "Iosevka Semibold"
-set font "Iosevka Bold 15"
+set font "Iosevka 15"
 set render-loading false
 set recolor-keephue true
 set statusbar-home-tilde true
