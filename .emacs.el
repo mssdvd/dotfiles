@@ -1179,6 +1179,11 @@ Intended as :after advice for `rename-file'."
   (rcirc-mode . rcirc-omit-mode)
   (rcirc-mode . read-only-mode))
 
+(use-package rcirc-color
+  :ensure
+  :demand t
+  :after rcirc)
+
 (use-package re-builder
   :custom (reb-re-syntax 'string))
 
