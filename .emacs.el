@@ -1457,6 +1457,7 @@ anymore, go the previous message."
   (setq-default eglot-workspace-configuration
                 '((:gopls . ((gofumpt . t)
                              (linkTarget . "godocs.io")
+                             (staticcheck . t)
                              (usePlaceholders . t)))))
   :hook
   ((go-mode go-dot-mod-mode) . eglot-ensure))
