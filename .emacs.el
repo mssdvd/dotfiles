@@ -1136,7 +1136,8 @@ Intended as :after advice for `rename-file'."
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :ensure
-  :bind ("C-c v" . vterm-other-window))
+  :bind ("C-c v" . vterm-other-window)
+  :custom (vterm-always-compile-module t))
 
 (use-package shr
   :custom
