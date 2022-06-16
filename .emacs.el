@@ -995,9 +995,10 @@ Intended as :after advice for `rename-file'."
   :bind
   ("M-#" . quick-calc)
   ("C-M-#" . calc)
+  :config
+  (setq calc-group-char " "
+        calc-group-digits t)
   :custom
-  (calc-group-char " ")
-  (calc-group-digits t)
   (calc-make-windows-dedicated t)
   (calc-multiplication-has-precedence nil))
 
