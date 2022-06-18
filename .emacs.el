@@ -1322,6 +1322,7 @@ Intended as :after advice for `rename-file'."
      (:from . 22)
      (:thread-subject)))
   (mu4e-headers-include-related nil)
+  (mu4e-org-link-query-in-headers-mode t)
   (mu4e-update-interval 120)
   :config
 
