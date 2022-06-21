@@ -974,9 +974,9 @@ Intended as :after advice for `rename-file'."
 ;; https://github.com/hsjunnesson/wolfram.el
 (use-package wolfram
   :ensure
-  :config
-  (setq wolfram-alpha-app-id (auth-source-pass-get 'secret "wolfram_alpha_app_id")
-        wolfram-alpha-magnification-factor 1.5))
+  :custom
+  (wolfram-alpha-app-id (+pass-get-keep-asking "wolfram_alpha_app_id"))
+  (wolfram-alpha-magnification-factor 1.5))
 
 ;; define-word
 ;; https://github.com/abo-abo/define-word
