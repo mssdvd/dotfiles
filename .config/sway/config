@@ -55,13 +55,13 @@ mode "$mode_system" {
 	}
 }
 
-set $mode_screenshot Screenshot copy (w)in, (s)creen, (a)rea, save (Shift+w)in, (Shift+s)creen, (Shift+a)rea, swapp(y)
+set $mode_screenshot Screenshot copy (w)in, (o)utput, (a)rea, save (Shift+w)in, (Shift+o)utput, (Shift+a)rea, swapp(y)
 mode "$mode_screenshot" {
 	bindsym --to-code {
-		w exec grimshot --notify copy win; mode "default"
-		Shift+w exec grimshot --notify save win; mode "default"
-		s exec grimshot --notify copy screen; mode "default"
-		Shift+s exec grimshot --notify save screen; mode "default"
+		w exec grimshot --notify copy window; mode "default"
+		Shift+w exec grimshot --notify save window; mode "default"
+		s exec grimshot --notify copy output; mode "default"
+		Shift+s exec grimshot --notify save output; mode "default"
 		a exec grimshot --notify copy area; mode "default"
 		Shift+a exec grimshot --notify save area; mode "default"
 		y exec grim -g "$(slurp)" - | swappy -f -; mode "default"
