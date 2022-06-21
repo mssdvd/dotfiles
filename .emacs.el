@@ -1024,20 +1024,7 @@ Intended as :after advice for `rename-file'."
           (holiday-fixed 8 15 "Assunzione di Maria")
           (holiday-fixed 11 1 "Ognissanti"))))
 
-;; helpful
-;; https://github.com/wilfred/helpful
-(use-package helpful
-  :ensure
   :bind
-  ("C-h f" . helpful-callable)
-  ("C-h v" . helpful-variable)
-  ("C-h k" . helpful-key)
-  ("C-h F" . helpful-function)
-  (:map emacs-lisp-mode-map ("C-c C-d" . helpful-at-point))
-  (:map helpful-mode-map ("C-c C-d" . helpful-at-point))
-  (:map lisp-interaction-mode-map ("C-c C-d" . helpful-at-point)))
-
-
 
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
