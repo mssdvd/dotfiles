@@ -350,6 +350,7 @@ Intended as :after advice for `rename-file'."
          ("C-x C-r" . consult-recent-file)
          ("C-x r x" . consult-register)
          ("C-x r b" . consult-bookmark)
+         ("C-x p b" . consult-project-buffer)
          ;; Other custom bindings
          ("M-y" . consult-yank-pop)
          ("<help> a" . consult-apropos)
