@@ -523,8 +523,9 @@ Intended as :after advice for `rename-file'."
 ;; recentf
 (use-package recentf
   :defer 1
+  :custom
+  (recentf-max-saved-items 500)
   :config
-  (setq recentf-max-saved-items 300)
   (recentf-mode))
 
 (use-package saveplace
