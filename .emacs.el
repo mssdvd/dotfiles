@@ -1127,11 +1127,13 @@ Intended as :after advice for `rename-file'."
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :ensure
-  :custom (vterm-always-compile-module t))
   :bind
   ("C-c t" . vterm-other-window)
   (:map project-prefix-map
         ("t" . +vterm-project-other-window))
+  :custom
+  (vterm-always-compile-module t)
+  (vterm-timer-delay nil)
   :config
   (defun +vterm-project-other-window ()
     (interactive)
