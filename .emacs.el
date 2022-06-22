@@ -918,7 +918,7 @@ Intended as :after advice for `rename-file'."
 (use-package terminal-here
   :ensure
   :bind
-  ("C-c t" . terminal-here-launch)
+  ("C-c v" . terminal-here-launch)
   :custom (terminal-here-terminal-command 'foot))
 
 ;; sudo-edit
@@ -1127,8 +1127,9 @@ Intended as :after advice for `rename-file'."
 ;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :ensure
-  :bind ("C-c v" . vterm-other-window)
   :custom (vterm-always-compile-module t))
+  :bind
+  ("C-c t" . vterm-other-window)
 
 (use-package shr
   :custom
