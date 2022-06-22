@@ -510,7 +510,9 @@ Intended as :after advice for `rename-file'."
   :bind
   (:map flymake-mode-map
         ("M-n" . flymake-goto-next-error)
-        ("M-p" . flymake-goto-prev-error))
+        ("M-p" . flymake-goto-prev-error)
+        ("C-c ! !" . flymake-show-buffer-diagnostics)
+        ("C-c ! p" . flymake-show-project-diagnostics))
   :custom (flymake-mode-line-lighter "FM")
   :hook (prog-mode . flymake-mode))
 
