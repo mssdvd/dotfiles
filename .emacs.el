@@ -1130,6 +1130,13 @@ Intended as :after advice for `rename-file'."
   :custom (vterm-always-compile-module t))
   :bind
   ("C-c t" . vterm-other-window)
+  (:map project-prefix-map
+        ("t" . +vterm-project-other-window))
+  :config
+  (defun +vterm-project-other-window ()
+    (interactive)
+    (let ((default-directory (project-root (project-current t))))
+      (vterm-other-window))))
 
 (use-package shr
   :custom
