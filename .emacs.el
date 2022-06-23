@@ -418,12 +418,9 @@ Intended as :after advice for `rename-file'."
 (use-package embark
   :ensure
   :defer 1
-  ;; :commands embark-prefix-help-command
   :bind
   ("C-." . embark-act)
-  ("C-h B" . embark-bindings)
-  :init
-  (setq prefix-help-command #'embark-prefix-help-command))
+  ("C-h B" . embark-bindings))
 
 (use-package embark-consult
   :ensure
