@@ -1462,7 +1462,8 @@ anymore, go the previous message."
                              (staticcheck . t)
                              (usePlaceholders . t)))))
   :hook
-  ((go-mode go-dot-mod-mode) . eglot-ensure))
+  ((go-mode go-dot-mod-mode) . eglot-ensure)
+  (eglot-managed-mode . (lambda () (setq-local eldoc-documentation-strategy 'eldoc-documentation-compose))))
 
 ;; Go
 
