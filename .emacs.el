@@ -1322,7 +1322,6 @@ Intended as :after advice for `rename-file'."
      (:from . 22)
      (:thread-subject)))
   (mu4e-headers-include-related nil)
-  (mu4e-org-link-query-in-headers-mode t)
   (mu4e-update-interval 120)
   :config
 
@@ -1379,6 +1378,9 @@ anymore, go the previous message."
                           (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
                             (start-process "update mail indicator" nil
                                            "pkill" "-SIGRTMIN+1" "waybar")))))
+
+(use-package mu4e-org
+  :custom (mu4e-org-link-query-in-headers-mode t))
 
 (use-package mu4e-alert
   :demand
