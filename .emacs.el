@@ -1025,7 +1025,9 @@ Intended as :after advice for `rename-file'."
           (holiday-fixed 8 15 "Assunzione di Maria")
           (holiday-fixed 11 1 "Ognissanti"))))
 
-  :bind
+(use-package help-fns
+  :custom (help-enable-variable-value-editing t)
+  :config (put 'help-fns-edit-variable 'disabled nil))
 
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
