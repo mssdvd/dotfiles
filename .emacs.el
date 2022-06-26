@@ -1322,7 +1322,6 @@ Intended as :after advice for `rename-file'."
      (:from . 22)
      (:thread-subject)))
   (mu4e-headers-include-related nil)
-  (mu4e-org-link-query-in-headers-mode t)
   (mu4e-update-interval 120)
   :config
 
@@ -1371,7 +1370,8 @@ anymore, go the previous message."
                     (mu4e-drafts-folder . "/dmasserut@pec.it/Bozze")
                     (mu4e-refile-folder . "/dmasserut@pec.it/Archiviata")
                     (mu4e-sent-folder . "/dmasserut@pec.it/Inviata")
-                    (mu4e-trash-folder . "/dmasserut@pec.it/Cestino")))))
+                    (mu4e-trash-folder . "/dmasserut@pec.it/Cestino"))))
+        mu4e-org-link-query-in-headers-mode t)
 
   (mu4e t)
   :hook
