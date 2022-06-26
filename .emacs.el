@@ -1294,6 +1294,9 @@ Intended as :after advice for `rename-file'."
   :defer 2
   :bind
   ("C-c m" . mu4e)
+  (:map mu4e-main-mode-map
+        ("q" . bury-buffer)
+        ("Q" . mu4e-quit))
   (:map mu4e-view-mode-map
         ("o" . ace-link-mu4e)
         ("S-SPC" . +mu4e-view-scroll-down-or-prev)
