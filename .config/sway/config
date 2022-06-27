@@ -264,7 +264,6 @@ for_window {
 exec {
 	mako
 	ydotoold
-	libinput-gestures-setup start
 	$wlsunset_toggle
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 	nm-applet --indicator
