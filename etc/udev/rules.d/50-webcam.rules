@@ -1,0 +1,2 @@
+# Disable IR camera
+ACTION=="add", ATTR{idVendor}=="04f2", ATTR{idProduct}=="b615", RUN="/bin/sh -c 'echo 1 >/sys/\$devpath/remove'"
