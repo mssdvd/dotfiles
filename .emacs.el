@@ -103,16 +103,6 @@
     (while (not (setq pass (auth-source-pass-get 'secret entry))))
     pass))
 
-(defun +rename-buffer-renamed-file (file newname &optional _ok-if-already-exists)
-  "Rename buffer visiting FILE to NEWNAME.
-Intended as :after advice for `rename-file'."
-  (when (called-interactively-p 'any)
-    (when-let ((buffer (get-file-buffer file)))
-      (with-current-buffer buffer
-        (set-visited-file-name newname nil t)))))
-(advice-add 'rename-file :after '+rename-buffer-renamed-file)
-
-
 ;;;;
 ;; use-package
 ;;;;
