@@ -8,8 +8,8 @@ account      mssdvd
 host         smtp.migadu.com
 port         465
 from         dm@mssdvd.com
-user         dm@mssdvd.com
-passwordeval pass migadu.com/dm@mssdvd.com
+user         dm_t480s@mssdvd.com
+passwordeval pass migadu.com/dm_t480s@mssdvd.com
 tls_starttls off
 
 account      gmail
