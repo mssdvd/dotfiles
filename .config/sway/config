@@ -259,6 +259,7 @@ for_window {
 	[app_id="floating_window"] floating enable
 	[class="floating_window"] floating enable
 	[class="steam_app*"] inhibit_idle focus
+	[app_id="zoom"] floating enable
 }
 
 exec {
