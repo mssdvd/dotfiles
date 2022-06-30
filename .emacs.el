@@ -1019,6 +1019,10 @@
   :custom (help-enable-variable-value-editing t)
   :config (put 'help-fns-edit-variable 'disabled nil))
 
+(use-package find-func
+  :defer 1
+  :config (find-function-setup-keys))
+
 ;; elfeed
 ;; https://github.com/skeeto/elfeed
 (use-package elfeed
