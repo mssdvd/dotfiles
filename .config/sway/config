@@ -255,7 +255,7 @@ seat * hide_cursor 10000
 for_window {
 	[app_id="firefox" title="(?i)^picture-in-picture"] floating enable, sticky enable
 	[app_id="firefox" title="About Mozilla Firefox"] floating enable
-	[app_id="firefox" title="Firefox — Sharing Indicator"] floating enable, kill
+	[app_id="firefox" title="Firefox — Sharing Indicator"] kill
 	[app_id="floating_window"] floating enable
 	[class="floating_window"] floating enable
 	[class="steam_app*"] inhibit_idle focus
