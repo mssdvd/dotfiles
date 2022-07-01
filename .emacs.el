@@ -126,7 +126,8 @@
 (use-package modus-themes
   :ensure
   :commands (modus-themes-load-themes)
-  :functions (modus-themes-load-vivendi)
+  :functions
+  (modus-themes-load-operandi modus-themes-load-vivendi)
   :bind ("C-c q" . modus-themes-toggle)
   :custom
   (modus-themes-completions '((matches . (background))))
@@ -138,7 +139,12 @@
   :init
   (modus-themes-load-themes)
   :config
-  (modus-themes-load-vivendi))
+  (if (string=
+       (shell-command-to-string
+        "gsettings get org.gnome.desktop.interface gtk-theme")
+       "'Adwaita'\n")
+      (modus-themes-load-operandi)
+    (modus-themes-load-vivendi)))
 
 (use-package cus-edit
   :custom (custom-unlispify-tag-names nil))
