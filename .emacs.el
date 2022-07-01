@@ -1308,7 +1308,6 @@
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read)
   (mu4e-compose-context-policy nil)
-  ;; (mu4e-confirm-quit nil)
   (mu4e-context-policy 'pick-first)
   (mu4e-get-mail-command "mbsync -a")
   (mu4e-headers-auto-update nil)
@@ -1319,19 +1318,20 @@
      (:from . 22)
      (:thread-subject)))
   (mu4e-headers-include-related nil)
+  (mu4e-hide-index-messages t)
   (mu4e-update-interval 120)
   :config
 
   (defun +mu4e-view-scroll-down-or-prev ()
-  "Scroll-down the current message.
+    "Scroll-down the current message.
 If `mu4e-view-scroll-to-next' is non-nil, and we can't scroll-down
 anymore, go the previous message."
-  (interactive)
-  (condition-case nil
-      (scroll-down)
-    (error
-     (when mu4e-view-scroll-to-next
-       (mu4e-view-headers-prev)))))
+    (interactive)
+    (condition-case nil
+        (scroll-down)
+      (error
+       (when mu4e-view-scroll-to-next
+         (mu4e-view-headers-prev)))))
 
   (setq mu4e-contexts
         `(,(make-mu4e-context
