@@ -152,6 +152,8 @@ bindsym --to-code {
 		$mod+Comma exec playerctl previous
 	}
 
+	$mod+y exec toggle-theme.sh
+
 	XF86Launch2 exec $wlsunset_toggle
 	$mod+u exec $wlsunset_toggle
 
