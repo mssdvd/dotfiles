@@ -566,7 +566,7 @@
         ([f6] . +org-latex-preview-with-argument))
   :config
   (defun +org-latex-preview-with-argument ()
-    (interactive)
+    (interactive nil org-mode)
     (let ((current-prefix-arg '(16)))
       (call-interactively #'org-latex-preview)))
   (delight 'org-indent-mode)
@@ -1066,7 +1066,7 @@
 
   (defun +elfeed-play-with-mpv ()
     "Play entry link with mpv."
-    (interactive)
+    (interactive nil elfeed-search-mode elfeed-show-mode)
     (if (eq major-mode 'elfeed-show-mode)
         (+elfeed--play-with-mpv elfeed-show-entry)
       (progn
@@ -1077,7 +1077,7 @@
 
   (defun +elfeed-open-with-eww ()
     "Open elfeed entry in eww with `eww-readable'"
-    (interactive)
+    (interactive nil elfeed-search-mode elfeed-show-mode)
     (let ((entry (if (eq major-mode 'elfeed-show-mode)
                      elfeed-show-entry
                    (elfeed-search-selected :single))))
@@ -1332,7 +1332,7 @@
     "Scroll-down the current message.
 If `mu4e-view-scroll-to-next' is non-nil, and we can't scroll-down
 anymore, go the previous message."
-    (interactive)
+    (interactive nil mu4e-view-mode)
     (condition-case nil
         (scroll-down)
       (error
