@@ -907,6 +907,10 @@
   (pdf-view-display-size 'fit-page)
   :hook (pdf-view-mode . pdf-tools-enable-minor-modes))
 
+(use-package nov
+  :ensure
+  :mode ("\\.epub\\'" . nov-mode))
+
 ;; terminal here
 ;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
