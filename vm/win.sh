@@ -10,9 +10,7 @@ qemu-system-x86_64 \
     -smp cores=4,threads=2 \
     -net nic,model=virtio \
     -net user,smb="$VM_DIR"/share \
-    -audiodev pa,id=snd0 \
-    -device ich9-intel-hda \
-    -device hda-output,audiodev=snd0 \
+    -device intel-hda -device hda-duplex \
     -rtc base=localtime \
     -usb -device usb-tablet \
     -device ich9-usb-ehci1,id=usb \
