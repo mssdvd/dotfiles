@@ -26,5 +26,5 @@ qemu-system-x86_64 \
     -vga none -device qxl-vga,vgamem_mb=64 \
     -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd \
     -drive if=pflash,format=raw,file="$VM_DIR"/uefi_vars.fd \
-    -drive driver=qcow2,file="$VM_DIR"/win11.qcow2,if=virtio,aio=native,cache.direct=on,l2-cache-size=8M \
+    -drive driver=qcow2,file="$VM_DIR"/win.qcow2,if=virtio,aio=native,cache.direct=on,l2-cache-size=8M \
     "$@"
