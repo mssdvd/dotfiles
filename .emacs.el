@@ -1319,6 +1319,7 @@
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read)
   (mu4e-compose-context-policy nil)
+  (mu4e-compose-format-flowed t)
   (mu4e-context-policy 'pick-first)
   (mu4e-get-mail-command "mbsync -a")
   (mu4e-headers-auto-update nil)
