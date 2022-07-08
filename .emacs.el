@@ -1295,18 +1295,7 @@
 (use-package mu4e
   :defer 2
   :bind
-  ("C-c m" .
-   (lambda ()
-     (interactive)
-     (let ((unread-query "flag:unread AND NOT flag:trashed"))
-       (if (= (cl-loop for q in (mu4e-last-query-results)
-                     until (string=
-                            (decode-coding-string
-                             (plist-get q :query) 'utf-8 t)
-                            unread-query)
-                     finally return (plist-get q :count)) 0)
-         (mu4e)
-       (mu4e-search unread-query)))))
+  ("C-c m" . +mu4e-view-unread-emails-maybe)
   (:map mu4e-main-mode-map
         ("q" . bury-buffer)
         ("Q" . mu4e-quit))
@@ -1341,6 +1330,20 @@
   (mu4e-hide-index-messages t)
   (mu4e-update-interval 120)
   :config
+
+  (defun +mu4e-view-unread-emails-maybe ()
+    "If there are unread emails display them in the mu4e headers buffer,
+otherwise display the main mu4e buffer."
+     (interactive)
+     (let ((unread-query "flag:unread AND NOT flag:trashed"))
+       (if (= (cl-loop for q in (mu4e-last-query-results)
+                     until (string=
+                            (decode-coding-string
+                             (plist-get q :query) 'utf-8 t)
+                            unread-query)
+                     finally return (plist-get q :count)) 0)
+         (mu4e)
+       (mu4e-search unread-query))))
 
   (defun +mu4e-view-scroll-down-or-prev ()
     "Scroll-down the current message.

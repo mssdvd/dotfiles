@@ -7,4 +7,4 @@
 #                                    (notmuch-search \"tag:unread\" t)))"
 emacsclient -c -a '' --eval "(progn
                                (require 'mu4e)
-                               (mu4e))"
+                               (+mu4e-view-unread-emails-maybe))"
