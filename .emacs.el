@@ -344,7 +344,6 @@
          ("C-x b" . consult-buffer)
          ("C-x 4 b" . consult-buffer-other-window)
          ("C-x 5 b" . consult-buffer-other-frame)
-         ("C-x C-r" . consult-recent-file)
          ("C-x r x" . consult-register)
          ("C-x r b" . consult-bookmark)
          ("C-x p b" . consult-project-buffer)
