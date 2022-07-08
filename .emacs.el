@@ -1295,7 +1295,18 @@
 (use-package mu4e
   :defer 2
   :bind
-  ("C-c m" . mu4e)
+  ("C-c m" .
+   (lambda ()
+     (interactive)
+     (let ((unread-query "flag:unread AND NOT flag:trashed"))
+       (if (= (cl-loop for q in (mu4e-last-query-results)
+                     until (string=
+                            (decode-coding-string
+                             (plist-get q :query) 'utf-8 t)
+                            unread-query)
+                     finally return (plist-get q :count)) 0)
+         (mu4e)
+       (mu4e-search unread-query)))))
   (:map mu4e-main-mode-map
         ("q" . bury-buffer)
         ("Q" . mu4e-quit))
