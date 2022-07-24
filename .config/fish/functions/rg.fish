@@ -1,8 +1,8 @@
 function rg
     if isatty 1
-        command rg --pretty $argv \
+        command rg -S --pretty $argv \
             &| less --RAW-CONTROL-CHARS --quit-if-one-screen --no-init
     else
-        command rg $argv
+        command rg -S $argv
     end
 end
