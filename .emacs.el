@@ -1285,6 +1285,7 @@
   (mu4e-headers-include-related nil)
   (mu4e-hide-index-messages t)
   (mu4e-update-interval 120)
+  (mu4e-user-agent-string nil)
   :config
 
   (defun +mu4e-view-unread-emails-maybe ()
