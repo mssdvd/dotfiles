@@ -225,14 +225,6 @@
   :config
   (put 'dired-find-alternate-file 'disabled nil))
 
-;; dired-x
-(use-package dired-x
-  :demand
-  :after dired
-  :custom (dired-guess-shell-alist-user
-           '(("\.pdf$" "zathura")
-             ("\.mp4$" "mpv"))))
-
 (use-package wdired
   :custom (wdired-allow-to-change-permissions t))
 
