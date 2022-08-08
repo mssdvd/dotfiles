@@ -1,0 +1,4 @@
+evdev:input:b0003v046DpC51A*
+ KEYBOARD_KEY_c0221=btn_middle
+ KEYBOARD_KEY_90009=btn_thumb
+ KEYBOARD_KEY_9000b=btn_thumb2
