@@ -865,11 +865,6 @@
   ("C-c v" . terminal-here-launch)
   :custom (terminal-here-terminal-command 'foot))
 
-;; sudo-edit
-;; https://github.com/nflath/sudo-edit
-(use-package sudo-edit
-  :ensure)
-
 ;; ispell
 (use-package ispell
   :custom
