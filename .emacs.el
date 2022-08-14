@@ -1165,17 +1165,6 @@
 (use-package tab-bar
   :custom (tab-bar-show 1))
 
-(use-package treemacs)
-(use-package telega
-  :ensure
-  :pin melpa-stable
-  :custom
-  (telega-completing-read-function #'completing-read)
-  :hook
-  (telega-load . telega-appindicator-mode)
-  (telega-load . telega-mode-line-mode)
-  (telega-load . telega-notifications-mode))
-
 (use-package tmm
   :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
 
