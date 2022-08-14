@@ -1147,9 +1147,6 @@
 (use-package paren
   :custom (show-paren-context-when-offscreen 'child-frame))
 
-(use-package compile
-  :bind ("C-c b". recompile))
-
 (use-package eww
   :custom
   (eww-auto-rename-buffer 'title)
