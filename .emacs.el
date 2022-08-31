@@ -186,6 +186,9 @@
   :bind ("M-o" . other-window)
   :custom
   (scroll-preserve-screen-position t)
+  (switch-to-buffer-obey-display-actions t)
+  (display-buffer-alist
+   '(("\\*Install vterm\\*" display-buffer-no-window (allow-no-window . t))))
   (window-resize-pixelwise t))
 
 (use-package elec-pair
