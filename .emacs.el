@@ -981,12 +981,10 @@
   ("C-c e" . elfeed)
   (:map elfeed-search-mode-map
         ("e" . +elfeed-open-with-eww)
-        ("i" . +elfeed-play-with-mpv)
-        ("t" . pocket-reader-elfeed-search-add-link))
+        ("i" . +elfeed-play-with-mpv))
   (:map elfeed-show-mode-map
         ("e" . +elfeed-open-with-eww)
-        ("i" . +elfeed-play-with-mpv)
-        ("t" . pocket-reader-elfeed-search-add-link))
+        ("i" . +elfeed-play-with-mpv))
   :custom
   (elfeed-search-title-max-width 100)
   :config
