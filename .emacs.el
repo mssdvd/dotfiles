@@ -206,12 +206,11 @@
 ;; display-line-numbers
 (use-package display-line-numbers
   :custom (display-line-numbers-grow-only t)
-  :hook
-  ((conf-mode nxml-mode prog-mode yaml-mode) . display-line-numbers-mode))
+  :hook (conf-mode nxml-mode prog-mode yaml-mode))
 
 ;; display-fill-column-indicator
 (use-package display-fill-column-indicator
-  :hook ((conf-mode markdown-mode prog-mode) . display-fill-column-indicator-mode))
+  :hook (conf-mode markdown-mode prog-mode))
 
 ;; diff
 (use-package diff-mode
@@ -496,7 +495,7 @@
         ("C-c ! !" . flymake-show-buffer-diagnostics)
         ("C-c ! p" . flymake-show-project-diagnostics))
   :custom (flymake-mode-line-lighter "FM")
-  :hook (prog-mode . flymake-mode))
+  :hook prog-mode)
 
 (use-package flymake-shellcheck
   :ensure
@@ -526,7 +525,7 @@
 ;; https://github.com/Fanael/rainbow-delimiters
 (use-package rainbow-delimiters
   :ensure
-  :hook (prog-mode . rainbow-delimiters-mode))
+  :hook prog-mode)
 
 ;; rainbow-mode
 ;; https://elpa.gnu.org/packages/rainbow-mode.html
@@ -644,7 +643,7 @@
   :custom
   (org-indent-indentation-per-level 1)
   (org-indent-mode-turns-on-hiding-stars nil)
-  :hook (org-mode . org-indent-mode))
+  :hook org-mode)
 
 (use-package gnuplot
   :ensure)
@@ -902,9 +901,7 @@
 ;; abbrev
 (use-package abbrev
   :delight
-  :hook
-  (prog-mode . abbrev-mode)
-  (text-mode . abbrev-mode))
+  :hook (prog-mode text-mode))
 
 ;; man
 (use-package man
@@ -1185,7 +1182,7 @@
   :defer 1
   :delight
   :load-path "~/src/undo-hl"
-  :hook ((prog-mode text-mode) . undo-hl-mode))
+  :hook (prog-mode text-mode))
 
 
 (use-package treemacs
