@@ -75,6 +75,9 @@
 (setq mode-line-compact t)
 
 (setq enable-recursive-minibuffers t)
+;; Show trailing whitespaces
+(dolist (hook '(prog-mode-hook text-mode-hook))
+  (add-hook hook (lambda () (setq show-trailing-whitespace t))))
 
 
 ;;;;
