@@ -500,10 +500,6 @@
   :custom (flymake-mode-line-lighter "FM")
   :hook prog-mode)
 
-(use-package flymake-shellcheck
-  :ensure
-  :hook (sh-mode . flymake-shellcheck-load))
-
 ;; recentf
 (use-package recentf
   :defer 1
