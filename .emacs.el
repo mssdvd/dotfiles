@@ -874,7 +874,7 @@
 
 ;; dictionary
 (use-package dictionary
-  :custom (dictionary-server "dict.org"))
+  :custom (dictionary-server "localhost"))
 
 ;; fish-mode
 (use-package fish-mode
