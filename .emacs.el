@@ -729,8 +729,6 @@
   :custom
   (magit-diff-refine-hunk 'all)
   (magit-delete-by-moving-to-trash nil)
-  (magit-repository-directories '(("~/org" . 0)
-                                  ("~/uni" . 0)))
   (magit-status-goto-file-position t)
   :config
   (put 'magit-edit-line-commit 'disabled nil)
