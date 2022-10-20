@@ -229,6 +229,9 @@
   :config
   (put 'dired-find-alternate-file 'disabled nil))
 
+(use-package dired-aux
+  :custom (dired-vc-rename-file t))
+
 (use-package wdired
   :custom (wdired-allow-to-change-permissions t))
 
