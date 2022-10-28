@@ -127,6 +127,7 @@
 
 (use-package modus-themes
   :ensure
+  :pin gnu
   :commands (modus-themes-load-themes)
   :functions
   (modus-themes-load-operandi modus-themes-load-vivendi)
