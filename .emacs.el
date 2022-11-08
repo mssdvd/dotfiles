@@ -369,8 +369,6 @@
   :init
   (advice-add #'register-preview :override #'consult-register-window)
   :config
-  (setq consult-narrow-key "<")
-
   (consult-customize
    consult-theme
    :preview-key '(:debounce 0.2 any)
@@ -385,6 +383,7 @@
       map))
   (consult-customize consult-line :keymap +consult-line-map)
   :custom
+  (consult-narrow-key "<")
   (register-preview-delay 0.5)
   (register-preview-function #'consult-register-format))
 
