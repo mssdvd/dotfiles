@@ -915,7 +915,7 @@
 ;; man
 (use-package man
   :bind ("C-c k" . man)
-  :custom (Man-notify-method 'pushy))
+  :custom (Man-notify-method 'aggressive))
 
 ;; Wolfram.el
 ;; https://github.com/hsjunnesson/wolfram.el
