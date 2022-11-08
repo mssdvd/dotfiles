@@ -154,17 +154,6 @@
 (use-package time
   :custom (display-time-24hr-format t))
 
-(use-package tree-sitter
-  :ensure
-  :delight
-  :defer 2
-  :functions (global-tree-sitter-mode)
-  :config (global-tree-sitter-mode)
-  :hook (tree-sitter-after-on . tree-sitter-hl-mode))
-
-(use-package tree-sitter-langs
-  :ensure)
-
 (use-package simple
   :bind
   ([remap count-words-region] . count-words)
