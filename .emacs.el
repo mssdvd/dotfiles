@@ -679,6 +679,27 @@
   (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/"
         org-reveal-title-slide nil))
 
+(use-package denote
+  :ensure
+  :bind
+  ("C-c n n" . denote)
+  ("C-c n f" . +denote-find-file)
+  ("C-c n i" . denote-link)
+  ("C-c n I" . denote-link-add-links)
+  ("C-c n l" . denote-link-find-file)
+  ("C-c n b" . denote-link-backlinks)
+  ("C-c n r" . denote-rename-file)
+  :custom
+  (denote-directory (expand-file-name "~/denote/"))
+  (denote-dired-directories (list denote-directory))
+  (denote-known-keywords nil)
+  :config
+  (defun +denote-find-file ()
+    (interactive)
+    (let ((default-directory denote-directory)
+          (completion-ignored-extensions (cons ".git/" completion-ignored-extensions)))
+      (call-interactively #'find-file)))
+  :hook (dired-mode . denote-dired-mode-in-directories))
 
 ;; company
 ;; https://company-mode.github.io/
