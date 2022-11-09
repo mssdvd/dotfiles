@@ -161,16 +161,10 @@
   ([remap capitalize-word] . capitalize-dwim)
   :custom
   (next-error-message-highlight t)
+  (save-interprogram-paste-before-kill t)
+  (read-extended-command-predicate #'command-completion-default-include-p)
   :config
-  (setq
-   ;; Save existing clipboard text into kill ring before replacing it
-   save-interprogram-paste-before-kill t
-   ;; Hide commands in M-x which do not work in the current mode
-   read-extended-command-predicate #'command-completion-default-include-p)
-
-  ;; enable column number
   (column-number-mode 1)
-  ;; display size of the buffer
   (size-indication-mode 1))
 
 (use-package window
@@ -501,8 +495,8 @@
 
 (use-package saveplace
   :defer 1
-  :config (save-place-mode 1)
-  :custom (save-place-limit 800))
+  :custom (save-place-limit 800)
+  :config (save-place-mode 1))
 
 ;; saveplace-pdf-view
 ;; https://github.com/nicolaisingh/saveplace-pdf-view
@@ -1014,11 +1008,11 @@
   :mode ("\\.ldg\\'" . ledger-mode)
   :bind
   (:map ledger-mode-map ([f6] . (lambda () (interactive)(insert "€"))))
-  :config
-  (setq ledger-copy-transaction-insert-blank-line-after t
-        ledger-default-date-format "%Y-%m-%d"
-        ledger-highlight-xact-under-point nil
-        ledger-reconcile-default-commodity "€"))
+  :custom
+  (ledger-copy-transaction-insert-blank-line-after t)
+  (ledger-default-date-format "%Y-%m-%d")
+  (ledger-highlight-xact-under-point nil)
+  (ledger-reconcile-default-commodity "€"))
 
 (use-package ledger-flymake
   :hook (ledger-mode . ledger-flymake-enable))
@@ -1096,9 +1090,8 @@
   :custom (reb-re-syntax 'string))
 
 (use-package mouse
-  :config
-  (setq mouse-yank-at-point t)
-  (context-menu-mode))
+  :custom (mouse-yank-at-point t)
+  :config (context-menu-mode))
 
 (use-package repeat
   :defer 1
@@ -1169,14 +1162,13 @@
       user-mail-address "dm@mssdvd.com")
 
 (use-package message
-  :config
-  (setq message-auto-save-directory nil
-        message-kill-buffer-on-exit t
-        message-sendmail-envelope-from 'header))
+  :custom
+  (message-auto-save-directory nil)
+  (message-kill-buffer-on-exit t)
+  (message-sendmail-envelope-from 'header))
 
 (use-package gnus
-  :custom
-  (gnus-article-date-headers '(combined-local-lapsed)))
+  :custom (gnus-article-date-headers '(combined-local-lapsed)))
 
 (use-package mu4e
   :defer 2
