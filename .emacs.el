@@ -704,35 +704,8 @@
       (call-interactively #'find-file)))
   :hook (dired-mode . denote-dired-mode-in-directories))
 
-;; company
-;; https://company-mode.github.io/
 (use-package company
-  :disabled
-  :delight
-  :defer 1
-  :bind
-  (([remap indent-for-tab-command] . company-indent-or-complete-common)
-   ("C-c y" . company-yasnippet)
-   :map company-active-map
-   ("C-o" . company-show-location))
-  :custom
-  (company-dabbrev-downcase nil)
-  (company-dabbrev-ignore-case t)
-  (company-tooltip-align-annotations t)
-  (company-show-quick-access t)
-  (company-search-regexp-function #'company-search-words-in-any-order-regexp)
-  (company-selection-wrap-around t)
-  (company-transformers '(company-sort-prefer-same-case-prefix))
-
-  ;; Disable orderless for company
-  (define-advice company-capf
-      (:around (orig-fun &rest args) set-completion-styles)
-    (let ((completion-styles '(basic partial-completion initials)))
-      (apply orig-fun args)))
-
-  (global-company-mode)
-  ;; (company-tng-mode)
-  )
+  :ensure)
 
 (use-package vc
   :custom (vc-follow-symlinks t))
