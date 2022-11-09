@@ -74,7 +74,6 @@
 ;; Make mode-line more compact
 (setq mode-line-compact t)
 
-(setq enable-recursive-minibuffers t)
 ;; Show trailing whitespaces
 (dolist (hook '(prog-mode-hook text-mode-hook))
   (add-hook hook (lambda () (setq show-trailing-whitespace t))))
@@ -232,6 +231,16 @@
               ("l" . dired-hist-go-back)
               ("r" . dired-hist-go-forward))
   :config (dired-hist-mode 1))
+
+(use-package minibuffer
+  :custom
+  ;; Do not allow the cursor in the minibuffer prompt
+  (minibuffer-prompt-properties
+      '(read-only t cursor-intangible t face minibuffer-prompt))
+  (enable-recursive-minibuffers t)
+  :config
+  (minibuffer-depth-indicate-mode 1)
+  :hook (minibuffer-setup-hook . cursor-intangible-mode))
 
 (use-package vertico
   :ensure
