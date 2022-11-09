@@ -223,15 +223,6 @@
 (use-package wdired
   :custom (wdired-allow-to-change-permissions t))
 
-(use-package dired-hist
-  :load-path "~/src/dired-hist"
-  :demand
-  :after dired
-  :bind (:map dired-mode-map
-              ("l" . dired-hist-go-back)
-              ("r" . dired-hist-go-forward))
-  :config (dired-hist-mode 1))
-
 (use-package minibuffer
   :custom
   ;; Do not allow the cursor in the minibuffer prompt
