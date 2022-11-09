@@ -1346,14 +1346,6 @@ anymore, go the previous message."
 (use-package go-mode
   :ensure)
 
-;; Rust
-
-(use-package rustic
-  :ensure
-  :custom
-  (rustic-lsp-client 'eglot)
-  (rustic-lsp-format t))
-
 ;; C/C++
 (use-package cc-vars
   :custom
