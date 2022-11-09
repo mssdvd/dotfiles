@@ -806,6 +806,13 @@
   :custom
   (eldoc-echo-area-use-multiline-p nil))
 
+(use-package eshell
+  :config
+  (add-to-list 'eshell-modules-list 'eshell-smart)
+  :hook (eshell-mode . (lambda ()
+                         (setenv "PAGER" "cat")
+                         (setenv "EDITOR" "emacsclient"))))
+
 ;; comint-mode
 (use-package comint
   :custom
