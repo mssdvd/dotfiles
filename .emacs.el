@@ -1174,7 +1174,7 @@
 (use-package mu4e
   :defer 2
   :bind
-  ("C-c m" . +mu4e-view-unread-emails-maybe)
+  ("C-c m" . mu4e)
   (:map mu4e-main-mode-map
         ("q" . bury-buffer)
         ("Q" . mu4e-quit))
