@@ -2,7 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq package-enable-at-startup nil
+(setq custom-file (concat user-emacs-directory "etc/custom.el")
       ;; Increase gc thresholds during startup
       gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
@@ -26,7 +26,6 @@
 
 (dolist (attr '(variable-pitch fixed-pitch))
   (set-face-attribute attr nil
-                      :family "Iosevka Fixed"
-                      :height 1.0))
+                      :family (face-attribute 'default :family)))
 
 ;;; early-init.el ends here
