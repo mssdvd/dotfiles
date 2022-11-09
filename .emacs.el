@@ -1147,6 +1147,10 @@
   :load-path "~/src/undo-hl"
   :hook (prog-mode text-mode))
 
+(use-package files
+  :custom
+  (require-final-newline t))
+
 
 (use-package treemacs
   :ensure
