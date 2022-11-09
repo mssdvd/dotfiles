@@ -536,7 +536,6 @@
   :pin gnu
   :functions (delight)
   :bind
-  ("C-c a" . org-agenda)
   ("C-c c" . org-capture)
   ("C-c l" . org-store-link)
   (:map org-mode-map
@@ -627,6 +626,10 @@
   :hook
   (org-mode . auto-fill-mode)
   (org-mode . turn-on-org-cdlatex))
+
+(use-package org-agenda
+  :bind ("C-c a" . org-agenda)
+  :custom (org-agenda-sticky t))
 
 (use-package org-indent
   :delight
