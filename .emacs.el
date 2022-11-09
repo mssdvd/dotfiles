@@ -1151,16 +1151,8 @@
   :custom
   (require-final-newline t))
 
-
-(use-package treemacs
   :ensure
-  :config
-  (treemacs-project-follow-mode 1))
 
-(use-package treemacs-magit
-  :ensure
-  :demand
-  :after (treemacs magit))
 
 ;;
 ;; Mail
