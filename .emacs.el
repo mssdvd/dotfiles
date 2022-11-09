@@ -946,28 +946,6 @@
   (calc-make-windows-dedicated t)
   (calc-multiplication-has-precedence nil))
 
-;; calendar
-(use-package calendar
-  :config
-  (setq calendar-week-start-day 1
-        holiday-general-holidays
-        '((holiday-fixed 1 1 "Capodanno")
-          (holiday-fixed 5 1 "1 Maggio")
-          (holiday-fixed 4 25 "Liberazione")
-          (holiday-fixed 6 2 "Festa Repubblica"))
-        holiday-christian-holidays
-        '((holiday-fixed 12 8 "Immacolata Concezione")
-          (holiday-fixed 12 25 "Natale")
-          (holiday-fixed 12 26 "Santo Stefano")
-          (holiday-fixed 1 6 "Epifania")
-          (holiday-easter-etc -52 "Giovedì grasso")
-          (holiday-easter-etc -47 "Martedì grasso")
-          (holiday-easter-etc  -2 "Venerdì Santo")
-          (holiday-easter-etc   0 "Pasqua")
-          (holiday-easter-etc  +1 "Lunedì Pasqua")
-          (holiday-fixed 8 15 "Assunzione di Maria")
-          (holiday-fixed 11 1 "Ognissanti"))))
-
 (use-package help-fns
   :custom (help-enable-variable-value-editing t)
   :config (put 'help-fns-edit-variable 'disabled nil))
