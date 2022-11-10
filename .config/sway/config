@@ -266,7 +266,6 @@ for_window {
 
 exec {
 	mako
-	ydotoold
 	$wlsunset_toggle
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 	nm-applet --indicator
