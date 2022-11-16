@@ -1,2 +1,2 @@
 #!/bin/sh
-exec $TERM -e $(echo $(basename $0) | sed -e 's/_.*$/\L/' | tr '[:upper:]' '[:lower:]')
+exec $TERM -e $(basename "$0" | sed -e 's/_.*$/\L/' | tr '[:upper:]' '[:lower:]')
