@@ -2,7 +2,7 @@
 
 VM_DIR=$HOME/vm
 
-qemu-system-x86_64 \
+exec qemu-system-x86_64 \
     -m 4G \
     -machine type=q35,accel=kvm \
     -cpu host,hv_relaxed,hv_spinlocks=0x1fff,hv_vapic,hv_time \
