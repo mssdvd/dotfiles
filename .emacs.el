@@ -923,6 +923,9 @@
   (calc-make-windows-dedicated t)
   (calc-multiplication-has-precedence nil))
 
+(use-package calendar
+  :custom (calendar-week-start-day 1))
+
 (use-package help-fns
   :custom (help-enable-variable-value-editing t)
   :config (put 'help-fns-edit-variable 'disabled nil))
