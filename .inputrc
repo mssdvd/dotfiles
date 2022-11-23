@@ -1,0 +1,9 @@
+$if Bash
+set colored-stats on
+set colored-completion-prefix on
+set expand-tilde on
+"\C-xq": "\C-a\$(\C-e)"
+"\e\C-o": dabbrev-expand
+$endif
+
+"\C-xP": print-last-kbd-macro
