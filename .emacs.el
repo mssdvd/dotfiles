@@ -698,9 +698,6 @@
       (call-interactively #'find-file)))
   :hook (dired-mode . denote-dired-mode-in-directories))
 
-(use-package company
-  :ensure)
-
 (use-package vc
   :custom (vc-follow-symlinks t))
 
