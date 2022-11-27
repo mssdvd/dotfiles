@@ -748,31 +748,9 @@
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode . diff-hl-dired-mode)))
 
-;; yasnippet
-;; https://github.com/joaotavora/yasnippet
-(use-package yasnippet
   :ensure
-  :functions (yas-minor-mode)
-  :delight yas-minor-mode
   :defer 1
-  ;; :bind
-  ;; ((:map yas-minor-mode-map
-  ;;        ("C-j" . yas-expand)
-  ;;        :map yas-keymap
-  ;;        ("C-j" . yas-next-field-or-maybe-expand)))
-  :config
-  (yas-global-mode 1)
-  (add-to-list 'hippie-expand-try-functions-list #'yas-hippie-try-expand)
-  ;; TODO: I don't think there is any benefit in disabling tab entirelly
-  ;; (dolist (keymap (list yas-minor-mode-map yas-keymap))
-  ;;   (define-key keymap (kbd "TAB") nil)
-  ;;   (define-key keymap [(tab)] nil))
-  )
 
-;; yasnippet-snippets
-;; https://github.com/AndreaCrotti/yasnippet-snippets
-(use-package yasnippet-snippets
-    :ensure)
 
 ;; which-key
 ;; https://github.com/justbur/emacs-which-key
