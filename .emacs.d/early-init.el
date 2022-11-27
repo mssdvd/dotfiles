@@ -2,9 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq custom-file (concat user-emacs-directory "etc/custom.el")
-      ;; Increase gc thresholds during startup
-      gc-cons-threshold most-positive-fixnum
+;; Increase gc thresholds during startup
+(setq gc-cons-threshold most-positive-fixnum
       gc-cons-percentage 0.6)
 
 ;; Reset gc thresholds

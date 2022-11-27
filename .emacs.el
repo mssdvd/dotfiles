@@ -108,17 +108,6 @@
 ;; use-package
 ;;;;
 
-;; no-littering
-;; https://github.com/emacscollective/no-littering
-(use-package no-littering
-  :ensure
-  :demand
-  :custom
-  (auto-save-file-name-transforms `((".*" ,(no-littering-expand-var-file-name "auto-save/") t)))
-  (custom-file (no-littering-expand-etc-file-name "custom.el"))
-  :config
-  (load custom-file 'noerror 'nomessage))
-
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
 (use-package delight
@@ -148,7 +137,10 @@
     (modus-themes-load-vivendi)))
 
 (use-package cus-edit
-  :custom (custom-unlispify-tag-names nil))
+  :custom
+  (custom-file (expand-file-name "custom.el"  user-emacs-directory))
+  (custom-unlispify-tag-names nil)
+  :config (load custom-file 'noerror 'nomessage))
 
 (use-package time
   :custom (display-time-24hr-format t))
