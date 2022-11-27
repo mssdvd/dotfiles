@@ -745,8 +745,18 @@
          (magit-post-refresh . diff-hl-magit-post-refresh)
          (dired-mode . diff-hl-dired-mode)))
 
+(use-package tempel
   :ensure
+  :pin gnu
   :defer 1
+  :bind (("M-+" . tempel-insert))
+  :custom (tempel-trigger-prefix "<")
+  :hook
+  ((prog-mode text-mode) .
+   (lambda ()
+     (setq-local completion-at-point-functions
+                 (cons #'tempel-expand
+                       completion-at-point-functions)))))
 
 
 ;; which-key
