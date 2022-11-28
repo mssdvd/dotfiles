@@ -11,8 +11,8 @@
   (package-refresh-contents)
   (package-install 'use-package))
 
-(defvar use-package-always-defer t)
-(defvar use-package-enable-imenu-support t)
+(setopt use-package-always-defer t
+        use-package-enable-imenu-support t)
 
 (eval-when-compile
   (require 'use-package))
