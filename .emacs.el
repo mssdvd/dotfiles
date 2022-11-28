@@ -879,11 +879,6 @@
   (wolfram-alpha-app-id (+pass-get-keep-asking "wolfram_alpha_app_id"))
   (wolfram-alpha-magnification-factor 1.5))
 
-;; define-word
-;; https://github.com/abo-abo/define-word
-(use-package define-word
-    :ensure)
-
 ;; systemd
 ;; https://github.com/holomorph/systemd-mode
 (use-package systemd
