@@ -972,13 +972,6 @@
   :custom (rmh-elfeed-org-files '("~/.emacs.d/elfeed/elfeed.org"))
   :config (elfeed-org))
 
-;; pocket-reader
-;; https://github.com/alphapapa/pocket-reader.el
-(use-package pocket-reader
-  :ensure
-  :load-path "~/src/pocket-reader"
-  :commands (pocket-lib-add-urls))
-
 ;; ledger-mode
 ;; https://github.com/ledger/ledger-mode
 (use-package ledger-mode
