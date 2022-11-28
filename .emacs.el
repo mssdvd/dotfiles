@@ -882,6 +882,7 @@
 ;; systemd
 ;; https://github.com/holomorph/systemd-mode
 (use-package systemd
+  :ensure
   :mode
   ("\\.service\\'" . systemd-mode)
   ("\\.timer\\'" . systemd-mode))
