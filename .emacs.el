@@ -972,6 +972,7 @@
   :ensure
   :demand
   :after elfeed
+  :custom (rmh-elfeed-org-files '("~/.emacs.d/elfeed/elfeed.org"))
   :config (elfeed-org))
 
 ;; pocket-reader
