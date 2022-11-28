@@ -927,6 +927,7 @@
         ("e" . +elfeed-open-with-eww)
         ("i" . +elfeed-play-with-mpv))
   :custom
+  (elfeed-db-directory (expand-file-name "elfeed/db/" user-emacs-directory))
   (elfeed-search-title-max-width 100)
   :config
   (setq url-queue-timeout 30)
