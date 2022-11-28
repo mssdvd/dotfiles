@@ -1310,6 +1310,9 @@ anymore, go the previous message."
 (use-package lua-mode
   :ensure)
 
+(use-package rust-mode
+  :ensure)
+
 (put 'erase-buffer 'disabled nil)
 
 ;;; .emacs.el ends here
