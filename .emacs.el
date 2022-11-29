@@ -569,9 +569,7 @@
                                  :jump-to-captured t
                                  :empty-lines 0
                                  :tree-type week))
-        org-catch-invisible-edits 'smart
         org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
-        org-ditaa-jar-path "/usr/share/java/ditaa/ditaa-0.11.jar"
         org-edit-src-content-indentation 0
         org-ellipsis " ..."
         org-enforce-todo-checkbox-dependencies t
@@ -589,7 +587,6 @@
         org-refile-targets '((org-agenda-files :maxlevel . 4))
         org-refile-use-outline-path 'file
         org-return-follows-link t
-        org-show-context-detail (append '((tags-tree . local)) org-show-context-detail)
         org-use-speed-commands t
         org-startup-folded t
         org-startup-with-inline-images t
