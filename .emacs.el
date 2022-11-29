@@ -534,7 +534,6 @@
       (call-interactively #'org-latex-preview)))
   (delight 'org-indent-mode)
   (setq org-attach-auto-tag nil
-        org-babel-results-keyword "results"
         org-confirm-babel-evaluate nil
         org-capture-templates `(("b" "Insert new Book" entry
                                  (file+headline "~/org/books_movies_series.org" "Books")
