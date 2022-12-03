@@ -1,3 +1,4 @@
 --start-of-week 1
 --file ~/ledger/main.ldg
+--date-format %Y-%m-%d %a:
 --exchange EUR
