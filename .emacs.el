@@ -427,7 +427,6 @@
   :config
   (setq isearch-allow-motion t
         isearch-allow-scroll 'unlimited
-        isearch-lax-whitespace t
         isearch-regexp-lax-whitespace t
         isearch-lazy-count t
         isearch-repeat-on-direction-change t
