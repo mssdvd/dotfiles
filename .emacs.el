@@ -535,39 +535,7 @@
   (delight 'org-indent-mode)
   (setq org-attach-auto-tag nil
         org-confirm-babel-evaluate nil
-        org-capture-templates `(("b" "Insert new Book" entry
-                                 (file+headline "~/org/books_movies_series.org" "Books")
-                                 (file "~/org/template/books_template.org")
-                                 :empty-lines-after 2)
 
-                                ("m" "Next week menu" entry
-                                 (file+headline "~/org/meals.org"
-                                                ,(format-time-string "%Y"))
-                                 (file "~/org/template/weekly_meals.org")
-                                 :jump-to-captured t)
-
-                                ("y" "Add YouTube channel" entry
-                                 (file+olp "~/.emacs.d/etc/elfeed/rmh-elfeed.org"
-                                           "Web" "Youtube")
-                                 "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Insert channel name}]]")
-
-                                ("s" "New activity log" entry
-                                 (file+olp+datetree "~/org/activities.org"
-                                                    "Log")
-                                 "* %?"
-                                 :jump-to-captured t
-                                 :empty-lines 0
-                                 :tree-type week)
-
-                                ("S" "New activity log (clock in)" entry
-                                 (file+olp+datetree "~/org/activities.org"
-                                                    "Log")
-                                 "* %?"
-                                 :clock-in it
-                                 :clock-keep t
-                                 :jump-to-captured t
-                                 :empty-lines 0
-                                 :tree-type week))
         org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
         org-edit-src-content-indentation 0
         org-ellipsis " ..."
@@ -612,6 +580,43 @@
 (use-package org-agenda
   :bind ("C-c a" . org-agenda)
   :custom (org-agenda-sticky t))
+
+(use-package org-capture
+  :custom
+  (org-capture-templates
+   `(("b" "Insert new Book" entry
+      (file+headline "~/org/books_movies_series.org" "Books")
+      (file "~/org/template/books_template.org")
+      :empty-lines-after 2)
+
+     ("m" "Next week menu" entry
+      (file+headline "~/org/meals.org"
+                     ,(format-time-string "%Y"))
+      (file "~/org/template/weekly_meals.org")
+      :jump-to-captured t)
+
+     ("y" "Add YouTube channel" entry
+      (file+olp "~/.emacs.d/elfeed/elfeed.org"
+                "Web" "Youtube")
+      "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Insert channel name}]]")
+
+     ("s" "New activity log" entry
+      (file+olp+datetree "~/org/activities.org"
+                         "Log")
+      "* %?"
+      :jump-to-captured t
+      :empty-lines 0
+      :tree-type week)
+
+     ("S" "New activity log (clock in)" entry
+      (file+olp+datetree "~/org/activities.org"
+                         "Log")
+      "* %?"
+      :clock-in it
+      :clock-keep t
+      :jump-to-captured t
+      :empty-lines 0
+      :tree-type week))))
 
 (use-package org-indent
   :delight
