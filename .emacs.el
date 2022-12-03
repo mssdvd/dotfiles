@@ -424,16 +424,16 @@
 
 
 (use-package isearch
-  :config
-  (setq isearch-allow-motion t
-        isearch-allow-scroll 'unlimited
-        isearch-regexp-lax-whitespace t
-        isearch-lazy-count t
-        isearch-repeat-on-direction-change t
-        isearch-wrap-pause 'no
-        lazy-count-prefix-format nil
-        lazy-count-suffix-format " (%s/%s)"
-        search-whitespace-regexp ".*?"))
+  :custom
+  (isearch-allow-motion t)
+  (isearch-allow-scroll 'unlimited)
+  (isearch-regexp-lax-whitespace t)
+  (isearch-lazy-count t)
+  (isearch-repeat-on-direction-change t)
+  (isearch-wrap-pause 'no)
+  (lazy-count-prefix-format nil)
+  (lazy-count-suffix-format " (%s/%s)")
+  (search-whitespace-regexp ".*?"))
 
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
