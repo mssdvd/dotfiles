@@ -752,18 +752,6 @@
                        completion-at-point-functions)))))
 
 
-;; which-key
-;; https://github.com/justbur/emacs-which-key
-(use-package which-key
-  :ensure
-  :delight
-  :defer 1
-  :custom
-  (which-key-max-description-length nil)
-  (which-key-allow-imprecise-window-fit nil)
-  :config
-  (which-key-mode))
-
 ;; autorevert
 (use-package autorevert
   :delight auto-revert-mode
