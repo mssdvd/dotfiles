@@ -554,7 +554,6 @@
         org-return-follows-link t
         org-use-speed-commands t
         org-startup-folded t
-        org-startup-with-inline-images t
         org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "REDO(r)" "|" "DONE(d)" "CANCELED(c)"))
         org-track-ordered-property-with-tag t
         org-use-fast-tag-selection t
