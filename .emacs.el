@@ -536,6 +536,7 @@
         org-confirm-babel-evaluate nil
 
         org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
+        org-ctrl-k-protect-subtree t
         org-edit-src-content-indentation 0
         org-ellipsis " ..."
         org-enforce-todo-checkbox-dependencies t
