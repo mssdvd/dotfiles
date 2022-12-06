@@ -84,11 +84,11 @@
 ;;;;
 
 (defun +check-emacs-updates ()
- "Update Emacs master and packages."
+  "Update Emacs master and packages."
   (interactive)
   (list-packages)
   (magit-status "~/src/emacs-mssdvd-git/emacs-master/")
-  (magit-fetch-from-upstream "origin" "master"))
+  (magit-git-fetch "origin" nil))
 
 (defun +yank-primary ()
   "Insert the primary selection at the position."
