@@ -525,12 +525,8 @@
   ("C-c l" . org-store-link)
   (:map org-mode-map
         ("C-'" . avy-goto-char-timer)
-        ([f6] . +org-latex-preview-with-argument))
+        ([f6] . org-latex-preview)
   :config
-  (defun +org-latex-preview-with-argument ()
-    (interactive nil org-mode)
-    (let ((current-prefix-arg '(16)))
-      (call-interactively #'org-latex-preview)))
   (delight 'org-indent-mode)
   (setq org-attach-auto-tag nil
         org-confirm-babel-evaluate nil
