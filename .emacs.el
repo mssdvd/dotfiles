@@ -526,6 +526,7 @@
   (:map org-mode-map
         ("C-'" . avy-goto-char-timer)
         ([f6] . org-latex-preview)
+        ([f7] . insert-char))
   :config
   (delight 'org-indent-mode)
   (setq org-attach-auto-tag nil
