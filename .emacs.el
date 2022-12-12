@@ -199,7 +199,6 @@
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
   (dired-listing-switches "-alhv --group-directories-first")
-  (dired-kill-when-opening-new-dired-buffer t)
   :config
   (put 'dired-find-alternate-file 'disabled nil))
 
