@@ -674,6 +674,7 @@
   ("C-c n b" . denote-link-backlinks)
   ("C-c n r" . denote-rename-file)
   :custom
+  (denote-backlinks-show-context t)
   (denote-directory (expand-file-name "~/denote/"))
   (denote-dired-directories (list denote-directory))
   (denote-known-keywords nil)
@@ -683,7 +684,9 @@
     (let ((default-directory denote-directory)
           (completion-ignored-extensions (cons ".git/" completion-ignored-extensions)))
       (call-interactively #'find-file)))
-  :hook (dired-mode . denote-dired-mode-in-directories))
+  :hook
+  (denote-backlinks-mode . (lambda () (setq-local truncate-lines t)))
+  (dired-mode . denote-dired-mode-in-directories))
 
 (use-package vc
   :custom (vc-follow-symlinks t))
