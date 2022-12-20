@@ -544,6 +544,7 @@
                               org-file-apps)
         org-html-validation-link nil
         org-log-into-drawer t
+        org-M-RET-may-split-line '((default . nil))
         org-outline-path-complete-in-steps nil
         org-refile-allow-creating-parent-nodes 'confirm
         org-refile-targets '((org-agenda-files :maxlevel . 4))
