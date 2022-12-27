@@ -269,7 +269,7 @@ exec {
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 	nm-applet --indicator
 	# blueman-applet
-	swayidle -w timeout 600 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' before-sleep 'swaylock -f; playerctl pause'
+	swayidle -w timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -f; playerctl pause'
 	poweralertd
 	GTK_THEME=Adwaita-dark waybar
 

@@ -1,25 +1,9 @@
-# profile 1 {
-#         output "Ancor Communications Inc ASUS MX239 EBLMTJ030694" position 0,0
-#         output "Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849" position 1920,0
-#         output eDP-1 position 5760,0
-#         exec swaymsg workspace 1, move workspace to '"Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849"'
-#         exec swaymsg workspace 2, move workspace to 'eDP-1'
-#         exec swaymsg workspace 3, move workspace to '"Ancor Communications Inc ASUS MX239 EBLMTJ030694"'
-# }
-
-# profile 2 {
-#         output "Ancor Communications Inc ASUS MX239 EBLMTJ030694" position 0,0
-#         output "Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849" position 1920,0
-#         exec swaymsg workspace 1, move workspace to '"Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849"'
-#         exec swaymsg workspace 2, move workspace to '"Ancor Communications Inc ASUS MX239 EBLMTJ030694"'
-# }
-# profile 3 {
-#         output "Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849" position 0,0
-#         output eDP-1 position 3840,0
-#         exec swaymsg workspace 1, move workspace to '"Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849"'
-#         exec swaymsg workspace 2, move workspace to 'eDP-1'
-# }
-
 profile eDP {
-        output eDP-1 enable
+	output eDP-1 enable position 3840,0
+}
+
+profile dock {
+	output eDP-1 disable position 3840,0
+	output "LG Electronics LG ULTRAFINE 105NTWGCC849" enable position 0,0
+	exec swaymsg workspace 1, move workspace to output '"LG Electronics LG ULTRAFINE 105NTWGCC849"'
 }
