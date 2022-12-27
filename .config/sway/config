@@ -245,6 +245,10 @@ bindsym --to-code {
 	$mod+p exec passmenu
 }
 
+bindgesture {
+	swipe:right workspace prev
+ 	swipe:left workspace next
+}
 
 floating_modifier $mod normal
 workspace_auto_back_and_forth yes
