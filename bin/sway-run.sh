@@ -3,6 +3,7 @@
 export TERM=foot
 export XDG_CURRENT_DESKTOP=sway
 export MOZ_ENABLE_WAYLAND=1
+export QT_QPA_PLATFORMTHEME=qt5ct
 export _JAVA_AWT_WM_NONREPARENTING=1
 export BEMENU_OPTS='-ni -H 30 --fn "Iosevka Fixed 20" --tf "#4c7899" --tb "#000000" --fb "#000000" --hf "#4c7899" --hb "#000000" --nb "#000000"'
 
