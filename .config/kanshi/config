@@ -5,5 +5,5 @@ profile eDP {
 profile dock {
 	output eDP-1 disable position 3840,0
 	output "LG Electronics LG ULTRAFINE 105NTWGCC849" enable position 0,0
-	exec swaymsg workspace 1, move workspace to output '"LG Electronics LG ULTRAFINE 105NTWGCC849"'
+	exec swaymsg workspace --no-auto-back-and-forth 1, move workspace --no-auto-back-and-forth to output '"LG Electronics LG ULTRAFINE 105NTWGCC849"'
 }
