@@ -1,3 +1,11 @@
+fundamental-mode
+
+(now (format-time-string "%Y-%m-%d %H:%M"))
+(today (format-time-string "%Y-%m-%d"))
+(asciibox "+-" (make-string (length str) ?-) "-+" n
+          "| " (s str)                       " |" n
+          "+-" (make-string (length str) ?-) "-+" n)
+
 prog-mode
 
 (fixme (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "FIXME ")
