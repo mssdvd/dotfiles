@@ -1273,7 +1273,8 @@ anymore, go the previous message."
   ((go-mode
     go-dot-mod-mode
     go-dot-work-mode
-    rust-mode) . eglot-ensure)
+    rust-ts-mode)
+   . eglot-ensure)
   (eglot-managed-mode . (lambda () (setq-local eldoc-documentation-strategy 'eldoc-documentation-compose))))
 
 ;; Go
