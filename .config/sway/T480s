@@ -1,3 +1,5 @@
+# -*- mode: conf -*-
+
 font pango:Iosevka Fixed Semibold 12
 
 # Clamshell mode
