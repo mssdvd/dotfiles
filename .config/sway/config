@@ -5,10 +5,7 @@ set {
 	$wlsunset_toggle "if pidof wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -t 2500 -l 45.9 -L 12.6; fi"
 }
 
-output {
-	"Goldstar Company Ltd LG ULTRAFINE 105NTWGCC849"
-	* bg "#000000" solid_color subpixel rgb
-}
+output * bg "#000000" solid_color subpixel rgb
 
 input {
 	"type:touchpad" {
