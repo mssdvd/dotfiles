@@ -456,12 +456,6 @@
   :defer 1
   :config (ace-link-setup-default))
 
-;; expand-region.el
-;; https://github.com/magnars/expand-region.el
-(use-package expand-region
-  :ensure
-  :bind ("C-=" . er/expand-region))
-
 (use-package elisp-mode
   :custom (elisp-flymake-byte-compile-load-path (cons "./" load-path)))
 
