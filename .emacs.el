@@ -198,9 +198,11 @@
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
+  (dired-hide-details-hide-information-lines nil)
+  (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-alhv --group-directories-first")
-  :config
-  (put 'dired-find-alternate-file 'disabled nil))
+  :config (put 'dired-find-alternate-file 'disabled nil)
+  :hook (dired-mode . dired-hide-details-mode))
 
 (use-package dired-aux
   :custom (dired-vc-rename-file t))
@@ -500,7 +502,7 @@
   :ensure
   :custom (cdlatex-math-modify-alist '((?B "\\mathbb" nil t nil nil))))
 
-(use-package tex
+(use-package tex-site
   :ensure auctex)
 
 (use-package org
