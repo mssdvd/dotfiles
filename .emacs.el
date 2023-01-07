@@ -489,12 +489,6 @@
   :demand
   :after saveplace)
 
-;; rainbow-delimiters
-;; https://github.com/Fanael/rainbow-delimiters
-(use-package rainbow-delimiters
-  :ensure
-  :hook prog-mode)
-
 ;; rainbow-mode
 ;; https://elpa.gnu.org/packages/rainbow-mode.html
 (use-package rainbow-mode
