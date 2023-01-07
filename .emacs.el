@@ -523,9 +523,7 @@
   :config
   (delight 'org-indent-mode)
   (setq org-attach-auto-tag nil
-        org-blank-before-new-entry '((heading . t) (plain-list-item . auto))
         org-confirm-babel-evaluate nil
-
         org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
         org-ctrl-k-protect-subtree t
         org-edit-src-content-indentation 0
