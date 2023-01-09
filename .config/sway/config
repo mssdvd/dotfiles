@@ -18,7 +18,6 @@ input {
 	"type:pointer" pointer_accel 1
 	"type:keyboard" repeat_rate 50
 	"type:keyboard" xkb_options "compose:menu"
-	"1133:49971:Logitech_Gaming_Keyboard_G610" xkb_layout us-english-long-shift
 	"1149:32792:Kensington_Expert_Wireless_TB_Mouse" scroll_factor 1.5
 }
 
