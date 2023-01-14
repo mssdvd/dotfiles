@@ -65,9 +65,6 @@
 ;; Do not ask to save before compilation
 (setq compilation-ask-about-save nil)
 
-;; Long lines slowdowns inhibitor
-(global-so-long-mode 1)
-
 ;; Disable bell
 (setq ring-bell-function 'ignore)
 
