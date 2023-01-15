@@ -1,0 +1,6 @@
+default partial alphanumeric_keys
+xkb_symbols "basic" {
+	include "pc+us+inet(evdev)"
+	name[Group1] = "T480s";
+	key <PRSC> { [ Super_L ] };
+};
