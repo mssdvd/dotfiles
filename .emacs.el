@@ -493,7 +493,7 @@
 (use-package rainbow-mode
   :ensure
   :delight
-  :hook (conf-mode css-mode prog-mode sgml-mode))
+  :hook (conf-mode css-mode Man-mode prog-mode sgml-mode))
 
 (use-package cdlatex
   :ensure
