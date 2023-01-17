@@ -499,7 +499,7 @@
   :ensure
   :custom (cdlatex-math-modify-alist '((?B "\\mathbb" nil t nil nil))))
 
-(use-package tex-site
+(use-package tex
   :ensure auctex)
 
 (use-package org
