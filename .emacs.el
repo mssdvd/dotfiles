@@ -5,12 +5,6 @@
 
 (setq read-process-output-max (* 1024 1024 4)) ;; 4mb
 
-(require 'package)
-(add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t)
-(unless (package-installed-p 'use-package)
-  (package-refresh-contents)
-  (package-install 'use-package))
-
 (setopt use-package-always-defer t
         use-package-enable-imenu-support t)
 
@@ -104,6 +98,9 @@
 ;;;;
 ;; use-package
 ;;;;
+
+(use-package package
+  :config (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 ;; delight
 ;; https://savannah.nongnu.org/projects/delight
