@@ -17,7 +17,7 @@
 (horizontal-scroll-bar-mode -1)
 
 (let ((size (pcase (system-name)
-              ("T480s" 181)
+              ("T480s" 166)
               (_ 98))))
   (set-face-attribute 'default nil
                       :family "Iosevka Fixed"
