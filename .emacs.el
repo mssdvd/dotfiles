@@ -1032,7 +1032,6 @@
 (use-package tmr
   :ensure)
 
-  :ensure
 
 
 ;;
