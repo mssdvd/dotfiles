@@ -1026,8 +1026,11 @@
 (use-package files
   :custom
   (backup-directory-alist
-   `(("." . ,(concat user-emacs-directory "backup/")))
-  (require-final-newline t)))
+   `(("." . ,(concat user-emacs-directory "backup/"))))
+  (require-final-newline t))
+
+(use-package tmr
+  :ensure)
 
   :ensure
 
