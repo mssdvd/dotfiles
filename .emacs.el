@@ -784,6 +784,9 @@
   (pdf-view-display-size 'fit-page)
   :hook (pdf-view-mode . pdf-tools-enable-minor-modes))
 
+(use-package pdf-view
+  :hook (pdf-view-mode . pdf-view-auto-slice-minor-mode))
+
 (use-package nov
   :ensure
   :mode ("\\.epub\\'" . nov-mode))
