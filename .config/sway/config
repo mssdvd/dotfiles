@@ -260,6 +260,7 @@ for_window {
 	[app_id="firefox" title="About Mozilla Firefox"] floating enable
 	[app_id="firefox" title="Firefox — Sharing Indicator"] kill
 	[app_id="floating_window"] floating enable
+	[app_id="gcr-prompter"] focus
 	[class="floating_window"] floating enable
 	[class="steam_app*"] inhibit_idle focus
 	[app_id="zoom"] floating enable
