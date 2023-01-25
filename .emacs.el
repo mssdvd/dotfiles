@@ -164,15 +164,7 @@
 
 (use-package elec-pair
   :defer 1
-  :config
-  (electric-pair-mode 1)
-  :hook
-  (org-mode . (lambda ()
-                (setq-local electric-pair-inhibit-predicate
-                            `(lambda (c)
-                               (if (char-equal c ?<)
-                                   t
-                                 (,electric-pair-inhibit-predicate c)))))))
+  :config (electric-pair-mode 1))
 
 ;; display-line-numbers
 (use-package display-line-numbers
