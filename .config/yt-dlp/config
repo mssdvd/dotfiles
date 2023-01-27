@@ -1,0 +1,3 @@
+--abort-on-unavailable-fragment
+--embed-subs
+--sub-langs "en.*, it"
