@@ -990,6 +990,9 @@
    `(("." . ,(concat user-emacs-directory "backup/"))))
   (require-final-newline t))
 
+(use-package outline
+  :hook ((apropos-mode xref-after-update) . outline-minor-mode))
+
 (use-package tmr
   :ensure)
 
