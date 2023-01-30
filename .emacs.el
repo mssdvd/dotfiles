@@ -372,6 +372,12 @@
   :custom
   (corfu-quick1 "asdfghjkl;"))
 
+(use-package corfu-popupinfo
+  :demand
+  :after corfu
+  :custom (corfu-popupinfo-delay '(1.0 . 0.5))
+  :config (corfu-popupinfo-mode 1))
+
 
 (use-package isearch
   :custom
