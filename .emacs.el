@@ -340,14 +340,12 @@
   :hook (embark-collect-mode . consult-preview-at-point-mode))
 
 (use-package corfu
-  :demand
   :ensure
+  :demand
   :custom
   (corfu-auto t)
-  (corfu-auto-delay 0.5)
   (corfu-cycle t)
-  :config
-  (global-corfu-mode 1))
+  :config (global-corfu-mode 1))
 
 (use-package corfu-history
   :demand
