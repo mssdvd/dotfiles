@@ -29,9 +29,6 @@
 ;; use tab to indent and complete
 (setq tab-always-indent 'complete)
 
-;; Tab size
-(setq-default tab-width 4)
-
 (setq echo-keystrokes 0.1)
 
 ;; support PKGBUILD
