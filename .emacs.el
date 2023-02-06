@@ -8,9 +8,6 @@
 (setopt use-package-always-defer t
         use-package-enable-imenu-support t)
 
-(eval-when-compile
-  (require 'use-package))
-
 ;; disable cursor blinking
 (blink-cursor-mode 0)
 
