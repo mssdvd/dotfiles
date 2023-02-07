@@ -251,7 +251,8 @@
   :init (savehist-mode))
 
 (use-package consult
-  :ensure t
+  :ensure
+  :pin gnu
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
@@ -306,6 +307,7 @@
   (register-preview-function #'consult-register-format))
 
 (use-package marginalia
+  :pin gnu
   :ensure
   :demand
   :commands marginalia-mode
@@ -315,6 +317,7 @@
   :config (marginalia-mode))
 
 (use-package embark
+  :pin gnu
   :ensure
   :defer 1
   :bind
@@ -322,6 +325,7 @@
   ("C-h B" . embark-bindings))
 
 (use-package embark-consult
+  :pin gnu
   :ensure
   :demand
   :after (embark consult)
