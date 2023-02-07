@@ -255,8 +255,6 @@
   :bind (;; C-c bindings (mode-specific-map)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
-         ("C-c s" . consult-line)
-         ("C-c S" . consult-line-multi)
          ;; C-x bindings (ctl-x-map)
          ("C-x M-:" . consult-complex-command)
          ("C-x b" . consult-buffer)
@@ -267,7 +265,6 @@
          ("C-x p b" . consult-project-buffer)
          ;; Other custom bindings
          ("M-y" . consult-yank-pop)
-         ("<help> a" . consult-apropos)
          ;; M-g bindings (goto-map)
          ("M-g e" . consult-compile-error)
          ("M-g f" . consult-flymake)
@@ -284,18 +281,17 @@
          ("M-s r" . consult-ripgrep)
          ("M-s l" . consult-line)
          ("M-s L" . consult-line-multi)
-         ("M-s m" . consult-multi-occur)
          ("M-s k" . consult-keep-lines)
          ("M-s u" . consult-focus-lines)
          ;; Isearch integration
-         ("M-s e" . consult-isearch-history)
          :map isearch-mode-map
          ("M-e" . consult-isearch-history)
          ("M-s e" . consult-isearch-history)
-         ("C-c s" . consult-line)
-         ("C-c S" . consult-line-multi)
          ("M-s l" . consult-line)
-         ("M-s L" . consult-line-multi))
+         ("M-s L" . consult-line-multi)
+         :map minibuffer-local-map
+         ("M-s" . consult-history)
+         ("M-r" . consult-history))
   :init
   (advice-add #'register-preview :override #'consult-register-window)
   :config
