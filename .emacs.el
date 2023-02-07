@@ -299,14 +299,6 @@
   :init
   (advice-add #'register-preview :override #'consult-register-window)
   :config
-  (consult-customize
-   consult-theme
-   :preview-key '(:debounce 0.2 any)
-   consult-ripgrep consult-git-grep consult-grep consult-bookmark
-   consult-recent-file consult--source-recent-file
-   consult--source-project-recent-file consult--source-bookmark
-   :preview-key (kbd "M-."))
-
   (defvar +consult-line-map
     (let ((map (make-sparse-keymap)))
       (define-key map "\C-s" #'previous-history-element)
