@@ -1181,6 +1181,9 @@ anymore, go the previous message."
 
 (use-package rust-mode
   :ensure)
+(use-package js
+  :hook (js-mode . (lambda () (setq-local indent-tabs-mode nil))))
+
 
 (put 'erase-buffer 'disabled nil)
 
