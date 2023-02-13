@@ -584,14 +584,6 @@
   ;; Needed because new images are not indented
   (advice-add 'org-download-screenshot :after (lambda () (org-redisplay-inline-images))))
 
-;; ox-reveal
-;; https://github.com/yjwen/org-reveal
-(use-package ox-reveal
-  :ensure
-  :config
-  (setq org-reveal-root "https://cdnjs.cloudflare.com/ajax/libs/reveal.js/3.6.0/"
-        org-reveal-title-slide nil))
-
 (use-package denote
   :ensure
   :bind
