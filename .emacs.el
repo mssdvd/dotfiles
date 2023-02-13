@@ -1068,6 +1068,7 @@ anymore, go the previous message."
               (when msg
                 (string-prefix-p "/dm@mssdvd.com" (mu4e-message-field msg :maildir))))
             :vars '((user-mail-address . "dm@mssdvd.com")
+                    (mu4e-sent-messages-behavior . sent)
                     (mu4e-drafts-folder . "/dm@mssdvd.com/Drafts")
                     (mu4e-refile-folder . "/dm@mssdvd.com/Archive")
                     (mu4e-sent-folder . "/dm@mssdvd.com/Sent")
