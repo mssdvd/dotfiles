@@ -681,9 +681,7 @@
 ;; eldoc-mode
 (use-package eldoc
   :delight
-  :custom
-  (eldoc-echo-area-use-multiline-p nil)
-  (eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly))
+  :custom (eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly))
 
 (use-package eshell
   :config
