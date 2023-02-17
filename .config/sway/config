@@ -139,7 +139,8 @@ bindsym --to-code {
 		$mod+c exec pactl set-sink-mute @DEFAULT_SINK@ toggle
 		XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
-		XF86AudioPlay exec playerctl play-pause
+		XF86AudioPlay exec playerctl play
+		XF86AudioPause exec playerctl pause
 		$mod+Slash exec playerctl play-pause
 		XF86AudioStop exec playerctl stop
 		XF86AudioNext exec playerctl next
