@@ -830,7 +830,9 @@
   (ledger-copy-transaction-insert-blank-line-after t)
   (ledger-default-date-format "%Y-%m-%d")
   (ledger-highlight-xact-under-point nil)
-  (ledger-reconcile-default-commodity "€"))
+  (ledger-reconcile-default-commodity "€")
+  :hook (ledger-mode . (lambda ()
+                         (setq-local corfu-quit-no-match t))))
 
 (use-package ledger-flymake
   :hook (ledger-mode . ledger-flymake-enable))
