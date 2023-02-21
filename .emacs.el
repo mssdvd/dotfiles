@@ -1143,11 +1143,7 @@ anymore, go the previous message."
     rust-ts-mode)
    . (lambda ()
        (eglot-ensure)
-       (add-hook 'before-save-hook 'eglot-format nil t)))
-  (eglot-managed-mode .
-                      (lambda ()
-                        (setq-local eldoc-documentation-strategy
-                                    'eldoc-documentation-compose-eagerly))))
+       (add-hook 'before-save-hook 'eglot-format nil t))))
 
 ;; Go
 
