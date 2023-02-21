@@ -832,7 +832,7 @@
   (ledger-highlight-xact-under-point nil)
   (ledger-reconcile-default-commodity "€")
   :hook (ledger-mode . (lambda ()
-                         (setq-local corfu-quit-no-match t))))
+                         (setq-local corfu-auto nil))))
 
 (use-package ledger-flymake
   :hook (ledger-mode . ledger-flymake-enable))
