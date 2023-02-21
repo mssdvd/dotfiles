@@ -681,7 +681,7 @@
 ;; eldoc-mode
 (use-package eldoc
   :delight
-  :custom (eldoc-documentation-strategy 'eldoc-documentation-compose-eagerly))
+  :custom (eldoc-documentation-strategy 'eldoc-documentation-compose))
 
 (use-package eshell
   :config
