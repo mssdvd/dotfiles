@@ -104,25 +104,21 @@
 (use-package modus-themes
   :ensure
   :pin gnu
-  :commands (modus-themes-load-themes)
-  :functions
-  (modus-themes-load-operandi modus-themes-load-vivendi)
+  :demand
   :bind ("C-c q" . modus-themes-toggle)
   :custom
-  (modus-themes-links '(faint))
+  (modus-themes-common-palette-overrides
+   '((bg-region bg-lavender)
+     (fg-region unspecified)))
   (modus-themes-org-blocks 'gray-background)
-  (modus-themes-paren-match '(bold intense))
-  (modus-themes-region '(bg-only))
   (modus-themes-italic-constructs t)
-  :init
-  (modus-themes-load-themes)
   :config
   (if (string=
        (shell-command-to-string
         "gsettings get org.gnome.desktop.interface gtk-theme")
        "'Adwaita'\n")
-      (modus-themes-load-operandi)
-    (modus-themes-load-vivendi)))
+      (load-theme 'modus-operandi :no-confirm)
+    (load-theme 'modus-vivendi :no-confirm)))
 
 (use-package cus-edit
   :custom
