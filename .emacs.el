@@ -1143,7 +1143,8 @@ anymore, go the previous message."
     rust-ts-mode)
    . (lambda ()
        (eglot-ensure)
-       (add-hook 'before-save-hook 'eglot-format nil t))))
+       (add-hook 'before-save-hook 'eglot-format nil t)))
+  (eglot-managed-mode . eglot-inlay-hints-mode))
 
 ;; Go
 
