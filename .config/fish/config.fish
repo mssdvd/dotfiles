@@ -6,6 +6,7 @@ set -gx EDITOR "emacsclient -t -a ''"
 
 alias qemu qemu-system-x86_64
 alias ssh "env TERM=xterm-256color ssh"
+alias yt yt-dlp
 
 if ! pgrep -u "$USER" ssh-agent > /dev/null
     ssh-agent -c -t 1h > "$XDG_RUNTIME_DIR/ssh-agent.env"
