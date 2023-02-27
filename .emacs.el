@@ -519,13 +519,14 @@
                 "Web" "Youtube")
       "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Insert channel name}]]")
 
-     ("s" "New activity log" entry
+     ("s" "New logged org-pomodoro" entry
       (file+olp+datetree "~/org/activities.org"
                          "Log")
       "* %?"
       :jump-to-captured t
       :empty-lines 0
-      :tree-type week)
+      :tree-type week
+      :before-finalize (org-pomodoro))
 
      ("S" "New activity log (clock in)" entry
       (file+olp+datetree "~/org/activities.org"
