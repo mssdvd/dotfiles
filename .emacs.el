@@ -28,9 +28,6 @@
 
 (setq echo-keystrokes 0.1)
 
-;; support PKGBUILD
-(add-to-list 'auto-mode-alist '("PKGBUILD" . shell-script-mode))
-
 ;; remove suspend-frame binding
 (global-unset-key (kbd "C-z"))
 (global-unset-key (kbd "C-x C-z"))
