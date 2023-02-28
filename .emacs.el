@@ -371,6 +371,9 @@
   (lazy-count-suffix-format " (%s/%s)")
   (search-whitespace-regexp ".*?"))
 
+(use-package grep
+  :custom (grep-use-headings t))
+
 ;; wgrep
 ;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep
