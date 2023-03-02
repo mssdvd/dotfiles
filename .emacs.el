@@ -47,9 +47,6 @@
 ;; Prefer newer files
 (setq load-prefer-newer t)
 
-;; Do not ask to save before compilation
-(setq compilation-ask-about-save nil)
-
 ;; Disable bell
 (setq ring-bell-function 'ignore)
 
@@ -407,6 +404,11 @@
   :hook prog-mode)
 
 ;; recentf
+(use-package compile
+  :custom
+  (compilation-ask-about-save nil)
+  (compilation-scroll-output 'first-error))
+
 (use-package recentf
   :defer 1
   :custom
