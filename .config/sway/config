@@ -141,12 +141,15 @@ bindsym --to-code {
 
 		XF86AudioPlay exec playerctl play
 		XF86AudioPause exec playerctl pause
-		$mod+Slash exec playerctl play-pause
 		XF86AudioStop exec playerctl stop
 		XF86AudioNext exec playerctl next
-		$mod+Period exec playerctl next
 		XF86AudioPrev exec playerctl previous
-		$mod+Comma exec playerctl previous
+
+		$mod+Comma exec playerctl position 5-
+		$mod+Shift+Comma exec playerctl previous
+		$mod+Period exec playerctl position 5+
+		$mod+Shift+Period exec playerctl next
+		$mod+Slash exec playerctl play-pause
 	}
 
 	$mod+y exec toggle-theme.sh
