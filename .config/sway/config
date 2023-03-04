@@ -272,6 +272,7 @@ exec {
 	blueman-applet
 	swayidle -w timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -f; playerctl pause'
 	poweralertd
+	playerctld daemon
 	GTK_THEME=Adwaita-dark waybar
 
 	dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
