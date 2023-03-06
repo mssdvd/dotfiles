@@ -133,6 +133,7 @@
   (next-error-message-highlight t)
   (save-interprogram-paste-before-kill t)
   (read-extended-command-predicate #'command-completion-default-include-p)
+  (set-mark-command-repeat-pop t)
   :config
   (column-number-mode 1)
   (size-indication-mode 1))
