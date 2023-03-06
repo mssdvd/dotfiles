@@ -814,6 +814,9 @@
   :custom (help-enable-variable-value-editing t)
   :config (put 'help-fns-edit-variable 'disabled nil))
 
+(use-package help-at-pt
+  :custom (help-at-pt-display-when-idle t))
+
 (use-package find-func
   :defer 1
   :config (find-function-setup-keys))
