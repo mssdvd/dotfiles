@@ -312,7 +312,15 @@
   :defer 1
   :bind
   ("C-." . embark-act)
-  ("C-h B" . embark-bindings))
+  ("C-h B" . embark-bindings)
+  (:map embark-general-map
+        ("G" . +embark-google-search))
+  :config
+  (defun +embark-google-search (term)
+    "Search Google for TERM."
+    (interactive "sSearch Term: ")
+    (browse-url
+     (format "https://google.com/search?q=%s" term))))
 
 (use-package embark-consult
   :pin gnu
