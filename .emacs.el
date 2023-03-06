@@ -294,7 +294,9 @@
   :custom
   (consult-narrow-key "<")
   (register-preview-delay 0.5)
-  (register-preview-function #'consult-register-format))
+  (register-preview-function #'consult-register-format)
+  (xref-show-definitions-function #'consult-xref)
+  (xref-show-xrefs-function #'consult-xref))
 
 (use-package marginalia
   :pin gnu
