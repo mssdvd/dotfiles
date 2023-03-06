@@ -315,6 +315,8 @@
   ("C-h B" . embark-bindings)
   (:map embark-general-map
         ("G" . +embark-google-search))
+  (:map minibuffer-local-map
+        ("C-," . embark-export))
   :config
   (defun +embark-google-search (term)
     "Search Google for TERM."
