@@ -3,7 +3,7 @@
 
 ;;; Code:
 
-(setq read-process-output-max (* 1024 1024 4)) ;; 4mb
+(setq read-process-output-max (* 1024 1024)) ;; 1 MiB
 
 (setopt use-package-always-defer t
         use-package-enable-imenu-support t)
