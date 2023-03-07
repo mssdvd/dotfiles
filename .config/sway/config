@@ -246,8 +246,8 @@ bindsym --to-code {
 }
 
 bindgesture {
-	swipe:right workspace prev
- 	swipe:left workspace next
+	swipe:up workspace prev
+	swipe:down workspace next
 }
 
 floating_modifier $mod normal
