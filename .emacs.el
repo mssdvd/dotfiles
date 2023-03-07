@@ -539,7 +539,6 @@
       (file+olp+datetree "~/org/activities.org"
                          "Log")
       "* %?"
-      :jump-to-captured t
       :empty-lines 0
       :tree-type week
       :before-finalize (org-pomodoro))
