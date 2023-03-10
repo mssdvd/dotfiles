@@ -845,7 +845,7 @@
   (ledger-copy-transaction-insert-blank-line-after t)
   (ledger-default-date-format "%Y-%m-%d")
   (ledger-highlight-xact-under-point nil)
-  (ledger-reconcile-default-commodity "€")
+  (ledger-reconcile-default-commodity " EUR")
   :hook (ledger-mode . (lambda ()
                          (setq-local corfu-auto nil))))
 
