@@ -840,7 +840,12 @@
   :ensure
   :mode ("\\.ldg\\'" . ledger-mode)
   :bind
-  (:map ledger-mode-map ([f6] . (lambda () (interactive)(insert "€"))))
+  (:map ledger-mode-map
+        ([f6] . (lambda ()
+                  (interactive)
+                  (insert (if (eq (char-before) 32)
+                              "EUR"
+                            " EUR")))))
   :custom
   (ledger-copy-transaction-insert-blank-line-after t)
   (ledger-default-date-format "%Y-%m-%d")
