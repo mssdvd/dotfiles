@@ -130,6 +130,7 @@
   ([remap downcase-word] . downcase-dwim)
   ([remap capitalize-word] . capitalize-dwim)
   :custom
+  (kill-whole-line t)
   (next-error-message-highlight t)
   (save-interprogram-paste-before-kill t)
   (read-extended-command-predicate #'command-completion-default-include-p)
