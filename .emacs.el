@@ -142,6 +142,7 @@
 (use-package window
   :bind ("M-o" . other-window)
   :custom
+  (scroll-error-top-bottom t)
   (scroll-preserve-screen-position t)
   (switch-to-buffer-obey-display-actions t)
   (display-buffer-alist
