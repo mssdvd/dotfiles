@@ -83,6 +83,12 @@
     (while (not (setq pass (auth-source-pass-get 'secret entry))))
     pass))
 
+(defun +toggle-window-dedication ()
+  "Toggle window dedication in the selected window."
+  (interactive)
+  (set-window-dedicated-p (selected-window)
+                          (not (window-dedicated-p (selected-window)))))
+
 ;;;;
 ;; use-package
 ;;;;
