@@ -994,7 +994,8 @@
   :custom
   (backup-directory-alist
    `(("." . ,(concat user-emacs-directory "backup/"))))
-  (require-final-newline t))
+  (require-final-newline t)
+  (view-read-only t))
 
 (use-package outline
   :hook ((apropos-mode xref-after-update) . outline-minor-mode))
