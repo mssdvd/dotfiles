@@ -376,6 +376,7 @@
   (isearch-wrap-pause 'no)
   (lazy-count-prefix-format nil)
   (lazy-count-suffix-format " (%s/%s)")
+  (search-default-mode #'char-fold-to-regexp)
   (search-whitespace-regexp ".*?"))
 
 (use-package grep
