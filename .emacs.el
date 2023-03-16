@@ -1175,10 +1175,11 @@ anymore, go the previous message."
        (eglot-ensure)
        (add-hook 'before-save-hook 'eglot-format nil t))))
 
-;; Go
+(use-package go-ts-mode
+  :mode
+  ("/go\\.mod\\'" . go-mod-ts-mode)
+  ("\\.go\\'" . go-ts-mode))
 
-(use-package go-mode
-  :ensure)
 
 ;; C/C++
 (use-package cc-vars
