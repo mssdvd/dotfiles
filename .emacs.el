@@ -6,7 +6,8 @@
 (setq read-process-output-max (* 1024 1024)) ;; 1 MiB
 
 (setopt use-package-always-defer t
-        use-package-enable-imenu-support t)
+        use-package-enable-imenu-support t
+        use-package-hook-name-suffix nil)
 
 ;; disable cursor blinking
 (blink-cursor-mode 0)
@@ -162,11 +163,11 @@
 ;; display-line-numbers
 (use-package display-line-numbers
   :custom (display-line-numbers-grow-only t)
-  :hook (conf-mode nxml-mode prog-mode yaml-mode))
+  :hook (conf-mode-hook prog-mode-hook text-mode-hook))
 
 ;; display-fill-column-indicator
 (use-package display-fill-column-indicator
-  :hook (conf-mode markdown-mode prog-mode))
+  :hook (conf-mode-hook markdown-mode-hook prog-mode-hook))
 
 ;; diff
 (use-package diff-mode
@@ -181,7 +182,7 @@
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-alhv --group-directories-first")
   :config (put 'dired-find-alternate-file 'disabled nil)
-  :hook (dired-mode . dired-hide-details-mode))
+  :hook (dired-mode-hook . dired-hide-details-mode))
 
 (use-package dired-aux
   :custom (dired-vc-rename-file t))
@@ -228,8 +229,8 @@
   (vertico-mode)
   (vertico-mouse-mode 1)
   :hook
-  (rfn-eshadow-update-overlay . vertico-directory-tidy)
-  (minibuffer-setup . vertico-repeat-save))
+  (rfn-eshadow-update-overlay-hook . vertico-directory-tidy)
+  (minibuffer-setup-hook . vertico-repeat-save))
 
 (use-package orderless
   :ensure
@@ -340,7 +341,7 @@
   :ensure
   :demand
   :after (embark consult)
-  :hook (embark-collect-mode . consult-preview-at-point-mode))
+  :hook (embark-collect-mode-hook . consult-preview-at-point-mode))
 
 (use-package corfu
   :ensure
@@ -424,7 +425,7 @@
   (:map project-prefix-map
         ("!" . flymake-show-project-diagnostics))
   :custom (flymake-mode-line-lighter "FM")
-  :hook prog-mode)
+  :hook prog-mode-hook)
 
 ;; recentf
 (use-package compile
@@ -456,7 +457,7 @@
 (use-package rainbow-mode
   :ensure
   :delight
-  :hook (conf-mode css-mode Man-mode prog-mode sgml-mode))
+  :hook (conf-mode-hook css-mode-hook Man-mode-hook prog-mode-hook sgml-mode-hook))
 
 (use-package cdlatex
   :ensure
@@ -518,8 +519,8 @@
                '("AUTO" "babel" t ("pdflatex")))
   ;; (dolist (i org-level-faces) (set-face-attribute i nil :overline t))
   :hook
-  (org-mode . auto-fill-mode)
-  (org-mode . turn-on-org-cdlatex))
+  (org-mode-hook . auto-fill-mode)
+  (org-mode-hook . turn-on-org-cdlatex))
 
 (use-package org-agenda
   :bind ("C-c a" . org-agenda)
@@ -567,7 +568,7 @@
   :custom
   (org-indent-indentation-per-level 1)
   (org-indent-mode-turns-on-hiding-stars nil)
-  :hook org-mode)
+  :hook org-mode-hook)
 
 (use-package gnuplot
   :ensure)
@@ -627,8 +628,8 @@
           (completion-ignored-extensions (cons ".git/" completion-ignored-extensions)))
       (call-interactively #'find-file)))
   :hook
-  (denote-backlinks-mode . (lambda () (setq-local truncate-lines t)))
-  (dired-mode . denote-dired-mode-in-directories))
+  (denote-backlinks-mode-hook . (lambda () (setq-local truncate-lines t)))
+  (dired-mode-hook . denote-dired-mode-in-directories))
 
 (use-package vc
   :custom (vc-follow-symlinks t))
@@ -673,9 +674,9 @@
   (diff-hl-draw-borders nil)
   :config
   (global-diff-hl-mode)
-  :hook ((magit-pre-refresh . diff-hl-magit-pre-refresh)
-         (magit-post-refresh . diff-hl-magit-post-refresh)
-         (dired-mode . diff-hl-dired-mode)))
+  :hook ((magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
+         (magit-post-refresh-hook . diff-hl-magit-post-refresh)
+         (dired-mode-hook . diff-hl-dired-mode)))
 
 (use-package tempel
   :ensure
@@ -684,7 +685,7 @@
   :bind (("M-+" . tempel-insert))
   :custom (tempel-trigger-prefix "<")
   :hook
-  ((prog-mode text-mode) .
+  ((conf-mode-hook prog-mode-hook text-mode-hook) .
    (lambda ()
      (setq-local completion-at-point-functions
                  (cons #'tempel-expand
@@ -706,8 +707,8 @@
 
 (use-package eshell
   :config
-  (add-to-list 'eshell-modules-list 'eshell-smart)
-  :hook (eshell-mode . (lambda ()
+  :config (add-to-list 'eshell-modules-list 'eshell-smart)
+  :hook (eshell-mode-hook . (lambda ()
                          (setenv "PAGER" "cat")
                          (setenv "EDITOR" "emacsclient"))))
 
@@ -717,7 +718,7 @@
   (comint-prompt-read-only t))
 
 (use-package ansi-color
-  :hook (compilation-filter . ansi-color-compilation-filter))
+  :hook (compilation-filter-hook . ansi-color-compilation-filter))
 
 (use-package shell
   :custom (shell-has-auto-cd t))
@@ -739,10 +740,9 @@
   (pdf-annot-activate-created-annotations t)
   (pdf-outline-display-labels t)
   (pdf-view-display-size 'fit-page)
-  :hook (pdf-view-mode . pdf-tools-enable-minor-modes))
-
-(use-package pdf-view
-  :hook (pdf-view-mode . pdf-view-auto-slice-minor-mode))
+  :hook
+  (pdf-view-mode-hook . pdf-tools-enable-minor-modes)
+  (pdf-view-mode-hook . pdf-view-auto-slice-minor-mode))
 
 (use-package nov
   :ensure
@@ -794,7 +794,7 @@
 ;; abbrev
 (use-package abbrev
   :delight
-  :hook (prog-mode text-mode))
+  :hook text-mode-hook)
 
 ;; man
 (use-package man
@@ -860,17 +860,17 @@
   (ledger-default-date-format "%Y-%m-%d")
   (ledger-highlight-xact-under-point nil)
   (ledger-reconcile-default-commodity " EUR")
-  :hook (ledger-mode . (lambda ()
-                         (setq-local corfu-auto nil))))
+  :hook (ledger-mode-hook . (lambda ()
+                              (setq-local corfu-auto nil))))
 
 (use-package ledger-flymake
-  :hook (ledger-mode . ledger-flymake-enable))
+  :hook (ledger-mode-hook . ledger-flymake-enable))
 
 ;; csv-mode
 (use-package csv-mode
   :ensure
   :custom (csv-separators '("," ";" "	"))
-  :hook (csv-mode . csv-guess-set-separator))
+  :hook (csv-mode-hook . csv-guess-set-separator))
 
 ;; vterm
 ;; https://github.com/akermu/emacs-libvterm
@@ -926,9 +926,9 @@
   (rcirc-time-format "%d-%m %H:%M ")
   (rcirc-track-ignore-server-buffer-flag t)
   :hook
-  (rcirc-mode . rcirc-track-minor-mode)
-  (rcirc-mode . rcirc-omit-mode)
-  (rcirc-mode . read-only-mode))
+  (rcirc-mode-hook . rcirc-track-minor-mode)
+  (rcirc-mode-hook . rcirc-omit-mode)
+  (rcirc-mode-hook . read-only-mode))
 
 (use-package rcirc-color
   :ensure
@@ -979,7 +979,7 @@
   :custom (osm-copyright nil))
 
 (use-package hexl
-  :hook (hexl-mode . read-only-mode))
+  :hook (hexl-mode-hook . read-only-mode))
 
 (use-package pixel-scroll
   :defer 1
@@ -994,7 +994,7 @@
   :defer 1
   :delight
   :load-path "~/src/undo-hl"
-  :hook (prog-mode text-mode))
+  :hook (prog-mode-hook text-mode))
 
 (use-package files
   :custom
@@ -1004,7 +1004,7 @@
   (view-read-only t))
 
 (use-package outline
-  :hook ((apropos-mode xref-after-update) . outline-minor-mode))
+  :hook ((apropos-mode-hook xref-after-update-hook) . outline-minor-mode))
 
 (use-package tmr
   :ensure)
@@ -1132,7 +1132,7 @@ anymore, go the previous message."
 
   (mu4e t)
   :hook
-  (mu4e-index-updated . (lambda ()
+  (mu4e-index-updated-hook . (lambda ()
                           (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
                             (start-process "update mail indicator" nil
                                            "pkill" "-SIGRTMIN+1" "waybar")))))
@@ -1167,10 +1167,9 @@ anymore, go the previous message."
                              (staticcheck . t)
                              (usePlaceholders . t)))))
   :hook
-  ((go-mode
-    go-dot-mod-mode
-    go-dot-work-mode
-    rust-ts-mode)
+  ((go-ts-mode-hook
+    go-mod-ts-mode-hook
+    rust-ts-mode-hook)
    . (lambda ()
        (eglot-ensure)
        (add-hook 'before-save-hook 'eglot-format nil t))))
@@ -1205,7 +1204,7 @@ anymore, go the previous message."
 (use-package rust-mode
   :ensure)
 (use-package js
-  :hook (js-mode . (lambda () (setq-local indent-tabs-mode nil))))
+  :hook (js-mode-hook . (lambda () (setq-local indent-tabs-mode nil))))
 
 
 (put 'erase-buffer 'disabled nil)
