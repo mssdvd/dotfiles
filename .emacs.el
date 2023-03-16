@@ -834,7 +834,8 @@
 
 (use-package help-fns
   :custom (help-enable-variable-value-editing t)
-  :config (put 'help-fns-edit-variable 'disabled nil))
+  :config (put 'help-fns-edit-variable 'disabled nil)
+  :hook (help-fns-describe-function-functions . shortdoc-help-fns-examples-function))
 
 (use-package help-at-pt
   :custom (help-at-pt-display-when-idle t))
