@@ -17,14 +17,8 @@
 (horizontal-scroll-bar-mode -1)
 
 (let ((size (pcase (system-name)
-              ("T480s" 166)
-              (_ 98))))
-  (set-face-attribute 'default nil
-                      :family "Iosevka Fixed"
-                      :height size))
-
-(dolist (attr '(variable-pitch fixed-pitch))
-  (set-face-attribute attr nil
-                      :family (face-attribute 'default :family)))
+              ("T480s" 110)
+              (_ 100))))
+  (set-face-attribute 'default nil :height size))
 
 ;;; early-init.el ends here
