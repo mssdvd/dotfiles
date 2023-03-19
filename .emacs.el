@@ -334,7 +334,9 @@
     "Search Google for TERM."
     (interactive "sSearch Term: ")
     (browse-url
-     (format "https://google.com/search?q=%s" term))))
+     (format "https://google.com/search?q=%s" term)))
+  :custom (embark-quit-after-action '((kill-buffer . nil)
+                                      (t . t))))
 
 (use-package embark-consult
   :pin gnu
