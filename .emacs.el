@@ -182,7 +182,9 @@
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-alhv --group-directories-first")
   :config (put 'dired-find-alternate-file 'disabled nil)
-  :hook (dired-mode-hook . dired-hide-details-mode))
+  :hook (dired-mode-hook . (lambda ()
+                             (setq-local truncate-lines t)
+                             (dired-hide-details-mode))))
 
 (use-package dired-aux
   :custom (dired-vc-rename-file t))
