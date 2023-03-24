@@ -841,9 +841,6 @@
   :config (put 'help-fns-edit-variable 'disabled nil)
   :hook (help-fns-describe-function-functions . shortdoc-help-fns-examples-function))
 
-(use-package help-at-pt
-  :custom (help-at-pt-display-when-idle t))
-
 (use-package find-func
   :defer 1
   :config (find-function-setup-keys))
