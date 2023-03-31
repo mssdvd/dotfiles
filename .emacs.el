@@ -1194,8 +1194,10 @@ anymore, go the previous message."
 (use-package python
   :custom
   ;; black-compatible flake8 configuration
-  (python-flymake-command '("flake8" "--max-line-length=88" "--extend-ignore=E203" "-"))
-  (python-flymake-msg-alist '(("\(^redefinition\|.*unused.*\|used$\)" . :warning)
+  (python-flymake-command
+   '("flake8" "--max-line-length=88" "--extend-ignore=E203,F403,F405" "-"))
+  (python-flymake-msg-alist
+   '(("\(^redefinition\|.*unused.*\|used$\)" . :warning)
                               ("^E999" . :error)
                               ("^[EW][0-9]+" . :note))))
 
