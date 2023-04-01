@@ -194,7 +194,7 @@
 
 (use-package minibuffer
   :custom
-  ;; Do not allow the cursor in the minibuffer prompt
+  (minibuffer-follows-selected-frame nil)
   (minibuffer-prompt-properties
       '(read-only t cursor-intangible t face minibuffer-prompt))
   (enable-recursive-minibuffers t)
