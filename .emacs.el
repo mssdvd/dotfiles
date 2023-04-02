@@ -433,6 +433,7 @@
 
 ;; recentf
 (use-package compile
+  :bind ([f5] . recompile)
   :custom
   (compilation-ask-about-save nil)
   (compilation-scroll-output 'first-error))
