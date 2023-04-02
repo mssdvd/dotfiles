@@ -583,7 +583,7 @@
   :custom
   (org-pomodoro-expiry-time 40)
   (org-pomodoro-keep-killed-pomodoro-time t)
-  (org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=50"))
+  (org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=75"))
   (org-pomodoro-manual-break t))
 
 (use-package alert
