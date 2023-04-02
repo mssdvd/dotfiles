@@ -447,7 +447,7 @@
 
 (use-package saveplace
   :defer 1
-  :custom (save-place-limit 800)
+  :custom (save-place-limit 1600)
   :config (save-place-mode 1))
 
 ;; saveplace-pdf-view
