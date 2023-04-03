@@ -305,6 +305,7 @@
   (consult-customize consult-line :keymap +consult-line-map)
   :custom
   (consult-narrow-key "<")
+  (consult-preview-excluded-files '("\\.pdf\\'"))
   (register-preview-delay 0.5)
   (register-preview-function #'consult-register-format)
   (xref-show-definitions-function #'consult-xref)
