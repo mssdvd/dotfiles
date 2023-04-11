@@ -772,10 +772,6 @@
 (use-package apropos
   :custom (apropos-do-all t))
 
-;; dictionary
-(use-package dictionary
-  :custom (dictionary-server "localhost"))
-
 ;; fish-mode
 (use-package fish-mode
   :ensure)
