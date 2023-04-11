@@ -706,10 +706,11 @@
   (setq auto-revert-avoid-polling t)
   (global-auto-revert-mode 1))
 
-;; eldoc-mode
 (use-package eldoc
   :delight
-  :custom (eldoc-documentation-strategy 'eldoc-documentation-compose))
+  :custom
+  (eldoc-documentation-strategy 'eldoc-documentation-compose)
+  (eldoc-echo-area-prefer-doc-buffer t))
 
 (use-package eshell
   :config
