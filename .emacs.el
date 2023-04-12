@@ -995,7 +995,7 @@
   :defer 1
   :delight
   :load-path "~/src/undo-hl"
-  :hook (prog-mode-hook text-mode))
+  :hook (prog-mode-hook text-mode-hook))
 
 (use-package files
   :custom
