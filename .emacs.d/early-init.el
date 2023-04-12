@@ -16,9 +16,4 @@
 (scroll-bar-mode -1)
 (horizontal-scroll-bar-mode -1)
 
-(let ((size (pcase (system-name)
-              ("T480s" 110)
-              (_ 100))))
-  (set-face-attribute 'default nil :height size))
-
 ;;; early-init.el ends here
