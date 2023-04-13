@@ -424,12 +424,17 @@
 (use-package flymake
   :bind
   (:map flymake-mode-map
-        ("M-n" . flymake-goto-next-error)
-        ("M-p" . flymake-goto-prev-error)
-        ("C-c !" . flymake-show-buffer-diagnostics))
+        ("C-c ! n" . flymake-goto-next-error)
+        ("C-c ! p" . flymake-goto-prev-error)
+        ("C-c ! !" . flymake-show-buffer-diagnostics))
   (:map project-prefix-map
         ("!" . flymake-show-project-diagnostics))
   :custom (flymake-mode-line-lighter "FM")
+  :config
+  (defvar-keymap +flymake-repeat-map
+    :repeat t
+    "n" #'flymake-goto-next-error
+    "p" #'flymake-goto-prev-error)
   :hook prog-mode-hook)
 
 ;; recentf
