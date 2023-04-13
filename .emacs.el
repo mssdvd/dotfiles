@@ -1,63 +1,75 @@
 ;;; .emacs.el --- Main emacs config file  -*- lexical-binding: t; -*-
 ;;; Commentary:
-
 ;;; Code:
 
-(setq read-process-output-max (* 1024 1024)) ;; 1 MiB
+(setq read-process-output-max (* 1024 1024)
+      y-or-n-p-use-read-key t)
 
-(setopt use-package-always-defer t
-        use-package-enable-imenu-support t
-        use-package-hook-name-suffix nil)
+(setopt
+ comint-prompt-read-only t
+ custom-file (expand-file-name "custom.el"  user-emacs-directory)
+ custom-unlispify-tag-names nil
+ display-buffer-alist '(("\\*Install vterm\\*" display-buffer-no-window (allow-no-window . t)))
+ echo-keystrokes 0.1
+ enable-recursive-minibuffers t
+ indent-tabs-mode nil
+ inhibit-startup-screen t
+ kill-whole-line t
+ load-prefer-newer t
+ minibuffer-follows-selected-frame nil
+ minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)
+ mode-line-compact t
+ next-error-message-highlight t
+ ring-bell-function 'ignore
+ save-interprogram-paste-before-kill t
+ scroll-error-top-bottom t
+ scroll-preserve-screen-position t
+ set-mark-command-repeat-pop t
+ switch-to-buffer-obey-display-actions t
+ tab-always-indent 'complete
+ uniquify-buffer-name-style 'forward
+ use-package-always-defer t
+ use-package-enable-imenu-support t
+ use-package-hook-name-suffix nil
+ use-short-answers t
+ user-mail-address "dm@mssdvd.com"
+ window-resize-pixelwise t
+ )
 
-;; disable cursor blinking
+(auth-source-pass-enable)
 (blink-cursor-mode 0)
+(column-number-mode 1)
+(electric-pair-mode 1)
+(find-function-setup-keys)
+(minibuffer-depth-indicate-mode 1)
+(pixel-scroll-precision-mode 1)
+(repeat-mode 1)
+(savehist-mode 1)
+(size-indication-mode 1)
+(temp-buffer-resize-mode 1)
+(winner-mode 1)
 
-;; disable startup screen
-(setq inhibit-startup-screen t)
-
-;; change all prompts to y or n
-(setq use-short-answers t)
-
-;; enable narrow-to-region
-(put 'narrow-to-region 'disabled nil)
-
-;; use spaces instead of tabs
-(setq-default indent-tabs-mode nil)
-
-;; use tab to indent and complete
-(setq tab-always-indent 'complete)
-
-(setq echo-keystrokes 0.1)
-
-;; remove suspend-frame binding
-(global-unset-key (kbd "C-z"))
-(global-unset-key (kbd "C-x C-z"))
-
-;; replace zap-to-char with zap-up-to-char
-(keymap-global-set "M-z" #'zap-up-to-char)
-
-;; ibuffer is better
-(keymap-global-set "C-x C-b" #'ibuffer)
-
-;; switch to previous buffer
-(keymap-global-set "M-]" #'mode-line-other-buffer)
-
-;; uniquify
-(setq uniquify-buffer-name-style 'forward)
-
-;; Prefer newer files
-(setq load-prefer-newer t)
-
-;; Disable bell
-(setq ring-bell-function 'ignore)
-
-;; Make mode-line more compact
-(setq mode-line-compact t)
-
-;; Show trailing whitespaces
-(dolist (hook '(prog-mode-hook text-mode-hook))
+(dolist (hook '(conf-mode-hook prog-mode-hook text-mode-hook))
   (add-hook hook (lambda () (setq show-trailing-whitespace t))))
 
+(add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
+
+(keymap-global-set "<remap> <capitalize-word>" #'capitalize-dwim)
+(keymap-global-set "<remap> <count-words-region>" #'count-words)
+(keymap-global-set "<remap> <downcase-word>" #'downcase-dwim)
+(keymap-global-set "<remap> <upcase-word>" #'upcase-dwim)
+(keymap-global-set "<remap> <zap-to-char>" #'zap-up-to-char)
+(keymap-global-set "C-x C-b" #'ibuffer)
+(keymap-global-set "M-]" #'mode-line-other-buffer)
+(keymap-global-set "M-o" #'other-window)
+
+(keymap-global-unset "C-z")
+(keymap-global-unset "C-x C-z")
+
+(dolist (fun '(narrow-to-region erase-buffer))
+  (put fun 'disabled nil))
+
+(load custom-file 'noerror 'nomessage)
 
 ;;;;
 ;; Custom functions (prefixed with +)
@@ -121,44 +133,8 @@
       (load-theme 'modus-operandi :no-confirm)
     (load-theme 'modus-vivendi :no-confirm)))
 
-(use-package cus-edit
-  :custom
-  (custom-file (expand-file-name "custom.el"  user-emacs-directory))
-  (custom-unlispify-tag-names nil)
-  :config (load custom-file 'noerror 'nomessage))
-
 (use-package time
   :custom (display-time-24hr-format t))
-
-(use-package simple
-  :bind
-  ([remap count-words-region] . count-words)
-  ([remap upcase-word] . upcase-dwim)
-  ([remap downcase-word] . downcase-dwim)
-  ([remap capitalize-word] . capitalize-dwim)
-  :custom
-  (kill-whole-line t)
-  (next-error-message-highlight t)
-  (save-interprogram-paste-before-kill t)
-  (read-extended-command-predicate #'command-completion-default-include-p)
-  (set-mark-command-repeat-pop t)
-  :config
-  (column-number-mode 1)
-  (size-indication-mode 1))
-
-(use-package window
-  :bind ("M-o" . other-window)
-  :custom
-  (scroll-error-top-bottom t)
-  (scroll-preserve-screen-position t)
-  (switch-to-buffer-obey-display-actions t)
-  (display-buffer-alist
-   '(("\\*Install vterm\\*" display-buffer-no-window (allow-no-window . t))))
-  (window-resize-pixelwise t))
-
-(use-package elec-pair
-  :defer 1
-  :config (electric-pair-mode 1))
 
 ;; display-line-numbers
 (use-package display-line-numbers
@@ -191,16 +167,6 @@
 
 (use-package wdired
   :custom (wdired-allow-to-change-permissions t))
-
-(use-package minibuffer
-  :custom
-  (minibuffer-follows-selected-frame nil)
-  (minibuffer-prompt-properties
-      '(read-only t cursor-intangible t face minibuffer-prompt))
-  (enable-recursive-minibuffers t)
-  :config
-  (minibuffer-depth-indicate-mode 1)
-  :hook (minibuffer-setup-hook . cursor-intangible-mode))
 
 (use-package vertico
   :ensure
@@ -248,9 +214,6 @@
                                orderless-regexp
                                orderless-initialism))
   (read-file-name-completion-ignore-case t))
-
-(use-package savehist
-  :init (savehist-mode))
 
 (use-package consult
   :ensure
@@ -666,20 +629,12 @@
 (use-package epg
   :custom (epg-pinentry-mode 'loopback))
 
-(use-package auth-source-pass
-  :defer 1
-  :config (auth-source-pass-enable))
-
 (use-package password-store
   :ensure)
 
-;; gitconfig-mode
-;; https://github.com/magit/git-modes
 (use-package git-modes
   :ensure)
 
-;; diff-hl
-;; https://github.com/dgutov/diff-hl
 (use-package diff-hl
   :ensure
   :defer 1
@@ -725,11 +680,6 @@
   :hook (eshell-mode-hook . (lambda ()
                          (setenv "PAGER" "cat")
                          (setenv "EDITOR" "emacsclient"))))
-
-;; comint-mode
-(use-package comint
-  :custom
-  (comint-prompt-read-only t))
 
 (use-package ansi-color
   :hook (compilation-filter-hook . ansi-color-compilation-filter))
@@ -839,20 +789,11 @@
 (use-package calendar
   :custom (calendar-week-start-day 1))
 
-(use-package help
-  :config (temp-buffer-resize-mode 1))
-
 (use-package help-fns
   :custom (help-enable-variable-value-editing t)
   :config (put 'help-fns-edit-variable 'disabled nil)
   :hook (help-fns-describe-function-functions . shortdoc-help-fns-examples-function))
 
-(use-package find-func
-  :defer 1
-  :config (find-function-setup-keys))
-
-;; ledger-mode
-;; https://github.com/ledger/ledger-mode
 (use-package ledger-mode
   :ensure
   :mode ("\\.ldg\\'" . ledger-mode)
@@ -950,10 +891,6 @@
   :custom (mouse-yank-at-point t)
   :config (context-menu-mode))
 
-(use-package repeat
-  :defer 1
-  :config (repeat-mode))
-
 (use-package follow
   :bind (:map follow-mode-map
               ([remap scroll-up-command] . follow-scroll-up)
@@ -989,10 +926,6 @@
 (use-package hexl
   :hook (hexl-mode-hook . read-only-mode))
 
-(use-package pixel-scroll
-  :defer 1
-  :config (pixel-scroll-precision-mode 1))
-
 (use-package vundo
   :ensure
   :bind ("C-c u" . vundo)
@@ -1023,8 +956,6 @@
 ;; Mail
 ;;
 
-(setq mail-specify-envelope-from t
-      user-mail-address "dm@mssdvd.com")
 
 (use-package message
   :custom
@@ -1155,6 +1086,7 @@ anymore, go the previous message."
 
 (use-package sendmail
   :custom
+  (mail-specify-envelope-from t)
   (send-mail-function #'sendmail-send-it)
   (sendmail-program "/usr/bin/msmtp"))
 
@@ -1217,7 +1149,5 @@ anymore, go the previous message."
 (use-package js
   :hook (js-mode-hook . (lambda () (setq-local indent-tabs-mode nil))))
 
-
-(put 'erase-buffer 'disabled nil)
 
 ;;; .emacs.el ends here
