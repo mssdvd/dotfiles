@@ -429,7 +429,9 @@
         ("C-c ! !" . flymake-show-buffer-diagnostics))
   (:map project-prefix-map
         ("!" . flymake-show-project-diagnostics))
-  :custom (flymake-mode-line-lighter "FM")
+  :custom
+  (flymake-mode-line-lighter "FM")
+  (flymake-show-diagnostics-at-end-of-line t)
   :config
   (defvar-keymap +flymake-repeat-map
     :repeat t
