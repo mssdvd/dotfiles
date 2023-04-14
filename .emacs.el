@@ -956,7 +956,7 @@
      (:thread-subject)))
   (mu4e-headers-include-related nil)
   (mu4e-hide-index-messages t)
-  (mu4e-update-interval 300)
+  (mu4e-update-interval 600)
   :config
 
   (defun +mu4e-view-unread-emails-maybe ()
