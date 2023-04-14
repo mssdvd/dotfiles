@@ -1008,18 +1008,7 @@ anymore, go the previous message."
                     (mu4e-drafts-folder . "/d.masserut@gmail.com/[Gmail]/Drafts")
                     (mu4e-refile-folder . "/d.masserut@gmail.com/[Gmail]/All Mail")
                     (mu4e-sent-folder . "/d.masserut@gmail.com/[Gmail]/Sent Mail")
-                    (mu4e-trash-folder . "/d.masserut@gmail.com/[Gmail]/Bin")))
-          ,(make-mu4e-context
-            :name "pec"
-            :match-func
-            (lambda (msg)
-              (when msg
-                (string-prefix-p "/dmasserut@pec.it" (mu4e-message-field msg :maildir))))
-            :vars '((user-mail-address . "dmasserut@pec.it")
-                    (mu4e-drafts-folder . "/dmasserut@pec.it/Bozze")
-                    (mu4e-refile-folder . "/dmasserut@pec.it/Archiviata")
-                    (mu4e-sent-folder . "/dmasserut@pec.it/Inviata")
-                    (mu4e-trash-folder . "/dmasserut@pec.it/Cestino"))))
+                    (mu4e-trash-folder . "/d.masserut@gmail.com/[Gmail]/Bin"))))
         mu4e-org-link-query-in-headers-mode t
         mu4e-user-agent-string nil)
 
