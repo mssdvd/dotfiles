@@ -688,11 +688,11 @@
   ("C-c v" . terminal-here-launch)
   :custom (terminal-here-terminal-command 'foot))
 
-;; ispell
-(use-package ispell
-  :custom
-  (ispell-dictionary "en_US")
-  (ispell-complete-word-dict (expand-file-name "~/.words_us-it")))
+(use-package jinx
+  :ensure
+  :pin gnu
+  :bind ([remap ispell-word] . jinx-correct)
+  :custom (jinx-languages '("en_US.UTF-8" "it_IT.UTF-8")))
 
 (use-package apropos
   :custom (apropos-do-all t))
