@@ -109,8 +109,6 @@
 (use-package package
   :config (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
-;; delight
-;; https://savannah.nongnu.org/projects/delight
 (use-package delight
   :ensure)
 
@@ -136,20 +134,16 @@
 (use-package time
   :custom (display-time-24hr-format t))
 
-;; display-line-numbers
 (use-package display-line-numbers
   :custom (display-line-numbers-grow-only t)
   :hook (conf-mode-hook prog-mode-hook text-mode-hook))
 
-;; display-fill-column-indicator
 (use-package display-fill-column-indicator
   :hook (conf-mode-hook markdown-mode-hook prog-mode-hook))
 
-;; diff
 (use-package diff-mode
   :custom (diff-font-lock-prettify t))
 
-;; dired
 (use-package dired
   :custom
   (dired-auto-revert-buffer t)
@@ -218,10 +212,9 @@
 (use-package consult
   :ensure
   :pin gnu
-  :bind (;; C-c bindings (mode-specific-map)
+  :bind (("C-c i" . consult-info)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
-         ;; C-x bindings (ctl-x-map)
          ("C-x M-:" . consult-complex-command)
          ("C-x b" . consult-buffer)
          ("C-x 4 b" . consult-buffer-other-window)
@@ -229,9 +222,7 @@
          ("C-x r x" . consult-register)
          ("C-x r b" . consult-bookmark)
          ("C-x p b" . consult-project-buffer)
-         ;; Other custom bindings
          ("M-y" . consult-yank-pop)
-         ;; M-g bindings (goto-map)
          ("M-g e" . consult-compile-error)
          ("M-g f" . consult-flymake)
          ("M-g o" . consult-outline)
@@ -239,7 +230,6 @@
          ("M-g k" . consult-global-mark)
          ("M-g i" . consult-imenu)
          ("M-g I" . consult-imenu-multi)
-         ;; M-s bindings (search-map)
          ("M-s d" . consult-find)
          ("M-s D" . consult-locate)
          ("M-s g" . consult-grep)
@@ -249,7 +239,6 @@
          ("M-s L" . consult-line-multi)
          ("M-s k" . consult-keep-lines)
          ("M-s u" . consult-focus-lines)
-         ;; Isearch integration
          :map isearch-mode-map
          ("M-e" . consult-isearch-history)
          ("M-s e" . consult-isearch-history)
@@ -359,22 +348,16 @@
 (use-package grep
   :custom (grep-use-headings t))
 
-;; wgrep
-;; https://github.com/mhayashi1120/Emacs-wgrep
 (use-package wgrep
   :ensure
   :custom (wgrep-auto-save-buffer t))
 
-;; avy
-;; https://github.com/abo-abo/avy
 (use-package avy
   :ensure
   :commands (avy-setup-default)
   :bind ("C-'" . avy-goto-char-timer)
   :config (avy-setup-default))
 
-;; ace-link
-;; https://github.com/abo-abo/ace-link
 (use-package ace-link
   :ensure
   :commands (ace-link-setup-default)
@@ -402,7 +385,6 @@
     "p" #'flymake-goto-prev-error)
   :hook prog-mode-hook)
 
-;; recentf
 (use-package compile
   :bind ([f5] . recompile)
   :custom
@@ -421,15 +403,11 @@
   :custom (save-place-limit 1600)
   :config (save-place-mode 1))
 
-;; saveplace-pdf-view
-;; https://github.com/nicolaisingh/saveplace-pdf-view
 (use-package saveplace-pdf-view
   :ensure
   :demand
   :after saveplace)
 
-;; rainbow-mode
-;; https://elpa.gnu.org/packages/rainbow-mode.html
 (use-package rainbow-mode
   :ensure
   :delight
@@ -570,8 +548,6 @@
         org-caldav-calendar-id "home"
         org-icalendar-timezone "Europe/Rome"))
 
-;; org-download
-;; https://github.com/abo-abo/org-download
 (use-package org-download
   :ensure
   :functions (org-redisplay-inline-images)
@@ -610,8 +586,6 @@
 (use-package vc
   :custom (vc-follow-symlinks t))
 
-;; magit
-;; https://magit.vc
 (use-package magit
   :ensure
   :custom
@@ -660,7 +634,6 @@
                        completion-at-point-functions)))))
 
 
-;; autorevert
 (use-package autorevert
   :delight auto-revert-mode
   :defer 1
@@ -690,11 +663,8 @@
 (use-package sh-script
   :custom (sh-shell-file "/bin/sh"))
 
-;; pdf-tools
-;; https://github.com/politza/pdf-tools
-;; Dep poppler poppler-glibc
-(use-package pdf-tools
-  :ensure
+(use-package pdf-view
+  :ensure pdf-tools
   :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
   :bind
   (:map pdf-view-mode-map
@@ -712,8 +682,6 @@
   :ensure
   :mode ("\\.epub\\'" . nov-mode))
 
-;; terminal here
-;; https://github.com/davidshepherd7/terminal-here
 (use-package terminal-here
   :ensure
   :bind
@@ -726,58 +694,46 @@
   (ispell-dictionary "en_US")
   (ispell-complete-word-dict (expand-file-name "~/.words_us-it")))
 
-;; apropos
 (use-package apropos
   :custom (apropos-do-all t))
 
-;; fish-mode
 (use-package fish-mode
   :ensure)
 
-;; ediff
 (use-package ediff
   :custom
   (ediff-window-setup-function #'ediff-setup-windows-plain)
   (ediff-split-window-function #'split-window-horizontally))
 
-;; gdb-mi
 (use-package gdb-mi
   :custom
   (gdb-many-windows t)
   (gdb-show-main t))
 
-;; hippie-exp
 (use-package hippie-exp
   :bind
   ("M-/" . hippie-expand))
 
-;; abbrev
 (use-package abbrev
   :delight
   :hook text-mode-hook)
 
-;; man
 (use-package man
   :bind ("C-c k" . man)
   :custom (Man-notify-method 'aggressive))
 
-;; Wolfram.el
-;; https://github.com/hsjunnesson/wolfram.el
 (use-package wolfram
   :ensure
   :custom
   (wolfram-alpha-app-id (+pass-get-keep-asking "wolfram_alpha_app_id"))
   (wolfram-alpha-magnification-factor 1.5))
 
-;; systemd
-;; https://github.com/holomorph/systemd-mode
 (use-package systemd
   :ensure
   :mode
   ("\\.service\\'" . systemd-mode)
   ("\\.timer\\'" . systemd-mode))
 
-;; calc
 (use-package calc
   :config
   (setq calc-group-char " "
@@ -817,14 +773,11 @@
 (use-package ledger-flymake
   :hook (ledger-mode-hook . ledger-flymake-enable))
 
-;; csv-mode
 (use-package csv-mode
   :ensure
   :custom (csv-separators '("," ";" "	"))
   :hook (csv-mode-hook . csv-guess-set-separator))
 
-;; vterm
-;; https://github.com/akermu/emacs-libvterm
 (use-package vterm
   :ensure
   :bind
@@ -957,7 +910,6 @@
 ;;
 ;; Mail
 ;;
-
 
 (use-package message
   :custom
@@ -1122,14 +1074,11 @@ anymore, go the previous message."
   ("\\.go\\'" . go-ts-mode))
 
 
-;; C/C++
 (use-package cc-vars
   :custom
   (c-default-style '((java-mode . "java")
                      (awk-mode . "awk")
                      (other . "linux"))))
-
-;; Python
 
 (use-package python
   :custom
@@ -1140,8 +1089,6 @@ anymore, go the previous message."
    '(("\(^redefinition\|.*unused.*\|used$\)" . :warning)
                               ("^E999" . :error)
                               ("^[EW][0-9]+" . :note))))
-
-;; Lua
 
 (use-package lua-mode
   :ensure)
