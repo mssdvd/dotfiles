@@ -931,21 +931,25 @@
         ("o" . ace-link-mu4e)
         ("S-SPC" . +mu4e-view-scroll-down-or-prev)
         ("<backspace>" . +mu4e-view-scroll-down-or-prev))
+  :init
+  (defun +mu4e--hide (query)
+    (concat query " AND NOT (flag:trashed OR maildir:/Spam/ OR maildir:/Junk/)"))
   :custom
   (mail-user-agent 'mu4e-user-agent)
   (mm-discouraged-alternatives '("text/html" "text/richtext"))
   (mu4e-bookmarks
-   '((:name "Unread messages" :query "flag:unread AND NOT flag:trashed" :key ?u)
-     (:name "Today's messages" :query "date:today..now" :key ?t)
-     (:name "Last 7 days" :query "date:7d..now" :key ?w)
-     (:name "All Inboxes" :query "maildir:/INBOX/" :hide-unread t :key ?i)
-     (:name "Sent" :query "maildir:/Sent/ OR maildir:/Inviata/" :key ?s)
-     (:name "Flagged" :query "flag:flagged" :key ?f)))
+   `((:name "Unread messages" :query ,(+mu4e--hide "flag:unread") :key ?u)
+     (:name "Today's messages" :query ,(+mu4e--hide "date:today..now") :key ?t)
+     (:name "Last 7 days" :query ,(+mu4e--hide "date:7d..now") :key ?w)
+     (:name "All Inboxes" :query ,(+mu4e--hide "maildir:/INBOX/") :hide-unread t :key ?i)
+     (:name "Sent" :query ,(+mu4e--hide "maildir:/Sent/") :key ?s)
+     (:name "Flagged" :query ,(+mu4e--hide "flag:flagged") :key ?f)))
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read)
   (mu4e-compose-context-policy nil)
   (mu4e-compose-format-flowed t)
   (mu4e-context-policy 'pick-first)
+  (mu4e-eldoc-support t)
   (mu4e-get-mail-command "mbsync -a")
   (mu4e-headers-auto-update nil)
   (mu4e-headers-fields
@@ -955,23 +959,20 @@
      (:from . 22)
      (:thread-subject)))
   (mu4e-headers-include-related nil)
+  (mu4e-headers-visible-lines 8)
   (mu4e-hide-index-messages t)
+  (mu4e-notification-support t)
+  (mu4e-read-option-use-builtin nil)
   (mu4e-update-interval 600)
   :config
-
   (defun +mu4e-view-unread-emails-maybe ()
     "If there are unread emails display them in the mu4e headers buffer,
 otherwise display the main mu4e buffer."
-     (interactive)
-     (let ((unread-query "flag:unread AND NOT flag:trashed"))
-       (if (= (cl-loop for q in (mu4e-last-query-results)
-                     until (string=
-                            (decode-coding-string
-                             (plist-get q :query) 'utf-8 t)
-                            unread-query)
-                     finally return (plist-get q :count)) 0)
-         (mu4e)
-       (mu4e-search unread-query))))
+    (interactive)
+    (let ((unread-query (+mu4e--hide "flag:unread")))
+      (if (= (plist-get (mu4e-bookmark-favorite) :unread) 0)
+          (mu4e)
+        (mu4e-search unread-query))))
 
   (defun +mu4e-view-scroll-down-or-prev ()
     "Scroll-down the current message.
@@ -1015,17 +1016,9 @@ anymore, go the previous message."
   (mu4e t)
   :hook
   (mu4e-index-updated-hook . (lambda ()
-                          (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
-                            (start-process "update mail indicator" nil
-                                           "pkill" "-SIGRTMIN+1" "waybar")))))
-
-(use-package mu4e-alert
-  :demand
-  :after mu4e
-  :ensure
-  :config
-  (mu4e-alert-enable-notifications)
-  (mu4e-alert-enable-mode-line-display))
+                               (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
+                                 (start-process "update mail indicator" nil
+                                                "pkill" "-SIGRTMIN+1" "waybar")))))
 
 (use-package sendmail
   :custom
