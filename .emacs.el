@@ -797,13 +797,15 @@
 (use-package ledger-mode
   :ensure
   :mode ("\\.ldg\\'" . ledger-mode)
+  :commands ledger-post-align-dwim
   :bind
   (:map ledger-mode-map
         ([f6] . (lambda ()
                   (interactive)
                   (insert (if (eq (char-before) 32)
                               "EUR"
-                            " EUR")))))
+                            " EUR"))
+                  (ledger-post-align-dwim))))
   :custom
   (ledger-copy-transaction-insert-blank-line-after t)
   (ledger-default-date-format "%Y-%m-%d")
