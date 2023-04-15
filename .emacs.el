@@ -672,6 +672,7 @@
         ("[" . pdf-view-scroll-down-or-previous-page))
   :custom
   (pdf-annot-activate-created-annotations t)
+  (pdf-annot-tweak-tooltips nil)
   (pdf-outline-display-labels t)
   (pdf-view-display-size 'fit-page)
   :hook
