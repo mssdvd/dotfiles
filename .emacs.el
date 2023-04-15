@@ -39,6 +39,7 @@
 (auth-source-pass-enable)
 (blink-cursor-mode 0)
 (column-number-mode 1)
+(delete-selection-mode 1)
 (electric-pair-mode 1)
 (find-function-setup-keys)
 (minibuffer-depth-indicate-mode 1)
