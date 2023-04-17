@@ -694,7 +694,7 @@
   :ensure
   :pin gnu
   :bind ([remap ispell-word] . jinx-correct)
-  :custom (jinx-languages '("en_US.UTF-8" "it_IT.UTF-8")))
+  :custom (jinx-languages "en_US it_IT"))
 
 (use-package apropos
   :custom (apropos-do-all t))
