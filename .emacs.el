@@ -67,8 +67,8 @@
 (keymap-global-unset "C-z")
 (keymap-global-unset "C-x C-z")
 
-(dolist (fun '(narrow-to-region erase-buffer))
-  (put fun 'disabled nil))
+(dolist (fn '(erase-buffer narrow-to-region scroll-left))
+  (put fn 'disabled nil))
 
 (load custom-file 'noerror 'nomessage)
 
