@@ -1066,13 +1066,12 @@ anymore, go the previous message."
 
 (use-package python
   :custom
-  ;; black-compatible flake8 configuration
   (python-flymake-command
-   '("flake8" "--max-line-length=88" "--extend-ignore=E203,F403,F405" "-"))
+   '("ruff" "--quiet" "--stdin-filename=stdin" "-"))
   (python-flymake-msg-alist
    '(("\(^redefinition\|.*unused.*\|used$\)" . :warning)
-                              ("^E999" . :error)
-                              ("^[EW][0-9]+" . :note))))
+     ("^E999" . :error)
+     ("^[EW][0-9]+" . :note))))
 
 (use-package lua-mode
   :ensure)
