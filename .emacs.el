@@ -333,6 +333,11 @@
   :custom (corfu-popupinfo-delay '(1.0 . 0.5))
   :config (corfu-popupinfo-mode 1))
 
+(use-package cape
+  :pin gnu
+  :demand
+  :ensure
+  :config (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package isearch
   :custom
