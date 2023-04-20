@@ -537,6 +537,10 @@
   (org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=75"))
   (org-pomodoro-manual-break t))
 
+(use-package markdown-mode
+  :ensure
+  :hook (markdown-mode-hook . visual-line-mode))
+
 (use-package alert
   :ensure
   :custom (alert-default-style 'libnotify))
