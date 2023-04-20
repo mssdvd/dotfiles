@@ -684,10 +684,23 @@
   (pdf-annot-activate-created-annotations t)
   (pdf-annot-tweak-tooltips nil)
   (pdf-outline-display-labels t)
-  (pdf-view-display-size 'fit-page)
   :hook
   (pdf-view-mode-hook . pdf-tools-enable-minor-modes)
-  (pdf-view-mode-hook . pdf-view-auto-slice-minor-mode))
+  (pdf-view-mode-hook . pdf-view-auto-slice-minor-mode)
+  (pdf-view-mode-hook
+   . (lambda ()
+       (add-hook
+        'window-configuration-change-hook '+pdf-view-auto-resize nil t)))
+  :config
+  (defun +pdf-view-auto-resize ()
+    (unless (numberp pdf-view-display-size)
+      (setq pdf-view-display-size
+            (let ((screen-width
+                   (nth 3 (assoc 'workarea
+                                 (car (display-monitor-attributes-list))))))
+              (if (<= (window-pixel-width) (/ screen-width 2))
+                  'fit-width
+                'fit-height))))))
 
 (use-package nov
   :ensure
