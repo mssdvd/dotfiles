@@ -205,9 +205,10 @@
   (completion-ignore-case t)
   (completion-ignored-extensions (remove ".git/" completion-ignored-extensions))
   (orderless-component-separator #'orderless-escapable-split-on-space)
-  (orderless-matching-styles '(orderless-literal
-                               orderless-regexp
-                               orderless-initialism))
+  (orderless-matching-styles '(orderless-initialism
+                               orderless-literal
+                               orderless-prefixes
+                               orderless-regexp))
   (read-file-name-completion-ignore-case t))
 
 (use-package consult
