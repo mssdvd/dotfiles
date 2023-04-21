@@ -479,7 +479,7 @@
                '("AUTO" "babel" t ("pdflatex")))
   ;; (dolist (i org-level-faces) (set-face-attribute i nil :overline t))
   :hook
-  (org-mode-hook . auto-fill-mode)
+  (org-mode-hook . visual-line-mode)
   (org-mode-hook . turn-on-org-cdlatex))
 
 (use-package org-agenda
