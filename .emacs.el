@@ -754,6 +754,7 @@
 
 (use-package abbrev
   :delight
+  :custom (save-abbrevs 'silently)
   :hook text-mode-hook)
 
 (use-package man
