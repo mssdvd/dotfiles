@@ -146,6 +146,7 @@
   :custom (diff-font-lock-prettify t))
 
 (use-package dired
+  :commands dired-hide-details-mode
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
@@ -168,7 +169,6 @@
   :demand
   :commands (vertico-mode)
   :functions (vertico-mouse-mode consult-completion-in-region)
-  :defines (vertico-quick1)
   :bind
   ("C-c i" . vertico-repeat)
   (:map vertico-map
@@ -213,6 +213,7 @@
 (use-package consult
   :ensure
   :pin gnu
+  :commands consult-register-window
   :bind (("C-c i" . consult-info)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
@@ -304,6 +305,7 @@
 (use-package corfu
   :ensure
   :demand
+  :commands global-corfu-mode
   :custom
   (corfu-auto t)
   (corfu-cycle t)
@@ -312,6 +314,8 @@
 (use-package corfu-history
   :demand
   :after corfu
+  :commands corfu-history-mode
+  :defines savehist-additional-variables
   :config
   (add-to-list 'savehist-additional-variables 'corfu-history)
   (corfu-history-mode 1))
@@ -329,6 +333,7 @@
 (use-package corfu-popupinfo
   :demand
   :after corfu
+  :commands corfu-popupinfo-mode
   :custom (corfu-popupinfo-delay '(1.0 . 0.5))
   :config (corfu-popupinfo-mode 1))
 
@@ -622,10 +627,9 @@
 (use-package diff-hl
   :ensure
   :defer 1
-  :custom
-  (diff-hl-draw-borders nil)
-  :config
-  (global-diff-hl-mode)
+  :commands global-diff-hl-mode
+  :custom (diff-hl-draw-borders nil)
+  :config (global-diff-hl-mode)
   :hook ((magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
          (magit-post-refresh-hook . diff-hl-magit-post-refresh)
          (dired-mode-hook . diff-hl-dired-mode)))
@@ -636,6 +640,7 @@
   :defer 1
   :bind (("M-+" . tempel-insert))
   :custom (tempel-trigger-prefix "<")
+  :commands tempel-expand
   :hook
   ((conf-mode-hook prog-mode-hook text-mode-hook) .
    (lambda ()
@@ -813,6 +818,7 @@
 
 (use-package vterm
   :ensure
+  :commands vterm-other-window
   :bind
   ("C-c t" . vterm-other-window)
   (:map project-prefix-map
@@ -902,6 +908,7 @@
   :custom (tab-bar-show 1))
 
 (use-package tmm
+  :commands tmm-add-prompt
   :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
 
 (use-package olivetti
@@ -955,6 +962,7 @@
 
 (use-package mu4e
   :defer 2
+  :commands (mu4e-bookmark-favorite mu4e-search mu4e-view-headers-prev)
   :bind
   ("C-c m" . mu4e)
   (:map mu4e-main-mode-map
