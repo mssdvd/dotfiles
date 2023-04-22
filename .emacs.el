@@ -869,15 +869,14 @@
       :password ,(+pass-get-keep-asking "chat.sr.ht/mssdvd"))))
   (rcirc-time-format "%d-%m %H:%M ")
   (rcirc-track-ignore-server-buffer-flag t)
+  :config
+  (use-package rcirc-color
+    :ensure
+    :demand)
   :hook
   (rcirc-mode-hook . rcirc-track-minor-mode)
   (rcirc-mode-hook . rcirc-omit-mode)
   (rcirc-mode-hook . read-only-mode))
-
-(use-package rcirc-color
-  :ensure
-  :demand t
-  :after rcirc)
 
 (use-package re-builder
   :custom (reb-re-syntax 'string))
