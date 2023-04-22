@@ -673,9 +673,11 @@
 (use-package sh-script
   :custom (sh-shell-file "/bin/sh"))
 
-(use-package pdf-view
-  :ensure pdf-tools
-  :mode ("\\.[pP][dD][fF]\\'" . pdf-view-mode)
+(use-package pdf-tools
+  :ensure
+  :defer 1
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :commands pdf-loader-install
   :bind
   (:map pdf-view-mode-map
         ("]" . pdf-view-scroll-up-or-next-page)
@@ -701,6 +703,7 @@
               (if (<= (window-pixel-width) (/ screen-width 2))
                   'fit-width
                 'fit-height))))))
+  (pdf-loader-install :no-query)
 
 (use-package nov
   :ensure
