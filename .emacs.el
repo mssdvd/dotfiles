@@ -686,13 +686,6 @@
   (pdf-annot-activate-created-annotations t)
   (pdf-annot-tweak-tooltips nil)
   (pdf-outline-display-labels t)
-  :hook
-  (pdf-view-mode-hook . pdf-tools-enable-minor-modes)
-  (pdf-view-mode-hook . pdf-view-auto-slice-minor-mode)
-  (pdf-view-mode-hook
-   . (lambda ()
-       (add-hook
-        'window-configuration-change-hook '+pdf-view-auto-resize nil t)))
   :config
   (defun +pdf-view-auto-resize ()
     (unless (numberp pdf-view-display-size)
@@ -702,8 +695,21 @@
                                  (car (display-monitor-attributes-list))))))
               (if (<= (window-pixel-width) (/ screen-width 2))
                   'fit-width
-                'fit-height))))))
+                'fit-height)))))
   (pdf-loader-install :no-query)
+  :hook
+  (pdf-view-mode-hook . pdf-tools-enable-minor-modes)
+  (pdf-view-mode-hook . pdf-view-auto-slice-minor-mode)
+  (pdf-view-mode-hook
+   . (lambda ()
+       (setq-local mode-line-position
+                   '(" L" (:eval (pdf-view-current-pagelabel))
+                     "/P" (:eval (number-to-string (pdf-view-current-page)))
+                     "/" (:eval (or (ignore-errors
+                                      (number-to-string (pdf-cache-number-of-pages)))
+                                    "???"))))
+       (add-hook
+        'window-configuration-change-hook '+pdf-view-auto-resize nil t))))
 
 (use-package nov
   :ensure
