@@ -375,9 +375,6 @@
   :defer 1
   :config (ace-link-setup-default))
 
-(use-package elisp-mode
-  :custom (elisp-flymake-byte-compile-load-path (cons "./" load-path)))
-
 (use-package flymake
   :bind
   (:map flymake-mode-map
