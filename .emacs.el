@@ -9,7 +9,6 @@
  comint-prompt-read-only t
  custom-file (expand-file-name "custom.el"  user-emacs-directory)
  custom-unlispify-tag-names nil
- display-buffer-alist '(("\\*Install vterm\\*" display-buffer-no-window (allow-no-window . t)))
  echo-keystrokes 0.1
  enable-recursive-minibuffers t
  indent-tabs-mode nil
@@ -817,6 +816,7 @@
 (use-package vterm
   :ensure
   :commands vterm-other-window
+  :defines vterm-install-buffer-name
   :bind
   ("C-c t" . vterm-other-window)
   (:map project-prefix-map
@@ -829,6 +829,11 @@
     (interactive)
     (let ((default-directory (project-root (project-current t))))
       (vterm-other-window))))
+
+  (add-to-list 'display-buffer-alist
+               `((,(regexp-quote vterm-install-buffer-name)
+                  display-buffer-no-window
+                  (allow-no-window . t)))))
 
 (use-package shr
   :custom
@@ -1050,6 +1055,10 @@ anymore, go the previous message."
                     (mu4e-trash-folder . "/d.masserut@gmail.com/[Gmail]/Bin"))))
         mu4e-org-link-query-in-headers-mode t
         mu4e-user-agent-string nil)
+
+  (add-to-list 'display-buffer-alist
+               `(,(regexp-quote mu4e-main-buffer-name)
+                 display-buffer-same-window))
 
   (mu4e t)
   :hook
