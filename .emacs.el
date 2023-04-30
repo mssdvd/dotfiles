@@ -718,8 +718,7 @@
 
 (use-package terminal-here
   :ensure
-  :bind
-  ("C-c v" . terminal-here-launch)
+  :bind ("C-c t" . terminal-here-launch)
   :custom (terminal-here-terminal-command 'foot))
 
 (use-package jinx
@@ -817,18 +816,18 @@
   :ensure
   :commands vterm-other-window
   :defines vterm-install-buffer-name
-  :bind
-  ("C-c t" . vterm-other-window)
-  (:map project-prefix-map
-        ("t" . +vterm-project-other-window))
+  :bind ("C-c v" . +vterm-project-other-window)
   :custom
   (vterm-always-compile-module t)
   (vterm-timer-delay nil)
   :config
-  (defun +vterm-project-other-window ()
-    (interactive)
-    (let ((default-directory (project-root (project-current t))))
-      (vterm-other-window))))
+  (defun +vterm-project-other-window (&optional arg)
+    (interactive "P")
+    (let* ((project (project-current))
+           (default-directory (if project
+                                  (project-root project)
+                                default-directory)))
+      (vterm-other-window arg)))
 
   (add-to-list 'display-buffer-alist
                `((,(regexp-quote vterm-install-buffer-name)
