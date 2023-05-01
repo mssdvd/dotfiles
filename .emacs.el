@@ -677,7 +677,7 @@
   :ensure
   :defer 1
   :mode ("\\.pdf\\'" . pdf-view-mode)
-  :commands pdf-loader-install
+  :commands (pdf-loader-install pdf-view-fit-height-to-window pdf-view-fit-width-to-window)
   :bind
   (:map pdf-view-mode-map
         ("]" . pdf-view-scroll-up-or-next-page)
@@ -689,13 +689,12 @@
   :config
   (defun +pdf-view-auto-resize ()
     (unless (numberp pdf-view-display-size)
-      (setq pdf-view-display-size
-            (let ((screen-width
-                   (nth 3 (assoc 'workarea
-                                 (car (display-monitor-attributes-list))))))
-              (if (<= (window-pixel-width) (/ screen-width 2))
-                  'fit-width
-                'fit-height)))))
+      (let ((screen-width
+             (nth 3 (assoc 'workarea
+                           (car (display-monitor-attributes-list))))))
+        (if (<= (window-pixel-width) (/ screen-width 2))
+            (pdf-view-fit-width-to-window)
+          (pdf-view-fit-height-to-window)))))
   (pdf-loader-install :no-query)
   :hook
   (pdf-view-mode-hook . pdf-tools-enable-minor-modes)
@@ -708,8 +707,8 @@
                      "/" (:eval (or (ignore-errors
                                       (number-to-string (pdf-cache-number-of-pages)))
                                     "???"))))
-       (add-hook
-        'window-configuration-change-hook '+pdf-view-auto-resize nil t))))
+       (add-hook 'window-configuration-change-hook
+                 '+pdf-view-auto-resize nil t))))
 
 (use-package nov
   :ensure
