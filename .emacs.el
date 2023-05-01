@@ -65,7 +65,13 @@
 (keymap-global-unset "C-z")
 (keymap-global-unset "C-x C-z")
 
-(dolist (fn '(erase-buffer list-timers narrow-to-region scroll-left))
+(dolist (fn '(dired-find-alternate-file
+              erase-buffer
+              help-fns-edit-variable
+              list-timers
+              magit-edit-line-commit
+              narrow-to-region
+              scroll-left))
   (put fn 'disabled nil))
 
 (load custom-file 'noerror 'nomessage)
@@ -151,7 +157,6 @@
   (dired-hide-details-hide-information-lines nil)
   (dired-hide-details-hide-symlink-targets nil)
   (dired-listing-switches "-alhv --group-directories-first")
-  :config (put 'dired-find-alternate-file 'disabled nil)
   :hook (dired-mode-hook . (lambda ()
                              (setq-local truncate-lines t)
                              (dired-hide-details-mode))))
@@ -602,9 +607,7 @@
   (magit-diff-refine-hunk 'all)
   (magit-delete-by-moving-to-trash nil)
   (magit-status-goto-file-position t)
-  :config
-  (put 'magit-edit-line-commit 'disabled nil)
-  (require 'magit-extras))
+  :config (require 'magit-extras))
 
 (use-package forge
   :ensure
@@ -779,7 +782,6 @@
 
 (use-package help-fns
   :custom (help-enable-variable-value-editing t)
-  :config (put 'help-fns-edit-variable 'disabled nil)
   :hook (help-fns-describe-function-functions . shortdoc-help-fns-examples-function))
 
 (use-package ledger-mode
