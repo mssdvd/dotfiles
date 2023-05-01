@@ -2,8 +2,7 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq read-process-output-max (* 1024 1024)
-      y-or-n-p-use-read-key t)
+(setq read-process-output-max (* 1024 1024))
 
 (setopt
  comint-prompt-read-only t
