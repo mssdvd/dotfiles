@@ -434,55 +434,44 @@
 (use-package org
   :ensure
   :pin gnu
-  :functions (delight)
+  :defines org-mode-map
   :bind
-  ("C-c c" . org-capture)
   ("C-c l" . org-store-link)
   (:map org-mode-map
         ("C-'" . avy-goto-char-timer)
         ([f6] . org-latex-preview)
         ([f7] . insert-char))
-  :config
-  (delight 'org-indent-mode)
-  (setq org-attach-auto-tag nil
-        org-confirm-babel-evaluate nil
-        org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE"
-        org-ctrl-k-protect-subtree t
-        org-edit-src-content-indentation 0
-        org-ellipsis " ..."
-        org-enforce-todo-checkbox-dependencies t
-        org-enforce-todo-dependencies t
-        org-file-apps (append '(("\\.pdf\\'" . "zathura %s")
-                                ("\\.mp4\\'" . "mpv %s")
-                                ("\\.webm\\'" . "mpv %s")
-                                ("\\.odt\\'" . "libreoffice %s"))
-                              org-file-apps)
-        org-html-validation-link nil
-        org-log-into-drawer t
-        org-M-RET-may-split-line '((default . nil))
-        org-outline-path-complete-in-steps nil
-        org-refile-allow-creating-parent-nodes 'confirm
-        org-refile-targets '((org-agenda-files :maxlevel . 4))
-        org-refile-use-outline-path 'file
-        org-return-follows-link t
-        org-use-speed-commands t
-        org-startup-folded t
-        org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "REDO(r)" "|" "DONE(d)" "CANCELED(c)"))
-        org-track-ordered-property-with-tag t
-        org-use-fast-tag-selection t
-        )
-  (add-to-list 'org-modules 'org-mouse)
-  ;; (push 'org-drill org-modules)
-  (org-babel-do-load-languages 'org-babel-load-languages
-                               '((C . t)
-                                 (ditaa . t)
-                                 (emacs-lisp . t)
-                                 (gnuplot . t)
-                                 (python . t)
-                                 (shell . t)))
-  (add-to-list 'org-latex-packages-alist
-               '("AUTO" "babel" t ("pdflatex")))
-  ;; (dolist (i org-level-faces) (set-face-attribute i nil :overline t))
+  :custom
+  (org-attach-auto-tag nil)
+  (org-confirm-babel-evaluate nil)
+  (org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE")
+  (org-ctrl-k-protect-subtree t)
+  (org-babel-load-languages '((emacs-lisp . t)
+                              (python . t)
+                              (shell . t)))
+  (org-edit-src-content-indentation 0)
+  (org-ellipsis " ...")
+  (org-enforce-todo-checkbox-dependencies t)
+  (org-enforce-todo-dependencies t)
+  (org-file-apps '((auto-mode . emacs)
+                   (directory . emacs)
+                   ("\\.mm\\'" . default)
+                   ("\\.x?html?\\'" . default)
+                   ("\\.pdf\\'" . default)
+                   ("\\.webm\\'" . "mpv %s")
+                   ("\\.odt\\'" . "libreoffice %s")))
+  (org-highlight-latex-and-related '(latex entities))
+  (org-html-validation-link nil)
+  (org-latex-packages-alist '(("" "color") ("" "listings") ("AUTO" "babel" t ("pdflatex"))))
+  (org-log-into-drawer t)
+  (org-M-RET-may-split-line '((default . nil)))
+  (org-outline-path-complete-in-steps nil)
+  (org-return-follows-link t)
+  (org-use-speed-commands t)
+  (org-startup-folded t)
+  (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "REDO(r)" "|" "DONE(d)" "CANCELED(c)")))
+  (org-track-ordered-property-with-tag t)
+  (org-use-fast-tag-selection t)
   :hook
   (org-mode-hook . visual-line-mode)
   (org-mode-hook . turn-on-org-cdlatex))
@@ -492,26 +481,17 @@
   :custom (org-agenda-sticky t))
 
 (use-package org-capture
+  :bind ("C-c c" . org-capture)
   :custom
   (org-capture-templates
-   `(("b" "Insert new Book" entry
-      (file+headline "~/org/books_movies_series.org" "Books")
-      (file "~/org/template/books_template.org")
-      :empty-lines-after 2)
-
-     ("m" "Next week menu" entry
-      (file+headline "~/org/meals.org"
+   `(("m" "Next week menu" entry
+      (file+headline "~/notes/meals.org"
                      ,(format-time-string "%Y"))
-      (file "~/org/template/weekly_meals.org")
+      (file "~/notes/template/weekly_meals.org")
       :jump-to-captured t)
 
-     ("y" "Add YouTube channel" entry
-      (file+olp "~/.emacs.d/elfeed/elfeed.org"
-                "Web" "Youtube")
-      "* [[%(s-replace \"channel/\" \"feeds/videos.xml?channel_id=\" \"%x\")][%^{Insert channel name}]]")
-
      ("s" "New logged org-pomodoro" entry
-      (file+olp+datetree "~/org/activities.org"
+      (file+olp+datetree "~/notes/activities.org"
                          "Log")
       "* %?"
       :empty-lines 0
@@ -519,7 +499,7 @@
       :before-finalize (org-pomodoro))
 
      ("S" "New activity log (clock in)" entry
-      (file+olp+datetree "~/org/activities.org"
+      (file+olp+datetree "~/notes/activities.org"
                          "Log")
       "* %?"
       :clock-in it
