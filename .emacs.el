@@ -366,18 +366,6 @@
   :ensure
   :custom (wgrep-auto-save-buffer t))
 
-(use-package avy
-  :ensure
-  :commands (avy-setup-default)
-  :bind ("C-'" . avy-goto-char-timer)
-  :config (avy-setup-default))
-
-(use-package ace-link
-  :ensure
-  :commands (ace-link-setup-default)
-  :defer 1
-  :config (ace-link-setup-default))
-
 (use-package flymake
   :bind
   (:map flymake-mode-map
@@ -950,7 +938,6 @@
         ("q" . bury-buffer)
         ("Q" . mu4e-quit))
   (:map mu4e-view-mode-map
-        ("o" . ace-link-mu4e)
         ("S-SPC" . +mu4e-view-scroll-down-or-prev)
         ("<backspace>" . +mu4e-view-scroll-down-or-prev))
   :init
