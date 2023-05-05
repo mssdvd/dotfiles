@@ -317,9 +317,7 @@
   :ensure
   :demand
   :commands global-corfu-mode
-  :custom
-  (corfu-auto t)
-  (corfu-cycle t)
+  :custom (corfu-cycle t)
   :config (global-corfu-mode 1))
 
 (use-package corfu-history
@@ -776,9 +774,7 @@
   (ledger-copy-transaction-insert-blank-line-after t)
   (ledger-default-date-format "%Y-%m-%d")
   (ledger-highlight-xact-under-point nil)
-  (ledger-reconcile-default-commodity " EUR")
-  :hook (ledger-mode-hook . (lambda ()
-                              (setq-local corfu-auto nil))))
+  (ledger-reconcile-default-commodity " EUR"))
 
 (use-package ledger-flymake
   :hook (ledger-mode-hook . ledger-flymake-enable))
