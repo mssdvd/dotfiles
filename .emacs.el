@@ -101,6 +101,14 @@
     (while (not (setq pass (auth-source-pass-get 'secret entry))))
     pass))
 
+(defun +replace-unicode-code-points ()
+  "Replace Unicode code points with their respective glyph."
+  (interactive)
+  (save-excursion
+    (goto-char (point-min))
+    (while (re-search-forward (rx "U+" (group (repeat 4 6 hex-digit))) nil t)
+      (replace-match (string (string-to-number (match-string 1) 16))))))
+
 (defun +toggle-window-dedication ()
   "Toggle window dedication in the selected window."
   (interactive)
