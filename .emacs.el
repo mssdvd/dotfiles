@@ -481,7 +481,15 @@
    `(("m" "Next week menu" entry
       (file+headline "~/notes/meals.org"
                      ,(format-time-string "%Y"))
-      (file "~/notes/template/weekly_meals.org")
+"* W%^{Week number|%(number-to-string (1+ (string-to-number (format-time-string \"%V\"))))|%(format-time-string \"%V\")}
+
+|--------+--------+---------+-----------+----------+--------+----------+--------|
+|        | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday |
+|--------+--------+---------+-----------+----------+--------+----------+--------|
+| Lunch  |        |         |           |          |        |          |        |
+| Dinner |        |         |           |          |        |          |        |
+|--------+--------+---------+-----------+----------+--------+----------+--------|"
+      :empty-lines-before 1
       :jump-to-captured t)
 
      ("s" "New logged org-pomodoro" entry
