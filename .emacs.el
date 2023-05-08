@@ -898,7 +898,9 @@
 (use-package osm
   :ensure
   :pin gnu
-  :custom (osm-copyright nil))
+  :custom
+  (osm-copyright nil)
+  (osm-search-language "en,it"))
 
 (use-package hexl
   :hook (hexl-mode-hook . read-only-mode))
