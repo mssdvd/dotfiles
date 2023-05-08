@@ -900,6 +900,7 @@
   :pin gnu
   :custom
   (osm-copyright nil)
+  (osm-home '(41.9 12.5 6))
   (osm-search-language "en,it"))
 
 (use-package hexl
