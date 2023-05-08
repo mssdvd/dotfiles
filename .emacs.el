@@ -897,6 +897,7 @@
 
 (use-package osm
   :ensure
+  :pin gnu
   :custom (osm-copyright nil))
 
 (use-package hexl
