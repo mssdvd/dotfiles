@@ -49,7 +49,7 @@
 (winner-mode 1)
 
 (dolist (hook '(conf-mode-hook prog-mode-hook text-mode-hook))
-  (add-hook hook (lambda () (setq show-trailing-whitespace t))))
+  (add-hook hook (lambda () (add-hook 'before-save-hook #'delete-trailing-whitespace nil t))))
 
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
