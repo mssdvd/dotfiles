@@ -949,6 +949,8 @@
 (use-package mu4e
   :defer 2
   :commands (mu4e-bookmark-favorite mu4e-search mu4e-view-headers-prev)
+  :defines (mu4e-contexts mu4e-main-buffer-name mu4e-main-mode-map mu4e-marks mu4e-org-link-query-in-headers-mode mu4e-user-agent-string mu4e-view-scroll-to-next mu4e-view-mode-map)
+  :functions (make-mu4e-context mu4e-message-field mu4e--mark-check-target mu4e--server-move +mu4e--hide)
   :bind
   ("C-c m" . mu4e)
   (:map mu4e-main-mode-map
@@ -1042,6 +1044,13 @@ anymore, go the previous message."
   (add-to-list 'display-buffer-alist
                `(,(regexp-quote mu4e-main-buffer-name)
                  display-buffer-same-window))
+
+  (setf (plist-get (alist-get 'trash mu4e-marks) :action)
+        (lambda
+          (docid _msg target)
+          (mu4e--server-move docid
+                             (mu4e--mark-check-target target)
+                             "+S-u-N")))
 
   (mu4e t)
   :hook
