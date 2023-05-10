@@ -586,8 +586,9 @@
 (use-package magit
   :ensure
   :custom
-  (magit-diff-refine-hunk 'all)
   (magit-delete-by-moving-to-trash nil)
+  (magit-diff-refine-hunk 'all)
+  (magit-save-repository-buffers 'dontask)
   (magit-status-goto-file-position t)
   :config (require 'magit-extras))
 
