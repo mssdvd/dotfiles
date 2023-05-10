@@ -187,12 +187,9 @@
         ("RET" . vertico-directory-enter)
         ("DEL" . vertico-directory-delete-char)
         ("M-DEL" . vertico-directory-delete-word)
-        ("C-<backspace>" . vertico-directory-delete-word)
-        ("C-;" . vertico-quick-insert)
-        ("C-'" . vertico-quick-exit))
+        ("C-<backspace>" . vertico-directory-delete-word))
   :custom
   (vertico-cycle t)
-  (vertico-quick1 "asdfghjkl;")
   (vertico-scroll-margin (/ vertico-count 2))
   (completion-in-region-function
    (lambda (&rest args)
