@@ -18,6 +18,7 @@
  minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)
  mode-line-compact t
  next-error-message-highlight t
+ read-extended-command-predicate #'command-completion-default-include-p
  ring-bell-function 'ignore
  save-interprogram-paste-before-kill t
  scroll-error-top-bottom t
