@@ -179,8 +179,8 @@
 (use-package vertico
   :ensure
   :demand
-  :commands (vertico-mode)
-  :functions (vertico-mouse-mode consult-completion-in-region)
+  :commands vertico-mode
+  :defines vertico-map
   :bind
   ("C-c i" . vertico-repeat)
   (:map vertico-map
@@ -201,8 +201,7 @@
               #'completion--in-region)
             args)))
   :config
-  (vertico-mode)
-  (vertico-mouse-mode 1)
+  (vertico-mode 1)
   :hook
   (rfn-eshadow-update-overlay-hook . vertico-directory-tidy)
   (minibuffer-setup-hook . vertico-repeat-save))
