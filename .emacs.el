@@ -958,7 +958,7 @@
         ("<backspace>" . +mu4e-view-scroll-down-or-prev))
   :init
   (defun +mu4e--hide (query)
-    (concat query " AND NOT (flag:trashed OR maildir:/Spam/ OR maildir:/Junk/)"))
+    (concat query " AND NOT (flag:trashed OR maildir:/Trash/ OR maildir:/Bin/ OR maildir:/Spam/ OR maildir:/Junk/)"))
   :custom
   (mail-user-agent 'mu4e-user-agent)
   (mm-discouraged-alternatives '("text/html" "text/richtext"))
