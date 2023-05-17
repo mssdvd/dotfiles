@@ -909,10 +909,9 @@
   :bind ("C-c u" . vundo)
   :custom (vundo-compact-display t))
 
-(use-package undo-hl
-  :defer 1
+(use-package goggles
+  :ensure
   :delight
-  :load-path "~/src/undo-hl"
   :hook (prog-mode-hook text-mode-hook))
 
 (use-package files
