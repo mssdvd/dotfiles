@@ -888,7 +888,9 @@
 (use-package vundo
   :ensure
   :bind ("C-c u" . vundo)
-  :custom (vundo-compact-display t))
+  :custom
+  (vundo-compact-display t)
+  (vundo-glyph-alist vundo-unicode-symbols))
 
 (use-package goggles
   :ensure
