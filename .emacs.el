@@ -159,7 +159,6 @@
   :custom (diff-font-lock-prettify t))
 
 (use-package dired
-  :commands dired-hide-details-mode
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
@@ -179,8 +178,6 @@
 (use-package vertico
   :ensure
   :demand
-  :commands vertico-mode
-  :defines vertico-map
   :bind
   ("C-c i" . vertico-repeat)
   (:map vertico-map
@@ -221,7 +218,6 @@
 (use-package consult
   :ensure
   :pin gnu
-  :commands consult-register-window
   :bind (("C-c i" . consult-info)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
@@ -277,7 +273,6 @@
   :pin gnu
   :ensure
   :demand
-  :commands marginalia-mode
   :bind
   (:map minibuffer-local-map
         ("M-A" . marginalia-cycle))
@@ -313,15 +308,12 @@
 (use-package corfu
   :ensure
   :demand
-  :commands global-corfu-mode
   :custom (corfu-cycle t)
   :config (global-corfu-mode 1))
 
 (use-package corfu-history
   :demand
   :after corfu
-  :commands corfu-history-mode
-  :defines savehist-additional-variables
   :config
   (add-to-list 'savehist-additional-variables 'corfu-history)
   (corfu-history-mode 1))
@@ -339,7 +331,6 @@
 (use-package corfu-popupinfo
   :demand
   :after corfu
-  :commands corfu-popupinfo-mode
   :custom (corfu-popupinfo-delay '(1.0 . 0.5))
   :config (corfu-popupinfo-mode 1))
 
@@ -425,7 +416,6 @@
 (use-package org
   :ensure
   :pin gnu
-  :defines org-mode-map
   :bind
   ("C-c l" . org-store-link)
   (:map org-mode-map
@@ -605,7 +595,6 @@
 (use-package diff-hl
   :ensure
   :defer 1
-  :commands global-diff-hl-mode
   :custom (diff-hl-draw-borders nil)
   :config (global-diff-hl-mode)
   :hook ((magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
@@ -618,7 +607,6 @@
   :defer 1
   :bind (("M-+" . tempel-insert))
   :custom (tempel-trigger-prefix "<")
-  :commands tempel-expand
   :hook
   ((conf-mode-hook prog-mode-hook text-mode-hook) .
    (lambda ()
@@ -660,7 +648,6 @@
   :ensure
   :defer 1
   :mode ("\\.pdf\\'" . pdf-view-mode)
-  :commands (pdf-loader-install pdf-view-fit-height-to-window pdf-view-fit-width-to-window)
   :bind
   (:map pdf-view-mode-map
         ("]" . pdf-view-scroll-up-or-next-page)
@@ -767,7 +754,6 @@
 (use-package ledger-mode
   :ensure
   :mode ("\\.ldg\\'" . ledger-mode)
-  :commands ledger-post-align-dwim
   :bind
   (:map ledger-mode-map
         ([f6] . (lambda ()
@@ -792,8 +778,6 @@
 
 (use-package vterm
   :ensure
-  :commands vterm-other-window
-  :defines vterm-install-buffer-name
   :bind ("C-c v" . +vterm-project-other-window)
   :custom
   (vterm-always-compile-module t)
@@ -822,9 +806,7 @@
 
 (use-package matlab-mode
   :ensure
-  :defines (matlab-shell-command-switches)
   :mode ("\\.m\\'" . matlab-mode)
-  :commands matlab-shell
   :custom (matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
 (use-package rcirc
@@ -887,7 +869,6 @@
   :custom (tab-bar-show 1))
 
 (use-package tmm
-  :commands tmm-add-prompt
   :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
 
 (use-package olivetti
@@ -944,9 +925,6 @@
 
 (use-package mu4e
   :defer 2
-  :commands (mu4e-bookmark-favorite mu4e-search mu4e-view-headers-prev)
-  :defines (mu4e-contexts mu4e-main-buffer-name mu4e-main-mode-map mu4e-marks mu4e-org-link-query-in-headers-mode mu4e-user-agent-string mu4e-view-scroll-to-next mu4e-view-mode-map)
-  :functions (make-mu4e-context mu4e-message-field mu4e--mark-check-target mu4e--server-move +mu4e--hide)
   :bind
   ("C-c m" . mu4e)
   (:map mu4e-main-mode-map
@@ -1114,5 +1092,8 @@ anymore, go the previous message."
 (use-package js
   :hook (js-mode-hook . (lambda () (setq-local indent-tabs-mode nil))))
 
-
 ;;; .emacs.el ends here
+
+;; Local Variables:
+;; byte-compile-warnings: (not free-vars unresolved)
+;; End:
