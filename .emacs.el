@@ -910,6 +910,8 @@
 (use-package tmr
   :ensure)
 
+(use-package subword
+  :hook (go-mode-hook go-ts-mode-hook))
 
 
 ;;
