@@ -72,7 +72,8 @@
               list-timers
               magit-edit-line-commit
               narrow-to-region
-              scroll-left))
+              scroll-left
+              set-goal-column))
   (put fn 'disabled nil))
 
 (load custom-file 'noerror 'nomessage)
