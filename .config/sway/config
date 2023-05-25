@@ -21,6 +21,7 @@ input {
 	}
 	"type:pointer" pointer_accel 1
 	"1149:32792:Kensington_Expert_Wireless_TB_Mouse" scroll_factor 1.5
+	"19789:18514:mmccoyd_Hillside_52" xkb_options compose:ralt
 }
 
 # modes
