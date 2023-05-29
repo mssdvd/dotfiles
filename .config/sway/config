@@ -3,6 +3,8 @@ set {
 	$term foot
 	$menu j4-dmenu-desktop --dmenu='bemenu -p "run"' --term=$term --display-binary --no-generic
 	$wlsunset_toggle "if pidof wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -t 2500 -l 45.9 -L 12.6; fi"
+	$wob_sock $XDG_RUNTIME_DIR/wob.sock
+	$audio_wob pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $wob_sock
 }
 
 output * bg "#000000" solid_color subpixel rgb
@@ -132,12 +134,12 @@ bindsym --to-code {
 	$mod+Shift+x exec pavucontrol
 
 	--locked {
-		XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-		$mod+x exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-		XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-		$mod+z exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-		XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-		$mod+c exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+		XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5% && $audio_wob
+		$mod+x exec pactl set-sink-volume @DEFAULT_SINK@ +5% && $audio_wob
+		XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $audio_wob
+		$mod+z exec pactl set-sink-volume @DEFAULT_SINK@ -5% && $audio_wob
+		XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle && [ $(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}') = "yes" ] && echo 0 > $wob_sock || $audio_wob
+		$mod+c exec pactl set-sink-mute @DEFAULT_SINK@ toggle && [ $(pactl get-sink-mute @DEFAULT_SINK@ | awk '{print $2}') = "yes" ] && echo 0 > $wob_sock || $audio_wob
 		XF86AudioMicMute exec pactl set-source-mute @DEFAULT_SOURCE@ toggle
 
 		XF86AudioPlay exec playerctl play
@@ -279,6 +281,7 @@ exec {
 	playerctld daemon
 	GTK_THEME=Adwaita-dark waybar
 
+	rm -f $wob_sock && mkfifo $wob_sock && tail -f $wob_sock | wob
 	dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 }
 

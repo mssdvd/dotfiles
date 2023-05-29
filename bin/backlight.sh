@@ -1,9 +1,16 @@
 #!/bin/sh
 
+show_bar() {
+    echo "$level" | cut -d'.' -f1 > "$XDG_RUNTIME_DIR"/wob.sock
+}
+
 output=$(swaymsg -t get_outputs | jq -r '.[] | select(.focused == true) | .name')
 
-if [ "$output" = "eDP-1" ]
-then exec /bin/light "$@"
+if [ "$output" = "eDP-1" ]; then
+    /bin/light "$@"
+    level=$(/bin/light -G)
+    show_bar
+    exit
 fi
 
 if pgrep ddcutil
@@ -32,3 +39,5 @@ case $1 in
 esac
 
 ddcutil setvcp 10 "$level"
+
+show_bar
