@@ -319,16 +319,6 @@
   (add-to-list 'savehist-additional-variables 'corfu-history)
   (corfu-history-mode 1))
 
-(use-package corfu-quick
-  :demand
-  :after corfu
-  :bind
-  (:map corfu-map
-        ("C-'" . corfu-quick-insert)
-        ("C-;" . corfu-quick-complete))
-  :custom
-  (corfu-quick1 "asdfghjkl;"))
-
 (use-package corfu-popupinfo
   :demand
   :after corfu
