@@ -902,6 +902,11 @@
 (use-package subword
   :hook (go-mode-hook go-ts-mode-hook))
 
+(use-package proced
+  :custom
+  (proced-enable-color-flag t)
+  (proced-format 'medium))
+
 
 ;;
 ;; Mail
