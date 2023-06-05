@@ -352,9 +352,10 @@
 (use-package flymake
   :bind
   (:map flymake-mode-map
-        ("C-c ! n" . flymake-goto-next-error)
-        ("C-c ! p" . flymake-goto-prev-error)
-        ("C-c ! !" . flymake-show-buffer-diagnostics))
+        ("C-c f n" . flymake-goto-next-error)
+        ("C-c f p" . flymake-goto-prev-error)
+        ("C-c f f" . flymake-show-buffer-diagnostics)
+        ("C-c f F" . flymake-show-project-diagnostics))
   (:map project-prefix-map
         ("!" . flymake-show-project-diagnostics))
   :custom
@@ -362,6 +363,8 @@
   (flymake-show-diagnostics-at-end-of-line t)
   :config
   (defvar-keymap +flymake-repeat-map
+    :doc "Keymap to repeat `flymake-goto-next-error' and
+`flymake-goto-prev-error'.  Used in `repeat-mode'"
     :repeat t
     "n" #'flymake-goto-next-error
     "p" #'flymake-goto-prev-error)
