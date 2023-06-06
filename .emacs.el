@@ -852,7 +852,7 @@
 (use-package eww
   :custom
   (eww-auto-rename-buffer 'title)
-  (eww-search-prefix "https://duckduckgo.com/html/?k1=-1&q="))
+  (eww-search-prefix "https://lite.duckduckgo.com/lite/?q="))
 
 (use-package project
   :custom (project-kill-buffers-display-buffer-list t))
