@@ -180,7 +180,7 @@
   :ensure
   :demand
   :bind
-  ("C-c i" . vertico-repeat)
+  ("M-R" . vertico-repeat)
   (:map vertico-map
         ("RET" . vertico-directory-enter)
         ("DEL" . vertico-directory-delete-char)
