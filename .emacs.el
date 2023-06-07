@@ -887,6 +887,7 @@
 (use-package goggles
   :ensure
   :delight
+  :config (goggles-delete 'disable)
   :hook (prog-mode-hook text-mode-hook))
 
 (use-package files
