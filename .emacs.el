@@ -601,7 +601,7 @@
   :bind (("M-+" . tempel-insert))
   :custom (tempel-trigger-prefix "<")
   :hook
-  ((conf-mode-hook prog-mode-hook text-mode-hook) .
+  ((conf-mode-hook eglot-managed-mode-hook prog-mode-hook text-mode-hook) .
    (lambda ()
      (setq-local completion-at-point-functions
                  (cons #'tempel-expand
