@@ -170,7 +170,7 @@
   (dired-listing-switches "-alhv --group-directories-first")
   :hook (dired-mode-hook . (lambda ()
                              (setq-local truncate-lines t)
-                             (dired-hide-details-mode))))
+                             (dired-hide-details-mode 1))))
 
 (use-package dired-aux
   :custom (dired-vc-rename-file t))
@@ -279,12 +279,11 @@
   :bind
   (:map minibuffer-local-map
         ("M-A" . marginalia-cycle))
-  :config (marginalia-mode))
+  :config (marginalia-mode 1))
 
 (use-package embark
   :pin gnu
   :ensure
-  :defer 1
   :bind
   ("C-." . embark-act)
   ("C-h B" . embark-bindings)
@@ -304,8 +303,6 @@
 (use-package embark-consult
   :pin gnu
   :ensure
-  :demand
-  :after (embark consult)
   :hook (embark-collect-mode-hook . consult-preview-at-point-mode))
 
 (use-package corfu
@@ -328,9 +325,9 @@
   :config (corfu-popupinfo-mode 1))
 
 (use-package cape
+  :ensure
   :pin gnu
   :demand
-  :ensure
   :config (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package isearch
@@ -378,11 +375,9 @@
   (compilation-scroll-output 'first-error))
 
 (use-package recentf
-  :defer 1
-  :custom
-  (recentf-max-saved-items 500)
-  :config
-  (recentf-mode))
+  :demand
+  :custom (recentf-max-saved-items 500)
+  :config (recentf-mode 1))
 
 (use-package saveplace
   :defer 1
@@ -461,7 +456,7 @@
    `(("m" "Next week menu" entry
       (file+headline "~/notes/meals.org"
                      ,(format-time-string "%Y"))
-"* W%^{Week number|%(number-to-string (1+ (string-to-number (format-time-string \"%V\"))))|%(format-time-string \"%V\")}
+      "* W%^{Week number|%(number-to-string (1+ (string-to-number (format-time-string \"%V\"))))|%(format-time-string \"%V\")}
 
 |--------+--------+---------+-----------+----------+--------+----------+--------|
 |        | Monday | Tuesday | Wednesday | Thursday | Friday | Saturday | Sunday |
@@ -573,8 +568,7 @@
   :config (require 'magit-extras))
 
 (use-package forge
-  :ensure
-  :after magit)
+  :ensure)
 
 (use-package epg
   :custom (epg-pinentry-mode 'loopback))
@@ -597,7 +591,6 @@
 (use-package tempel
   :ensure
   :pin gnu
-  :defer 1
   :bind (("M-+" . tempel-insert))
   :custom (tempel-trigger-prefix "<")
   :hook
@@ -611,9 +604,8 @@
 (use-package autorevert
   :delight auto-revert-mode
   :defer 1
-  :config
-  (setq auto-revert-avoid-polling t)
-  (global-auto-revert-mode 1))
+  :custom (auto-revert-avoid-polling t)
+  :config (global-auto-revert-mode 1))
 
 (use-package eldoc
   :delight
@@ -625,8 +617,8 @@
   :config
   :config (add-to-list 'eshell-modules-list 'eshell-smart)
   :hook (eshell-mode-hook . (lambda ()
-                         (setenv "PAGER" "cat")
-                         (setenv "EDITOR" "emacsclient"))))
+                              (setenv "PAGER" "cat")
+                              (setenv "EDITOR" "emacsclient"))))
 
 (use-package ansi-color
   :hook (compilation-filter-hook . ansi-color-compilation-filter))
@@ -810,7 +802,7 @@
   (rcirc-default-user-name rcirc-default-nick)
   (rcirc-display-server-buffer nil)
   (rcirc-fill-column
-   (lambda () (max fill-column (/ (window-text-width) 2))))
+   (lambda () (max fill-column (* (window-text-width) (/ 2.0 3)))))
   (rcirc-kill-channel-buffers t)
   (rcirc-omit-unless-requested '("NAMES" "TOPIC"))
   (rcirc-prompt "%t> ")
@@ -840,9 +832,10 @@
   :config (context-menu-mode))
 
 (use-package follow
-  :bind (:map follow-mode-map
-              ([remap scroll-up-command] . follow-scroll-up)
-              ([remap scroll-down-command] . follow-scroll-down)))
+  :bind
+  (:map follow-mode-map
+        ([remap scroll-up-command] . follow-scroll-up)
+        ([remap scroll-down-command] . follow-scroll-down)))
 
 (use-package bookmark
   :custom (bookmark-save-flag 1))
