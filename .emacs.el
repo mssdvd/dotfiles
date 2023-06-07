@@ -722,9 +722,7 @@
   ("\\.timer\\'" . systemd-mode))
 
 (use-package calc
-  :config
-  (setq calc-group-char " "
-        calc-group-digits t)
+  :config (setq calc-group-digits t)
   :custom
   (calc-make-windows-dedicated t)
   (calc-multiplication-has-precedence nil))
