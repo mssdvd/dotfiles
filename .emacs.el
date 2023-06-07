@@ -339,7 +339,6 @@
   (isearch-allow-scroll 'unlimited)
   (isearch-regexp-lax-whitespace t)
   (isearch-lazy-count t)
-  (isearch-repeat-on-direction-change t)
   (isearch-wrap-pause 'no)
   (search-default-mode #'char-fold-to-regexp)
   (search-whitespace-regexp ".*?"))
