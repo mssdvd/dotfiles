@@ -122,7 +122,9 @@
 ;;;;
 
 (use-package package
-  :config (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
+  :custom (package-install-upgrade-built-in t)
+  :config
+  (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 (use-package delight
   :ensure)
