@@ -1026,6 +1026,7 @@ anymore, go the previous message."
 
   (mu4e t)
   :hook
+  (mu4e-compose-mode-hook . (lambda () (auto-save-mode -1)))
   (mu4e-index-updated-hook . (lambda ()
                                (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
                                  (start-process "update mail indicator" nil
