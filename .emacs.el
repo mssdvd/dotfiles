@@ -68,9 +68,7 @@
 
 (dolist (fn '(dired-find-alternate-file
               erase-buffer
-              help-fns-edit-variable
               list-timers
-              magit-edit-line-commit
               narrow-to-region
               scroll-left
               set-goal-column))
@@ -565,7 +563,9 @@
   (magit-diff-refine-hunk 'all)
   (magit-save-repository-buffers 'dontask)
   (magit-status-goto-file-position t)
-  :config (require 'magit-extras))
+  :config
+  (require 'magit-extras)
+  (put 'magit-edit-line-commit 'disabled nil))
 
 (use-package forge
   :ensure)
@@ -732,6 +732,7 @@
 
 (use-package help-fns
   :custom (help-enable-variable-value-editing t)
+  :config (put 'help-fns-edit-variable 'disabled nil)
   :hook (help-fns-describe-function-functions . shortdoc-help-fns-examples-function))
 
 (use-package ledger-mode
