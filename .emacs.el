@@ -134,7 +134,7 @@
   :bind ("C-c q" . modus-themes-toggle)
   :custom
   (modus-themes-common-palette-overrides
-   '((bg-region bg-lavender)
+   '((bg-region bg-ochre)
      (fg-region unspecified)))
   (modus-themes-org-blocks 'gray-background)
   (modus-themes-italic-constructs t)
