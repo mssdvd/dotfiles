@@ -332,7 +332,6 @@
   :custom
   (isearch-allow-motion t)
   (isearch-allow-scroll 'unlimited)
-  (isearch-regexp-lax-whitespace t)
   (isearch-lazy-count t)
   (isearch-wrap-pause 'no)
   (search-default-mode #'char-fold-to-regexp)
