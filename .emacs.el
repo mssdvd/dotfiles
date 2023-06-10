@@ -143,8 +143,8 @@
        (shell-command-to-string
         "gsettings get org.gnome.desktop.interface gtk-theme")
        "'Adwaita'\n")
-      (load-theme 'modus-operandi :no-confirm)
-    (load-theme 'modus-vivendi :no-confirm)))
+      (modus-themes-load-theme 'modus-operandi)
+    (modus-themes-load-theme 'modus-vivendi)))
 
 (use-package time
   :custom (display-time-24hr-format t))

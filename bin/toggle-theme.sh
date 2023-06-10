@@ -16,4 +16,4 @@ fi
 
 gsettings set org.gnome.desktop.interface gtk-theme $gtk_theme
 gsettings set org.gnome.desktop.interface color-scheme $gtk4_color_scheme
-emacsclient --eval "(progn (require 'modus-themes)(load-theme '$emacs_theme :no-confirm))" >/dev/null
+emacsclient --eval "(modus-themes-load-theme '$emacs_theme)" >/dev/null
