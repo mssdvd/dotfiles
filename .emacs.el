@@ -569,6 +569,13 @@
 (use-package forge
   :ensure)
 
+(use-package with-editor
+  :hook ((shell-mode-hook
+          eshell-mode-hook
+          term-exec-hook
+          vterm-mode-hook)
+         . with-editor-export-editor))
+
 (use-package epg
   :custom (epg-pinentry-mode 'loopback))
 
