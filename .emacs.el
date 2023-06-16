@@ -649,7 +649,7 @@
   (pdf-annot-tweak-tooltips nil)
   (pdf-outline-display-labels t)
   :config
-  (defun +pdf-view-auto-resize ()
+  (defun +pdf-view-auto-resize (_frame)
     (unless (numberp pdf-view-display-size)
       (let ((screen-width
              (nth 3 (assoc 'workarea
@@ -669,8 +669,8 @@
                      "/" (:eval (or (ignore-errors
                                       (number-to-string (pdf-cache-number-of-pages)))
                                     "???"))))
-       (add-hook 'window-configuration-change-hook
-                 '+pdf-view-auto-resize nil t))))
+       (add-hook 'window-size-change-functions
+                 #'+pdf-view-auto-resize nil t))))
 
 (use-package nov
   :ensure
