@@ -382,11 +382,6 @@
   :custom (save-place-limit 1600)
   :config (save-place-mode 1))
 
-(use-package saveplace-pdf-view
-  :ensure
-  :demand
-  :after saveplace)
-
 (use-package rainbow-mode
   :ensure
   :delight
@@ -424,7 +419,7 @@
                    (directory . emacs)
                    ("\\.mm\\'" . default)
                    ("\\.x?html?\\'" . default)
-                   ("\\.pdf\\'" . default)
+                   ("\\.pdf\\'" . browse-url)
                    ("\\.webm\\'" . "mpv %s")
                    ("\\.odt\\'" . "libreoffice %s")))
   (org-highlight-latex-and-related '(latex entities))
@@ -635,42 +630,6 @@
 
 (use-package sh-script
   :custom (sh-shell-file "/bin/sh"))
-
-(use-package pdf-tools
-  :ensure
-  :defer 1
-  :mode ("\\.pdf\\'" . pdf-view-mode)
-  :bind
-  (:map pdf-view-mode-map
-        ("]" . pdf-view-scroll-up-or-next-page)
-        ("[" . pdf-view-scroll-down-or-previous-page))
-  :custom
-  (pdf-annot-activate-created-annotations t)
-  (pdf-annot-tweak-tooltips nil)
-  (pdf-outline-display-labels t)
-  :config
-  (defun +pdf-view-auto-resize (_frame)
-    (unless (numberp pdf-view-display-size)
-      (let ((screen-width
-             (nth 3 (assoc 'workarea
-                           (car (display-monitor-attributes-list))))))
-        (if (<= (window-pixel-width) (/ screen-width 2))
-            (pdf-view-fit-width-to-window)
-          (pdf-view-fit-height-to-window)))))
-  (pdf-loader-install :no-query)
-  :hook
-  (pdf-view-mode-hook . pdf-tools-enable-minor-modes)
-  (pdf-view-mode-hook . pdf-view-auto-slice-minor-mode)
-  (pdf-view-mode-hook
-   . (lambda ()
-       (setq-local mode-line-position
-                   '(" L" (:eval (pdf-view-current-pagelabel))
-                     "/P" (:eval (number-to-string (pdf-view-current-page)))
-                     "/" (:eval (or (ignore-errors
-                                      (number-to-string (pdf-cache-number-of-pages)))
-                                    "???"))))
-       (add-hook 'window-size-change-functions
-                 #'+pdf-view-auto-resize nil t))))
 
 (use-package nov
   :ensure
@@ -926,6 +885,9 @@
 
 (use-package gnus
   :custom (gnus-article-date-headers '(combined-local-lapsed)))
+
+(use-package mailcap
+  :custom (mailcap-user-mime-data '(("xdg-open %s" "application/pdf"))))
 
 (use-package mu4e
   :defer 2
