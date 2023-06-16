@@ -17,6 +17,7 @@
  minibuffer-follows-selected-frame nil
  minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)
  mode-line-compact t
+ mouse-autoselect-window t
  next-error-message-highlight t
  read-extended-command-predicate #'command-completion-default-include-p
  ring-bell-function 'ignore
