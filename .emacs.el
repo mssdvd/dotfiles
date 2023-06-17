@@ -124,6 +124,8 @@
 ;;;;
 
 (use-package package
+  :custom (package-archive-priorities '(("gnu" . 2)
+                                        ("melpa" . 1)))
   :config
   (unless emacs-repository-branch
     (setopt package-install-upgrade-built-in t))
@@ -134,7 +136,6 @@
 
 (use-package modus-themes
   :ensure
-  :pin gnu
   :demand
   :bind ("C-c q" . modus-themes-toggle)
   :custom
@@ -223,7 +224,6 @@
 
 (use-package consult
   :ensure
-  :pin gnu
   :bind (("C-c i" . consult-info)
          ("C-c h" . consult-history)
          ("C-c x" . consult-mode-command)
@@ -276,7 +276,6 @@
   (xref-show-xrefs-function #'consult-xref))
 
 (use-package marginalia
-  :pin gnu
   :ensure
   :demand
   :bind
@@ -285,7 +284,6 @@
   :config (marginalia-mode 1))
 
 (use-package embark
-  :pin gnu
   :ensure
   :bind
   ("C-." . embark-act)
@@ -304,7 +302,6 @@
                                       (t . t))))
 
 (use-package embark-consult
-  :pin gnu
   :ensure
   :hook (embark-collect-mode-hook . consult-preview-at-point-mode))
 
@@ -329,7 +326,6 @@
 
 (use-package cape
   :ensure
-  :pin gnu
   :demand
   :config (add-to-list 'completion-at-point-functions #'cape-file))
 
@@ -400,7 +396,6 @@
 
 (use-package org
   :ensure
-  :pin gnu
   :bind
   ("C-c l" . org-store-link)
   (:map org-mode-map
@@ -596,7 +591,6 @@
 
 (use-package tempel
   :ensure
-  :pin gnu
   :bind (("M-+" . tempel-insert))
   :custom (tempel-trigger-prefix "<")
   :hook
@@ -646,7 +640,6 @@
 
 (use-package jinx
   :ensure
-  :pin gnu
   :bind ([remap ispell-word] . jinx-correct)
   :custom (jinx-languages "en_US it_IT"))
 
@@ -831,7 +824,6 @@
 
 (use-package osm
   :ensure
-  :pin gnu
   :custom
   (osm-copyright nil)
   (osm-home '(41.9 12.5 6))
