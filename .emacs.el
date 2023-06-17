@@ -5,8 +5,9 @@
 (setq read-process-output-max (* 1024 1024))
 
 (setopt
+ backup-directory-alist (list (cons "." (concat user-emacs-directory "backups/")))
  comint-prompt-read-only t
- custom-file (expand-file-name "custom.el"  user-emacs-directory)
+ custom-file (concat user-emacs-directory "custom.el")
  custom-unlispify-tag-names nil
  echo-keystrokes 0.1
  enable-recursive-minibuffers t
@@ -20,6 +21,7 @@
  mouse-autoselect-window t
  next-error-message-highlight t
  read-extended-command-predicate #'command-completion-default-include-p
+ require-final-newline t
  ring-bell-function 'ignore
  save-interprogram-paste-before-kill t
  scroll-error-top-bottom t
@@ -33,6 +35,7 @@
  use-package-hook-name-suffix nil
  use-short-answers t
  user-mail-address "dm@mssdvd.com"
+ view-read-only t
  window-resize-pixelwise t
  )
 
@@ -851,12 +854,6 @@
   (goggles-kill 'disable)
   :hook (prog-mode-hook text-mode-hook))
 
-(use-package files
-  :custom
-  (backup-directory-alist
-   `(("." . ,(concat user-emacs-directory "backup/"))))
-  (require-final-newline t)
-  (view-read-only t))
 
 (use-package outline
   :hook ((apropos-mode-hook xref-after-update-hook) . outline-minor-mode))
