@@ -124,8 +124,9 @@
 ;;;;
 
 (use-package package
-  :custom (package-install-upgrade-built-in t)
   :config
+  (unless emacs-repository-branch
+    (setopt package-install-upgrade-built-in t))
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
 (use-package delight
