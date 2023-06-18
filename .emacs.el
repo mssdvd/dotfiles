@@ -364,6 +364,7 @@
     :repeat t
     "n" #'flymake-goto-next-error
     "p" #'flymake-goto-prev-error)
+  (remove-hook 'flymake-diagnostic-functions #'flymake-proc-legacy-flymake)
   :hook prog-mode-hook)
 
 (use-package compile
