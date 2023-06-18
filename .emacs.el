@@ -12,6 +12,7 @@
  custom-unlispify-tag-names nil
  echo-keystrokes 0.1
  enable-recursive-minibuffers t
+ history-delete-duplicates t
  indent-tabs-mode nil
  inhibit-startup-screen t
  kill-whole-line t
