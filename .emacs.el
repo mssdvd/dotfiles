@@ -2,7 +2,8 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq read-process-output-max (* 1024 1024))
+(setq pgtk-wait-for-event-timeout nil
+      read-process-output-max (* 1024 1024))
 
 (setopt
  backup-directory-alist (list (cons "." (concat user-emacs-directory "backups/")))
