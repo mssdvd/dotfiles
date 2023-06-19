@@ -883,9 +883,6 @@
 (use-package gnus
   :custom (gnus-article-date-headers '(combined-local-lapsed)))
 
-(use-package mailcap
-  :custom (mailcap-user-mime-data '(("xdg-open %s" "application/pdf"))))
-
 (use-package mu4e
   :defer 2
   :bind
