@@ -440,7 +440,8 @@
   (org-use-fast-tag-selection t)
   :hook
   (org-mode-hook . visual-line-mode)
-  (org-mode-hook . turn-on-org-cdlatex))
+  (org-mode-hook . turn-on-org-cdlatex)
+  (org-mode-hook . (lambda () (display-line-numbers-mode 0))))
 
 (use-package org-agenda
   :bind ("C-c a" . org-agenda)
