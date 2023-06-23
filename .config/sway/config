@@ -5,6 +5,10 @@ set {
 	$wlsunset_toggle "if pidof wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -t 2500 -l 45.9 -L 12.6; fi"
 	$wob_sock $XDG_RUNTIME_DIR/wob.sock
 	$audio_wob pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $wob_sock
+	$left h
+	$down j
+	$up k
+	$right l
 }
 
 output * bg "#000000" solid_color subpixel rgb
@@ -30,9 +34,9 @@ input {
 
 set $mode_display Toggle display output eDP-1 (e), DP-1 (d) | Rotate output (r), reset rotation (R)
 mode "$mode_display" {
-	bindsym --to-code {
+	bindsym {
 		e output eDP-1 toggle, mode "default"
-		d output DP-1 toggle, mode "default"
+ 		d output DP-1 toggle, mode "default"
 
 		r output - transform 90 anticlockwise
 		Shift+r output - transform 0
@@ -44,7 +48,7 @@ mode "$mode_display" {
 
 set $mode_system System (l)ock, (e)xit, (s)uspend, (Shift+r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
-	bindsym --to-code {
+	bindsym {
 		l exec swaylock -f && sleep 1, mode "default"
 		e exec emacsclient -e '(let ((confirm-kill-processes nil))(save-buffers-kill-emacs 1))', exit, mode "default"
 		s exec systemctl suspend, mode "default"
@@ -58,11 +62,11 @@ mode "$mode_system" {
 
 set $mode_screenshot Screenshot copy (w)in, (o)utput, (a)rea, save (Shift+w)in, (Shift+o)utput, (Shift+a)rea, swapp(y)
 mode "$mode_screenshot" {
-	bindsym --to-code {
+	bindsym {
 		w exec grimshot --notify copy window; mode "default"
 		Shift+w exec grimshot --notify save window; mode "default"
-		s exec grimshot --notify copy output; mode "default"
-		Shift+s exec grimshot --notify save output; mode "default"
+		o exec grimshot --notify copy output; mode "default"
+		Shift+o exec grimshot --notify save output; mode "default"
 		a exec grimshot --notify copy area; mode "default"
 		Shift+a exec grimshot --notify save area; mode "default"
 		y exec grim -g "$(slurp)" - | swappy -f -; mode "default"
@@ -75,15 +79,15 @@ mode "$mode_screenshot" {
 
 set $passthrough passthrough mode ($mod+Pause to leave)
 mode "$passthrough" {
-	bindsym --to-code $mod+Pause mode default
+	bindsym $mod+Pause mode default
 }
 
 mode "resize" {
 	bindsym {
-		h resize shrink width 50px
-		j resize grow height 50px
-		k resize shrink height 50px
-		l resize grow width 50px
+		$left resize shrink width 50px
+		$down resize grow height 50px
+		$up resize shrink height 50px
+		$right resize grow width 50px
 
 		Left resize shrink width 50px
 		Down resize grow height 50px
@@ -100,10 +104,7 @@ mode "resize" {
 	 }
 }
 
-
-# bindsym
-
-bindsym --to-code {
+bindsym {
 	$mod+n mode "$mode_display"
 	XF86Display mode "$mode_display"
 	$mod+Shift+e mode "$mode_system"
@@ -161,33 +162,32 @@ bindsym --to-code {
 
 	$mod+Bracketleft exec firefox
 	$mod+Shift+Bracketleft exec firefox --private-window
-	$mod+Backslash exec $term ranger
-	$mod+Shift+Backslash exec pcmanfm-qt
+	$mod+Backslash exec nautilus
+	$mod+Shift+Backslash exec $term ranger
 	$mod+Bracketright exec emacsclient -c -a ''
 
-	# $mod+p exec passmenu --type
-	$mod+Shift+apostrophe exec evince
-	$mod+apostrophe exec zathura
+	$mod+Semicolon exec evince
+
+	$mod+Shift+p exec passmenu
 	$mod+m exec ~/bin/play_in_mpv.sh
 	$mod+Shift+m exec ~/bin/play_in_mpv.sh --vid=no
-	$mod+q exec emacs_calc.sh
-	$mod+Semicolon exec emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar
-	$mod+Shift+Semicolon exec $term aerc
+	$mod+apostrophe exec emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar
+	$mod+Shift+apostrophe exec $term aerc
 	$mod+g exec makoctl invoke
 
-	$mod+h focus left
-	$mod+j focus down
-	$mod+k focus up
-	$mod+l focus right
+	$mod+$left focus left
+	$mod+$down focus down
+	$mod+$up focus up
+	$mod+$right focus right
 	$mod+Left focus left
 	$mod+Down focus down
 	$mod+Up focus up
 	$mod+Right focus right
 
-	$mod+Shift+h move left 50px
-	$mod+Shift+j move down 50px
-	$mod+Shift+k move up 50px
-	$mod+Shift+l move right 50px
+	$mod+Shift+$left move left 50px
+	$mod+Shift+$down move down 50px
+	$mod+Shift+$up move up 50px
+	$mod+Shift+$right move right 50px
 	$mod+Shift+Left move left 50px
 	$mod+Shift+Down move down 50px
 	$mod+Shift+Up move up 50px
@@ -245,7 +245,6 @@ bindsym --to-code {
 	$mod+t exec i3_balance_workspace
 	$mod+Shift+t exec i3_balance_workspace --scope focus
 
-	$mod+p exec passmenu
 }
 
 bindgesture {
