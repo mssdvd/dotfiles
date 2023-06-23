@@ -924,7 +924,6 @@
   (mu4e-headers-visible-lines 8)
   (mu4e-hide-index-messages t)
   (mu4e-notification-support t)
-  (mu4e-read-option-use-builtin nil)
   (mu4e-update-interval 600)
   :config
   (defun +mu4e-view-unread-emails-maybe ()
