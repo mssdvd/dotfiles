@@ -196,6 +196,10 @@
         ("C-<backspace>" . vertico-directory-delete-word))
   :custom
   (vertico-cycle t)
+  (vertico-multiform-categories '((consult-grep buffer)
+                                  (file grid)
+                                  (imenu buffer)))
+  (vertico-multiform-commands '((xref-find-references buffer)))
   (vertico-scroll-margin (/ vertico-count 2))
   (completion-in-region-function
    (lambda (&rest args)
@@ -205,6 +209,7 @@
             args)))
   :config
   (vertico-mode 1)
+  (vertico-multiform-mode 1)
   :hook
   (rfn-eshadow-update-overlay-hook . vertico-directory-tidy)
   (minibuffer-setup-hook . vertico-repeat-save))
