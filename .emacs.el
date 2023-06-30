@@ -155,7 +155,9 @@
     (modus-themes-load-theme 'modus-vivendi)))
 
 (use-package time
-  :custom (display-time-24hr-format t))
+  :custom
+  (display-time-24hr-format t)
+  (display-time-load-average-threshold 0.5))
 
 (use-package display-line-numbers
   :custom (display-line-numbers-grow-only t)
