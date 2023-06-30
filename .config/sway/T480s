@@ -1,7 +1,5 @@
 # -*- mode: conf -*-
 
-font pango:Iosevka Fixed Semibold 12
-
 # Clamshell mode
 bindswitch --reload --locked lid:on output eDP-1 disable
 bindswitch --reload --locked lid:off output eDP-1 enable

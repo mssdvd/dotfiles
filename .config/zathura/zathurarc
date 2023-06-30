@@ -1,4 +1,4 @@
-set font "Iosevka Fixed 15"
+set font "monospace 11"
 set render-loading false
 set recolor-keephue true
 set statusbar-home-tilde true
