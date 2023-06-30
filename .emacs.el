@@ -438,6 +438,7 @@
   (org-latex-packages-alist '(("" "color") ("" "listings") ("AUTO" "babel" t ("pdflatex"))))
   (org-log-into-drawer t)
   (org-outline-path-complete-in-steps nil)
+  (org-pretty-entities t)
   (org-return-follows-link t)
   (org-startup-folded t)
   (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "REDO(r)" "|" "DONE(d)" "CANCELED(c)")))
