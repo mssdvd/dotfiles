@@ -2,22 +2,35 @@ fundamental-mode
 
 (now (format-time-string "%Y-%m-%d %H:%M"))
 (today (format-time-string "%Y-%m-%d"))
-(asciibox "+-" (make-string (length str) ?-) "-+" n
-          "| " (s str)                       " |" n
-          "+-" (make-string (length str) ?-) "-+" n)
+(yesterday (format-time-string "%Y-%m-%d"
+                               (encode-time
+                                (decoded-time-add
+                                 (decode-time nil nil)
+                                 (make-decoded-time :day -1)))))
 
 prog-mode
 
-(fixme (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "FIXME ")
-(todo (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "TODO ")
-(bug (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "BUG ")
-(hack (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "HACK ")
+(todo (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "TODO: ")
+(xxx (if (derived-mode-p 'emacs-lisp-mode) ";; " comment-start) "XXX: ")
 
 emacs-lisp-mode
 
-(lambda "(lambda (" p ")" n> r> ")")
+(lambda "(lambda (" p ") "  r ")")
 (let "(let ((" p "))" n> r> ")")
-(up "(use-package " p n> ":" p ")")
+(up "(use-package " (p "feature") n> ":" q ")")
+
+go-mode go-ts-mode
+
+(main "package main" n n "func main() {" n> q n "}")
+(ifen "if err != nil {" n> r> n> "}")
+
+c-mode
+
+(if "if (" (p "condition") ") {" n> q n> "}")
+
+org-mode
+
+(src "#+begin_src " p n> r> n "#+end_src")
 
 ;; Local Variables:
 ;; mode: lisp-data
