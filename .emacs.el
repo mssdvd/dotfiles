@@ -343,6 +343,11 @@
   :ensure
   :demand
   :bind ("C-c p" . cape-dict)
+  :custom
+  (cape-dict-file (if-let ((file (expand-file-name "~/.words_us-it"))
+                           ((file-readable-p file)))
+                      file
+                    "/usr/share/dict/words"))
   :config (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package isearch
