@@ -336,7 +336,7 @@
 (use-package corfu-popupinfo
   :demand
   :after corfu
-  :custom (corfu-popupinfo-delay '(1.0 . 0.5))
+  :custom (corfu-popupinfo-delay '(2.0 . 0.5))
   :config (corfu-popupinfo-mode 1))
 
 (use-package cape
