@@ -342,6 +342,7 @@
 (use-package cape
   :ensure
   :demand
+  :bind ("C-c p" . cape-dict)
   :config (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package isearch
