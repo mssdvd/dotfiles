@@ -90,7 +90,7 @@
   "Update Emacs master and packages."
   (interactive)
   (list-packages)
-  (magit-status-setup-buffer "~/src/emacs-mssdvd-git/emacs-master/")
+  (magit-status-setup-buffer "~/src/emacs")
   (magit-git-fetch "origin" nil))
 
 (defun +yank-primary ()
