@@ -882,7 +882,7 @@
   :ensure)
 
 (use-package subword
-  :hook (go-mode-hook go-ts-mode-hook))
+  :hook (go-mode-hook go-ts-mode-hook js-base-mode-hook))
 
 (use-package proced
   :custom
