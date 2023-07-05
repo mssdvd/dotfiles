@@ -147,10 +147,10 @@
   (modus-themes-org-blocks 'gray-background)
   (modus-themes-italic-constructs t)
   :config
-  (if (string=
+  (if (equal
        (shell-command-to-string
-        "gsettings get org.gnome.desktop.interface gtk-theme")
-       "'Adwaita'\n")
+        "gsettings get org.gnome.desktop.interface color-scheme")
+       "'prefer-light'\n")
       (modus-themes-load-theme 'modus-operandi)
     (modus-themes-load-theme 'modus-vivendi)))
 

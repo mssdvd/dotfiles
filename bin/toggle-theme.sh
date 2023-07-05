@@ -1,19 +1,17 @@
 #!/bin/sh
 
-gtk_theme=$(gsettings get org.gnome.desktop.interface gtk-theme)
+color_scheme=$(gsettings get org.gnome.desktop.interface color-scheme)
 
-if [ "$gtk_theme" = "'Adwaita'" ]; then
-	# Dark themes
-	gtk_theme='Adwaita-dark'
-	gtk4_color_scheme='prefer-dark'
+if [ "$color_scheme" = "'prefer-light'" ]; then
+	gtk3_theme='Adwaita-dark'
+	color_scheme='prefer-dark'
 	emacs_theme='modus-vivendi'
 else
-	# Light themes
-	gtk_theme='Adwaita'
-	gtk4_color_scheme='prefer-light'
+	gtk3_theme='Adwaita'
+	color_scheme='prefer-light'
 	emacs_theme='modus-operandi'
 fi
 
-gsettings set org.gnome.desktop.interface gtk-theme $gtk_theme
-gsettings set org.gnome.desktop.interface color-scheme $gtk4_color_scheme
+gsettings set org.gnome.desktop.interface gtk-theme $gtk3_theme
+gsettings set org.gnome.desktop.interface color-scheme $color_scheme
 emacsclient --eval "(modus-themes-load-theme '$emacs_theme)" >/dev/null
