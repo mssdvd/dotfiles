@@ -423,7 +423,7 @@
   (:map org-mode-map
         ("C-'" . avy-goto-char-timer)
         ([f6] . org-latex-preview)
-        ([f7] . insert-char))
+        ([f8] . insert-char))
   :custom
   (org-M-RET-may-split-line '((default . nil)))
   (org-attach-auto-tag nil)
