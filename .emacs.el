@@ -417,7 +417,6 @@
   :ensure auctex)
 
 (use-package org
-  :ensure
   :bind
   ("C-c l" . org-store-link)
   (:map org-mode-map
