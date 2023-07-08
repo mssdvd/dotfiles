@@ -281,9 +281,9 @@
         (consult-git-grep dir initial)
       (consult-ripgrep dir initial)))
   (consult-customize consult-line :keymap +consult-line-map)
+  (add-to-list 'consult-preview-excluded-files "\\.pdf\\'")
   :custom
   (consult-narrow-key "<")
-  (consult-preview-excluded-files '("\\.pdf\\'"))
   (register-preview-delay 0.5)
   (register-preview-function #'consult-register-format)
   (xref-show-definitions-function #'consult-xref)
