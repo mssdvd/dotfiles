@@ -838,7 +838,9 @@
   (eww-search-prefix "https://lite.duckduckgo.com/lite/?q="))
 
 (use-package project
-  :custom (project-kill-buffers-display-buffer-list t))
+  :custom
+  (project-kill-buffers-display-buffer-list t)
+  (project-switch-use-entire-map t))
 
 (use-package tab-bar
   :custom (tab-bar-show 1))
