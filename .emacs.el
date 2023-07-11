@@ -639,6 +639,7 @@
   (eldoc-echo-area-prefer-doc-buffer t))
 
 (use-package eshell
+  :bind ("C-c e" . eshell)
   :config
   :config (add-to-list 'eshell-modules-list 'eshell-smart)
   :hook (eshell-mode-hook . (lambda ()
