@@ -652,6 +652,9 @@
   (:map eshell-mode-map
         ([remap eshell-previous-matching-input] . cape-history)))
 
+(use-package em-ls
+  :custom (eshell-ls-initial-args "-h"))
+
 
 (use-package shell
   :custom (shell-has-auto-cd t))
