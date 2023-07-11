@@ -647,6 +647,11 @@
 
 (use-package ansi-color
   :hook (compilation-filter-hook . ansi-color-compilation-filter))
+(use-package esh-mode
+  :bind
+  (:map eshell-mode-map
+        ([remap eshell-previous-matching-input] . cape-history)))
+
 
 (use-package shell
   :custom (shell-has-auto-cd t))
