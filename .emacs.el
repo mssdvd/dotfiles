@@ -122,6 +122,19 @@
   (set-window-dedicated-p (selected-window)
                           (not (window-dedicated-p (selected-window)))))
 
+(defun +google-search (term)
+  "Search Google for TERM."
+  (interactive "sSearch term: ")
+  (browse-url (format "https://google.com/search?q=%s" term)))
+
+(defun +google-flymake (point)
+  "Search Google for Flymake diagnostics at POINT."
+  (interactive "d")
+  (if-let ((term (mapconcat #'flymake-diagnostic-text (flymake-diagnostics point) " "))
+           ((not (string-empty-p term))))
+      (+google-search term)
+    (user-error "No Flymake diagnostics at point")))
+
 ;;;;
 ;; use-package
 ;;;;
@@ -303,15 +316,10 @@
   ("C-." . embark-act)
   ("C-h B" . embark-bindings)
   (:map embark-general-map
-        ("G" . +embark-google-search))
+        ("G" . +google-search)
+        ("F" . +google-flymake))
   (:map minibuffer-local-map
         ("C-," . embark-export))
-  :config
-  (defun +embark-google-search (term)
-    "Search Google for TERM."
-    (interactive "sSearch Term: ")
-    (browse-url
-     (format "https://google.com/search?q=%s" term)))
   :custom (embark-quit-after-action '((kill-buffer . nil)
                                       (t . t))))
 
