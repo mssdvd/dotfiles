@@ -130,9 +130,9 @@
 (defun +google-flymake (point)
   "Search Google for Flymake diagnostics at POINT."
   (interactive "d")
-  (if-let ((term (mapconcat #'flymake-diagnostic-text (flymake-diagnostics point) " "))
-           ((not (string-empty-p term))))
-      (+google-search term)
+  (if-let ((diags (flymake-diagnostics point)))
+      (dolist (txt diags)
+        (+google-search (flymake-diagnostic-text txt)))
     (user-error "No Flymake diagnostics at point")))
 
 ;;;;
