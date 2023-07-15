@@ -225,6 +225,7 @@
             args)))
   :config
   (vertico-mode 1)
+  (vertico-mouse-mode 1)
   (vertico-multiform-mode 1)
   :hook
   (rfn-eshadow-update-overlay-hook . vertico-directory-tidy)
