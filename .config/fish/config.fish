@@ -3,6 +3,7 @@ set fish_greeting
 fish_add_path $HOME/{.local/bin, bin, .cargo/bin, go/bin}
 
 set -gx EDITOR "emacsclient -t -a ''"
+set -gx MAKEFLAGS "-j$(nproc)"
 
 alias qemu qemu-system-x86_64
 alias ssh "env TERM=xterm-256color ssh"
