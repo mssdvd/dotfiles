@@ -730,6 +730,7 @@
 (use-package calc
   :config (setq calc-group-digits t)
   :custom
+  (calc-kill-line-numbering nil)
   (calc-make-windows-dedicated t)
   (calc-multiplication-has-precedence nil))
 
