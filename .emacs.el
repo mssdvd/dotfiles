@@ -1057,17 +1057,17 @@ anymore, go the previous message."
                              (staticcheck . t)
                              (usePlaceholders . t)))))
   :hook
-  ((go-ts-mode-hook
+  ((go-mode-hook
+    go-dot-mod-mode-hook
+    go-ts-mode-hook
     go-mod-ts-mode-hook
     rust-ts-mode-hook)
    . (lambda ()
        (eglot-ensure)
-       (add-hook 'before-save-hook 'eglot-format nil t))))
+       (add-hook 'before-save-hook #'eglot-format nil t))))
 
-(use-package go-ts-mode
-  :mode
-  ("/go\\.mod\\'" . go-mod-ts-mode)
-  ("\\.go\\'" . go-ts-mode))
+(use-package go-mode
+  :ensure)
 
 
 (use-package cc-vars
