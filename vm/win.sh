@@ -26,10 +26,10 @@ exec qemu-system-x86_64 \
     -chardev spicevmc,name=usbredir,id=usbredirchardev2 -device usb-redir,chardev=usbredirchardev2,id=usbredirdev2 \
     -chardev spicevmc,name=usbredir,id=usbredirchardev3 -device usb-redir,chardev=usbredirchardev3,id=usbredirdev3 \
     -vga none -device qxl-vga,vgamem_mb=64 \
-    -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2-ovmf/x64/OVMF_CODE.fd \
+    -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2-ovmf/x64/OVMF_CODE.secboot.fd \
     -drive if=pflash,format=raw,file="$VM_DIR"/uefi_vars.fd \
-    -drive driver=qcow2,file="$VM_DIR"/win.qcow2,if=virtio,aio=native,cache.direct=on,l2-cache-size=8M \
     -chardev socket,id=chrtpm,path="$VM_DIR"/tpm/swtpm-sock \
     -tpmdev emulator,id=tpm0,chardev=chrtpm \
     -device tpm-tis,tpmdev=tpm0 \
+    -drive driver=qcow2,file="$VM_DIR"/win.qcow2,index=0,if=virtio,aio=native,cache.direct=on,l2-cache-size=8M \
     "$@"
