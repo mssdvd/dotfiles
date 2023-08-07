@@ -65,7 +65,6 @@
 (keymap-global-set "<remap> <downcase-word>" #'downcase-dwim)
 (keymap-global-set "<remap> <upcase-word>" #'upcase-dwim)
 (keymap-global-set "<remap> <zap-to-char>" #'zap-up-to-char)
-(keymap-global-set "C-x C-b" #'ibuffer)
 (keymap-global-set "M-]" #'mode-line-other-buffer)
 (keymap-global-set "M-o" #'other-window)
 
@@ -181,6 +180,12 @@
 
 (use-package diff-mode
   :custom (diff-font-lock-prettify t))
+
+(use-package ibuffer
+  :bind
+  ("C-x C-b" . ibuffer)
+  (:map ibuffer-mode-map
+        ("M-o" . other-window)))
 
 (use-package dired
   :custom
