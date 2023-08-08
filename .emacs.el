@@ -409,6 +409,9 @@
   (compilation-ask-about-save nil)
   (compilation-scroll-output 'first-error))
 
+(use-package ansi-color
+  :hook (compilation-filter-hook . ansi-color-compilation-filter))
+
 (use-package recentf
   :demand
   :custom (recentf-max-saved-items 500)
