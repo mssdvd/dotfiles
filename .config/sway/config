@@ -11,7 +11,7 @@ set {
 	$right l
 }
 
-font pango:monospace Semibold 11
+font Terminus 9
 
 output * bg "#000000" solid_color subpixel rgb
 
