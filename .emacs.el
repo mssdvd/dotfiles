@@ -673,6 +673,14 @@
 (use-package em-ls
   :custom (eshell-ls-initial-args "-h"))
 
+(use-package em-prompt
+  :custom
+  (eshell-prompt-function
+   (lambda ()
+     (concat (abbreviate-file-name (eshell/pwd))
+             (unless (eshell-exit-success-p) (format " [%d]" eshell-last-command-status))
+             (if (= (file-user-uid) 0) " # " " $ ")))))
+
 
 (use-package shell
   :custom (shell-has-auto-cd t))
