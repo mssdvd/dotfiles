@@ -412,6 +412,10 @@
 (use-package ansi-color
   :hook (compilation-filter-hook . ansi-color-compilation-filter))
 
+(use-package ansi-osc
+  :custom (ansi-osc-for-compilation-buffer t)
+  :hook (compilation-filter-hook . ansi-osc-compilation-filter))
+
 (use-package recentf
   :demand
   :custom (recentf-max-saved-items 500)
