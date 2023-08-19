@@ -908,15 +908,6 @@
   (vundo-compact-display t)
   (vundo-glyph-alist vundo-unicode-symbols))
 
-(use-package goggles
-  :ensure
-  :delight
-  :config
-  (goggles-delete 'disable)
-  (goggles-kill 'disable)
-  :hook (prog-mode-hook text-mode-hook))
-
-
 (use-package outline
   :hook ((apropos-mode-hook xref-after-update-hook) . outline-minor-mode))
 
