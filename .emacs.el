@@ -688,6 +688,14 @@
              (unless (eshell-exit-success-p) (format " [%d]" eshell-last-command-status))
              (if (= (file-user-uid) 0) " # " " $ ")))))
 
+(use-package em-term
+  :custom
+  (eshell-visual-options '(("git" "--help" "--paginate")))
+  (eshell-visual-subcommands '(("git" "log" "l")))
+  :config
+  (setopt eshell-visual-commands
+          (seq-union '("gh" "watch") eshell-visual-commands)))
+
 
 (use-package shell
   :custom (shell-has-auto-cd t))
