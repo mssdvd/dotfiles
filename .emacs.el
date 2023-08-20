@@ -663,10 +663,14 @@
 (use-package eshell
   :bind ("C-c e" . eshell)
   :config
-  :config (add-to-list 'eshell-modules-list 'eshell-smart)
   :hook (eshell-mode-hook . (lambda ()
                               (setenv "PAGER" "cat")
                               (setenv "EDITOR" "emacsclient"))))
+  (setopt eshell-modules-list
+          (seq-union '(eshell-elecslash
+                       eshell-smart
+                       eshell-tramp)
+                     eshell-modules-list))
 
 (use-package ansi-color
   :hook (compilation-filter-hook . ansi-color-compilation-filter))
