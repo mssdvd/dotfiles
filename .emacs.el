@@ -326,7 +326,8 @@
         ("F" . +google-flymake))
   (:map minibuffer-local-map
         ("C-," . embark-export))
-  :custom (embark-quit-after-action '((kill-buffer . nil)
+  :custom (embark-quit-after-action '((embark-recentf-remove . nil)
+                                      (kill-buffer . nil)
                                       (t . t))))
 
 (use-package embark-consult
