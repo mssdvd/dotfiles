@@ -367,6 +367,9 @@
   :config (add-to-list 'completion-at-point-functions #'cape-file))
 
 (use-package isearch
+  :bind
+  (:map isearch-mode-map
+        ("C-," . isearch-occur))
   :custom
   (isearch-allow-motion t)
   (isearch-allow-scroll 'unlimited)
