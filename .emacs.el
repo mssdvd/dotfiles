@@ -988,7 +988,6 @@
      (:mailing-list . 10)
      (:from . 22)
      (:thread-subject)))
-  (mu4e-headers-include-related nil)
   (mu4e-headers-visible-lines 8)
   (mu4e-hide-index-messages t)
   (mu4e-notification-support t)
