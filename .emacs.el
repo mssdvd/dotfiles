@@ -53,7 +53,6 @@
 (savehist-mode 1)
 (size-indication-mode 1)
 (temp-buffer-resize-mode 1)
-(winner-mode 1)
 
 (dolist (hook '(conf-mode-hook prog-mode-hook text-mode-hook))
   (add-hook hook (lambda () (add-hook 'before-save-hook #'delete-trailing-whitespace nil t))))
@@ -177,6 +176,11 @@
 
 (use-package display-fill-column-indicator
   :hook (conf-mode-hook markdown-mode-hook prog-mode-hook))
+
+(use-package winner
+  :demand
+  :custom (winner-boring-buffers-regexp " \*Minibuf-[0-9]+")
+  :config (winner-mode 1))
 
 (use-package diff-mode
   :custom (diff-font-lock-prettify t))
