@@ -219,7 +219,10 @@
   (vertico-multiform-categories '((consult-grep buffer)
                                   (file grid)
                                   (imenu buffer)))
-  (vertico-multiform-commands '((xref-find-apropos buffer)
+  (vertico-multiform-commands '((consult-line buffer)
+                                (consult-line-multi buffer)
+                                (consult-outline buffer)
+                                (xref-find-apropos buffer)
                                 (xref-find-references buffer)))
   (vertico-scroll-margin (/ vertico-count 2))
   (completion-in-region-function
