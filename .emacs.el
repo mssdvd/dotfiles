@@ -122,7 +122,9 @@
 (defun +google-search (term)
   "Search Google for TERM."
   (interactive "sSearch term: ")
-  (browse-url (format "https://google.com/search?q=%s" term)))
+  (let ((browse-url-browser-function
+         (default-value 'browse-url-browser-function)))
+    (browse-url (format "https://google.com/search?q=%s" term))))
 
 (defun +google-flymake (point)
   "Search Google for Flymake diagnostics at POINT."
