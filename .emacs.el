@@ -743,9 +743,7 @@
   (ediff-split-window-function #'split-window-horizontally))
 
 (use-package gdb-mi
-  :custom
-  (gdb-many-windows t)
-  (gdb-show-main t))
+  :custom (gdb-many-windows t))
 
 (use-package hippie-exp
   :bind
