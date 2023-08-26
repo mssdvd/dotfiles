@@ -53,6 +53,8 @@
 (savehist-mode 1)
 (size-indication-mode 1)
 (temp-buffer-resize-mode 1)
+(windmove-default-keybindings)
+(windmove-swap-states-default-keybindings '(shift meta))
 
 (dolist (hook '(conf-mode-hook prog-mode-hook text-mode-hook))
   (add-hook hook (lambda () (add-hook 'before-save-hook #'delete-trailing-whitespace nil t))))
