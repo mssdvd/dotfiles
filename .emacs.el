@@ -53,8 +53,6 @@
 (savehist-mode 1)
 (size-indication-mode 1)
 (temp-buffer-resize-mode 1)
-(windmove-default-keybindings)
-(windmove-swap-states-default-keybindings '(shift meta))
 
 (dolist (hook '(conf-mode-hook prog-mode-hook text-mode-hook))
   (add-hook hook (lambda () (add-hook 'before-save-hook #'delete-trailing-whitespace nil t))))
@@ -185,6 +183,13 @@
   :demand
   :custom (winner-boring-buffers-regexp " *Minibuf-[0-9]+")
   :config (winner-mode 1))
+
+(use-package windmove
+  :demand
+  :custom (windmove-wrap-around t)
+  :config
+  (windmove-default-keybindings)
+  (windmove-swap-states-default-keybindings '(shift meta)))
 
 (use-package diff-mode
   :custom (diff-font-lock-prettify t))
