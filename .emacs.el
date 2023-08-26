@@ -186,10 +186,29 @@
 
 (use-package windmove
   :demand
+  :bind
+  ("C-c w <left>" . windmove-left)
+  ("C-c w <right>" . windmove-right)
+  ("C-c w <up>" . windmove-up)
+  ("C-c w <down>" . windmove-down)
+  ("C-c w S-<left>" . windmove-swap-states-left)
+  ("C-c w S-<right>" . windmove-swap-states-right)
+  ("C-c w S-<up>" . windmove-swap-states-up)
+  ("C-c w S-<down>" . windmove-swap-states-down)
   :custom (windmove-wrap-around t)
   :config
-  (windmove-default-keybindings)
-  (windmove-swap-states-default-keybindings '(shift meta)))
+  (defvar-keymap +windmove-repeat-map
+    :doc "Keymap to repeat `windmove' commands.  Used in `repeat-mode'."
+    :repeat t
+    "<left>"    #'windmove-left
+    "<right>"   #'windmove-right
+    "<up>"      #'windmove-up
+    "<down>"    #'windmove-down
+    "S-<left>"  #'windmove-swap-states-left
+    "S-<right>" #'windmove-swap-states-right
+    "S-<up>"    #'windmove-swap-states-up
+    "S-<down>"  #'windmove-swap-states-down))
+
 
 (use-package diff-mode
   :custom (diff-font-lock-prettify t))
