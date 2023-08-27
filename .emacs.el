@@ -49,7 +49,6 @@
 (find-function-setup-keys)
 (minibuffer-depth-indicate-mode 1)
 (pixel-scroll-precision-mode 1)
-(repeat-mode 1)
 (savehist-mode 1)
 (size-indication-mode 1)
 (temp-buffer-resize-mode 1)
@@ -178,6 +177,11 @@
 
 (use-package display-fill-column-indicator
   :hook (conf-mode-hook markdown-mode-hook prog-mode-hook))
+
+(use-package repeat
+  :demand
+  :custom (repeat-exit-key "RET")
+  :config (repeat-mode 1))
 
 (use-package winner
   :demand
