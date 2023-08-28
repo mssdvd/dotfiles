@@ -698,8 +698,7 @@
           (seq-union '(eshell-elecslash
                        eshell-smart
                        eshell-tramp)
-                     eshell-modules-list))
-  :hook (eshell-mode-hook . (lambda () (setenv "PAGER" "cat"))))
+                     eshell-modules-list)))
 
 (use-package ansi-color
   :hook (compilation-filter-hook . ansi-color-compilation-filter))
