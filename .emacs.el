@@ -159,10 +159,11 @@
   (modus-themes-org-blocks 'gray-background)
   (modus-themes-italic-constructs t)
   :config
-  (if (equal
-       (shell-command-to-string
-        "gsettings get org.gnome.desktop.interface color-scheme")
-       "'prefer-light'\n")
+  (if (and (equal system-type 'gnu/linux)
+           (equal
+            (shell-command-to-string
+             "gsettings get org.gnome.desktop.interface color-scheme")
+            "'prefer-light'\n"))
       (modus-themes-load-theme 'modus-operandi)
     (modus-themes-load-theme 'modus-vivendi)))
 
