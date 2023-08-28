@@ -859,35 +859,8 @@
   :mode ("\\.m\\'" . matlab-mode)
   :custom (matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
-(use-package rcirc
   :custom
-  (rcirc-default-nick "mssdvd")
-  (rcirc-default-part-reason "")
-  (rcirc-default-quit-reason "")
-  (rcirc-default-user-name rcirc-default-nick)
-  (rcirc-display-server-buffer nil)
-  (rcirc-fill-column
-   (lambda () (max fill-column (* (window-text-width) (/ 2.0 3)))))
-  (rcirc-kill-channel-buffers t)
-  (rcirc-omit-unless-requested '("NAMES" "TOPIC"))
-  (rcirc-prompt "%t> ")
-  (rcirc-reconnect-delay 30)
-  (rcirc-server-alist
-   `(("chat.sr.ht"
-      :port 6697
-      :encryption tls
-      :user-name ,(concat "mssdvd/liberachat@" (system-name) "-rcirc")
-      :password ,(+pass-get-keep-asking "chat.sr.ht/mssdvd"))))
-  (rcirc-time-format "%d-%m %H:%M ")
-  (rcirc-track-ignore-server-buffer-flag t)
   :config
-  (use-package rcirc-color
-    :ensure
-    :demand)
-  :hook
-  (rcirc-mode-hook . rcirc-track-minor-mode)
-  (rcirc-mode-hook . rcirc-omit-mode)
-  (rcirc-mode-hook . read-only-mode))
 
 (use-package re-builder
   :custom (reb-re-syntax 'string))
