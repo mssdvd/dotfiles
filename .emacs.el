@@ -996,6 +996,7 @@
      (:name "Last 7 days" :query ,(+mu4e--hide "date:7d..now") :key ?w)
      (:name "All Inboxes" :query ,(+mu4e--hide "maildir:/INBOX/") :hide-unread t :key ?i)
      (:name "Sent" :query ,(+mu4e--hide "maildir:/Sent/") :key ?s)
+     (:name "Drafts" :query ,(+mu4e--hide "maildir:/Drafts/") :key ?d)
      (:name "Flagged" :query ,(+mu4e--hide "flag:flagged") :key ?f)))
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read)
