@@ -208,7 +208,7 @@
 
 (use-package ibuffer
   :bind
-  ("C-x C-b" . ibuffer)
+  ([remap list-buffers] . ibuffer)
   (:map ibuffer-mode-map
         ("M-o" . other-window)))
 
@@ -285,7 +285,6 @@
   ("C-c h" . consult-history)
   ("C-c i" . consult-info)
   ("C-c x" . consult-mode-command)
-  ("C-x r x" . consult-register)
   ("M-g I" . consult-imenu-multi)
   ("M-g e" . consult-compile-error)
   ("M-g f" . consult-flymake)
@@ -300,6 +299,7 @@
   ("M-s l" . consult-line)
   ("M-s u" . consult-focus-lines)
   ([remap bookmark-jump] . consult-bookmark)
+  ([remap copy-to-register] . consult-register)
   ([remap imenu] . consult-imenu)
   ([remap project-switch-to-buffer] . consult-project-buffer)
   ([remap repeat-complex-command] . consult-complex-command)
@@ -474,7 +474,6 @@
   :bind
   ("C-c l" . org-store-link)
   (:map org-mode-map
-        ("C-'" . avy-goto-char-timer)
         ([f6] . org-latex-preview)
         ([f8] . insert-char))
   :custom
@@ -762,8 +761,7 @@
   :custom (gdb-many-windows t))
 
 (use-package hippie-exp
-  :bind
-  ("M-/" . hippie-expand))
+  :bind ([remap dabbrev-expand] . hippie-expand)
 
 (use-package abbrev
   :delight
