@@ -264,7 +264,6 @@ seat * hide_cursor 10000
 for_window {
 	[app_id="firefox" title="(?i)^picture-in-picture"] floating enable, sticky enable
 	[app_id="firefox" title="About Mozilla Firefox"] floating enable
-	[app_id="firefox" title="Firefox — Sharing Indicator"] kill
 	[app_id="floating_window"] floating enable
 	[app_id="gcr-prompter"] focus
 	[class="floating_window"] floating enable
