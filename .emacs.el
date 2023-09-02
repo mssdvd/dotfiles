@@ -459,6 +459,11 @@
   :custom (save-place-limit 1600)
   :config (save-place-mode 1))
 
+(use-package desktop
+  :custom
+  (desktop-globals-to-clear nil)
+  (desktop-globals-to-save '(desktop-missing-file-warning)))
+
 (use-package rainbow-mode
   :ensure
   :delight
