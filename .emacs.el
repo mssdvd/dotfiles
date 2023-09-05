@@ -26,7 +26,7 @@
  require-final-newline t
  ring-bell-function 'ignore
  save-interprogram-paste-before-kill t
- savehist-additional-variables '(kill-ring)
+ savehist-additional-variables '(compile-command kill-ring register-alist)
  scroll-error-top-bottom t
  scroll-preserve-screen-position t
  set-mark-command-repeat-pop t
