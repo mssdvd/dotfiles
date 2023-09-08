@@ -1,9 +1,10 @@
 [user]
 primary_email=dm@mssdvd.com
-other_email=d.masserut@gmail.com;dmasserut@pec.it;
+other_email=d.masserut@gmail.com
 
 [new]
-tags=new;
+tags=new
+ignore=.uidvalidity;.mbsyncstate
 
 [search]
-exclude_tags=deleted;spam;
+exclude_tags=deleted;spam;trash
