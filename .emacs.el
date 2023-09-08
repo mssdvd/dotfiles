@@ -973,37 +973,40 @@
   (:map mu4e-view-mode-map
         ("S-SPC" . +mu4e-view-scroll-down-or-prev)
         ("<backspace>" . +mu4e-view-scroll-down-or-prev))
-  :init
-  (defun +mu4e--hide (query)
-    (concat query " AND NOT (flag:trashed OR maildir:/Trash/ OR maildir:/Bin/ OR maildir:/Spam/ OR maildir:/Junk/)"))
   :custom
   (mail-user-agent 'mu4e-user-agent)
   (mm-discouraged-alternatives '("text/html" "text/richtext"))
   (mu4e-bookmarks
-   `((:name "Unread messages" :query ,(+mu4e--hide "flag:unread") :key ?u)
-     (:name "Today's messages" :query ,(+mu4e--hide "date:today..now") :key ?t)
-     (:name "Last 7 days" :query ,(+mu4e--hide "date:7d..now") :key ?w)
-     (:name "All Inboxes" :query ,(+mu4e--hide "maildir:/INBOX/") :hide-unread t :key ?i)
-     (:name "Sent" :query ,(+mu4e--hide "maildir:/Sent/") :key ?s)
-     (:name "Drafts" :query ,(+mu4e--hide "maildir:/Drafts/") :key ?d)
-     (:name "Flagged" :query ,(+mu4e--hide "flag:flagged") :key ?f)))
+   `((:name "Unread messages" :query "flag:unread maildir:/INBOX/" :key ?u)
+     (:name "Today's messages" :query "date:today..now" :key ?t)
+     (:name "Last 7 days" :query "date:7d..now" :key ?w)
+     (:name "All Inboxes" :query "maildir:/INBOX/" :hide-unread t :key ?i)
+     (:name "Sent" :query "maildir:/Sent/" :key ?s)
+     (:name "Drafts" :query "maildir:/Drafts/" :key ?d)
+     (:name "Flagged" :query "flag:flagged" :key ?f)))
   (mu4e-change-filenames-when-moving t)
   (mu4e-completing-read-function #'completing-read)
   (mu4e-compose-context-policy nil)
   (mu4e-compose-format-flowed t)
   (mu4e-context-policy 'pick-first)
-  (mu4e-eldoc-support t)
   (mu4e-get-mail-command "mbsync -a")
-  (mu4e-headers-auto-update nil)
   (mu4e-headers-fields
    '((:human-date . 12)
      (:flags . 6)
      (:mailing-list . 10)
      (:from . 22)
      (:thread-subject)))
-  (mu4e-headers-visible-lines 8)
+  (mu4e-headers-include-related nil)
   (mu4e-hide-index-messages t)
   (mu4e-notification-support t)
+  (mu4e-search-hide-predicate
+   (lambda (msg)
+     (or
+      (string-suffix-p "Junk" (mu4e-message-field msg :maildir))
+      (string-suffix-p "Spam" (mu4e-message-field msg :maildir))
+      (string-suffix-p "Bin" (mu4e-message-field msg :maildir))
+      (string-suffix-p "Trash" (mu4e-message-field msg :maildir))
+      (member 'trashed (mu4e-message-field msg :flags)))))
   (mu4e-update-interval 600)
   :config
   (defun +mu4e-view-unread-emails-maybe ()
@@ -1059,15 +1062,14 @@ anymore, go the previous message."
                  display-buffer-same-window))
 
   (setf (plist-get (alist-get 'trash mu4e-marks) :action)
-        (lambda
-          (docid _msg target)
+        (lambda (docid _msg target)
           (mu4e--server-move docid
                              (mu4e--mark-check-target target)
                              "+S-u-N")))
 
-  (mu4e t)
+
+  (mu4e 1)
   :hook
-  (mu4e-compose-mode-hook . (lambda () (auto-save-mode -1)))
   (mu4e-index-updated-hook . (lambda ()
                                (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
                                  (start-process "update mail indicator" nil
