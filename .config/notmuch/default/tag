@@ -1,6 +1,6 @@
 +mssdvd tag:new and path:dm@mssdvd.com/**
 +gmail  tag:new and path:d.masserut@gmail.com/**
-     
+
 +draft  tag:new and folder:/Drafts/
 +inbox  tag:new and folder:/INBOX/
 +sent   tag:new and folder:/Sent/
@@ -8,5 +8,5 @@
 +trash  tag:new and folder:/Bin|Trash/
 
 +unipd  tag:new and from:unipd.it
-            
+
 -new    tag:new
