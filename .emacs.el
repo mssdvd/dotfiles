@@ -949,6 +949,7 @@
 (use-package message
   :custom
   (message-auto-save-directory nil)
+  (message-confirm-send t)
   (message-kill-buffer-on-exit t)
   (message-sendmail-envelope-from 'header))
 
