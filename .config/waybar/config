@@ -1,28 +1,27 @@
 {
-    "layer": "top",
-    "position": "bottom",
-    "modules-left": ["sway/workspaces", "sway/mode"],
-    "modules-center": [],
-    "modules-right": [
-        "pulseaudio",
-        "cpu",
-        "memory",
-        "temperature",
-        "backlight",
-        "network",
-        "battery",
-        "clock",
-        "custom/email",
-        "tray"
-    ],
-    "custom/email": {
-        "format": "{} MAIL",
-        "interval": "once",
-        "exec": "mu find 'flag:unread AND NOT (flag:trashed OR maildir:/Spam/ OR maildir:/Junk/)' | wc -l",
-        "on-click": "mu find 'flag:unread AND NOT (flag:trashed OR maildir:/Spam/ OR maildir:/Junk/)' | wc -l",
-        "on-click-right": "emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar",
-        "signal": 1
-    },
+  "layer": "top",
+  "position": "bottom",
+  "modules-left": ["sway/workspaces", "sway/mode"],
+  "modules-center": [],
+  "modules-right": [
+    "pulseaudio",
+    "cpu",
+    "memory",
+    "temperature",
+    "backlight",
+    "network",
+    "battery",
+    "clock",
+    "custom/email",
+    "tray"
+  ],
+  "custom/email": {
+    "format": "{} MAIL",
+    "interval": "once",
+    "exec": "notmuch count tag:unread and tag:inbox",
+    "on-click-right": "emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar",
+    "signal": 1
+  },
     "clock": {
         "tooltip-format": "<big>{:%Y %B}\n<tt>{calendar}</tt></big>",
         "format": "{:%F %a %R}",

@@ -952,123 +952,12 @@
   (message-kill-buffer-on-exit t)
   (message-sendmail-envelope-from 'header))
 
-(use-package gnus
-  :custom (gnus-article-date-headers '(combined-local-lapsed)))
-
-(use-package mu4e
-  :disabled
-  :defer 2
-  :bind
-  ("C-c m" . mu4e)
-  (:map mu4e-main-mode-map
-        ("q" . bury-buffer)
-        ("Q" . mu4e-quit))
-  (:map mu4e-view-mode-map
-        ("S-SPC" . +mu4e-view-scroll-down-or-prev)
-        ("<backspace>" . +mu4e-view-scroll-down-or-prev))
-  :custom
-  (mail-user-agent 'mu4e-user-agent)
-  (mm-discouraged-alternatives '("text/html" "text/richtext"))
-  (mu4e-bookmarks
-   `((:name "Unread messages" :query "flag:unread maildir:/INBOX/" :key ?u)
-     (:name "Today's messages" :query "date:today..now" :key ?t)
-     (:name "Last 7 days" :query "date:7d..now" :key ?w)
-     (:name "All Inboxes" :query "maildir:/INBOX/" :hide-unread t :key ?i)
-     (:name "Sent" :query "maildir:/Sent/" :key ?s)
-     (:name "Drafts" :query "maildir:/Drafts/" :key ?d)
-     (:name "Flagged" :query "flag:flagged" :key ?f)))
-  (mu4e-change-filenames-when-moving t)
-  (mu4e-completing-read-function #'completing-read)
-  (mu4e-compose-context-policy nil)
-  (mu4e-compose-format-flowed t)
-  (mu4e-context-policy 'pick-first)
-  (mu4e-get-mail-command "mbsync -a")
-  (mu4e-headers-fields
-   '((:human-date . 12)
-     (:flags . 6)
-     (:mailing-list . 10)
-     (:from . 22)
-     (:thread-subject)))
-  (mu4e-headers-include-related nil)
-  (mu4e-hide-index-messages t)
-  (mu4e-notification-support t)
-  (mu4e-search-hide-predicate
-   (lambda (msg)
-     (or
-      (string-suffix-p "Junk" (mu4e-message-field msg :maildir))
-      (string-suffix-p "Spam" (mu4e-message-field msg :maildir))
-      (string-suffix-p "Bin" (mu4e-message-field msg :maildir))
-      (string-suffix-p "Trash" (mu4e-message-field msg :maildir))
-      (member 'trashed (mu4e-message-field msg :flags)))))
-  (mu4e-update-interval 600)
-  :config
-  (defun +mu4e-view-unread-emails-maybe ()
-    "If there are unread emails display them in the mu4e headers buffer,
-otherwise display the main mu4e buffer."
-    (interactive)
-    (let ((unread-query (+mu4e--hide "flag:unread")))
-      (if (= (plist-get (mu4e-bookmark-favorite) :unread) 0)
-          (mu4e)
-        (mu4e-search unread-query))))
-
-  (defun +mu4e-view-scroll-down-or-prev ()
-    "Scroll-down the current message.
-If `mu4e-view-scroll-to-next' is non-nil, and we can't scroll-down
-anymore, go the previous message."
-    (interactive nil mu4e-view-mode)
-    (condition-case nil
-        (scroll-down)
-      (error
-       (when mu4e-view-scroll-to-next
-         (mu4e-view-headers-prev)))))
-
-  (setq mu4e-contexts
-        `(,(make-mu4e-context
-            :name "mssdvd"
-            :match-func
-            (lambda (msg)
-              (when msg
-                (string-prefix-p "/dm@mssdvd.com" (mu4e-message-field msg :maildir))))
-            :vars '((user-mail-address . "dm@mssdvd.com")
-                    (mu4e-sent-messages-behavior . sent)
-                    (mu4e-drafts-folder . "/dm@mssdvd.com/Drafts")
-                    (mu4e-refile-folder . "/dm@mssdvd.com/Archive")
-                    (mu4e-sent-folder . "/dm@mssdvd.com/Sent")
-                    (mu4e-trash-folder . "/dm@mssdvd.com/Trash")))
-          ,(make-mu4e-context
-            :name "gmail"
-            :match-func
-            (lambda (msg)
-              (when msg
-                (string-prefix-p "/d.masserut@gmail.com" (mu4e-message-field msg :maildir))))
-            :vars '((user-mail-address . "d.masserut@gmail.com")
-                    (mu4e-sent-messages-behavior . delete)
-                    (mu4e-drafts-folder . "/d.masserut@gmail.com/[Gmail]/Drafts")
-                    (mu4e-refile-folder . "/d.masserut@gmail.com/[Gmail]/All Mail")
-                    (mu4e-sent-folder . "/d.masserut@gmail.com/[Gmail]/Sent Mail")
-                    (mu4e-trash-folder . "/d.masserut@gmail.com/[Gmail]/Bin"))))
-        mu4e-org-link-query-in-headers-mode t
-        mu4e-user-agent-string nil)
-
-  (add-to-list 'display-buffer-alist
-               `(,(regexp-quote mu4e-main-buffer-name)
-                 display-buffer-same-window))
-
-  (setf (plist-get (alist-get 'trash mu4e-marks) :action)
-        (lambda (docid _msg target)
-          (mu4e--server-move docid
-                             (mu4e--mark-check-target target)
-                             "+S-u-N")))
-
-
-  (mu4e 1)
-  :hook
-  (mu4e-index-updated-hook . (lambda ()
-                               (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
-                                 (start-process "update mail indicator" nil
-                                                "pkill" "-SIGRTMIN+1" "waybar")))))
-
 (use-package sendmail
+  :custom
+  (mail-specify-envelope-from t)
+  (send-mail-function #'sendmail-send-it)
+  (sendmail-program "/usr/bin/msmtp"))
+
 (use-package notmuch
   :commands (notmuch notmuch-search +sync-email)
   :bind
@@ -1082,9 +971,6 @@ anymore, go the previous message."
                    (notmuch)
                  (notmuch-search "tag:unread" t))))
   :custom
-  (mail-specify-envelope-from t)
-  (send-mail-function #'sendmail-send-it)
-  (sendmail-program "/usr/bin/msmtp"))
   (mail-user-agent 'notmuch-user-agent)
   (notmuch-draft-folder "dm@mssdvd.com/Drafts")
   (notmuch-fcc-dirs
