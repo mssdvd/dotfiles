@@ -133,6 +133,22 @@
         (+google-search (flymake-diagnostic-text txt)))
     (user-error "No Flymake diagnostics at point")))
 
+(defun +display-system-status-when-fullscreen (frame)
+  "Enable `display-time-mode' and `display-battery-mode' if FRAME is fullscreen."
+  (if (eq 'fullboth (frame-parameter frame 'fullscreen))
+      (progn
+        (display-time-mode 1)
+        (require 'battery)
+        (when (equal (alist-get ?L (funcall battery-status-function))
+                     "off-line")
+          (display-battery-mode 1)))
+    (when (bound-and-true-p display-time-mode)
+      (display-time-mode 0))
+    (when (bound-and-true-p display-battery-mode)
+      (display-battery-mode 0))))
+(add-hook 'window-size-change-functions
+          #'+display-system-status-when-fullscreen)
+
 ;;;;
 ;; use-package
 ;;;;
