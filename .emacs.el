@@ -15,7 +15,6 @@
  history-delete-duplicates t
  indent-tabs-mode nil
  inhibit-startup-screen t
- kill-whole-line t
  load-prefer-newer t
  minibuffer-follows-selected-frame nil
  minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)
