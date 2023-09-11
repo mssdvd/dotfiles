@@ -1019,10 +1019,11 @@
     (start-process "sync emails and update notmuch index" nil
                    "systemctl" "--user" "start" "sync_email.service"))
   :hook
-  (notmuch-after-tag . (lambda ()
-                         (when (string= (getenv "XDG_CURRENT_DESKTOP") "sway")
-                           (start-process "update mail indicator" nil
-                                          "pkill" "-SIGRTMIN+1" "waybar")))))
+  (notmuch-after-tag-hook
+   . (lambda ()
+       (when (equal (getenv "XDG_CURRENT_DESKTOP") "sway")
+         (start-process "update mail indicator" nil
+                        "pkill" "-SIGRTMIN+1" "waybar")))))
 
 (use-package notmuch-indicator
   :ensure
