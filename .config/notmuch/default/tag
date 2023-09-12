@@ -7,6 +7,7 @@
 +spam   tag:new and folder:/Spam|Junk/
 +trash  tag:new and folder:/Bin|Trash/
 
++emacs  tag:new and emacs
 +unipd  tag:new and from:unipd.it
 
 -new    tag:new
