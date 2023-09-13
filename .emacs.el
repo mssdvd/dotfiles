@@ -501,6 +501,7 @@
   (org-M-RET-may-split-line '((default . nil)))
   (org-attach-auto-tag nil)
   (org-babel-load-languages '((emacs-lisp . t)
+                              (gnuplot . t)
                               (python . t)
                               (shell . t)))
   (org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE")
