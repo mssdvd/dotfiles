@@ -574,7 +574,12 @@
       :clock-keep t
       :jump-to-captured t
       :empty-lines 0
-      :tree-type week))))
+      :tree-type week)
+
+     ("w" "Weight" table-line
+      (file "~/notes/weight.org")
+      "| %u | %? |"
+      :kill-buffer t))))
 
 (use-package org-indent
   :delight
