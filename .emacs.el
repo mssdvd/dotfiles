@@ -364,9 +364,10 @@
   :bind
   ("C-." . embark-act)
   ("C-h B" . embark-bindings)
-  (:map embark-general-map
-        ("G" . +google-search)
+  (:map embark-flymake-map
         ("F" . +google-flymake))
+  (:map embark-general-map
+        ("G" . +google-search))
   (:map minibuffer-local-map
         ("C-," . embark-export))
   :custom (embark-quit-after-action '((embark-recentf-remove . nil)
