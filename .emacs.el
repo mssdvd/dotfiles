@@ -174,13 +174,13 @@
   (modus-themes-org-blocks 'gray-background)
   (modus-themes-italic-constructs t)
   :config
-  (if (and (equal system-type 'gnu/linux)
-           (equal
-            (shell-command-to-string
-             "gsettings get org.gnome.desktop.interface color-scheme")
-            "'prefer-light'\n"))
-      (modus-themes-load-theme 'modus-operandi)
-    (modus-themes-load-theme 'modus-vivendi)))
+  (if (ignore-errors
+        (equal (process-lines
+                "gsettings" "get"
+                "org.gnome.desktop.interface" "color-scheme")
+               '("'prefer-dark'")))
+      (modus-themes-load-theme 'modus-vivendi)
+    (modus-themes-load-theme 'modus-operandi)))
 
 (use-package time
   :custom
