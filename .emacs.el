@@ -725,7 +725,8 @@
           (seq-union '(eshell-elecslash
                        eshell-smart
                        eshell-tramp)
-                     eshell-modules-list)))
+                     eshell-modules-list))
+  :hook (eshell-mode-hook . (lambda () (setq-local truncate-lines t))))
 
 (use-package ansi-color
   :hook (compilation-filter-hook . ansi-color-compilation-filter))
