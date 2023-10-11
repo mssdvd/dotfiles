@@ -2,13 +2,13 @@
 
 color_scheme=${1:-$(gsettings get org.gnome.desktop.interface color-scheme)}
 
-if [ "$color_scheme" = "dark" ] || [ "$color_scheme" = "'prefer-light'" ]; then
+if [ "$color_scheme" = "dark" ] || [ "$color_scheme" = "'prefer-light'" ] || [ "$color_scheme" = "'default'" ]; then
 	gtk3_theme='Adwaita-dark'
 	color_scheme='prefer-dark'
 	emacs_theme='modus-vivendi'
 elif [ "$color_scheme" = "light" ] || [ "$color_scheme" = "'prefer-dark'" ]; then
 	gtk3_theme='Adwaita'
-	color_scheme='prefer-light'
+	color_scheme='default'
 	emacs_theme='modus-operandi'
 else
     exit 1
