@@ -3,7 +3,7 @@ Description=Mailbox synchronization timer
 
 [Timer]
 OnBootSec=1m
-OnUnitActiveSec=2m
+OnUnitActiveSec=10m
 Unit=sync_email.service
 
 [Install]
