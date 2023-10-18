@@ -1,6 +1,0 @@
-[Unit]
-Description=Run nvidiasetfan.sh
-
-[Service]
-Type=oneshot
-ExecStart=%h/bin/nvidiasetfan.sh
