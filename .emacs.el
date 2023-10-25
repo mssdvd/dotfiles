@@ -111,12 +111,6 @@
     (while (re-search-forward (rx "U+" (group (repeat 4 6 hex-digit))) nil t)
       (replace-match (string (string-to-number (match-string 1) 16))))))
 
-(defun +toggle-window-dedication ()
-  "Toggle window dedication in the selected window."
-  (interactive)
-  (set-window-dedicated-p (selected-window)
-                          (not (window-dedicated-p (selected-window)))))
-
 (defun +google-search (term)
   "Search Google for TERM."
   (interactive "sSearch term: ")
@@ -217,7 +211,6 @@
                ("S-<up>" . windmove-swap-states-up)
                ("S-<down>" . windmove-swap-states-down))
   :custom (windmove-wrap-around t))
-
 
 (use-package diff-mode
   :custom (diff-font-lock-prettify t))
