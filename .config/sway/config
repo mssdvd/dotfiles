@@ -1,8 +1,8 @@
 set {
 	$mod Mod4
 	$term foot
-	$menu j4-dmenu-desktop --dmenu='bemenu -p "run"' --term=$term --display-binary --no-generic
 	$wlsunset_toggle "if pidof wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -t 2500 -l 45.9 -L 12.6; fi"
+	$menu j4-dmenu-desktop --dmenu="wmenu -p 'run' -l 5 -i -f 'monospace 15'" --term=$term --display-binary --no-generic
 	$wob_sock $XDG_RUNTIME_DIR/wob.sock
 	$audio_wob pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $wob_sock
 	$left h
