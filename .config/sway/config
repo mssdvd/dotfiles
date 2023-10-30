@@ -221,6 +221,9 @@ bindsym {
 
 	$mod+grave workspace back_and_forth
 
+	$mod+Prior workspace prev_on_output
+	$mod+Next workspace next_on_output
+
 	$mod+b splith
 	$mod+v splitv
 
