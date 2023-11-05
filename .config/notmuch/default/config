@@ -8,3 +8,6 @@ ignore=.uidvalidity;.mbsyncstate
 
 [search]
 exclude_tags=deleted;spam;trash
+
+[database]
+path=mail
