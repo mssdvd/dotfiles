@@ -650,14 +650,15 @@
 
 (use-package magit
   :ensure
+  :bind
+  (:map project-prefix-map
+        ("m" . magit-project-status))
   :custom
   (magit-delete-by-moving-to-trash nil)
   (magit-diff-refine-hunk 'all)
   (magit-save-repository-buffers 'dontask)
   (magit-status-goto-file-position t)
-  :config
-  (require 'magit-extras)
-  (put 'magit-edit-line-commit 'disabled nil))
+  :config (put 'magit-edit-line-commit 'disabled nil))
 
 (use-package forge
   :ensure)
