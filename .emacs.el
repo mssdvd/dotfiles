@@ -666,8 +666,7 @@
 (use-package with-editor
   :hook ((shell-mode-hook
           eshell-mode-hook
-          term-exec-hook
-          vterm-mode-hook)
+          term-exec-hook)
          . with-editor-export-editor))
 
 (use-package epg
@@ -852,25 +851,11 @@
   :custom (csv-separators '("," ";" "	"))
   :hook (csv-mode-hook . csv-guess-set-separator))
 
-(use-package vterm
+(use-package eat
   :ensure
-  :bind ("C-c v" . +vterm-project-other-window)
-  :custom
-  (vterm-always-compile-module t)
-  (vterm-timer-delay nil)
-  :config
-  (defun +vterm-project-other-window (&optional arg)
-    (interactive "P")
-    (let* ((project (project-current))
-           (default-directory (if project
-                                  (project-root project)
-                                default-directory)))
-      (vterm-other-window arg)))
-
-  (add-to-list 'display-buffer-alist
-               `((,(regexp-quote vterm-install-buffer-name)
-                  display-buffer-no-window
-                  (allow-no-window . t)))))
+  :bind ("C-c v" . eat)
+  :custom (eat-kill-buffer-on-exit t)
+  :hook (eshell-load-hook . eat-eshell-visual-command-mode))
 
 (use-package shr
   :custom
