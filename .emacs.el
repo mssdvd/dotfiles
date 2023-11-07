@@ -185,9 +185,6 @@
   :custom (display-line-numbers-grow-only t)
   :hook (conf-mode-hook prog-mode-hook text-mode-hook))
 
-(use-package display-fill-column-indicator
-  :hook (conf-mode-hook markdown-mode-hook prog-mode-hook))
-
 (use-package repeat
   :demand
   :custom (repeat-exit-key "RET")
