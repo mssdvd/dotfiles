@@ -175,7 +175,7 @@ bindsym {
 	$mod+Shift+m exec ~/bin/play_in_mpv.sh --vid=no
 	$mod+apostrophe exec emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar
 	$mod+Shift+apostrophe exec $term aerc
-	$mod+g exec makoctl invoke
+	$mod+g exec swaymsg -q [urgent=latest] focus || makoctl invoke
 
 	$mod+$left focus left
 	$mod+$down focus down
