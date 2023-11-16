@@ -740,7 +740,13 @@
   :custom (shell-has-auto-cd t))
 
 (use-package sh-script
-  :custom (sh-shell-file "/bin/sh"))
+  :custom (sh-shell-file "/bin/sh")
+  :hook
+  (sh-base-mode-hook .
+                     (lambda ()
+                       (when (equal (file-name-nondirectory buffer-file-name)
+                                    "PKGBUILD")
+                         (setq-local flymake-show-diagnostics-at-end-of-line nil)))))
 
 (use-package nov
   :ensure
@@ -1039,6 +1045,7 @@
     rust-mode-hook
     rust-ts-mode-hook)
    . (lambda ()
+       (setq-local flymake-show-diagnostics-at-end-of-line nil)
        (eglot-ensure)))
   ((go-mode-hook
     go-dot-mod-mode-hook
