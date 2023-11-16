@@ -1030,13 +1030,23 @@
                              (staticcheck . t)
                              (usePlaceholders . t)))))
   :hook
+  ((c-mode-hook
+    c++-mode-hook
+    go-mode-hook
+    go-dot-mod-mode-hook
+    go-ts-mode-hook
+    go-mod-ts-mode-hook
+    rust-mode-hook
+    rust-ts-mode-hook)
+   . (lambda ()
+       (eglot-ensure)))
   ((go-mode-hook
     go-dot-mod-mode-hook
     go-ts-mode-hook
     go-mod-ts-mode-hook
+    rust-mode-hook
     rust-ts-mode-hook)
    . (lambda ()
-       (eglot-ensure)
        (add-hook 'before-save-hook #'eglot-format nil t))))
 
 (use-package go-mode
