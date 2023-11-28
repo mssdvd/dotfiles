@@ -230,7 +230,9 @@
                              (dired-hide-details-mode 1))))
 
 (use-package dired-aux
-  :custom (dired-vc-rename-file t))
+  :custom
+  (dired-vc-rename-file t)
+  (shell-command-guess-functions '(shell-command-guess-open shell-command-guess-xdg)))
 
 (use-package wdired
   :custom (wdired-allow-to-change-permissions t))
