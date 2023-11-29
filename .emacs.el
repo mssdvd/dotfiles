@@ -322,8 +322,6 @@
   (:map minibuffer-local-map
         ([remap next-matching-history-element] . consult-history)
         ([remap previous-matching-history-element] . consult-history))
-  :init
-  (advice-add #'register-preview :override #'consult-register-window)
   :config
   (defun +consult-smart-grep (&optional dir initial)
     (interactive "P")
@@ -338,7 +336,6 @@
   (add-to-list 'consult-preview-excluded-files "\\.pdf\\'")
   :custom
   (consult-narrow-key "<")
-  (register-preview-delay 0.5)
   (register-preview-function #'consult-register-format)
   (xref-show-definitions-function #'consult-xref)
   (xref-show-xrefs-function #'consult-xref))
