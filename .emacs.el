@@ -1026,7 +1026,6 @@
   :ensure
   :custom
   (eglot-autoshutdown t)
-  (eglot-events-buffer-size 0)
   (eglot-extend-to-xref t)
   :config
   (setq-default eglot-workspace-configuration
