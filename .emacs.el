@@ -165,7 +165,6 @@
   (modus-themes-common-palette-overrides
    '((bg-region bg-ochre)
      (fg-region unspecified)))
-  (modus-themes-org-blocks 'gray-background)
   (modus-themes-italic-constructs t)
   :config
   (if (ignore-errors
