@@ -2,7 +2,6 @@ set {
 	$mod Mod4
 	$term foot
 	$menu j4-dmenu-desktop --dmenu="wmenu -p 'run' -l 5 -i -f 'monospace 15'" --term=$term --display-binary --no-generic
-	$wlsunset_toggle "if pidof wlsunset; then pkill wlsunset; echo wlsunset killed; else wlsunset -t 3000 -l 45.9 -L 12.6; fi"
 	$wob_sock $XDG_RUNTIME_DIR/wob.sock
 	$audio_wob pactl get-sink-volume @DEFAULT_SINK@ | head -n 1 | awk '{print substr($5, 1, length($5)-1)}' > $wob_sock
 	$left h
@@ -160,7 +159,7 @@ bindsym {
 
 	$mod+y exec toggle-theme.sh
 
-	$mod+u exec $wlsunset_toggle
+	$mod+u exec pkill -USR1 wlsunset
 
 	$mod+Bracketleft exec firefox
 	$mod+Shift+Bracketleft exec firefox --private-window
@@ -276,7 +275,7 @@ for_window {
 
 exec {
 	mako
-	$wlsunset_toggle
+	wlsunset -t 3000 -l 46 -L 13
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 	blueman-applet
 	swayidle -w timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -f; playerctl pause'
