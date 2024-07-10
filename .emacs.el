@@ -332,6 +332,7 @@
 
   (consult-customize consult-line :keymap +consult-line-map)
   (add-to-list 'consult-preview-excluded-files "\\.pdf\\'")
+  (add-to-list 'consult-preview-excluded-files "\\.gpg\\'")
   :custom
   (consult-narrow-key "<")
   (register-preview-function #'consult-register-format)
