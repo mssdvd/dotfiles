@@ -109,6 +109,7 @@ bindsym {
 	$mod+n mode "$mode_display"
 	XF86Display mode "$mode_display"
 	$mod+Shift+e mode "$mode_system"
+	$mod+p mode "$mode_screenshot"
 	Print mode "$mode_screenshot"
 	$mod+Pause mode "$passthrough"
 	$mod+r mode "resize"
