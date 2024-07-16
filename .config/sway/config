@@ -141,8 +141,8 @@ bindsym {
 		$mod+x exec wpctl set-volume @DEFAULT_AUDIO_SINK@ -l 1.0 5%+ && $audio_wob
 		XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.0 && $audio_wob
 		$mod+z exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.0 && $audio_wob
-		XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 && $audio_wob) || wpctl get-volume @DEFAULT_AUDIO_SINK@ && $audio_wob
-		$mod+c exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 && $audio_wob) || wpctl get-volume @DEFAULT_AUDIO_SINK@ && $audio_wob
+		XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $wob_sock) || (wpctl get-volume @DEFAULT_AUDIO_SINK@ && $audio_wob)
+		$mod+c exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $wob_sock) || (wpctl get-volume @DEFAULT_AUDIO_SINK@ && $audio_wob)
 		XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
 		XF86AudioPlay exec playerctl play
