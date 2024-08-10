@@ -879,13 +879,7 @@
 
 (use-package mouse
   :custom (mouse-yank-at-point t)
-  :config (context-menu-mode))
-
-(use-package follow
-  :bind
-  (:map follow-mode-map
-        ([remap scroll-up-command] . follow-scroll-up)
-        ([remap scroll-down-command] . follow-scroll-down)))
+  :config (context-menu-mode 1))
 
 (use-package bookmark
   :custom (bookmark-save-flag 1))
