@@ -147,8 +147,8 @@
 ;;;;
 
 (use-package package
-  :custom (package-archive-priorities '(("gnu" . 2)
-                                        ("melpa" . 1)))
+  :custom (package-archive-priorities '(("gnu" . 1)
+                                        ("nongnu" . 1)))
   :config
   (unless emacs-repository-branch
     (setopt package-install-upgrade-built-in t))
