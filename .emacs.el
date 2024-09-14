@@ -414,10 +414,6 @@
 (use-package grep
   :custom (grep-use-headings t))
 
-(use-package wgrep
-  :ensure
-  :custom (wgrep-auto-save-buffer t))
-
 (use-package flymake
   :bind
   (:map flymake-mode-map
