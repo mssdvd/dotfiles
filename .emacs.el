@@ -45,7 +45,7 @@
 (blink-cursor-mode 0)
 (column-number-mode 1)
 (electric-pair-mode 1)
-(find-function-setup-keys)
+(find-function-mode 1)
 (minibuffer-depth-indicate-mode 1)
 (pixel-scroll-precision-mode 1)
 (savehist-mode 1)
