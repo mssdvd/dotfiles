@@ -494,7 +494,7 @@
   (org-ctrl-k-protect-subtree t)
   (org-cycle-separator-lines 1)
   (org-edit-src-content-indentation 0)
-  (org-ellipsis " ...")
+  (org-ellipsis " ▶")
   (org-enforce-todo-checkbox-dependencies t)
   (org-enforce-todo-dependencies t)
   (org-file-apps '((auto-mode . emacs)
