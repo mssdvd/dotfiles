@@ -32,6 +32,7 @@
  set-mark-command-repeat-pop t
  switch-to-buffer-obey-display-actions t
  tab-always-indent 'complete
+ tooltip-delay 0.1
  uniquify-buffer-name-style 'forward
  use-package-always-defer t
  use-package-enable-imenu-support t
