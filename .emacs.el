@@ -252,7 +252,11 @@
   (vertico-cycle t)
   (vertico-multiform-categories '((consult-grep buffer)
                                   (file grid)
-                                  (imenu buffer)))
+                                  (imenu buffer
+                                         (vertico-buffer-display-action
+                                          . (display-buffer-in-direction
+                                             (direction . right)
+                                             (window-width . 0.3))))))
   (vertico-multiform-commands '((consult-line buffer)
                                 (consult-line-multi buffer)
                                 (consult-outline buffer)
