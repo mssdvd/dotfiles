@@ -10,6 +10,7 @@
     "temperature",
     "backlight",
     "network",
+    "power-profiles-daemon",
     "battery",
     "clock",
     "custom/email",
@@ -48,6 +49,9 @@
         "on-scroll-up": "light -A 1",
         "on-scroll-down": "light -U 1"
     },
+  "power-profiles-daemon": {
+    "format": "{profile}"
+  },
     "battery": {
         "states": {
             "warning": 30,
