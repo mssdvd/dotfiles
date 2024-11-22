@@ -12,6 +12,7 @@
     "network",
     "power-profiles-daemon",
     "battery",
+    "privacy",
     "clock",
     "custom/email",
     "tray"
