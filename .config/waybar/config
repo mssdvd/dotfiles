@@ -24,68 +24,68 @@
     "on-click-right": "emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar",
     "signal": 1
   },
-    "clock": {
-        "tooltip-format": "<big>{:%Y %B}\n<tt>{calendar}</tt></big>",
-        "format": "{:%F %a %R}",
-        "format-alt": "{:%F %a %R (%V weeks %j days) (%Z %z)}"
-    },
-    "cpu": {
-        "format": "{usage}% CPU",
-        "tooltip": false,
-        "on-click": "HTOP_term.sh"
-    },
-    "memory": {
-        "format": "{}% MEM",
-        "on-click": "HTOP_term.sh"
-    },
-    "temperature": {
-        "critical-threshold": 80,
-        "tooltip": false,
-        "format": "{temperatureC}°C",
-    },
-    "backlight": {
-        "format": "{percent}% LIGHT",
-        "on-click": "light -S 0.1",
-        "on-click-right": "light -S 100",
-        "on-scroll-up": "light -A 1",
-        "on-scroll-down": "light -U 1"
-    },
+  "clock": {
+    "tooltip-format": "<big>{:%Y %B}\n<tt>{calendar}</tt></big>",
+    "format": "{:%F %a %R}",
+    "format-alt": "{:%F %a %R (%V weeks %j days) (%Z %z)}"
+  },
+  "cpu": {
+    "format": "{usage}% CPU",
+    "tooltip": false,
+    "on-click": "HTOP_term.sh"
+  },
+  "memory": {
+    "format": "{}% MEM",
+    "on-click": "HTOP_term.sh"
+  },
+  "temperature": {
+    "critical-threshold": 80,
+    "tooltip": false,
+    "format": "{temperatureC}°C",
+  },
+  "backlight": {
+    "format": "{percent}% LIGHT",
+    "on-click": "light -S 0.1",
+    "on-click-right": "light -S 100",
+    "on-scroll-up": "light -A 1",
+    "on-scroll-down": "light -U 1"
+  },
   "power-profiles-daemon": {
     "format": "{profile}"
   },
-    "battery": {
-        "states": {
+  "battery": {
+    "states": {
       "warning": 20,
       "critical": 5
-        },
-        "format": "{capacity}% ({time}) BAT",
-        "format-charging": "{capacity}% CHG",
-        "format-plugged": "{capacity}% PLG"
     },
-    "network": {
-        "format-wifi": "{essid} ({signalStrength}%) Wi-Fi",
-        "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
-        "format-linked": "{ifname} (No IP)",
-        "format-disconnected": "Disconnected",
-        "format-alt": "{ifname}: {ipaddr}/{cidr}",
-        "on-click-right": "iwctl station wlan0 scan on"
+    "format": "{capacity}% ({time}) BAT",
+    "format-charging": "{capacity}% CHG",
+    "format-plugged": "{capacity}% PLG"
+  },
+  "network": {
+    "format-wifi": "{essid} ({signalStrength}%) Wi-Fi",
+    "format-ethernet": "{ifname}: {ipaddr}/{cidr}",
+    "format-linked": "{ifname} (No IP)",
+    "format-disconnected": "Disconnected",
+    "format-alt": "{ifname}: {ipaddr}/{cidr}",
+    "on-click-right": "iwctl station wlan0 scan on"
+  },
+  "pulseaudio": {
+    // "scroll-step": 1, // %, can be a float
+    "format": "{volume}% {icon} {format_source}",
+    "format-bluetooth": "{volume}% BT {icon} {format_source}",
+    "format-bluetooth-muted": "BT {icon} OFF {format_source}",
+    "format-muted": "{icon} OFF {format_source}",
+    "format-source": "{volume}% MIC",
+    "format-source-muted": "MIC OFF",
+    "format-icons": {
+      "headphone": "HEADPHONES",
+      "hands-free": "HANDS-FREE",
+      "headset": "HEADSET",
+      "default": "SPEAKERS"
     },
-    "pulseaudio": {
-        // "scroll-step": 1, // %, can be a float
-        "format": "{volume}% {icon} {format_source}",
-        "format-bluetooth": "{volume}% BLT {icon} {format_source}",
-        "format-bluetooth-muted": "BLT {icon} OFF {format_source}",
-        "format-muted": "{icon} OFF {format_source}",
-        "format-source": "{volume}% MIC",
-        "format-source-muted": "MIC OFF",
-        "format-icons": {
-            "headphone": "HEADPHONE",
-            "hands-free": "HANDS-FREE",
-            "headset": "HEADSET",
-            "default": "SPEAKERS"
-        },
-        "on-click-middle" : "pactl set-sink-mute @DEFAULT_SINK@ toggle"
-    }
+    "on-click-middle" : "pactl set-sink-mute @DEFAULT_SINK@ toggle"
+  }
 }
 
 // Local Variables:
