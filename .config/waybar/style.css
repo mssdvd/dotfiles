@@ -1,105 +1,54 @@
 * {
     border: none;
     border-radius: 0;
-    /* `otf-font-awesome` is required to be installed for icons */
     font-family: Terminus, sans-serif;
     font-size: 10px;
     min-height: 0;
-    color: #ffffff;
+    color: white;
 }
 
-#window {
-    padding-left: 30px;
+box.module, label.module, #workspaces button.focused {
+    padding: 2px 5px;
+    background-color: #285577;
+    border: 1px solid #4c7899;
 }
 
-window#waybar {
+window#waybar, #tray menu {
     background-color: #000000;
 }
 
+window#waybar.empty #window {
+    background: none;
+    border: none;
+}
+
+#workspaces {
+    padding: 0;
+    border: none;
+}
+
 #workspaces button {
-    padding: 0 4px;
+    padding: 0;
     background-color: #222222;
     border: 1px solid #333333;
     transition: none;
 }
 
-#workspaces button:hover {
+#workspaces button:hover, #workspaces button.focused {
     background: inherit;
     box-shadow: inherit;
+    padding: inherit;
     text-shadow: inherit;
 }
 
-#workspaces button.focused {
-    background-color: #285577;
-    border: 1px solid #4c7899;
-}
-
 #workspaces button.urgent {
-    background-color: #900000;
     border: 1px solid #2f343a;
 }
 
-#mode {
-    padding: 0 10px;
-    background-color: #900000;
-}
-
-#clock,
-#battery,
-#cpu,
-#memory,
-#temperature,
-#backlight,
-#network,
-#pulseaudio,
-#custom-media,
-#tray,
-#idle_inhibitor,
-#mpd,
-#custom-updates,
-#custom-light,
-#custom-mediaplayer,
-#custom-email {
-    padding: 0 10px;
-    background-color: #285577;
-    border: 1px solid #4c7899;
-}
-@keyframes blink {
-    to {
-        background-color: #ffffff;
-        color: #000000;
-    }
-}
-
-#battery.critical:not(.charging) {
-    background-color: #f53c3c;
-    animation-name: blink;
-    animation-duration: 1.0s;
-    animation-timing-function: linear;
-    animation-iteration-count: infinite;
-    animation-direction: alternate;
-}
-
-/* label:focus { */
-/*     background-color: #000000; */
-/* } */
-
-#network.speed {
-    min-width: 200px;
-}
-
-#network.disconnected {
-    background-color: #900000;
-}
-
-#temperature.critical {
+#battery.warning:not(.charging), #battery.critical:not(.charging), #mode, #network.disconnected, #temperature.critical, #workspaces button.urgent {
     background-color: #900000;
 }
 
 #cpu {
     min-width: 3em;
-}
-
-#backlight {
-    min-width: 56px;
 }
