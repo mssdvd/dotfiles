@@ -1062,7 +1062,7 @@
 (use-package python
   :custom
   (python-flymake-command
-   '("ruff" "--quiet" "--stdin-filename=stdin" "-"))
+   '("ruff" "check" "--quiet" "--stdin-filename=stdin" "-"))
   (python-flymake-msg-alist
    '(("\(^redefinition\|.*unused.*\|used$\)" . :warning)
      ("^E999" . :error)
