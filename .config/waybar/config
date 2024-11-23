@@ -45,10 +45,10 @@
   },
   "backlight": {
     "format": "{percent}% LIGHT",
-    "on-click": "light -S 0.1",
-    "on-click-right": "light -S 100",
-    "on-scroll-up": "light -A 1",
-    "on-scroll-down": "light -U 1"
+    "on-click": "backlight.py -s 1",
+    "on-click-right": "backlight.py -s 100",
+    "on-scroll-up": "backlight.py -i 1",
+    "on-scroll-down": "backlight.py -d 1"
   },
   "power-profiles-daemon": {
     "format": "{profile}"

@@ -125,14 +125,14 @@ bindsym {
 
 	$mod+Shift+c reload
 
-	XF86MonBrightnessUp exec light -A 5
-	Shift+XF86MonBrightnessUp exec light -A 1
-	$mod+o exec light -A 5
-	$mod+Shift+o exec light -A 1
-	XF86MonBrightnessDown exec light -U 5
-	Shift+XF86MonBrightnessDown exec light -U 1
-	$mod+i exec light -U 5
-	$mod+Shift+i exec light -U 1
+	XF86MonBrightnessUp exec backlight.py -i 5         > $wob_sock
+	Shift+XF86MonBrightnessUp exec backlight.py -i 1   > $wob_sock
+	$mod+o exec backlight.py -i 5                      > $wob_sock
+	$mod+Shift+o exec backlight.py -i 1                > $wob_sock
+	XF86MonBrightnessDown exec backlight.py -d 5       > $wob_sock
+	Shift+XF86MonBrightnessDown exec backlight.py -d 1 > $wob_sock
+	$mod+i exec backlight.py -d 5                      > $wob_sock
+	$mod+Shift+i exec backlight.py -d 1                > $wob_sock
 
 	$mod+Shift+x exec pavucontrol
 
