@@ -1,5 +1,6 @@
 #!/bin/sh
 
+notmuch tag --input="${XDG_CONFIG_HOME:-$HOME/.config}"/notmuch/default/private
 notmuch tag --input="${XDG_CONFIG_HOME:-$HOME/.config}"/notmuch/default/tag
 
 # update mail indicator
