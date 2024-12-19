@@ -263,12 +263,6 @@
                                 (xref-find-apropos buffer)
                                 (xref-find-references buffer)))
   (vertico-scroll-margin (/ vertico-count 2))
-  (completion-in-region-function
-   (lambda (&rest args)
-     (apply (if vertico-mode
-                #'consult-completion-in-region
-              #'completion--in-region)
-            args)))
   :config
   (vertico-mode 1)
   (vertico-mouse-mode 1)
