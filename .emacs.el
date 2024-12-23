@@ -165,7 +165,8 @@
   :bind ("C-c q" . modus-themes-toggle)
   :custom
   (modus-themes-common-palette-overrides
-   '((bg-region bg-ochre)
+   '((bg-mode-line-active bg-cyan-intense)
+     (bg-region bg-ochre)
      (fg-region unspecified)))
   (modus-themes-italic-constructs t)
   :config
