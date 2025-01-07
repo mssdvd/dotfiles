@@ -672,12 +672,8 @@
 
 (use-package diff-hl
   :ensure
-  :defer 1
   :custom (diff-hl-draw-borders nil)
-  :config (global-diff-hl-mode)
-  :hook ((magit-pre-refresh-hook . diff-hl-magit-pre-refresh)
-         (magit-post-refresh-hook . diff-hl-magit-post-refresh)
-         (dired-mode-hook . diff-hl-dired-mode)))
+  :hook (dired-mode-hook . diff-hl-dired-mode-unless-remote))
 
 (use-package tempel
   :ensure
