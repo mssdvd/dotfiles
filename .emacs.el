@@ -48,7 +48,6 @@
 (electric-pair-mode 1)
 (find-function-mode 1)
 (minibuffer-depth-indicate-mode 1)
-(pixel-scroll-precision-mode 1)
 (savehist-mode 1)
 (size-indication-mode 1)
 (temp-buffer-resize-mode 1)
