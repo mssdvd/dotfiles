@@ -931,6 +931,10 @@
   (proced-enable-color-flag t)
   (proced-format 'medium))
 
+(use-package ultra-scroll
+  :vc (:url "https://github.com/jdtsmith/ultra-scroll" :rev :newest)
+  :demand
+  :config (ultra-scroll-mode 1))
 
 ;;
 ;; Mail
