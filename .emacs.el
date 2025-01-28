@@ -41,6 +41,7 @@
  use-short-answers t
  user-mail-address "dm@mssdvd.com"
  view-read-only t
+ window-resize-pixelwise t
  )
 
 (auth-source-pass-enable)
