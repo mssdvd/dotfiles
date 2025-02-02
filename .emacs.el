@@ -458,7 +458,9 @@
 
 (use-package saveplace
   :defer 1
-  :custom (save-place-limit 1600)
+  :custom
+  (save-place-autosave-interval (* 60 5))
+  (save-place-limit 1600)
   :config (save-place-mode 1))
 
 (use-package desktop
