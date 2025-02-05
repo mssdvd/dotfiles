@@ -891,7 +891,6 @@
 (use-package project
   :custom
   (project-kill-buffers-display-buffer-list t)
-  (project-mode-line t)
   (project-switch-use-entire-map t))
 
 (use-package tab-bar
