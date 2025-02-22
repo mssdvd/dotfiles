@@ -220,7 +220,7 @@ bindsym {
 	$mod+Shift+9 move container to workspace number 9
 	$mod+Shift+0 move container to workspace number 10
 
-	$mod+grave workspace back_and_forth
+	$mod+Tab workspace back_and_forth
 
 	$mod+Prior workspace prev_on_output
 	$mod+Next workspace next_on_output
