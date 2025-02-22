@@ -254,8 +254,8 @@ bindsym {
 }
 
 bindgesture {
-	swipe:up workspace prev
-	swipe:down workspace next
+	swipe:right workspace prev_on_output
+	swipe:left workspace next_on_output
 }
 
 floating_modifier $mod normal
