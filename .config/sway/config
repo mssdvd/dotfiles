@@ -277,7 +277,7 @@ for_window {
 
 exec {
 	mako
-	wlsunset -t 3000 -l 46 -L 13
+	wlsunset -l 46 -L 13
 	/usr/lib/polkit-gnome/polkit-gnome-authentication-agent-1
 	blueman-applet
 	swayidle -w timeout 600 'swaymsg "output * power off"' resume 'swaymsg "output * power on"' before-sleep 'swaylock -f; playerctl pause'
