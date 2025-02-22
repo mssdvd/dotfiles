@@ -122,7 +122,7 @@ bindsym {
 	# $mod+Shift+Return exec $term --class $term_floating_window
 	$mod+Shift+Return exec $term --app-id=$term_floating_window
 	$mod+Shift+q kill
-	$mod+Tab exec $menu
+	$mod+q exec $menu
 
 	$mod+Shift+c reload
 
