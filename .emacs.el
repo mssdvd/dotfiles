@@ -184,8 +184,7 @@
   (display-time-load-average-threshold 0.5))
 
 (use-package display-line-numbers
-  :custom (display-line-numbers-grow-only t)
-  :hook (conf-mode-hook prog-mode-hook text-mode-hook))
+  :custom (display-line-numbers-grow-only t))
 
 (use-package repeat
   :demand
