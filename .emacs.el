@@ -98,11 +98,16 @@
     (insert-for-yank primary)))
 (keymap-global-set "S-<insert>" #'+yank-primary)
 
-(defun +pass-get-keep-asking (entry)
-  "Return ENTRY secret or keep asking until the provided password is correct."
-  (let ((pass))
-    (while (not (setq pass (auth-source-pass-get 'secret entry))))
-    pass))
+(defun +auth-source-search-secret (host &optional user)
+  "Return a secret given a HOST and an optional USER."
+  (if-let* ((secret (plist-get (car (auth-source-search
+                                     :host host
+                                     :user user))
+                               :secret)))
+      (if (functionp secret)
+          (encode-coding-string (funcall secret) 'utf-8)
+        secret)
+    (user-error "Couldn't retrive the secret")))
 
 (defun +replace-unicode-code-points ()
   "Replace Unicode code points with their respective glyph."
@@ -794,7 +799,7 @@
 (use-package wolfram
   :ensure
   :custom
-  (wolfram-alpha-app-id (+pass-get-keep-asking "wolfram_alpha_app_id"))
+  (wolfram-alpha-app-id (+auth-source-search-secret "wolfram_alpha_app_id"))
   (wolfram-alpha-magnification-factor 1.5))
 
 (use-package systemd
