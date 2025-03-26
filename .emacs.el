@@ -698,6 +698,11 @@
   :custom (auto-revert-avoid-polling t)
   :config (global-auto-revert-mode 1))
 
+(use-package editorconfig
+  :delight
+  :demand
+  :config (editorconfig-mode 1))
+
 (use-package eldoc
   :delight
   :custom
