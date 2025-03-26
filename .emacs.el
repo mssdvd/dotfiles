@@ -27,7 +27,6 @@
  ring-bell-function 'ignore
  save-interprogram-paste-before-kill t
  savehist-additional-variables '(compile-command kill-ring register-alist)
- scroll-conservatively 101
  scroll-error-top-bottom t
  scroll-preserve-screen-position t
  set-mark-command-repeat-pop t
@@ -933,6 +932,7 @@
 
 (use-package ultra-scroll
   :vc (:url "https://github.com/jdtsmith/ultra-scroll" :rev :newest)
+  :disabled
   :demand
   :config (ultra-scroll-mode 1))
 
