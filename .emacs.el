@@ -777,6 +777,9 @@
 (use-package gdb-mi
   :custom (gdb-many-windows t))
 
+(use-package dape
+  :ensure)
+
 (use-package hippie-exp
   :bind ([remap dabbrev-expand] . hippie-expand)
   :custom
