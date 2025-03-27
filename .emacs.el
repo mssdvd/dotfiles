@@ -985,6 +985,7 @@
                  (notmuch-search "tag:unread" t))))
   :custom
   (mail-user-agent 'notmuch-user-agent)
+  (notmuch-mua-attachment-regexp "\\b\\(attache?ment\\|attached\\|attach\\|pi[èe]ce +jointe?\\|allego\\|allegato\\)\\b")
   (notmuch-draft-folder "dm@mssdvd.com/Drafts")
   (notmuch-fcc-dirs
    '(("dm@mssdvd.com" . "dm@mssdvd.com/Sent +mssdvd +sent")
@@ -1019,7 +1020,9 @@
    . (lambda ()
        (when (equal (getenv "XDG_CURRENT_DESKTOP") "sway")
          (start-process "update mail indicator" nil
-                        "pkill" "-SIGRTMIN+1" "waybar")))))
+                        "pkill" "-SIGRTMIN+1" "waybar"))))
+  (notmuch-mua-send-hook . notmuch-mua-attachment-check)
+  (notmuch-mua-send-hook . notmuch-mua-subject-check))
 
 (use-package notmuch-indicator
   :ensure
