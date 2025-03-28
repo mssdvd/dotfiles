@@ -707,7 +707,12 @@
   :delight
   :custom
   (eldoc-documentation-strategy 'eldoc-documentation-compose)
-  (eldoc-echo-area-prefer-doc-buffer t))
+  (eldoc-echo-area-prefer-doc-buffer t)
+  :config
+  (advice-add #'eldoc-doc-buffer
+              :after (lambda (&rest _)
+                       (with-current-buffer eldoc--doc-buffer
+                         (visual-line-mode 1)))))
 
 (use-package eshell
   :bind ("C-c e" . eshell)
