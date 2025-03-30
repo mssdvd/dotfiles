@@ -156,7 +156,7 @@
   :custom (package-archive-priorities '(("gnu" . 1)
                                         ("nongnu" . 1)))
   :config
-  (unless emacs-repository-branch
+  (unless (= emacs-minor-version 0)
     (setopt package-install-upgrade-built-in t))
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
 
