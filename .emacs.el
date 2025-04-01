@@ -1066,6 +1066,7 @@
        (add-hook 'before-save-hook #'eglot-format nil t))))
 
 (use-package go-mode
+  :pin melpa
   :ensure)
 
 
