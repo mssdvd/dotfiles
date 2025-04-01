@@ -63,9 +63,9 @@
 (keymap-global-set "<remap> <downcase-word>" #'downcase-dwim)
 (keymap-global-set "<remap> <upcase-word>" #'upcase-dwim)
 (keymap-global-set "<remap> <zap-to-char>" #'zap-up-to-char)
+(keymap-global-set "C-c d" #'duplicate-dwim)
 (keymap-global-set "M-]" #'mode-line-other-buffer)
 (keymap-global-set "M-o" #'other-window)
-
 (keymap-global-unset "C-z")
 (keymap-global-unset "C-x C-z")
 
