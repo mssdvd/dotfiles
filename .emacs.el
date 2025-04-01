@@ -304,7 +304,7 @@
   ("M-s D" . consult-locate)
   ("M-s L" . consult-line-multi)
   ("M-s d" . consult-find)
-  ("M-s g" . +consult-smart-grep)
+  ("M-s g" . consult-ripgrep)
   ("M-s k" . consult-keep-lines)
   ("M-s l" . consult-line)
   ("M-s u" . consult-focus-lines)
@@ -325,12 +325,6 @@
         ([remap next-matching-history-element] . consult-history)
         ([remap previous-matching-history-element] . consult-history))
   :config
-  (defun +consult-smart-grep (&optional dir initial)
-    (interactive "P")
-    (if (eq (nth 1 (project-current)) 'Git)
-        (consult-git-grep dir initial)
-      (consult-ripgrep dir initial)))
-
   (defvar-keymap +consult-line-map
     "C-s" #'previous-history-element)
 
@@ -1066,7 +1060,8 @@
        (add-hook 'before-save-hook #'eglot-format nil t))))
 
 (use-package go-mode
-  :pin melpa
+  :ensure
+  :pin melpa)
   :ensure)
 
 
