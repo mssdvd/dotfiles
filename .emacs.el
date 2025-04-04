@@ -1062,8 +1062,6 @@
 (use-package go-mode
   :ensure
   :pin melpa)
-  :ensure)
-
 
 (use-package cc-vars
   :custom
