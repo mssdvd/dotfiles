@@ -421,7 +421,6 @@
   (:map project-prefix-map
         ("!" . flymake-show-project-diagnostics))
   :custom
-  (flymake-indicator-type 'fringes)
   (flymake-mode-line-lighter "FM")
   (flymake-show-diagnostics-at-end-of-line t)
   :config
