@@ -30,6 +30,7 @@
  scroll-error-top-bottom t
  scroll-preserve-screen-position t
  set-mark-command-repeat-pop t
+ split-window-preferred-direction 'longest
  switch-to-buffer-obey-display-actions t
  tab-always-indent 'complete
  tooltip-delay 0.1
