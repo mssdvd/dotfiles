@@ -969,14 +969,13 @@
   :commands (notmuch notmuch-search +sync-email)
   :bind
   ("C-x m" . notmuch-mua-new-mail)
-  ("C-c m" . (lambda ()
-               (interactive)
-               (if (equal
-                    (shell-command-to-string
-                     "notmuch count tag:unread")
-                    "0\n")
+  ("C-c m" . (lambda (ignore-unread)
+               (interactive "P")
+               (if (or ignore-unread (equal
+                                      (process-lines "notmuch" "count" "tag:unread")
+                                      '("0")))
                    (notmuch)
-                 (notmuch-search "tag:unread" t))))
+                 (notmuch-search "tag:unread and tag:inbox" t))))
   :custom
   (mail-user-agent 'notmuch-user-agent)
   (notmuch-mua-attachment-regexp "\\b\\(attache?ment\\|attached\\|attach\\|pi[èe]ce +jointe?\\|allego\\|allegato\\)\\b")
