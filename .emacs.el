@@ -376,7 +376,6 @@
   :demand
   :after corfu
   :config
-  (add-to-list 'savehist-additional-variables 'corfu-history)
   (corfu-history-mode 1))
 
 (use-package corfu-popupinfo
