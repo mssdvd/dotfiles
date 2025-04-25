@@ -17,6 +17,7 @@
  inhibit-startup-screen t
  kill-whole-line t
  load-prefer-newer t
+ lock-file-name-transforms '(("\\`/.*/\\([^/]+\\)\\'" "/var/tmp/\\1" t))
  minibuffer-follows-selected-frame nil
  minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)
  mode-line-compact t
