@@ -423,7 +423,7 @@
         ("!" . flymake-show-project-diagnostics))
   :custom
   (flymake-mode-line-lighter "FM")
-  (flymake-show-diagnostics-at-end-of-line t)
+  (flymake-show-diagnostics-at-end-of-line 'fancy)
   :config
   (defvar-keymap +flymake-repeat-map
     :doc "Keymap to repeat `flymake-goto-next-error' and
@@ -1048,9 +1048,7 @@
     go-mod-ts-mode-hook
     rust-mode-hook
     rust-ts-mode-hook)
-   . (lambda ()
-       (setq-local flymake-show-diagnostics-at-end-of-line nil)
-       (eglot-ensure)))
+   . eglot-ensure)
   ((go-mode-hook
     go-dot-mod-mode-hook
     go-ts-mode-hook
