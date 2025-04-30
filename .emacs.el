@@ -1046,13 +1046,18 @@
     go-dot-mod-mode-hook
     go-ts-mode-hook
     go-mod-ts-mode-hook
+    java-mode-hook
+    java-ts-mode-hook
     rust-mode-hook
-    rust-ts-mode-hook)
+    rust-ts-mode-hook
+    typescript-ts-mode-hook)
    . eglot-ensure)
   ((go-mode-hook
     go-dot-mod-mode-hook
     go-ts-mode-hook
     go-mod-ts-mode-hook
+    java-mode-hook
+    java-ts-mode-hook
     rust-mode-hook
     rust-ts-mode-hook)
    . (lambda ()
