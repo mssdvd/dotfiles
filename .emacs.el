@@ -931,6 +931,10 @@
   (vundo-glyph-alist vundo-unicode-symbols))
 
 (use-package outline
+  :custom
+  (outline-minor-mode-cycle t)
+  (outline-minor-mode-highlight t)
+  (outline-minor-mode-use-buttons t)
   :hook ((apropos-mode-hook xref-after-update-hook) . outline-minor-mode))
 
 (use-package tmr
