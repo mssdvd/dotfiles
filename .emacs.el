@@ -34,6 +34,7 @@
  split-window-preferred-direction 'longest
  switch-to-buffer-obey-display-actions t
  tab-always-indent 'complete
+ text-mode-ispell-word-completion nil
  tooltip-delay 0.1
  uniquify-buffer-name-style 'forward
  use-package-always-defer t
