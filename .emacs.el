@@ -955,6 +955,9 @@
   :demand
   :config (ultra-scroll-mode 1))
 
+(use-package indent-bars
+  :ensure)
+
 ;;
 ;; Mail
 ;;
