@@ -286,7 +286,6 @@ exec {
 	playerctld daemon
 	GTK_THEME=Adwaita-dark waybar
 
-	rm -f $wob_sock && mkfifo $wob_sock && tail -f $wob_sock | wob
 	dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 }
 
