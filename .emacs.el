@@ -509,6 +509,7 @@
                    ("\\.odt\\'" . "libreoffice %s")))
   (org-highlight-latex-and-related '(latex entities))
   (org-html-validation-link nil)
+  (org-imenu-depth 10)
   (org-latex-packages-alist '(("" "color") ("" "listings") ("AUTO" "babel" t ("pdflatex"))))
   (org-log-into-drawer t)
   (org-outline-path-complete-in-steps nil)
