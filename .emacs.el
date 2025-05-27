@@ -597,24 +597,6 @@
   :ensure
   :custom (alert-default-style 'libnotify))
 
-(use-package org-caldav
-  :disabled
-  :config
-  (setq org-caldav-url "https://cdav.migadu.com/calendars/dm@mssdvd.com"
-        org-caldav-inbox "~/org/calendar.org"
-        org-caldav-calendar-id "home"
-        org-icalendar-timezone "Europe/Rome"))
-
-(use-package org-download
-  :ensure
-  :functions (org-redisplay-inline-images)
-  :after org
-  :config
-  (setq  org-download-screenshot-method "grim -g \"$(slurp)\" %s"
-         org-download-image-dir "./org_download")
-  ;; Needed because new images are not indented
-  (advice-add 'org-download-screenshot :after (lambda () (org-redisplay-inline-images))))
-
 (use-package denote
   :ensure
   :bind
