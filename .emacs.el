@@ -895,7 +895,7 @@
   :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
 
 (use-package visual-line-mode
-  :custom (visual-line-fringe-indicators '(0 right-curly-arrow)))
+  :custom (visual-line-fringe-indicators '(nil right-curly-arrow)))
 
 (use-package olivetti
   :ensure)
