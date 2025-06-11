@@ -400,7 +400,6 @@
 (use-package isearch
   :bind
   (:map isearch-mode-map
-        ("M-c" . nil)
         ("C-," . isearch-occur))
   :custom
   (isearch-allow-motion t)
