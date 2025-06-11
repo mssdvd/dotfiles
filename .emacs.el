@@ -407,7 +407,6 @@
   (isearch-allow-scroll 'unlimited)
   (isearch-lazy-count t)
   (isearch-wrap-pause 'no)
-  (search-default-mode #'char-fold-to-regexp)
   (search-whitespace-regexp ".*?"))
 
 (use-package grep
