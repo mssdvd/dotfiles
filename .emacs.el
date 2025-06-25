@@ -725,9 +725,7 @@
   :hook
   (sh-base-mode-hook .
                      (lambda ()
-                       (when (equal (file-name-nondirectory buffer-file-name)
-                                    "PKGBUILD")
-                         (setq-local flymake-show-diagnostics-at-end-of-line nil)))))
+                       (setq-local flymake-show-diagnostics-at-end-of-line nil))))
 
 (use-package nov
   :ensure
