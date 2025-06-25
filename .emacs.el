@@ -655,8 +655,7 @@
 
 (use-package diff-hl
   :ensure
-  :custom (diff-hl-draw-borders nil)
-  :hook (dired-mode-hook . diff-hl-dired-mode-unless-remote))
+  :custom (diff-hl-draw-borders nil))
 
 (use-package tempel
   :ensure
