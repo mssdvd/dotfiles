@@ -198,10 +198,8 @@
   :custom (repeat-exit-key "RET")
   :config (repeat-mode 1))
 
-(use-package winner
-  :demand
-  :custom (winner-boring-buffers-regexp " *Minibuf-[0-9]+")
-  :config (winner-mode 1))
+(use-package tab-bar
+  :config (tab-bar-history-mode 1))
 
 (use-package windmove
   :bind-keymap ("C-c w" . +windmove-repeat-map)
