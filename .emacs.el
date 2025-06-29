@@ -885,9 +885,6 @@
   (project-kill-buffers-display-buffer-list t)
   (project-switch-use-entire-map t))
 
-(use-package tab-bar
-  :custom (tab-bar-show 1))
-
 (use-package tmm
   :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
 
