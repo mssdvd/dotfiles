@@ -174,6 +174,7 @@
    '((bg-mode-line-active bg-cyan-intense)
      (bg-region bg-ochre)
      (fg-region unspecified)))
+  (modus-themes-headings '((t . (1.1))))
   (modus-themes-italic-constructs t)
   :config
   (if (ignore-errors
