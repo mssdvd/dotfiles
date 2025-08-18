@@ -34,6 +34,10 @@ window#waybar.empty #window {
     transition: none;
 }
 
+#workspaces button.visible {
+    background: #5F676A;
+}
+
 #workspaces button:hover, #workspaces button.focused {
     background: inherit;
     box-shadow: inherit;
