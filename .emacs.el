@@ -445,9 +445,7 @@
 
 (use-package recentf
   :demand
-  :custom
-  (recentf-keep nil)
-  (recentf-max-saved-items 500)
+  :custom (recentf-max-saved-items 500)
   :config (recentf-mode 1))
 
 (use-package saveplace
