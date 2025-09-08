@@ -290,6 +290,7 @@
   ("M-g k" . consult-global-mark)
   ("M-g m" . consult-mark)
   ("M-g o" . consult-outline)
+  ("M-g r" . consult-grep-match)
   ("M-s D" . consult-locate)
   ("M-s L" . consult-line-multi)
   ("M-s d" . consult-find)
