@@ -272,6 +272,7 @@
   (completion-category-defaults nil)
   (completion-category-overrides '((file (styles partial-completion))))
   (completion-ignore-case t)
+  (completion-pcm-leading-wildcard t)
   (orderless-matching-styles '(orderless-initialism
                                orderless-literal
                                orderless-prefixes
