@@ -869,9 +869,6 @@
   (project-kill-buffers-display-buffer-list t)
   (project-switch-use-entire-map t))
 
-(use-package tmm
-  :config (advice-add #'tmm-add-prompt :after #'minibuffer-hide-completions))
-
 (use-package visual-line-mode
   :custom (visual-line-fringe-indicators '(nil right-curly-arrow)))
 
