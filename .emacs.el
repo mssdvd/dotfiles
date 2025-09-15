@@ -962,7 +962,7 @@
      (:name "flagged" :query "tag:flagged" :key "f")
      (:name "sent" :query "tag:sent" :key "t")
      (:name "drafts" :query "tag:draft" :key "d")
-     (:name "last week" :query "date:\"7D\".." :key "w")
+     (:name "last two weeks" :query "date:\"14D\".." :key "w")
      (:name "last 3 months" :query "date:\"3M\".." :key "m")
      (:name "all mail" :query "*" :key "a")))
   (notmuch-search-oldest-first nil)
