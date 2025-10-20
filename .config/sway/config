@@ -145,11 +145,13 @@ bindsym {
 		$mod+c exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $wob_sock) || (wpctl get-volume @DEFAULT_AUDIO_SINK@ && $audio_wob)
 		XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
 
-		XF86AudioPlay exec playerctl play
+		XF86AudioPrev exec playerctl position 5-
+		Shift+XF86AudioPrev exec playerctl previous
+		XF86AudioNext exec playerctl position 5+
+		Shift+XF86AudioNext exec playerctl next
+		XF86AudioPlay exec playerctl play-pause
 		XF86AudioPause exec playerctl pause
 		XF86AudioStop exec playerctl stop
-		XF86AudioNext exec playerctl next
-		XF86AudioPrev exec playerctl previous
 
 		$mod+Comma exec playerctl position 5-
 		$mod+Shift+Comma exec playerctl previous
