@@ -1,7 +1,7 @@
 set {
 	$mod Mod4
 	$term foot
-	$menu j4-dmenu-desktop --dmenu="wmenu -p 'run' -l 5 -i -f 'monospace 15'" --term=$term --display-binary --no-generic
+	$menu j4-dmenu-desktop --dmenu="wmenu -l 5 -i -f 'monospace 15'" --term=$term --display-binary --no-generic --i3-ipc
 	$wob_sock $XDG_RUNTIME_DIR/wob.sock
 	$audio_wob wpctl get-volume @DEFAULT_AUDIO_SINK@ | sed 's/[^0-9]//g' > $wob_sock
 	$left h
