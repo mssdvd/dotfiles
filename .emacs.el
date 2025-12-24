@@ -20,6 +20,7 @@
  minibuffer-follows-selected-frame nil
  minibuffer-prompt-properties '(read-only t cursor-intangible t face minibuffer-prompt)
  mode-line-compact t
+ mode-line-collapse-minor-modes '(abbrev-mode auto-revert-mode editorconfig-mode eldoc-mode org-indent-mode)
  mouse-autoselect-window t
  next-error-message-highlight t
  read-extended-command-predicate #'command-completion-default-include-p
@@ -149,9 +150,6 @@
   (unless (= emacs-minor-version 0)
     (setopt package-install-upgrade-built-in t))
   (add-to-list 'package-archives '("melpa" . "https://melpa.org/packages/") t))
-
-(use-package delight
-  :ensure)
 
 (use-package modus-themes
   :ensure
@@ -453,7 +451,6 @@
 
 (use-package rainbow-mode
   :ensure
-  :delight
   :hook (conf-mode-hook css-mode-hook sgml-mode-hook))
 
 (use-package cdlatex
@@ -555,7 +552,6 @@
       :kill-buffer t))))
 
 (use-package org-indent
-  :delight
   :custom
   (org-indent-indentation-per-level 1)
   (org-indent-mode-turns-on-hiding-stars nil)
@@ -656,18 +652,15 @@
 
 
 (use-package autorevert
-  :delight auto-revert-mode
   :defer 1
   :custom (auto-revert-avoid-polling t)
   :config (global-auto-revert-mode 1))
 
 (use-package editorconfig
-  :delight
   :demand
   :config (editorconfig-mode 1))
 
 (use-package eldoc
-  :delight
   :custom
   (eldoc-documentation-strategy 'eldoc-documentation-compose)
   (eldoc-echo-area-prefer-doc-buffer t)
@@ -762,7 +755,6 @@
      try-complete-lisp-symbol)))
 
 (use-package abbrev
-  :delight
   :custom (save-abbrevs 'silently)
   :hook text-mode-hook)
 
