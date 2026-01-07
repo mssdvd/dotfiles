@@ -1,5 +1,5 @@
 set {
-	$mod Mod4
+	$mod Super
 	$term foot
 	$menu j4-dmenu-desktop --dmenu="wmenu -l 5 -i -f 'monospace 15'" --term=$term --display-binary --no-generic --i3-ipc
 	$wob_sock $XDG_RUNTIME_DIR/wob.sock
@@ -101,12 +101,11 @@ mode "resize" {
 		Return mode "default"
 		Escape mode "default"
 		r mode "default"
-		grave mode "default"
 	 }
 }
 
 bindsym {
-	$mod+n mode "$mode_display"
+	$mod+Shift+n mode "$mode_display"
 	XF86Display mode "$mode_display"
 	$mod+Shift+e mode "$mode_system"
 	$mod+p mode "$mode_screenshot"
@@ -118,10 +117,9 @@ bindsym {
 	Shift+XF86Tools output - transform 0
 
 	$mod+Return exec $term
-	# $mod+Shift+Return exec $term --class $term_floating_window
 	$mod+Shift+Return exec $term --app-id=$term_floating_window
 	$mod+Shift+q kill
-	$mod+q exec $menu
+	$mod+d exec $menu
 
 	$mod+Shift+c reload
 
@@ -167,10 +165,7 @@ bindsym {
 	$mod+Bracketleft exec firefox
 	$mod+Shift+Bracketleft exec firefox --private-window
 	$mod+Backslash exec nautilus
-	$mod+Shift+Backslash exec $term ranger
-	$mod+Bracketright exec emacsclient -c -a ''
-
-	$mod+Semicolon exec evince
+	$mod+Bracketright exec emacsclient -c -a '' -n
 
 	$mod+Shift+p exec passmenu
 	$mod+m exec ~/bin/play_in_mpv.sh
@@ -229,8 +224,7 @@ bindsym {
 	$mod+b splith
 	$mod+v splitv
 
-	$mod+s layout stacking
-	$mod+w layout tabbed
+	$mod+w layout toggle tabbed stacking
 	$mod+e layout toggle split
 
 	$mod+f fullscreen
@@ -240,8 +234,7 @@ bindsym {
 	$mod+space focus mode_toggle
 
 	$mod+a focus parent
-
-	$mod+d focus child
+	$mod+s focus child
 
 	$mod+Shift+equal floating enable; sticky toggle
 	$mod+equal sticky toggle
@@ -252,6 +245,7 @@ bindsym {
 	$mod+t exec i3_balance_workspace
 	$mod+Shift+t exec i3_balance_workspace --scope focus
 
+	BTN_MIDDLE fullscreen
 }
 
 bindgesture {
