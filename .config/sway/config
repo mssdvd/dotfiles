@@ -12,7 +12,7 @@ set {
 
 font Terminus 8
 
-output * bg "#000000" solid_color subpixel rgb
+output * bg "#000000" solid_color subpixel none
 
 input {
 	"type:touchpad" {
