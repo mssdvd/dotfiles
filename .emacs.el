@@ -799,17 +799,18 @@
                   (insert (concat (unless (eq (char-before) 32) " ")
                                   "EUR"))
                   (ledger-post-align-dwim)))
-         ([f7] . transpose-paragraphs))
+        ([f7] . transpose-paragraphs))
   :custom
   (ledger-copy-transaction-insert-blank-line-after t)
   (ledger-default-date-format "%Y-%m-%d")
   (ledger-highlight-xact-under-point nil)
   (ledger-reconcile-default-commodity " EUR")
-  :hook (ledger-mode-hook . (lambda ()
-                              (setq-local corfu-auto nil))))
-
-(use-package ledger-flymake
-  :hook (ledger-mode-hook . ledger-flymake-enable))
+  :hook
+  (before-save-hook . (lambda ()
+                        (indent-region (point-min) (point-max))))
+  (ledger-mode-hook . (lambda ()
+                        (setq-local corfu-auto nil)
+                        (ledger-flymake-enable))))
 
 (use-package csv-mode
   :ensure
