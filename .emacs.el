@@ -2,8 +2,13 @@
 ;;; Commentary:
 ;;; Code:
 
-(setq pgtk-wait-for-event-timeout nil
-      read-process-output-max (* 1024 1024))
+(setq bidi-inhibit-bpa t
+      pgtk-wait-for-event-timeout nil
+      read-process-output-max (* 1024 1024)
+      redisplay-skip-fontification-on-input t)
+
+(setq-default bidi-display-reordering 'left-to-right
+              bidi-paragraph-direction 'left-to-right)
 
 (setopt
  backup-directory-alist (list (cons "." (concat user-emacs-directory "backups/")))
