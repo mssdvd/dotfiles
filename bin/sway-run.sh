@@ -2,6 +2,10 @@
 
 export TERM=foot
 export XDG_CURRENT_DESKTOP=sway
+export XDG_SESSION_CLASS=user
+export XDG_SESSION_DESKTOP=sway
+export XDG_SESSION_TYPE=wayland
+
 export QT_QPA_PLATFORMTHEME=qt6ct
 export _JAVA_AWT_WM_NONREPARENTING=1
 

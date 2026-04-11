@@ -1,0 +1,6 @@
+[terminal]
+vt = "next"
+
+[default_session]
+command = "tuigreet --time --remember --cmd sway-run.sh"
+user = "greeter"

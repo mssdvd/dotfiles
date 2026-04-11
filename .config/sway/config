@@ -280,9 +280,10 @@ exec {
 	playerctld daemon
 	GTK_THEME=Adwaita-dark waybar
 
-	dbus-update-activation-environment --systemd DISPLAY WAYLAND_DISPLAY XDG_CURRENT_DESKTOP=sway
 }
 
 exec_always "pkill kanshi; kanshi"
 
 include `hostname`
+
+exec systemctl --user import-environment  WAYLAND_DISPLAY DISPLAY XDG_CURRENT_DESKTOP XDG_SESSION_CLASS SWAYSOCK
