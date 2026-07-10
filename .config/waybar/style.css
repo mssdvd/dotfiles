@@ -1,14 +1,14 @@
 * {
     border: none;
     border-radius: 0;
-    font-family: Terminus, sans-serif;
+    font-family: Terminus, monospace;
     font-size: 10px;
     min-height: 0;
     color: white;
 }
 
 box.module, label.module, #workspaces button.focused {
-    padding: 2px 5px;
+    padding: 1px 5px;
     background-color: #285577;
     border: 1px solid #4c7899;
 }
