@@ -338,6 +338,8 @@
   (:map minibuffer-local-map
         ([remap next-matching-history-element] . consult-history)
         ([remap previous-matching-history-element] . consult-history))
+  (:map project-prefix-map
+        ("s" . consult-ripgrep))
   :config
   (defvar-keymap +consult-line-map
     "C-s" #'previous-history-element)
@@ -374,39 +376,30 @@
                                       (t . t))))
 
 (use-package embark-consult
-  :ensure
-  :hook (embark-collect-mode-hook . consult-preview-at-point-mode))
+  :ensure)
 
 (use-package corfu
   :ensure
   :demand
   :custom
   (corfu-auto t)
+  (corfu-auto-trigger "/\.:-_")
   (corfu-cycle t)
-  :config (global-corfu-mode 1))
-
-(use-package corfu-history
-  :demand
-  :after corfu
   :config
-  (corfu-history-mode 1))
-
-(use-package corfu-popupinfo
-  :demand
-  :after corfu
-  :custom (corfu-popupinfo-delay '(2.0 . 0.5))
-  :config (corfu-popupinfo-mode 1))
+  (global-corfu-mode 1)
+  (corfu-history-mode 1)
+  (corfu-popupinfo-mode 1))
 
 (use-package cape
   :ensure
   :demand
-  :bind ("C-c p" . cape-dict)
+  :bind ("C-c p" . cape-prefix-map)
   :custom
   (cape-dict-file (if-let ((file (expand-file-name "~/.words_us-it"))
                            ((file-readable-p file)))
                       file
                     "/usr/share/dict/words"))
-  :config (add-to-list 'completion-at-point-functions #'cape-file))
+  :hook (completion-at-point-functions . cape-file))
 
 (use-package isearch
   :bind
@@ -665,15 +658,28 @@
 
 (use-package tempel
   :ensure
-  :bind (("M-+" . tempel-insert))
-  :custom (tempel-trigger-prefix "<")
+  :bind
+  ("M-+" . tempel-complete)
+  ("M-*" . tempel-insert)
   :hook
-  ((conf-mode-hook eglot-managed-mode-hook prog-mode-hook text-mode-hook) .
-   (lambda ()
-     (setq-local completion-at-point-functions
-                 (cons #'tempel-expand
-                       completion-at-point-functions)))))
+  ((conf-mode-hook
+    eglot-managed-mode-hook
+    prog-mode-hook
+    text-mode-hook)
+   . (lambda ()
+       (setq-local completion-at-point-functions
+                   (cons #'tempel-expand
+                         completion-at-point-functions)))))
 
+(use-package eglot-tempel
+  :disabled
+  :ensure
+  :demand
+  :after eglot
+  :config (eglot-tempel-mode 1))
+
+(use-package yasnippet
+  :ensure)
 
 (use-package autorevert
   :defer 1
