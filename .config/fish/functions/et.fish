@@ -1,8 +1,8 @@
-function e
+function et
     if count $argv >/dev/null
         set arg $argv
     else
         set arg .
     end
-    emacsclient -c -a '' -- $arg & disown
+    emacsclient -t -a '' -- $arg
 end
