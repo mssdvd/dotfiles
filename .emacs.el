@@ -704,6 +704,10 @@
                        (with-current-buffer eldoc--doc-buffer
                          (visual-line-mode 1)))))
 
+(use-package eldoc-box
+  :ensure
+  :custom (eldoc-box-clear-with-C-g t))
+
 (use-package eshell
   :bind ("C-c e" . eshell)
   :config
@@ -749,6 +753,7 @@
                        (setq-local flymake-show-diagnostics-at-end-of-line nil))))
 
 (use-package nov
+  :disabled
   :ensure
   :mode ("\\.epub\\'" . nov-mode))
 
@@ -761,6 +766,13 @@
   :ensure
   :bind ([remap ispell-word] . jinx-correct)
   :custom (jinx-languages "en_US it_IT"))
+
+(use-package ispell
+  :custom
+  (ispell-alternate-dictionary (if-let ((file (expand-file-name "~/.words_us-it"))
+                                        ((file-readable-p file)))
+                                   file
+                                 "/usr/share/dict/words")))
 
 (use-package apropos
   :custom (apropos-do-all t))
@@ -878,12 +890,45 @@
   :ensure)
 
 (use-package matlab-mode
+  :disabled
   :ensure
   :mode ("\\.m\\'" . matlab-mode)
   :custom (matlab-shell-command-switches '("-nodesktop" "-nosplash")))
 
+(use-package erc
+  :commands (+libera-erc)
   :custom
+  (erc-fill-function #'erc-fill-wrap)
+  (erc-fill-static-center 15)
+  (erc-lurker-hide-list '("JOIN" "LEAVE" "NICK" "PART" "QUIT"))
+  (erc-nick "mssdvd")
+  (erc-scrolltobottom-all t)
+  (erc-track-exclude-server-buffer t)
+  (erc-track-showcount t)
   :config
+  (setopt erc-modules (seq-union '(nicks sasl) erc-modules))
+  (defun +libera-erc ()
+    "Connect to Libera Chat via chat.sr.ht."
+    (interactive)
+    (erc-tls :server "chat.sr.ht"
+             :port 6697
+             :user "mssdvd/liberachat"
+             :password (auth-source-pick-first-password :host "chat.sr.ht" :user "mssdvd")))
+  :hook (erc-join-hook . erc-keep-place-indicator-mode))
+
+(use-package rcirc
+  :custom
+  (rcirc-default-nick "mssdvd")
+  (rcirc-default-user-name "mssdvd")
+  (rcirc-fill-flag nil)
+  (rcirc-server-alist `(("chat.sr.ht"
+                         :port 6697
+                         :encryption tls
+                         :user-name "mssdvd/liberachat")))
+  (rcirc-authinfo `(("chat.sr.ht" sasl "mssdvd/liberachat" ,(auth-source-pick-first-password :host "chat.sr.ht" :user "mssdvd"))))
+  :hook
+  (rcirc-mode-hook . rcirc-track-minor-mode)
+  (rcirc-mode-hook . rcirc-omit-mode))
 
 (use-package re-builder
   :custom (reb-re-syntax 'string))
@@ -965,6 +1010,47 @@
 
 (use-package indent-bars
   :ensure)
+
+
+(use-package pdf-tools
+  :ensure
+  :pin melpa
+  :mode ("\\.pdf\\'" . pdf-view-mode)
+  :bind
+  (:map pdf-view-mode-map
+        ("]" . pdf-view-scroll-up-or-next-page)
+        ("[" . pdf-view-scroll-down-or-previous-page))
+  :custom
+  (pdf-annot-activate-created-annotations t)
+  (pdf-annot-tweak-tooltips nil)
+  (pdf-outline-display-labels t)
+  (pdf-view-display-size 'fit-page)
+  (pdf-view-mode-line-position-use-labels t)
+  :config
+  (defun +pdf-view-auto-resize (_frame)
+    (unless (numberp pdf-view-display-size)
+      (if (<= (window-pixel-width) (window-pixel-height))
+          (pdf-view-fit-width-to-window)
+        (pdf-view-fit-height-to-window))))
+  (pdf-tools-install :no-query)
+  :hook
+  (pdf-view-mode-hook . pdf-tools-enable-minor-modes)
+  (pdf-view-mode-hook . pdf-view-auto-slice-minor-mode))
+
+
+(use-package gptel
+  :ensure
+  :pin melpa
+  :bind ("C-c g" . gptel-menu)
+  :custom
+  (gptel-default-mode 'org-mode)
+  (gptel-model 'gpt-5.4-nano)
+  (gptel-track-media t))
+
+(use-package expreg
+  :ensure
+  :bind (("C-=" . expreg-expand)
+         ("C--" . expreg-contract)))
 
 ;;
 ;; Mail
@@ -1079,6 +1165,7 @@
        (add-hook 'before-save-hook #'eglot-format nil t))))
 
 (use-package go-mode
+  :disabled
   :ensure
   :pin melpa)
 
@@ -1086,6 +1173,10 @@
   :custom
   (c-default-style '((awk-mode . "awk")
                      (other . "linux"))))
+
+(use-package arduino-mode
+  :ensure
+  )
 
 (use-package python
   :custom
@@ -1096,13 +1187,12 @@
      ("^E999" . :error)
      ("^[EW][0-9]+" . :note))))
 
-(use-package lua-mode
-  :ensure)
-
-(use-package rust-mode
-  :ensure)
 (use-package js
   :hook (js-mode-hook . (lambda () (setq-local indent-tabs-mode nil))))
+
+(use-package kotlin-ts-mode
+  :ensure
+  :mode "\\.kt\\'")
 
 ;;; .emacs.el ends here
 
