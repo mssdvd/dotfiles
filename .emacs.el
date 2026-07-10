@@ -7,19 +7,19 @@
       read-process-output-max (* 1024 1024)
       redisplay-skip-fontification-on-input t)
 
-(setq-default bidi-display-reordering 'left-to-right
-              bidi-paragraph-direction 'left-to-right)
-
 (setopt
  backup-directory-alist (list (cons "." (concat user-emacs-directory "backups/")))
- comint-prompt-read-only t
  custom-file (concat user-emacs-directory "custom.el")
  custom-unlispify-tag-names nil
+ delete-by-moving-to-trash t
+ delete-pair-push-mark t
  echo-keystrokes 0.1
  enable-recursive-minibuffers t
+ fill-paragraph-function #'fill-paragraph-semlf
  indent-tabs-mode nil
  inhibit-startup-screen t
  kill-whole-line t
+ large-file-warning-threshold (expt 10 8)
  load-prefer-newer t
  lock-file-name-transforms '(("\\`/.*/\\([^/]+\\)\\'" "/var/tmp/\\1" t))
  minibuffer-follows-selected-frame nil
@@ -35,19 +35,22 @@
  scroll-error-top-bottom t
  scroll-preserve-screen-position t
  set-mark-command-repeat-pop t
+ shell-command-prompt-show-cwd t
  split-window-preferred-direction 'longest
  switch-to-buffer-obey-display-actions t
  tab-always-indent 'complete
  text-mode-ispell-word-completion nil
  tooltip-delay 0.1
+ treesit-enabled-modes t
  uniquify-buffer-name-style 'forward
  use-package-always-defer t
  use-package-enable-imenu-support t
  use-package-hook-name-suffix nil
+ use-package-compute-statistics t
  use-short-answers t
  user-mail-address "dm@mssdvd.com"
  view-read-only t
- window-resize-pixelwise t
+ ;; window-resize-pixelwise t
  )
 
 (auth-source-pass-enable)
@@ -55,10 +58,12 @@
 (column-number-mode 1)
 (electric-pair-mode 1)
 (find-function-mode 1)
+(global-visual-wrap-prefix-mode 1)
 (minibuffer-depth-indicate-mode 1)
 (savehist-mode 1)
 (size-indication-mode 1)
 (temp-buffer-resize-mode 1)
+(undelete-frame-mode 1)
 
 (dolist (hook '(conf-mode-hook prog-mode-hook text-mode-hook))
   (add-hook hook (lambda () (add-hook 'before-save-hook #'delete-trailing-whitespace nil t))))
@@ -71,8 +76,11 @@
 (keymap-global-set "<remap> <upcase-word>" #'upcase-dwim)
 (keymap-global-set "<remap> <zap-to-char>" #'zap-up-to-char)
 (keymap-global-set "C-c d" #'duplicate-dwim)
+(keymap-global-set "C-o" #'split-line)
+(keymap-global-set "C-M-o" #'open-line)
 (keymap-global-set "M-]" #'mode-line-other-buffer)
 (keymap-global-set "M-o" #'other-window)
+(keymap-global-set "M-O" #'other-window-backward)
 (keymap-global-unset "C-z")
 (keymap-global-unset "C-x C-z")
 
@@ -91,7 +99,7 @@
 ;;;;
 
 (defun +check-emacs-updates ()
-  "Update Emacs master and packages."
+  "Fetch Emacs master and update packages."
   (interactive)
   (list-packages)
   (magit-status-setup-buffer "~/src/emacs")
@@ -123,7 +131,7 @@
 (defun +google-flymake (point)
   "Search Google for Flymake diagnostics at POINT."
   (interactive "d")
-  (if-let ((diags (flymake-diagnostics point)))
+  (if-let* ((diags (flymake-diagnostics point)))
       (dolist (txt diags)
         (+google-search (flymake-diagnostic-text txt)))
     (user-error "No Flymake diagnostics at point")))
@@ -149,8 +157,10 @@
 ;;;;
 
 (use-package package
-  :custom (package-archive-priorities '(("gnu" . 1)
-                                        ("nongnu" . 1)))
+  :custom
+  (package-archive-priorities '(("gnu" . 1)
+                                ("nongnu" . 1)))
+  (package-review-policy t)
   :config
   (unless (= emacs-minor-version 0)
     (setopt package-install-upgrade-built-in t))
@@ -189,6 +199,7 @@
   :config (repeat-mode 1))
 
 (use-package tab-bar
+  :custom (tab-bar-show 1)
   :config (tab-bar-history-mode 1))
 
 (use-package windmove
@@ -212,18 +223,28 @@
   :bind
   ([remap list-buffers] . ibuffer)
   (:map ibuffer-mode-map
-        ("M-o" . other-window)))
+        ("M-o" . other-window))
+  :custom
+  ;; Emacs 31.0+
+  (ibuffer-formats '((mark modified read-only locked " "
+                           (name 36 36 :left :elide) " "
+                           (recency 7 7 :right) " "
+                           (size 9 -1 :right)  " "
+                           (mode 16 16 :left :elide) " "
+                           filename-and-process)))
+  (ibuffer-human-readable-size t))
 
 (use-package dired
   :custom
   (dired-auto-revert-buffer t)
   (dired-dwim-target t)
+  (dired-filename-display-length 'window)
   (dired-hide-details-hide-information-lines nil)
   (dired-hide-details-hide-symlink-targets nil)
-  (dired-listing-switches "-alhv --group-directories-first")
-  :hook (dired-mode-hook . (lambda ()
-                             (setq-local truncate-lines t)
-                             (dired-hide-details-mode 1))))
+  (dired-listing-switches (concat "-alhv"
+                                  (pcase system-type
+                                    ((or 'gnu/linux 'windows-nt)
+                                     " --group-directories-first")))))
 
 (use-package dired-aux
   :custom
@@ -408,11 +429,8 @@
         ("C-c f p" . flymake-goto-prev-error)
         ("C-c f f" . flymake-show-buffer-diagnostics)
         ("C-c f F" . flymake-show-project-diagnostics))
-  (:map project-prefix-map
-        ("!" . flymake-show-project-diagnostics))
   :custom
   (flymake-mode-line-lighter "FM")
-  (flymake-show-diagnostics-at-end-of-line 'fancy)
   :config
   (defvar-keymap +flymake-repeat-map
     :doc "Keymap to repeat `flymake-goto-next-error' and
@@ -437,14 +455,16 @@
   :hook (compilation-filter-hook . ansi-osc-compilation-filter))
 
 (use-package recentf
-  :demand
-  :custom (recentf-max-saved-items 500)
+  :defer 1
+  :custom
+  (recentf-autosave-interval 300)
+  (recentf-max-saved-items 500)
   :config (recentf-mode 1))
 
 (use-package saveplace
   :defer 1
   :custom
-  (save-place-autosave-interval (* 60 5))
+  (save-place-autosave-interval 300)
   (save-place-limit 1600)
   :config (save-place-mode 1))
 
@@ -683,12 +703,15 @@
                        eshell-tramp)
                      eshell-modules-list)))
 
-(use-package ansi-color
-  :hook (compilation-filter-hook . ansi-color-compilation-filter))
 (use-package esh-mode
   :bind
   (:map eshell-mode-map
         ([remap eshell-previous-matching-input] . cape-history)))
+
+(use-package em-hist
+  :custom
+  (eshell-history-append t)
+  (eshell-history-size 1024))
 
 (use-package em-ls
   :custom (eshell-ls-initial-args "-h"))
@@ -701,6 +724,9 @@
   (setopt eshell-visual-commands
           (seq-union '("gh" "watch") eshell-visual-commands)))
 
+(use-package comint
+  :custom (comint-prompt-read-only t)
+  :hook (comint-output-filter-functions . comint-osc-process-output))
 
 (use-package shell
   :custom (shell-has-auto-cd t))
@@ -760,6 +786,10 @@
 
 (use-package abbrev
   :custom (save-abbrevs 'silently)
+  :config
+  (let ((tbl text-mode-abbrev-table))
+    (define-abbrev tbl "dont" "don't")
+    (define-abbrev tbl "nb" "N.B."))
   :hook text-mode-hook)
 
 (use-package man
@@ -830,7 +860,8 @@
 (use-package shr
   :custom
   (shr-use-colors nil)
-  (shr-use-fonts nil))
+  (shr-use-fonts nil)
+  (shr-max-inline-image-size '(100 . 2.0)))
 
 (use-package yaml-mode
   :ensure)
@@ -863,7 +894,9 @@
 
 (use-package project
   :custom
+  (project-buffers-viewer #'project-list-buffers-ibuffer)
   (project-kill-buffers-display-buffer-list t)
+  (project-mode-line t)
   (project-switch-use-entire-map t))
 
 (use-package visual-line-mode
@@ -894,7 +927,7 @@
   (outline-minor-mode-cycle t)
   (outline-minor-mode-highlight t)
   (outline-minor-mode-use-buttons t)
-  :hook ((apropos-mode-hook xref-after-update-hook) . outline-minor-mode))
+  :hook ((apropos-mode-hook Buffer-menu-mode-hook xref-after-update-hook) . outline-minor-mode))
 
 (use-package tmr
   :ensure)
@@ -906,6 +939,12 @@
   :custom
   (proced-enable-color-flag t)
   (proced-format 'medium))
+
+(use-package conf-mode
+  :bind
+  (:map conf-mode-map
+        ("TAB" . tab-to-tab-stop))
+  :hook (conf-mode-hook . (lambda () (setq-local indent-tabs-mode t))))
 
 (use-package ultra-scroll
   :vc (:url "https://github.com/jdtsmith/ultra-scroll" :rev :newest)
@@ -1034,8 +1073,7 @@
 
 (use-package cc-vars
   :custom
-  (c-default-style '((java-mode . "java")
-                     (awk-mode . "awk")
+  (c-default-style '((awk-mode . "awk")
                      (other . "linux"))))
 
 (use-package python
