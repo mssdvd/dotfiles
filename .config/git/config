@@ -1,26 +1,42 @@
 [alias]
 	# TODO: Improve alignment
 	l = log --pretty='%C(yellow)%h %<(15)%C(cyan)%ad %<(20,trunc)%Cblue%an%C(auto)%d %Creset%s' --date=relative --date-order --graph
-[user]
-	name = Davide Masserut
-	email = dm@mssdvd.com
-[sendemail]
-	smtpserver = /usr/bin/msmtp
-[core]
-	editor = emacsclient -t -a ''
+	g = grep --heading
+	s = status
+	dlog = -c diff.external=difft log --ext-diff
+	dshow = -c diff.external=difft show --ext-diff
+	ddiff = -c diff.external=difft diff
+[branch]
+	sort = -committerdate
+[column]
+	ui = auto
 [commit]
 	verbose = true
 [diff]
 	algorithm = histogram
-[grep]
-	lineNumber = true
+	colorMoved = plain
+	mnemonicPrefix = true
+	renames = true
 [github]
 	user = mssdvd
-[credential]
-	helper = cache --timeout=5400
-[pull]
-	rebase = true
-[merge]
-	conflictstyle = zdiff3
+[grep]
+	lineNumber = true
+[http]
+	cookiefile = /home/davide/.gitcookies
+[init]
+	defaultBranch = main
 [log]
 	date = default-local
+[merge]
+	conflictstyle = zdiff3
+[pull]
+	rebase = true
+[rebase]
+	autoStash = true
+[sendemail]
+	smtpserver = /usr/bin/msmtp
+[tag]
+	sort = version:refname
+[user]
+	name = Davide Masserut
+	email = dm@mssdvd.com
