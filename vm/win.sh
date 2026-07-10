@@ -1,4 +1,5 @@
 #!/bin/sh
+set -x
 
 VM_DIR=$HOME/vm
 
@@ -11,7 +12,7 @@ exec qemu-system-x86_64 \
     -smp cores=4,threads=2 \
     -net nic,model=virtio \
     -net user,smb="$VM_DIR"/share \
-    -device intel-hda -device hda-duplex \
+    -audio pipewire,model=hda \
     -rtc base=localtime \
     -usb -device usb-tablet \
     -device ich9-usb-ehci1,id=usb \
@@ -26,7 +27,7 @@ exec qemu-system-x86_64 \
     -chardev spicevmc,name=usbredir,id=usbredirchardev2 -device usb-redir,chardev=usbredirchardev2,id=usbredirdev2 \
     -chardev spicevmc,name=usbredir,id=usbredirchardev3 -device usb-redir,chardev=usbredirchardev3,id=usbredirdev3 \
     -vga none -device qxl-vga,vgamem_mb=64 \
-    -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2-ovmf/x64/OVMF_CODE.secboot.fd \
+    -drive if=pflash,format=raw,readonly=on,file=/usr/share/edk2-ovmf/x64/OVMF_CODE.secboot.4m.fd \
     -drive if=pflash,format=raw,file="$VM_DIR"/uefi_vars.fd \
     -chardev socket,id=chrtpm,path="$VM_DIR"/tpm/swtpm-sock \
     -tpmdev emulator,id=tpm0,chardev=chrtpm \
