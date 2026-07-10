@@ -468,16 +468,22 @@
 
 (use-package rainbow-mode
   :ensure
-  :hook (conf-mode-hook css-mode-hook sgml-mode-hook))
+  :hook (conf-mode-hook))
 
 (use-package cdlatex
   :ensure
   :custom (cdlatex-math-modify-alist '((?B "\\mathbb" nil t nil nil))))
 
 (use-package tex
-  :ensure auctex)
+  :ensure auctex
+  :custom
+  (TeX-auto-save t)
+  (TeX-error-overview-open-after-TeX-run t)
+  (TeX-parse-self t)
+  (Tex-save-query nil))
 
 (use-package org
+  :ensure
   :bind
   ("C-c l" . org-store-link)
   (:map org-mode-map
@@ -485,16 +491,14 @@
         ([f8] . insert-char))
   :custom
   (org-M-RET-may-split-line '((default . nil)))
-  (org-attach-auto-tag nil)
-  (org-babel-load-languages '((emacs-lisp . t)
-                              (gnuplot . t)
-                              (python . t)
-                              (shell . t)))
+  ;; (org-babel-load-languages '((emacs-lisp . t)
+  ;;                             (gnuplot . t)
+  ;;                             (python . t)
+  ;;                             (shell . t)))
   (org-columns-default-format "%25ITEM %TODO %3PRIORITY %TAGS %TIMESTAMP %SCHEDULED %DEADLINE")
   (org-confirm-babel-evaluate nil)
   (org-ctrl-k-protect-subtree t)
   (org-cycle-separator-lines 1)
-  (org-edit-src-content-indentation 0)
   (org-ellipsis " ▶")
   (org-enforce-todo-checkbox-dependencies t)
   (org-enforce-todo-dependencies t)
@@ -511,13 +515,15 @@
   (org-latex-packages-alist '(("" "color") ("" "listings") ("AUTO" "babel" t ("pdflatex"))))
   (org-log-into-drawer t)
   (org-outline-path-complete-in-steps nil)
-  (org-pretty-entities t)
+  ;; (org-pretty-entities t)
   (org-return-follows-link t)
-  (org-startup-folded t)
+  (org-src-content-indentation 0)
+  ;; (org-startup-folded t)
   (org-todo-keywords '((sequence "TODO(t)" "NEXT(n)" "WIP(w)" "REDO(r)" "|" "DONE(d)" "CANCELED(c)")))
   (org-track-ordered-property-with-tag t)
   (org-use-fast-tag-selection t)
   (org-use-speed-commands t)
+  :config (add-to-list 'org-modules 'org-mouse t)
   :hook
   (org-mode-hook . visual-line-mode)
   (org-mode-hook . turn-on-org-cdlatex)
@@ -539,19 +545,20 @@
 |---+-----+-----+-----+-----+-----+-----+-----|
 |   | Mon | Tue | Wed | Thu | Fri | Sat | Sun |
 |---+-----+-----+-----+-----+-----+-----+-----|
+| B |     |     |     |     |     |     |     |
 | L |     |     |     |     |     |     |     |
 | D |     |     |     |     |     |     |     |
 |---+-----+-----+-----+-----+-----+-----+-----|"
       :empty-lines-before 1
       :jump-to-captured t)
 
-     ("s" "New logged org-pomodoro" entry
-      (file+olp+datetree "~/notes/activities.org"
-                         "Log")
-      "* %?"
-      :empty-lines 0
-      :tree-type week
-      :before-finalize (org-pomodoro))
+     ;; ("s" "New logged org-pomodoro" entry
+     ;;  (file+olp+datetree "~/notes/activities.org"
+     ;;                     "Log")
+     ;;  "* %?"
+     ;;  :empty-lines 0
+     ;;  :tree-type week
+     ;;  :before-finalize (org-pomodoro))
 
      ("S" "New activity log (clock in)" entry
       (file+olp+datetree "~/notes/activities.org"
@@ -574,53 +581,49 @@
   (org-indent-mode-turns-on-hiding-stars nil)
   :hook org-mode-hook)
 
+(use-package oc
+  :custom
+  (org-cite-global-bibliography '("~/bib/references.bib"))
+  (org-cite-insert-processor 'citar)
+  (org-cite-follow-processor 'citar)
+  (org-cite-activate-processor 'citar))
+
+(use-package citar
+  :custom
+  (citar-bibliography '("~/references.bib"))
+  (citar-file-open-functions '(("html" . citar-file-open-external)
+                               ("pdf" . citar-file-open-external)
+                               (t . find-file)))
+  :hook
+  (LaTeX-mode-hook . citar-capf-setup)
+  (org-mode-hook . citar-capf-setup))
+
 (use-package gnuplot
   :ensure)
 
-(use-package org-pomodoro
-  :ensure
-  :bind ("C-c r" . org-pomodoro)
-  :custom
-  (org-pomodoro-expiry-time 40)
-  (org-pomodoro-keep-killed-pomodoro-time t)
-  (org-pomodoro-audio-player (concat (executable-find "mpv") " --volume=75"))
-  (org-pomodoro-manual-break t))
-
-(use-package markdown-mode
-  :ensure
-  :hook (markdown-mode-hook . visual-line-mode))
-
 (use-package alert
-  :ensure
   :custom (alert-default-style 'libnotify))
 
 (use-package denote
+  :disabled
   :ensure
   :bind
   ("C-c n n" . denote)
-  ("C-c n f" . +denote-find-file)
-  ("C-c n i" . denote-link)
-  ("C-c n I" . denote-link-add-links)
-  ("C-c n l" . denote-link-find-file)
+  ("C-c n l" . denote-link-or-create)
+  ("C-c n L" . denote-link-add-links)
+  ("C-c n f" . denote-link-find-file)
   ("C-c n b" . denote-link-backlinks)
-  ("C-c n r" . denote-rename-file)
+  ("C-c n r" . denote-rename-file-using-front-matter)
+  ("C-c n R" . denote-rename-file)
   :custom
   (denote-backlinks-show-context t)
   (denote-directory (expand-file-name "~/denote/"))
   (denote-dired-directories (list denote-directory))
   (denote-known-keywords nil)
-  :config
-  (defun +denote-find-file ()
-    (interactive)
-    (let ((default-directory denote-directory)
-          (completion-ignored-extensions (cons ".git/" completion-ignored-extensions)))
-      (call-interactively #'find-file)))
+  (denote-modules '(project xref ffap))
   :hook
   (denote-backlinks-mode-hook . (lambda () (setq-local truncate-lines t)))
   (dired-mode-hook . denote-dired-mode-in-directories))
-
-(use-package vc
-  :custom (vc-follow-symlinks t))
 
 (use-package magit
   :ensure
@@ -628,13 +631,14 @@
   (:map project-prefix-map
         ("m" . magit-project-status))
   :custom
-  (magit-delete-by-moving-to-trash nil)
+  ;; (magit-delete-by-moving-to-trash (not (equal (getenv "XDG_CURRENT_DESKTOP") "sway")))
   (magit-diff-refine-hunk 'all)
   (magit-save-repository-buffers 'dontask)
   (magit-status-goto-file-position t)
   :config (put 'magit-edit-line-commit 'disabled nil))
 
 (use-package forge
+  :disabled
   :ensure)
 
 (use-package with-editor
@@ -846,10 +850,11 @@
   (ledger-highlight-xact-under-point nil)
   (ledger-reconcile-default-commodity " EUR")
   :hook
-  (before-save-hook . (lambda ()
-                        (indent-region (point-min) (point-max))))
   (ledger-mode-hook . (lambda ()
                         (setq-local corfu-auto nil)
+                        (add-hook 'before-save-hook (lambda ()
+                                                      (indent-region (point-min) (point-max)))
+                                  nil t)
                         (ledger-flymake-enable))))
 
 (use-package csv-mode
