@@ -3,4 +3,6 @@ xkb_symbols "basic" {
 	include "pc+us+inet(evdev)"
 	name[Group1] = "T480s";
 	key <PRSC> { [ Super_L ] };
+	key <CAPS> { [ Control_L ] };
+	key <LCTL> { [ Multi_key ] };
 };

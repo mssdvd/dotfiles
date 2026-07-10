@@ -1,6 +1,6 @@
 default partial alphanumeric_keys
 xkb_symbols "basic" {
 	include "us(altgr-intl)"
-	name[Group1] = "English (US, international with < key as a Shift)";
+	name[Group1] = "English (US, T480s)";
 	key <LSGT> { [ Shift_L, Shift_L ] };
 };
