@@ -70,6 +70,12 @@
 
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
+(add-hook 'toolkit-theme-set-functions
+          (lambda (theme)
+            (pcase theme
+              ('dark  (modus-themes-load-theme 'modus-vivendi))
+              ('light (modus-themes-load-theme 'modus-operandi)))))
+
 (keymap-global-set "<remap> <capitalize-word>" #'capitalize-dwim)
 (keymap-global-set "<remap> <count-words-region>" #'count-words)
 (keymap-global-set "<remap> <downcase-word>" #'downcase-dwim)
@@ -171,19 +177,7 @@
   :demand
   :bind ("C-c q" . modus-themes-toggle)
   :custom
-  (modus-themes-common-palette-overrides
-   '((bg-mode-line-active bg-cyan-intense)
-     (bg-region bg-ochre)
-     (fg-region unspecified)))
-  (modus-themes-headings '((t . (1.1))))
-  :config
-  (if (ignore-errors
-        (equal (process-lines
-                "gsettings" "get"
-                "org.gnome.desktop.interface" "color-scheme")
-               '("'prefer-dark'")))
-      (modus-themes-load-theme 'modus-vivendi)
-    (modus-themes-load-theme 'modus-operandi)))
+  (modus-themes-headings '((t . (1.1)))))
 
 (use-package time
   :custom
@@ -886,9 +880,6 @@
   (shr-use-fonts nil)
   (shr-max-inline-image-size '(100 . 2.0)))
 
-(use-package yaml-mode
-  :ensure)
-
 (use-package matlab-mode
   :disabled
   :ensure
@@ -1061,13 +1052,24 @@
   (message-auto-save-directory nil)
   (message-confirm-send t)
   (message-kill-buffer-on-exit t)
-  (message-sendmail-envelope-from 'header))
+  (message-sendmail-envelope-from 'header)
+  :hook
+  (message-mode-hook . (lambda ()
+                         (auto-fill-mode -1)
+                         (use-hard-newlines 1)
+                         (visual-line-mode 1))))
 
 (use-package sendmail
   :custom
   (mail-specify-envelope-from t)
   (send-mail-function #'sendmail-send-it)
   (sendmail-program "/usr/bin/msmtp"))
+
+(use-package gnus
+  :custom (gnus-article-date-headers '(combined-local-lapsed)))
+
+(use-package mailcap
+  :custom (mailcap-user-mime-data '((doc-view-mode "application/vnd.*"))))
 
 (use-package notmuch
   :commands (notmuch notmuch-search +sync-email)
@@ -1076,12 +1078,13 @@
   ("C-c m" . (lambda (ignore-unread)
                (interactive "P")
                (if (or ignore-unread (equal
-                                      (process-lines "notmuch" "count" "tag:unread")
+                                      (process-lines "notmuch" "count" "tag:unread and tag:inbox")
                                       '("0")))
                    (notmuch)
                  (notmuch-search "tag:unread and tag:inbox" t))))
   :custom
   (mail-user-agent 'notmuch-user-agent)
+  (notmuch-address-command nil)
   (notmuch-mua-attachment-regexp "\\b\\(attache?ment\\|attached\\|attach\\|pi[èe]ce +jointe?\\|allego\\|allegato\\)\\b")
   (notmuch-draft-folder "dm@mssdvd.com/Drafts")
   (notmuch-fcc-dirs
@@ -1107,6 +1110,7 @@
   (notmuch-show-all-tags-list t)
   (notmuch-show-part-button-default-action #'notmuch-show-interactively-view-part)
   :config
+  (require 'notmuch-mua)
   (defun +sync-email ()
     "Sync emails and update notmuch index."
     (interactive)
@@ -1124,6 +1128,7 @@
 (use-package notmuch-indicator
   :ensure
   :demand
+  :if (executable-find "notmuch")
   :config (notmuch-indicator-mode 1))
 
 ;;
@@ -1132,18 +1137,26 @@
 
 (use-package eglot
   :ensure
+  :bind
+  (:map eglot-mode-map
+        ([remap display-local-help] . eldoc-box-hover-mode))
   :custom
   (eglot-autoshutdown t)
   (eglot-extend-to-xref t)
   :config
   (setq-default eglot-workspace-configuration
-                '((:gopls . ((gofumpt . t)
-                             (linkTarget . "godocs.io")
-                             (usePlaceholders . t)))))
+                '(:gopls (
+                          :gofumpt t
+                          :hints (
+                                  :constantValues t
+                                  :functionTypeParameters t
+                                  :ignoredError t)
+                          :hoverKind "FullDocumentation"
+                          :linksInHover "gopls"
+                          :usePlaceholders t)))
+  (advice-add #'eglot-completion-at-point :around #'cape-wrap-buster)
   :hook
-  ((c-mode-hook
-    c++-mode-hook
-    go-mode-hook
+  ((go-mode-hook
     go-dot-mod-mode-hook
     go-ts-mode-hook
     go-mod-ts-mode-hook
