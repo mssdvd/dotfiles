@@ -3,7 +3,7 @@
 input "1:1:AT_Translated_Set_2_keyboard" {
 	xkb_layout T480s
 }
-input "1267:32:Elan_TrackPoint" accel_profile flat
+input "1267:32:Elan_TrackPoint" pointer_accel 0.8
 
 output "LG Electronics LG ULTRAFINE 105NTWGCC849" position 0 0
 output eDP-1 position 3840 0 scale 1
