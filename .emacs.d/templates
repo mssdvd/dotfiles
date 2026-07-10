@@ -22,7 +22,8 @@ emacs-lisp-mode
 go-mode go-ts-mode
 
 (main "package main" n n "func main() {" n> q n "}")
-(ifen "if err != nil {" n> r> n> "}")
+(if "if " p " {" n> r n "}" >)
+(ifenn "if err != nil " "{" n> r n "}" >)
 
 c-mode
 
