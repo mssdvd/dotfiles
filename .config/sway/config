@@ -51,11 +51,11 @@ mode "$mode_display" {
 set $mode_system System (l)ock, (e)xit, (s)uspend, (Shift+r)eboot, (Shift+s)hutdown
 mode "$mode_system" {
 	bindsym {
-		e exec emacsclient -e '(let ((confirm-kill-processes nil))(save-buffers-kill-emacs 1))', exit, mode "default"
 		l exec loginctl lock-session, mode "default"
+		e exec loginctl terminate-user ''
 		s exec systemctl suspend, mode "default"
-		Shift+r exec "emacsclient -e '(let ((confirm-kill-processes nil))(save-buffers-kill-emacs 1))'; systemctl reboot", mode "default"
-		Shift+s exec "emacsclient -e '(let ((confirm-kill-processes nil))(save-buffers-kill-emacs 1))'; systemctl poweroff -i", mode "default"
+		Shift+r exec systemctl reboot
+		Shift+s exec systemctl poweroff -i
 
 		Return mode "default"
 		Escape mode "default"
@@ -99,6 +99,9 @@ mode "resize" {
 		t exec i3_balance_workspace
 		Shift+t exec i3_balance_workspace --scope focus
 
+		$mod+t exec i3_balance_workspace
+		$mod+Shift+t exec i3_balance_workspace --scope focus
+
 		Return mode "default"
 		Escape mode "default"
 		r mode "default"
@@ -137,9 +140,9 @@ bindsym {
 
 	--locked {
 		XF86AudioRaiseVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%+ -l 1.0 && $audio_wob
-		$mod+x exec wpctl set-volume @DEFAULT_AUDIO_SINK@ -l 1.0 5%+ && $audio_wob
+		$mod+x exec wpctl set-volume @DEFAULT_AUDIO_SINK@ -l 1.0 5%+               && $audio_wob
 		XF86AudioLowerVolume exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.0 && $audio_wob
-		$mod+z exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.0 && $audio_wob
+		$mod+z exec wpctl set-volume @DEFAULT_AUDIO_SINK@ 5%- -l 1.0               && $audio_wob
 		XF86AudioMute exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $wob_sock) || (wpctl get-volume @DEFAULT_AUDIO_SINK@ && $audio_wob)
 		$mod+c exec wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle && (wpctl get-volume @DEFAULT_AUDIO_SINK@ | grep -q MUTED && echo 0 > $wob_sock) || (wpctl get-volume @DEFAULT_AUDIO_SINK@ && $audio_wob)
 		XF86AudioMicMute exec wpctl set-mute @DEFAULT_AUDIO_SOURCE@ toggle
@@ -169,11 +172,12 @@ bindsym {
 	$mod+Bracketright exec emacsclient -c -a '' -n
 
 	$mod+Shift+p exec passmenu
-	$mod+m exec ~/bin/play_in_mpv.sh
-	$mod+Shift+m exec ~/bin/play_in_mpv.sh --vid=no
+	$mod+m exec play_in_mpv.sh
+	$mod+Shift+m exec play_in_mpv.sh --vid=no
 	$mod+apostrophe exec emacs_read_new_email.sh; pkill -SIGRTMIN+1 waybar
 	$mod+Shift+apostrophe exec $term aerc
 	$mod+g exec swaymsg -q [urgent=latest] focus || makoctl invoke
+	$mod+Shift+g exec makoctl dismiss
 
 	$mod+$left focus left
 	$mod+$down focus down
@@ -262,13 +266,11 @@ hide_edge_borders vertical
 seat * hide_cursor 10000
 
 for_window {
-	[app_id="firefox" title="(?i)^picture-in-picture"] floating enable, sticky enable
-	[app_id="firefox" title="About Mozilla Firefox"] floating enable
+	[app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable
 	[app_id="floating_window"] floating enable
 	[app_id="gcr-prompter"] focus
 	[class="floating_window"] floating enable
-	[class="steam_app*"] inhibit_idle focus
-	[app_id="zoom"] floating enable
+	[class=".+"] inhibit_idle fullscreen
 }
 
 exec {
