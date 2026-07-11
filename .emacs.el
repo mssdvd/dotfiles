@@ -80,7 +80,6 @@
 (keymap-global-set "C-M-o" #'open-line)
 (keymap-global-set "M-]" #'mode-line-other-buffer)
 (keymap-global-set "M-o" #'other-window)
-(keymap-global-set "M-O" #'other-window-backward)
 (keymap-global-unset "C-z")
 (keymap-global-unset "C-x C-z")
 
