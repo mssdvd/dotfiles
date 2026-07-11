@@ -70,12 +70,6 @@
 
 (add-hook 'minibuffer-setup-hook #'cursor-intangible-mode)
 
-(add-hook 'toolkit-theme-set-functions
-          (lambda (theme)
-            (pcase theme
-              ('dark  (modus-themes-load-theme 'modus-vivendi))
-              ('light (modus-themes-load-theme 'modus-operandi)))))
-
 (keymap-global-set "<remap> <capitalize-word>" #'capitalize-dwim)
 (keymap-global-set "<remap> <count-words-region>" #'count-words)
 (keymap-global-set "<remap> <downcase-word>" #'downcase-dwim)
@@ -176,8 +170,19 @@
   :ensure
   :demand
   :bind ("C-c q" . modus-themes-toggle)
-  :custom
-  (modus-themes-headings '((t . (1.1)))))
+  :custom (modus-themes-headings '((t . (1.1)))))
+
+(let ((set-theme-from-system
+       (lambda (theme)
+         (pcase theme
+           ('dark  (modus-themes-load-theme 'modus-vivendi))
+           ('light (modus-themes-load-theme 'modus-operandi))))))
+  (add-hook (if (boundp 'ns-system-appearance-change-functions)
+                'ns-system-appearance-change-functions
+              'toolkit-theme-set-functions)
+            set-theme-from-system)
+  (unless (display-graphic-p)
+    (funcall set-theme-from-system (frame-parameter nil 'background-mode))))
 
 (use-package time
   :custom
