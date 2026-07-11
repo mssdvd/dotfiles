@@ -15,6 +15,8 @@
 (setq default-frame-alist '((width . 120)
                             (height . 60)))
 
+(setq xterm-update-cursor 'color)
+
 (menu-bar-mode -1)
 (tool-bar-mode -1)
 (scroll-bar-mode -1)
