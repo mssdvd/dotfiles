@@ -1,10 +1,12 @@
 #!/usr/bin/env python3
-import sys
-import json
-import subprocess
 import argparse
-import tempfile
 import fcntl
+import json
+import os
+import re
+import subprocess
+import sys
+import tempfile
 
 
 def main():
@@ -64,9 +66,32 @@ def brightnessctl(args: argparse.Namespace) -> None:
         lock_fd.close()
 
 
+def resolve_bus(bus_cache_file: str) -> str:
+    try:
+        with open(bus_cache_file) as f:
+            return f.read().strip()
+    except FileNotFoundError:
+        pass
+
+    # "ddcutil detect" scans every I2C bus and is slow (~700ms); only pay
+    # for it once and cache the result.
+    res = subprocess.run(
+        ["ddcutil", "detect", "--brief"], capture_output=True, encoding="utf-8"
+    )
+    for block in res.stdout.split("\n\n"):
+        if block.startswith("Display "):
+            m = re.search(r"/dev/i2c-(\d+)", block)
+            if m:
+                bus = m.group(1)
+                with open(bus_cache_file, "w") as f:
+                    f.write(bus)
+                return bus
+    sys.exit(1)
+
+
 def ddcutil(args: argparse.Namespace) -> None:
-    cmd = ["ddcutil", "setvcp", "10"]
     cache_file = tempfile.gettempdir() + "/backlight"
+    bus_cache_file = tempfile.gettempdir() + "/backlight-bus"
     lock_file = cache_file + ".lock"
 
     # ddcutil's DDC/CI round-trip is slow (0.3-1s) and not safe to run
@@ -83,6 +108,8 @@ def ddcutil(args: argparse.Namespace) -> None:
         return
 
     try:
+        bus = resolve_bus(bus_cache_file)
+
         if args.s is not None:
             pct = args.s
         else:
@@ -90,13 +117,13 @@ def ddcutil(args: argparse.Namespace) -> None:
             try:
                 with open(cache_file) as f:
                     prev_pct = int(f.read())
-            except Exception:
+            except (FileNotFoundError, ValueError):
                 use_cache = False
 
             if not use_cache:
                 try:
                     res = subprocess.run(
-                        ["ddcutil", "getvcp", "10", "-t"],
+                        ["ddcutil", "--bus", bus, "getvcp", "10", "-t"],
                         capture_output=True,
                         check=True,
                         encoding="utf-8",
@@ -111,10 +138,17 @@ def ddcutil(args: argparse.Namespace) -> None:
                 pct = prev_pct - int(args.d)
 
         pct = str(min(max(pct, 0), 100))
-        cmd.append(pct)
+        cmd = ["ddcutil", "--bus", bus, "--noverify", "setvcp", "10", pct]
 
         res = subprocess.run(cmd, capture_output=True)
         if len(res.stderr) > 0:
+            # The cached bus may be stale (monitor unplugged/remapped);
+            # drop it so the next invocation re-detects instead of
+            # failing forever against a dead bus number.
+            try:
+                os.remove(bus_cache_file)
+            except FileNotFoundError:
+                pass
             sys.exit(1)
 
         with open(cache_file, "w") as f:
