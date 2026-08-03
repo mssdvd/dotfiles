@@ -695,12 +695,7 @@
 (use-package eldoc
   :custom
   (eldoc-documentation-strategy 'eldoc-documentation-compose)
-  (eldoc-echo-area-prefer-doc-buffer t)
-  :config
-  (advice-add #'eldoc--format-doc-buffer
-              :after (lambda (&rest _)
-                       (with-current-buffer eldoc--doc-buffer
-                         (visual-line-mode 1)))))
+  (eldoc-echo-area-prefer-doc-buffer t))
 
 (use-package eldoc-box
   :ensure
