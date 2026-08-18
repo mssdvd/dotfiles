@@ -379,10 +379,17 @@
 (use-package corfu
   :ensure
   :demand
+  :bind
+  (:map corfu-map
+        ("TAB" . corfu-next)
+        ([tab] . corfu-next)
+        ("S-TAB" . corfu-previous)
+        ([backtab] . corfu-previous))
   :custom
   (corfu-auto t)
   (corfu-auto-trigger "/\.:-_")
   (corfu-cycle t)
+  (corfu-preselect 'prompt)
   :config
   (global-corfu-mode 1)
   (corfu-history-mode 1)
